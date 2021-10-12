@@ -1,1 +1,1 @@
-# solidaridad-escuela
+# Solidaridad Escuela
