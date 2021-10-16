@@ -1,4 +1,4 @@
-package edu.eci.cvds;
+package edu.eci.cvds.samples.managedbeans;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
