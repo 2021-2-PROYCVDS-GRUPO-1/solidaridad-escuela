@@ -49,6 +49,13 @@ public class ServicesFactory {
                 install(JdbcHelper.PostgreSQL);
                 setEnvironmentId("test");
                 setClassPathResource("h2-mybatis-config.xml");
+
+                // DAO
+                bind(Login.class).to(ShiroLogin.class);
+                bind(UserDAO.class).to(MyBATISUserDAO.class);
+
+                // SERVICES
+                bind(Services.class).to(ServicesImpl.class);
             }
         });
     }

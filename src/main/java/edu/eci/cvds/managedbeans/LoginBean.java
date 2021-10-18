@@ -20,7 +20,8 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "loginBean")
 @SessionScoped
-public class LoginBean extends BasePageBean{
+// extends BasePageBean
+public class LoginBean {
     @Inject
     private Login login;
 

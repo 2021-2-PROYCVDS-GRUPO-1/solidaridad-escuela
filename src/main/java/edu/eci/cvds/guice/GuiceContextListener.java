@@ -2,6 +2,12 @@ package edu.eci.cvds.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.mybatis.MyBATISUserDAO;
+import edu.eci.cvds.persistence.mybatis.dao.UserDAO;
+import edu.eci.cvds.security.Login;
+import edu.eci.cvds.security.ShiroLogin;
+import edu.eci.cvds.services.Services;
+import edu.eci.cvds.services.impl.ServicesImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -30,10 +36,11 @@ public class GuiceContextListener {
                 setClassPathResource("mybatis-config.xml");
 
                 // DAO
-                // bind(TestDAO.class).to(MyBATISTestDAO.class);
+                bind(Login.class).to(ShiroLogin.class);
+                bind(UserDAO.class).to(MyBATISUserDAO.class);
 
                 // SERVICES
-                // bind(Test.class).to(TestImpl.class);
+                bind(Services.class).to(ServicesImpl.class);
             }
         });
 
