@@ -1,4 +1,4 @@
-package edu.eci.cvds.samples.services.client;
+package edu.eci.cvds.services.client;
 
 public class MyBatisExample {
     // mvn exec:java -"Dexec.mainClass"=edu.eci.cvds.samples.services.client.MyBatisExample -"Dexec.cleanupDaemonThreads"=false
