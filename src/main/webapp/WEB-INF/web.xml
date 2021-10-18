@@ -26,7 +26,7 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/404/404.xhtml</location>
+        <location>/views/404/404.xhtml</location>
     </error-page>
 
 

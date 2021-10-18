@@ -1,7 +1,14 @@
---- THIS IS JUST AN EXAMPLE ---
 -- -----------------------------------------------------
--- Table `Battalion`
+-- Table `DB_USER`
 -- -----------------------------------------------------
-ALTER TABLE Battalion
-	 ADD CONSTRAINT CK_BATTALION_MILFORCE
-	 CHECK (militaryForce IN ('Fuerza Aerea', 'Armada', 'Ejercito'));
+ALTER TABLE DB_USER
+ADD CONSTRAINT CK_USER_ROLE
+CHECK(
+	role IN ('ADMIN', 'STUDENT', 'TEACHER', 'GRADUATED', 'ADMINISTRATIVE')
+);
+
+ALTER TABLE DB_USER
+ADD CONSTRAINT CK_USER_STATUS
+CHECK(
+	status IN ('ENABLED', 'DISABLED')
+);

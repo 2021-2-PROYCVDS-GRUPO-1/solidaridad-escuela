@@ -1,6 +1,11 @@
 package edu.eci.cvds.services;
 
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.mybatis.MyBATISUserDAO;
+import edu.eci.cvds.persistence.mybatis.dao.UserDAO;
+import edu.eci.cvds.security.Login;
+import edu.eci.cvds.security.ShiroLogin;
+import edu.eci.cvds.services.impl.ServicesImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -21,18 +26,20 @@ public class ServicesFactory {
     private static Injector testInjector;
 
     private ServicesFactory(){
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println("THIS IS WORKINGGGG");
-        System.out.println(" ");
-        System.out.println(" ");
-
         injector = createInjector(new XMLMyBatisModule() {
             @Override
             protected void initialize() {
                 install(JdbcHelper.PostgreSQL);
                 setEnvironmentId("development");
                 setClassPathResource("mybatis-config.xml");
+
+                // DAO
+                bind(Login.class).to(ShiroLogin.class);
+                bind(UserDAO.class).to(MyBATISUserDAO.class);
+
+                // SERVICES
+                bind(Services.class).to(ServicesImpl.class);
+
             }
         });
 

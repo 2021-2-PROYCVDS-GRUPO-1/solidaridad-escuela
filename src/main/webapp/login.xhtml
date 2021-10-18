@@ -8,11 +8,20 @@
 
 
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
-    <h:head>
-        <!--<link rel="stylesheet" href="indexStyles.css"></link>-->
-    </h:head>
     <h:body>
         <h1>LOGIN WORKING</h1>
+
+        <h:form id="loginForm">
+            <h:outputText value="Usuario:"/>
+            <p:inputText id="email" styleClass="input-text" type="String" value="#{loginBean.email}" />
+
+            <h:outputText value="Contraseña:"/>
+            <p:password id="password" styleClass="input-text" type="String" value="#{loginBean.password}" />
+
+            <p:commandButton  styleClass="myButton" actionListener="#{loginBean.signIn}" update="loginForm" value="Ingresar">
+            </p:commandButton>
+        </h:form>
+
     </h:body>
 </f:view>
 </html>

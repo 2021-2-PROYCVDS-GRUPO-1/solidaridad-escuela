@@ -11,9 +11,22 @@ public class BasePageBean implements Serializable {
     private Injector injector;
 
     public Injector getInjector(){
+        System.out.println("  ");
+        System.out.println(" ------- ");
+        System.out.println(injector);
+        System.out.println(" ------- ");
+        System.out.println("  ");
+
         if (injector == null){
+            // $ -> esto está llegando null
             ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
             injector = (Injector) servletContext.getAttribute(Injector.class.getName());
+
+            System.out.println("  ");
+            System.out.println(" ------- ");
+            System.out.println(injector);
+            System.out.println(" ------- ");
+            System.out.println("  ");
         }
         return injector;
     }
@@ -24,6 +37,6 @@ public class BasePageBean implements Serializable {
 
     @PostConstruct
     public void init(){
-        getInjector().injectMembers(this);
+        this.getInjector().injectMembers(this);
     }
 }
