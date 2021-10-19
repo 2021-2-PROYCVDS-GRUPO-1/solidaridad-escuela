@@ -1,3 +1,3 @@
 --Delete TABLE
 DROP TABLE DB_USER;
-DROP TABLE Categorias;
+DROP TABLE DB_Category;
