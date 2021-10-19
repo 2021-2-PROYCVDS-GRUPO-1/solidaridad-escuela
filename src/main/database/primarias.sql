@@ -1,0 +1,5 @@
+--PK'S
+ALTER TABLE Categorias ADD CONSTRAINT PK_Categoria PRIMARY KEY(Id);
+
+--Delete PK's
+ALTER TABLE Categorias DROP PRIMARY KEY;
