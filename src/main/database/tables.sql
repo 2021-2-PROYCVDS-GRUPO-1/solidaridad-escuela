@@ -27,3 +27,16 @@ Date_Modification  DATE NOT NULL,
 CONSTRAINT UC_Category UNIQUE (Name)
 );
 
+-- -----------------------------------------------------
+-- Table `DB_Offer`
+-- -----------------------------------------------------
+
+CREATE TABLE Offer (
+ offerId            SERIAL          PRIMARY KEY,
+ offerCategory      VARCHAR(50)     NOT NULL,
+ name               VARCHAR(50)     NOT NULL,
+ description        VARCHAR(100)    NOT NULL,
+ status             VARCHAR(50)     NOT NULL,
+ dateCreate         DATE            NOT NULL,
+ dateModification   DATE            NOT NULL,
+);
