@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS DB_USER(
 -- -----------------------------------------------------
 -- Table `DB_Category`
 -- -----------------------------------------------------
-CREATE TABLE DB_Category(
+CREATE TABLE IF NOT EXISTS DB_Category(
 Id SERIAL NOT NULL, 
 Name VARCHAR(50) NOT NULL, 
 Description VARCHAR(150) NOT NULL, 
