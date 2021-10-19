@@ -1,0 +1,3 @@
+--Delete TABLE
+DROP TABLE DB_USER;
+DROP TABLE DB_Category;

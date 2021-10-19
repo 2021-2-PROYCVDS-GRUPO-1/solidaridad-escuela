@@ -14,3 +14,16 @@ CREATE TABLE IF NOT EXISTS DB_USER(
   UNIQUE(email, username)
 );
 
+-- -----------------------------------------------------
+-- Table `DB_Category`
+-- -----------------------------------------------------
+CREATE TABLE DB_Category(
+Id SERIAL NOT NULL, 
+Name VARCHAR(50) NOT NULL, 
+Description VARCHAR(150) NOT NULL, 
+Date_Create DATE NOT NULL, 
+State VARCHAR(40) NOT NULL, 
+Date_Modification  DATE NOT NULL, 
+CONSTRAINT UC_Category UNIQUE (Name)
+);
+
