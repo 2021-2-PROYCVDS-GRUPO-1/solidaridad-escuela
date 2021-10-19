@@ -37,6 +37,6 @@ CREATE TABLE Offer (
  name               VARCHAR(50)     NOT NULL,
  description        VARCHAR(100)    NOT NULL,
  status             VARCHAR(50)     NOT NULL,
- dateCreate         DATE            NOT NULL,
+ dateCreation         DATE            NOT NULL,
  dateModification   DATE            NOT NULL,
 );

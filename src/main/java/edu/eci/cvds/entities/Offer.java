@@ -7,7 +7,7 @@ import java.util.Date;
  * @author Laura Nathalia García
  * @author Juan Sebastián Cadavid
  * @author Juan David Murillo
- * @version 17/10/2021
+ * @version 19/10/2021
  */
 public class Offer {
     private int offerId;
