@@ -1,4 +1,4 @@
-package edu.eci.cvds.samples.services;
+package edu.eci.cvds.services;
 
 /**
  * This is the class where all the DB calls and operations will be handled

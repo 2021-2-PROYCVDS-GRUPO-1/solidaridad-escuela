@@ -1,7 +1,8 @@
-package edu.eci.cvds.samples.managedbeans;
+package edu.eci.cvds.managedbeans;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+
 @ManagedBean(name = "testBean")
 @ApplicationScoped
 public class TestBean {
