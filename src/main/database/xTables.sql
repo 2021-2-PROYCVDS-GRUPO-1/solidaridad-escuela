@@ -1,4 +1,4 @@
 --Delete TABLE
 DROP TABLE DB_USER;
 DROP TABLE DB_Category;
-DROP TABLE Offer;
+DROP TABLE DB_Offer;

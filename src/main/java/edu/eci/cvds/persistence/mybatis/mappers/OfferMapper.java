@@ -16,5 +16,5 @@ import org.apache.ibatis.annotations.Param;
 public interface OfferMapper {
     public User getOfferByName(@Param("name") String name) throws PersistenceException;
 
-    public User getOfferByID(@Param("id") String name) throws PersistenceException;
+    public User getOfferByID(@Param("id") String id) throws PersistenceException;
 }
