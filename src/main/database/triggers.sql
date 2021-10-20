@@ -19,24 +19,25 @@ CREATE TRIGGER AD_fechaRegistro_Equipo
 EXECUTE PROCEDURE fechaEquipo();
 
 ----------------------------------------------------------
--- Table Offer
+-- Table DB_OFFERS
 
 
 ---PRUEBA--------
-CREATE OR REPLACE FUNCTION fechaOffer()
+CREATE OR REPLACE FUNCTION dateModificationOffer()
     RETURNS TRIGGER
 AS
 $$
 BEGIN
-    NEW.Date_Modification := CURRENT_DATE;
+    NEW.dateModification := CURRENT_DATE;
     RETURN NEW;
 END;
+$$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER AD_dateModification_Offer
-  BEFORE INSERT ON public.Offer
+CREATE TRIGGER AD_dateModificationOffer
+  BEFORE INSERT ON public.DB_OFFERS
   FOR EACH ROW
-EXECUTE PROCEDURE fechaOffer();
+EXECUTE PROCEDURE dateModificationOffer();
 -------------------------------------------------------
 
 
