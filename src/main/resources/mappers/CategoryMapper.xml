@@ -29,6 +29,10 @@
         WHERE #{id} = Id;
     </select>
 
+    <!-- ADD CATEGORY -->
+    <insert id="addCategory">
+        INSERT INTO DB_Category (Name, Description, Status) VALUES (#{name}, #{description}, #{state});
+    </insert>
 
     <resultMap id="CategoryResult" type="Category" >
         <id property="Id" column="c_id"/>

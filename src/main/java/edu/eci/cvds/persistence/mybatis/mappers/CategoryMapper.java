@@ -15,4 +15,8 @@ public interface CategoryMapper {
     public Category getCategoryId(@Param("id") String id) throws PersistenceException;
 
     public Category getCategoryName(@Param("name") String name) throws PersistenceException;
+
+    public void addCategory(@Param("name") String name,
+                            @Param("description") String description,
+                            @Param("state") String state) throws PersistenceException;
 }
