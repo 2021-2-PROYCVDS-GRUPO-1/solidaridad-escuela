@@ -39,5 +39,6 @@
         <result property="status" column="status" />
         <result property="dateCreation" column="dateCreation" />
         <result property="dateModification" column="dateModification" />
+        <association property="category" javaType="Category" columnPrefix="category" resultMap="-category-"/>
     </resultMap>
 </mapper>
