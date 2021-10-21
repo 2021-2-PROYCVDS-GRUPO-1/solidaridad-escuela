@@ -35,6 +35,7 @@ public class MyBATISCategoryDAO implements CategoryDAO {
             throw  new PersistenceException("Error al consultar la categoria con el id: "+ id);
         }
     }
+    
     /**
     @Override
     public void upCategoryId(String id, String name, String description, String state) throws PersistenceException {
