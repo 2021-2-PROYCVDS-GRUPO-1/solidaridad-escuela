@@ -31,7 +31,7 @@ public class MyBATISCategoryDAO implements CategoryDAO {
     public Category getCategoryId(String id) throws PersistenceException {
         try{
             return categoryMapper.getCategoryId(id);
-        }catch (PersistenceException ex) {
+        }catch (PersistenceException e) {
             throw  new PersistenceException("Error al consultar la categoria con el id: "+ id);
         }
     }
