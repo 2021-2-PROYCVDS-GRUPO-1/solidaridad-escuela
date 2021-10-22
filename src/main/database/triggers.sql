@@ -56,6 +56,16 @@ CREATE TRIGGER AD_dateCreationOffer
   FOR EACH ROW
 EXECUTE PROCEDURE dateCreationOffer();
 
+-- Update date modification
+
+CREATE TRIGGER UP_dateModificationOffer
+  BEFORE UPDATE ON public.DB_OFFERS
+  FOR EACH ROW
+EXECUTE PROCEDURE dateModificationOffer();
+
+
+
+
 -------------------------------------------------------
 
 
