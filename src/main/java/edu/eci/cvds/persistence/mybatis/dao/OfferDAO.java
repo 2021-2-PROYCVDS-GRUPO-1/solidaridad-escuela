@@ -1,6 +1,6 @@
 package edu.eci.cvds.persistence.mybatis.dao;
 
-import edu.eci.cvds.entities.User;
+import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 
 /**
@@ -17,15 +17,25 @@ public interface OfferDAO {
      * @return
      * @throws PersistenceException
      */
-    public User getOfferByName(String name) throws PersistenceException;
+    public Offer getOfferByName(String name) throws PersistenceException;
 
     /**
      * Get the offer by its id
-     * @param id The user's email
+     * @param id The offer's id
      * @return
      * @throws PersistenceException
      */
-    public User getOfferByID(String id) throws PersistenceException;
+    public Offer getOfferByID(int id) throws PersistenceException;
+
+    /**
+     *
+     * @param offerId The offer's Id
+     * @param offerCategory The offer's category
+     * @param name The offer's name
+     * @param description The offer's description
+     * @throws PersistenceException
+     */
+    public void registrarOferta(int offerId, String offerCategory, String name, String description) throws PersistenceException;
 
 }
 

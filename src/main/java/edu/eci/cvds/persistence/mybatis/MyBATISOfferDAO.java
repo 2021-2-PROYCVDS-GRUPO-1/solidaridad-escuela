@@ -1,7 +1,7 @@
 package edu.eci.cvds.persistence.mybatis;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.entities.User;
+import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.OfferDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.OfferMapper;
@@ -19,7 +19,7 @@ public class MyBATISOfferDAO implements OfferDAO {
 
 
     @Override
-    public User getOfferByName(String name) throws PersistenceException {
+    public Offer getOfferByName(String name) throws PersistenceException {
         try{
             return offerMapper.getOfferByName(name);
         } catch (PersistenceException e) {
@@ -28,11 +28,20 @@ public class MyBATISOfferDAO implements OfferDAO {
     }
 
     @Override
-    public User getOfferByID(String id) throws PersistenceException {
+    public Offer getOfferByID(int id) throws PersistenceException {
         try{
             return offerMapper.getOfferByID(id);
         } catch (PersistenceException e) {
             throw new PersistenceException("Error al consultar la oferta con el ID: " + id);
+        }
+    }
+
+    @Override
+    public void registrarOferta(int offerId, String offerCategory, String name, String description) throws PersistenceException {
+        try{
+            offerMapper.registrarOferta(offerId, offerCategory, name, description);
+        }catch (PersistenceException e) {
+            throw new PersistenceException("Error al registrar la oferta");
         }
     }
 }

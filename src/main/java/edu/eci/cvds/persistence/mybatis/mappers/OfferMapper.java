@@ -1,7 +1,7 @@
 package edu.eci.cvds.persistence.mybatis.mappers;
 
 
-import edu.eci.cvds.entities.User;
+import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,7 +14,9 @@ import org.apache.ibatis.annotations.Param;
  */
 
 public interface OfferMapper {
-    public User getOfferByName(@Param("name") String name) throws PersistenceException;
+    public Offer getOfferByName(@Param("name") String name) throws PersistenceException;
 
-    public User getOfferByID(@Param("id") String id) throws PersistenceException;
+    public Offer getOfferByID(@Param("idOffer") int idOffer) throws PersistenceException;
+
+    public void registrarOferta(@Param ("offerId")int offerId, @Param ("offerCategory") String offerCategory, @Param ("name") String name, @Param ("description") String description) throws PersistenceException;
 }
