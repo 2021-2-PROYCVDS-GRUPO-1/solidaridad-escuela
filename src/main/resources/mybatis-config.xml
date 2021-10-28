@@ -6,16 +6,13 @@
     <properties resource="config.properties">
     </properties>
 
-    <settings>
+    <!--<settings>
         <setting name="logImpl" value="LOG4J"/>
-    </settings>
+    </settings> -->
 
     <!-- DEFINE TYPE ALIASES -->
     <typeAliases>
-        <typeAlias type="edu.eci.cvds.samples.entities.Cliente" alias="Cliente"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.Item" alias="Item"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.ItemRentado" alias="ItemRentado"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.TipoItem" alias="TipoItem"/>
+        <typeAlias type="edu.eci.cvds.entities.User" alias="User"/>
     </typeAliases>
 
     <environments default="development">
@@ -32,10 +29,7 @@
 
 
     <mappers>
-        <mapper resource="mappers/ClienteMapper.xml"></mapper>
-        <mapper resource="mappers/ItemMapper.xml"></mapper>
-        <mapper resource="mappers/TipoItemMapper.xml"></mapper>
-        <mapper resource="mappers/ItemRentadoMapper.xml"></mapper>
+        <mapper resource="mappers/UserMapper.xml"></mapper>
     </mappers>
 
 
