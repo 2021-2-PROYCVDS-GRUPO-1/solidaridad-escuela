@@ -3,7 +3,6 @@ package edu.eci.cvds.security;
 import edu.eci.cvds.services.ServicesException;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 
 /**
@@ -20,7 +19,8 @@ public class ShiroLogin implements Login {
 
         try {
             Subject subject = SecurityUtils.getSubject();
-            UsernamePasswordToken token = new UsernamePasswordToken(email, new Sha256Hash(password).toHex(), rememberMe);
+            //UsernamePasswordToken token = new UsernamePasswordToken(email, new Sha256Hash(password).toHex(), rememberMe);
+            UsernamePasswordToken token = new UsernamePasswordToken(email, password, rememberMe);
 
             subject.getSession().setAttribute("email", email);
             subject.login(token);

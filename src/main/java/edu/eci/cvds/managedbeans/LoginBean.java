@@ -9,6 +9,7 @@ import org.apache.shiro.subject.Subject;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  * @author Laura Valentina García León
@@ -41,6 +42,8 @@ public class LoginBean extends BasePageBean{
             } else {
                 this.login.signIn(email, password, rememberMe);
 
+                // $
+                FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "index.xhtml");
             }
         } catch (ServicesException e) {
             message = e.getMessage();
