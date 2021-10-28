@@ -9,6 +9,7 @@ package edu.eci.cvds.entities;
  */
 public class User {
     private int userId;
+    private int databaseId;
     private String status;
     private String firstName;
     private String lastname;
@@ -16,12 +17,16 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private int maxNeeds;
+
+
 
     public User() {
     }
 
-    public User(int userId, String status, String firstName, String lastname, String email, String username, String password, String role) {
+    public User(int userId, int databaseId, String status, String firstName, String lastname, String email, String username, String password, String role, int maxNeeds) {
         this.userId = userId;
+        this.databaseId = databaseId;
         this.status = status;
         this.firstName = firstName;
         this.lastname = lastname;
@@ -29,6 +34,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.maxNeeds = maxNeeds;
     }
 
     public int getUserId() {
@@ -93,5 +99,21 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getDatabaseId() {
+        return databaseId;
+    }
+
+    public void setDatabaseId(int databaseId) {
+        this.databaseId = databaseId;
+    }
+
+    public int getMaxNeeds() {
+        return maxNeeds;
+    }
+
+    public void setMaxNeeds(int maxNeeds) {
+        this.maxNeeds = maxNeeds;
     }
 }

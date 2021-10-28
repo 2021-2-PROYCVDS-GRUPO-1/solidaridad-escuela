@@ -1,10 +1,13 @@
 package edu.eci.cvds.persistence.mybatis;
 
-import com.google.inject.Inject;
+//import com.google.inject.Inject;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.UserDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.UserMapper;
+
+import javax.inject.Inject;
+
 
 /**
  * @author Laura Valentina García León
