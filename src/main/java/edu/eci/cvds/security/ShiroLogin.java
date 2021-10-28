@@ -5,6 +5,9 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 
+import javax.faces.context.FacesContext;
+import java.io.IOException;
+
 /**
  * @author Laura Valentina García León
  * @author Laura Nathalia García
@@ -48,6 +51,12 @@ public class ShiroLogin implements Login {
 
     @Override
     public void logout() throws ServicesException {
+        SecurityUtils.getSubject().logout();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("login.html");
+        } catch(IOException ioException) {
+
+        }
 
     }
 

@@ -51,6 +51,14 @@ public class LoginBean extends BasePageBean{
         }
     }
 
+    public void signOut() {
+        try {
+            this.login.logout();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Login getLogin() {
         return login;
     }
