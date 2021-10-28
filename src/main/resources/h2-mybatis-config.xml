@@ -3,16 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <settings>
+    <!-- <settings>
         <setting name="logImpl" value="LOG4J"/>
-    </settings>
+    </settings> -->
 
     <!-- DEFINE TYPE ALIASES -->
     <typeAliases>
-        <typeAlias type="edu.eci.cvds.samples.entities.Cliente" alias="Cliente"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.Item" alias="Item"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.ItemRentado" alias="ItemRentado"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.TipoItem" alias="TipoItem"/>
+        <typeAlias type="edu.eci.cvds.entities.User" alias="User"/>
     </typeAliases>
 
 
@@ -29,7 +26,7 @@
     </environments>
 
     <mappers>
-        <mapper resource="mappers/ComentarioMapper.xml"></mapper>
+        <mapper resource="mappers/UserMapper.xml"></mapper>
     </mappers>
 
 </configuration>

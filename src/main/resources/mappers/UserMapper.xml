@@ -4,35 +4,50 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.UserMapper">
     <!-- GET USER BY USERNAME -->
-    <select id="getUserByUsername" resultMap="UsuarioResult">
+    <select id="getUserByUsername" resultMap="userResult">
         SELECT
-        idusuario AS u_idusuario,
-        nombre AS u_nombre,
-        correo AS u_correo,
-        estado AS u_estado,
-        rol AS u_rol
-        FROM usuario
-        WHERE #{correo} = correo;
+        userid
+        databaseid
+        status
+        firstname
+        lastname
+        email
+        username
+        password
+        role
+        maxneeds
+        FROM db_user
+        WHERE #{username} = username;
     </select>
 
     <!-- GET USER BY EMAIL -->
-    <select id="getUserByEmail" resultMap="UsuarioResult">
+    <select id="getUserByEmail" resultMap="userResult">
         SELECT
-        idusuario AS u_idusuario,
-        nombre AS u_nombre,
-        correo AS u_correo,
-        estado AS u_estado,
-        rol AS u_rol
-        FROM usuario
-        WHERE #{correo} = correo;
+        userid
+        databaseid
+        status
+        firstname
+        lastname
+        email
+        username
+        password
+        role
+        maxneeds
+        FROM db_user
+        WHERE #{email} = email;
     </select>
 
 
-    <resultMap id="UsERResult" type="User" >
-        <id property="idUsuario" column="u_idusuario"/>
-        <result property="estado" column="u_estado" />
-        <result property="nombre" column="u_nombre" />
-        <result property="correo" column="u_correo" />
-        <result property="rol" column="u_rol" />
+    <resultMap id="userResult" type="User" >
+        <id property="userId" column="userid"/>
+        <result property="databaseId" column="databaseid" />
+        <result property="firstName" column="firstname" />
+        <result property="lastname" column="lastname" />
+        <result property="email" column="email" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="role" column="role" />
+        <result property="maxNeeds" column="maxneeds" />
     </resultMap>
 </mapper>
+

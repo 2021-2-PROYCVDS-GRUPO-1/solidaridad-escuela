@@ -1,4 +1,3 @@
---PK'S
-ALTER TABLE DB_Category ADD CONSTRAINT PK_Category PRIMARY KEY(Id);
+
 
 
