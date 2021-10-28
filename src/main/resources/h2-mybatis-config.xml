@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <settings>
+    <!-- <settings>
         <setting name="logImpl" value="LOG4J"/>
-    </settings>
+    </settings> -->
 
     <!-- DEFINE TYPE ALIASES -->
     <typeAliases>
@@ -28,7 +28,9 @@
     </environments>
 
     <mappers>
-        <mapper resource="mappers/ComentarioMapper.xml"></mapper>
+        <mapper resource="mappers/CategoryMapper.xml"></mapper>
+        <mapper resource="mappers/UserMapper.xml"></mapper>
+        <mapper resource="mappers/OfferMapper.xml"></mapper>
     </mappers>
 
 </configuration>

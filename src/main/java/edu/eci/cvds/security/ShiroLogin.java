@@ -16,6 +16,8 @@ import org.apache.shiro.subject.Subject;
 public class ShiroLogin implements Login {
     @Override
     public void signIn(String email, String password, boolean rememberMe) throws ServicesException {
+        //System.out.println();
+
         try {
             Subject subject = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(email, new Sha256Hash(password).toHex(), rememberMe);

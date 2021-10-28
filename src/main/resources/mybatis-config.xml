@@ -6,9 +6,9 @@
     <properties resource="config.properties">
     </properties>
 
-    <settings>
+    <!--<settings>
         <setting name="logImpl" value="LOG4J"/>
-    </settings>
+    </settings> -->
 
     <!-- DEFINE TYPE ALIASES -->
     <typeAliases>

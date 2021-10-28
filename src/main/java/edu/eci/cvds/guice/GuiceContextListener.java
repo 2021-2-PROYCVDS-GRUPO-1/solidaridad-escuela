@@ -13,6 +13,7 @@ import org.mybatis.guice.datasource.helper.JdbcHelper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 /**
  * @author Laura Valentina García León
@@ -21,7 +22,7 @@ import javax.servlet.ServletContextEvent;
  * @author Juan David Murillo
  * @version 17/10/2021
  */
-public class GuiceContextListener {
+public class GuiceContextListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         ServletContext servletContext = servletContextEvent.getServletContext();
         servletContext.removeAttribute(Injector.class.getName());
