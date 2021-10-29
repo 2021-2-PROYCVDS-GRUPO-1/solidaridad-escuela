@@ -38,6 +38,12 @@ public class Category {
         this.dateModification = dateModification;
     }
 
+    public Category(String name, String description, String state) {
+        this.name = name;
+        this.description = description;
+        this.state = state;
+    }
+
     public int getId() {
         return id;
     }

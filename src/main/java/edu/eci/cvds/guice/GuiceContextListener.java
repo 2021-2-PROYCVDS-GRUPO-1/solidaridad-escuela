@@ -2,7 +2,9 @@ package edu.eci.cvds.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.mybatis.MyBATISCategoryDAO;
 import edu.eci.cvds.persistence.mybatis.MyBATISUserDAO;
+import edu.eci.cvds.persistence.mybatis.dao.CategoryDAO;
 import edu.eci.cvds.persistence.mybatis.dao.UserDAO;
 import edu.eci.cvds.security.Login;
 import edu.eci.cvds.security.ShiroLogin;
@@ -39,6 +41,7 @@ public class GuiceContextListener implements ServletContextListener {
                 // DAO
                 bind(Login.class).to(ShiroLogin.class);
                 bind(UserDAO.class).to(MyBATISUserDAO.class);
+                bind(CategoryDAO.class).to(MyBATISCategoryDAO.class);
 
                 // SERVICES
                 bind(Services.class).to(ServicesImpl.class);

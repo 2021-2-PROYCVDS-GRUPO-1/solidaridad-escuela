@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.CategoryMapper">
     <!-- GET CATEGORY NAME -->
-    <select id="getCategoryName" resultMap="CategoryResult">
+    <select id="getCategoryName" resultMap="categoryResult">
         SELECT
             Id AS c_id,
             Name AS c_name,
@@ -17,7 +17,7 @@
     </select>
 
     <!-- GET CATEGORY ID -->
-    <select id="getCategoryID" resultMap="CategoryResult">
+    <select id="getCategoryID" resultMap="categoryResult">
         SELECT
             Id AS c_id,
             Name AS c_name,
@@ -37,10 +37,10 @@
     <update id="upCategoryId">
         UPDATE DB_Category
         SET Name = #{name}, Description = #{description}, Status = #{state}
-        WHERE Id = #{}
+        WHERE Id = #{id}
     </update>
 
-    <resultMap id="CategoryResult" type="DB_Category" >
+    <resultMap id="categoryResult" type="Category" >
         <id property="Id" column="c_id"/>
         <result property="Name" column="c_name" />
         <result property="Description" column="c_description" />

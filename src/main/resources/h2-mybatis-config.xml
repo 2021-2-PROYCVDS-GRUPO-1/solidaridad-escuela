@@ -11,7 +11,6 @@
     <typeAliases>
         <typeAlias type="edu.eci.cvds.entities.Category" alias="Category"/>
         <typeAlias type="edu.eci.cvds.entities.User" alias="User"/>
-        <typeAlias type="edu.eci.cvds.entities.Offer" alias="Offer"/>
     </typeAliases>
 
 
@@ -30,7 +29,6 @@
     <mappers>
         <mapper resource="mappers/CategoryMapper.xml"></mapper>
         <mapper resource="mappers/UserMapper.xml"></mapper>
-        <mapper resource="mappers/OfferMapper.xml"></mapper>
     </mappers>
 
 </configuration>
