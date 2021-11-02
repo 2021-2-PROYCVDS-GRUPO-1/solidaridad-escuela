@@ -43,7 +43,7 @@
     <update id="changeStatus">
         UPDATE DB_OFFERS
         SET status = #{status}
-        WHERE  #{offerId} = DB_OFFERS.offerId;
+        WHERE  #{offer.offerId} = DB_OFFERS.offerId;
     </update>
 
 
