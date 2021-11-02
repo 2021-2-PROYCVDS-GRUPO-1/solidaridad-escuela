@@ -26,6 +26,11 @@ public interface OfferServices {
     public void registrarOferta(int offerId, String offerCategory, String name, String description) throws ServicesException;
 
 
+    /*
+    UPDATE
+     */
+
+    public void changeStatus(Offer offer, String status) throws ServicesException;
 
 
 }

@@ -44,4 +44,17 @@ public class MyBATISOfferDAO implements OfferDAO {
             throw new PersistenceException("Error al registrar la oferta");
         }
     }
+
+    @Override
+    public void changeStatus(Offer offer, String status) throws PersistenceException {
+        try{
+            offerMapper.changeStatus(offer, status);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistenceException("Error al tratar de cambiar el estado de la oferta: " + offer.getName(), e);
+        }
+    }
+
+
 }

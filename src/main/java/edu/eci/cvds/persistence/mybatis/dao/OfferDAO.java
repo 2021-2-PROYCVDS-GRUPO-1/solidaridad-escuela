@@ -37,6 +37,8 @@ public interface OfferDAO {
      */
     public void registrarOferta(int offerId, String offerCategory, String name, String description) throws PersistenceException;
 
+
+    public void changeStatus(Offer offer, String status ) throws PersistenceException;
 }
 
 

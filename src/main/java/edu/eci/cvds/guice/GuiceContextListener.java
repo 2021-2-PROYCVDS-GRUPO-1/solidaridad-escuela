@@ -40,6 +40,10 @@ public class GuiceContextListener implements ServletContextListener {
                 setEnvironmentId("development");
                 setClassPathResource("mybatis-config.xml");
 
+
+
+
+
                 // DAO
                 bind(Login.class).to(ShiroLogin.class);
                 bind(UserDAO.class).to(MyBATISUserDAO.class);

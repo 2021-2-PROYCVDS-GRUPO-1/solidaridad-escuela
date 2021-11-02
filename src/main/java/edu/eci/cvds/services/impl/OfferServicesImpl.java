@@ -40,4 +40,15 @@ public class OfferServicesImpl implements OfferServices {
             throw new ServicesException(e.getMessage(),e );
         }
     }
+
+    @Override
+    public void changeStatus(Offer offer, String status) throws ServicesException {
+        try{
+            offerDAO.changeStatus(offer,status);
+        }
+        catch (PersistenceException e){
+            throw new ServicesException(e.getMessage(),e );
+        }
+
+    }
 }

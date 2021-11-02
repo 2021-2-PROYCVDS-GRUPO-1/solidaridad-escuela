@@ -19,4 +19,6 @@ public interface OfferMapper {
     public Offer getOfferByID(@Param("idOffer") int idOffer) throws PersistenceException;
 
     public void registrarOferta(@Param ("offerId")int offerId, @Param ("offerCategory") String offerCategory, @Param ("name") String name, @Param ("description") String description) throws PersistenceException;
+
+    public void changeStatus(@Param ("offer") Offer offer, @Param ("status") String status) throws PersistenceException;
 }

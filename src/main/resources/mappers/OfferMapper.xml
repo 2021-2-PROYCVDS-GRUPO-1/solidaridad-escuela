@@ -30,7 +30,7 @@
         dateCreation AS o_dateCreation,
         dateModification AS o_dateModification
         FROM DB_OFFERS
-        WHERE #{idOffer} = id;
+        WHERE #{idOffer} = DB_OFFERS.offerId;
     </select>
 
 
@@ -43,7 +43,7 @@
     <update id="changeStatus">
         UPDATE DB_OFFERS
         SET status = #{status}
-        WHERE  offerId = #{DB_OFFERS.offerId};
+        WHERE  #{offerId} = DB_OFFERS.offerId;
     </update>
 
 
