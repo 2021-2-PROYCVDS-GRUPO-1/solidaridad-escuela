@@ -1,5 +1,6 @@
 package edu.eci.cvds.services.client;
 
+import edu.eci.cvds.persistence.mybatis.mappers.CategoryMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -36,6 +37,7 @@ public class MyBatisExample {
             SqlSessionFactory sessionfact = getSqlSessionFactory();
 
             SqlSession sqlss = sessionfact.openSession();
+
 
             sqlss.commit();
             sqlss.close();
