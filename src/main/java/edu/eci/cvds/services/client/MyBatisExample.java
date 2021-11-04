@@ -1,6 +1,7 @@
 package edu.eci.cvds.services.client;
 
 import edu.eci.cvds.persistence.mybatis.mappers.CategoryMapper;
+import edu.eci.cvds.persistence.mybatis.mappers.OfferMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -41,6 +42,7 @@ public class MyBatisExample {
             CategoryMapper cm = sqlss.getMapper(CategoryMapper.class);
             //cm.getCategoryId(7);
             cm.addCategory("Juan", "java", "incompleto");
+
 
             sqlss.commit();
             sqlss.close();

@@ -1,10 +1,13 @@
 package edu.eci.cvds.services;
 
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.mybatis.MyBATISOfferDAO;
 import edu.eci.cvds.persistence.mybatis.MyBATISUserDAO;
+import edu.eci.cvds.persistence.mybatis.dao.OfferDAO;
 import edu.eci.cvds.persistence.mybatis.dao.UserDAO;
 import edu.eci.cvds.security.Login;
 import edu.eci.cvds.security.ShiroLogin;
+import edu.eci.cvds.services.impl.OfferServicesImpl;
 import edu.eci.cvds.services.impl.ServicesImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
@@ -36,9 +39,11 @@ public class ServicesFactory {
                 // DAO
                 bind(Login.class).to(ShiroLogin.class);
                 bind(UserDAO.class).to(MyBATISUserDAO.class);
+                bind(OfferDAO.class).to(MyBATISOfferDAO.class);
 
                 // SERVICES
                 bind(Services.class).to(ServicesImpl.class);
+                bind(OfferServices.class).to(OfferServicesImpl.class);
 
             }
         });
@@ -53,9 +58,11 @@ public class ServicesFactory {
                 // DAO
                 bind(Login.class).to(ShiroLogin.class);
                 bind(UserDAO.class).to(MyBATISUserDAO.class);
+                bind(OfferDAO.class).to(MyBATISOfferDAO.class);
 
                 // SERVICES
                 bind(Services.class).to(ServicesImpl.class);
+                bind(OfferServices.class).to(OfferServicesImpl.class);
             }
         });
     }

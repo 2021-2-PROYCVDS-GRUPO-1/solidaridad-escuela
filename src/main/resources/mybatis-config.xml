@@ -32,6 +32,7 @@
     <mappers>
         <mapper resource="mappers/CategoryMapper.xml"></mapper>
         <mapper resource="mappers/UserMapper.xml"></mapper>
+        <mapper resource="mappers/OfferMapper.xml"></mapper>
     </mappers>
 
 
