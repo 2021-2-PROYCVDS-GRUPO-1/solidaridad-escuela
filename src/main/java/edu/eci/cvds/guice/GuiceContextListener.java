@@ -2,11 +2,15 @@ package edu.eci.cvds.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.mybatis.MyBATISOfferDAO;
 import edu.eci.cvds.persistence.mybatis.MyBATISUserDAO;
+import edu.eci.cvds.persistence.mybatis.dao.OfferDAO;
 import edu.eci.cvds.persistence.mybatis.dao.UserDAO;
 import edu.eci.cvds.security.Login;
 import edu.eci.cvds.security.ShiroLogin;
+import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.services.Services;
+import edu.eci.cvds.services.impl.OfferServicesImpl;
 import edu.eci.cvds.services.impl.ServicesImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
@@ -36,12 +40,18 @@ public class GuiceContextListener implements ServletContextListener {
                 setEnvironmentId("development");
                 setClassPathResource("mybatis-config.xml");
 
+
+
+
+
                 // DAO
                 bind(Login.class).to(ShiroLogin.class);
                 bind(UserDAO.class).to(MyBATISUserDAO.class);
+                bind(OfferDAO.class).to(MyBATISOfferDAO.class);
 
                 // SERVICES
                 bind(Services.class).to(ServicesImpl.class);
+                bind(OfferServices.class).to(OfferServicesImpl.class);
             }
         });
 

@@ -30,6 +30,7 @@
 
     <mappers>
         <mapper resource="mappers/UserMapper.xml"></mapper>
+        <mapper resource="mappers/OfferMapper.xml"></mapper>
     </mappers>
 
 

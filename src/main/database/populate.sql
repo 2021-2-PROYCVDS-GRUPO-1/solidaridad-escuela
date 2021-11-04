@@ -1,0 +1,1 @@
+INSERT INTO DB_OFFERS VALUES (1, 'Juan', 'Prueba2', 'Esto es una prueba', 'ACTIVE', null, null);
