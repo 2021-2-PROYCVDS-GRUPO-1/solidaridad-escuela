@@ -17,7 +17,7 @@
     </select>
 
     <!-- GET CATEGORY ID -->
-    <select id="getCategoryID" resultMap="categoryResult">
+    <select id="getCategoryId" resultMap="categoryResult">
         SELECT
             Id AS c_id,
             Name AS c_name,

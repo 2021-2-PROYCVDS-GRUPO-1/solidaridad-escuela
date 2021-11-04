@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Param;
  * @version 19/10/2021
  */
 public interface CategoryMapper {
-    public Category getCategoryId(@Param("id") String id) throws PersistenceException;
+    public Category getCategoryId(@Param("id") int id) throws PersistenceException;
 
     public Category getCategoryName(@Param("name") String name) throws PersistenceException;
 

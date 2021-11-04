@@ -126,8 +126,7 @@
                 <h:form id="categoryCreate" class="flex flex-col">
                     <!-- ROW 1 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <h:inputText id="nam" type="text" binding="#{name}" placeholder="Nombre de la categoría"
-                            class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" />
+                        <h:inputText id="nam" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="Nombre de la categoría"/>
                         <select name="" id="" class="flex-1 rounded pl-4 border-2 border-gray-500">
                             <option >Opción 1</option>
                             <option>Opción 2</option>
@@ -137,19 +136,16 @@
                     <!-- ROW 1 END -->
 
                     <!-- ROW 2 -->
-                    <h:inputTextarea id="descrip" binding="#{description}" cols="30" rows="10" placeholder="Descripción"
-                        class="pl-4 mx-2 rounded border-2 border-gray-500"/>
+                    <h:inputTextarea id="descrip" value="#{categoryBean.description}" cols="30" rows="10" placeholder="Descripción"
+                                     class="pl-4 mx-2 rounded border-2 border-gray-500"/>
                     <!-- ROW 2 END -->
 
                     <!-- ROW 3 -->
-                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear categoría" actionListener="#{categoryBean.createCategoryBean(name, description)}" update="categoryCreate"/>
+                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear categoría" actionListener="#{categoryBean.createCategory}" update="categoryCreate"/>
 
                     <!-- ROW 3 END -->
                 </h:form>
             </div>
-
-
-
 
         </div>
 

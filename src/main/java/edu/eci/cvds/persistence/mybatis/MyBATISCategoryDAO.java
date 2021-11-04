@@ -28,7 +28,7 @@ public class MyBATISCategoryDAO implements CategoryDAO {
     }
 
     @Override
-    public Category getCategoryId(String id) throws PersistenceException {
+    public Category getCategoryId(int id) throws PersistenceException {
         try{
             return categoryMapper.getCategoryId(id);
         }catch (PersistenceException e) {
