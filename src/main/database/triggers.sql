@@ -63,9 +63,6 @@ CREATE TRIGGER UP_dateModificationOffer
   FOR EACH ROW
 EXECUTE PROCEDURE dateModificationOffer();
 
-
-
-
 -------------------------------------------------------
 
 
