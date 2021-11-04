@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper">
+    <select parameterType="map" id="consultarElementos" resultMap="ElementoResult" >
+        SELECT
+            e.idElemento AS e_idElemento,
+            e.tipo AS e_tipo,
+            e.nombre AS e_nombre,
+            e.descripcion AS e_descripcion,
+            e.idEquipo AS e_idEquipo,
+            e.disponible AS e_disponible,
+            e.estado AS e_estado,
+
+            n.idNovedad AS n_idNovedad,
+            n.titulo AS n_titulo ,
+            n.detalle AS n_detalle ,
+            n.fecha AS n_fecha,
+            n.usuario AS n_usuario,
+            n.idElemento AS n_idElemento,
+            n.idEquipo AS n_idEquipo,
+
+            u.correo AS u_correo
+        FROM
+            novedad n
+            INNER JOIN
+            usuario u
+            	ON n.usuario = u.idusuario
+            RIGHT JOIN
+            elemento e
+            	ON e.idElemento = n.idElemento
+            ORDER BY e.idElemento;
+    </select>
+
+    <select id="buscarElemento" parameterType="String" resultMap="ElementoResult">
+        SELECT
+            e.idElemento AS e_idElemento,
+            e.tipo AS e_tipo,
+            e.nombre AS e_nombre,
+            e.descripcion AS e_descripcion,
+            e.idEquipo AS e_idEquipo,
+            e.disponible AS e_disponible,
+            e.estado AS e_estado,
+
+            n.idNovedad AS n_idNovedad,
+            n.titulo AS n_titulo ,
+            n.detalle AS n_detalle ,
+            n.fecha AS n_fecha,
+            n.usuario AS n_usuario,
+            n.idElemento AS n_idElemento,
+            n.idEquipo AS n_idEquipo,
+
+            u.correo AS u_correo
+        FROM
+            novedad n
+            INNER JOIN
+            usuario u
+            	ON n.usuario = u.idusuario
+            RIGHT JOIN
+            elemento e
+            	ON e.idElemento = n.idElemento
+            WHERE e.tipo = #{tipo} AND e.disponible = 1
+            ORDER BY e.idElemento;
+    </select>
+
+
+    <insert id="registrarElemento" parameterType="map">
+        INSERT INTO Elemento(tipo,nombre,descripcion,disponible,estado) VALUES(#{tipo.tipo}, #{tipo.nombre} , #{tipo.descripcion},1,'ACTIVO');
+    </insert>
+
+
+    <update id="asociarEquipo">
+        UPDATE elemento
+        SET
+            idEquipo = #{idEquipo}
+        WHERE
+            idElemento = #{idElemento};
+    </update>
+
+    <update id="cambiarEstadoElemento">
+        UPDATE elemento
+        SET
+            estado = #{change}
+        WHERE
+            idElemento = #{idElemento};
+    </update>
+    <resultMap id="ElementoResult" type="Elemento">
+        <id property="idElemento" column="e_idElemento"/>
+        <result property="tipo" column="e_tipo"/>
+        <result property="nombre" column="e_nombre"/>
+        <result property="descripcion" column="e_descripcion"/>
+        <result property="idEquipo" column="e_idEquipo"/>
+        <result property="disponible" column="e_disponible"/>
+        <result property="estado" column="e_estado"/>
+        <collection property="novedades" ofType="Novedad" resultMap="edu.eci.cvds.persistence.mybatis.mappers.NovedadMapper.NovedadResult"/>
+    </resultMap>
+
+</mapper>

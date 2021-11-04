@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.EquipoMapper">
+    <select id="consultarEquipos" parameterType="map" resultMap="EquipoResult" >
+        SELECT
+            e.idElemento AS e_idElemento,
+            e.tipo AS e_tipo,
+            e.nombre AS e_nombre,
+            e.descripcion AS e_descripcion,
+            e.idEquipo AS e_idEquipo,
+            e.disponible AS e_disponible,
+            e.estado AS e_estado,
+
+            n.idNovedad AS n_idNovedad,
+            n.titulo AS n_titulo ,
+            n.detalle AS n_detalle ,
+            n.fecha AS n_fecha,
+            n.usuario AS n_usuario,
+            n.idElemento AS n_idElemento,
+            n.idEquipo AS n_idEquipo,
+
+            u.correo AS u_correo,
+
+            eq.idEquipo AS eq_idEquipo,
+            eq.laboratorio AS eq_laboratorio,
+            eq.fechaRegistro AS eq_fecharegistro,
+            eq.disponible AS eq_disponible,
+            eq.estado AS eq_estado,
+
+            la.nombre AS la_nombre
+        FROM
+            novedad n
+            INNER JOIN
+            usuario u
+            	ON n.usuario = u.idusuario
+            RIGHT JOIN
+            elemento e
+            	ON e.idElemento = n.idElemento
+            RIGHT JOIN
+            equipo eq
+                ON eq.idEquipo = e.idEquipo
+            INNER JOIN
+            laboratorio la
+                ON la.idlaboratorio = eq.laboratorio
+            ORDER BY n_idEquipo;
+    </select>
+
+    <select id="consultarEquiposDisponibles" parameterType="map" resultMap="EquipoResult">
+        SELECT
+            e.idElemento AS e_idElemento,
+            e.tipo AS e_tipo,
+            e.nombre AS e_nombre,
+            e.descripcion AS e_descripcion,
+            e.idEquipo AS e_idEquipo,
+            e.disponible AS e_disponible,
+            e.estado AS e_estado,
+
+            n.idNovedad AS n_idNovedad,
+            n.titulo AS n_titulo ,
+            n.detalle AS n_detalle ,
+            n.fecha AS n_fecha,
+            n.usuario AS n_usuario,
+            n.idElemento AS n_idElemento,
+            n.idEquipo AS n_idEquipo,
+
+            u.correo AS u_correo,
+
+            eq.idEquipo AS eq_idEquipo,
+            eq.laboratorio AS eq_laboratorio,
+            eq.fechaRegistro AS eq_fecharegistro,
+            eq.disponible AS eq_disponible,
+            eq.estado AS eq_estado,
+
+            la.nombre AS la_nombre
+        FROM
+            novedad n
+            INNER JOIN
+            usuario u
+            	ON n.usuario = u.idusuario
+            RIGHT JOIN
+            elemento e
+            	ON e.idElemento = n.idElemento
+            RIGHT JOIN
+            equipo eq
+                ON eq.idEquipo = e.idEquipo
+            INNER JOIN
+            laboratorio la
+                ON la.idlaboratorio = eq.laboratorio
+            WHERE
+                eq.laboratorio = 1
+            ORDER BY n_idEquipo;
+    </select>
+
+    <select id="consultarEquiposActivos" parameterType="map" resultMap="EquipoResult">
+        SELECT
+            e.idElemento AS e_idElemento,
+            e.tipo AS e_tipo,
+            e.nombre AS e_nombre,
+            e.descripcion AS e_descripcion,
+            e.idEquipo AS e_idEquipo,
+            e.disponible AS e_disponible,
+            e.estado AS e_estado,
+
+            n.idNovedad AS n_idNovedad,
+            n.titulo AS n_titulo ,
+            n.detalle AS n_detalle ,
+            n.fecha AS n_fecha,
+            n.usuario AS n_usuario,
+            n.idElemento AS n_idElemento,
+            n.idEquipo AS n_idEquipo,
+
+            u.correo AS u_correo,
+
+            eq.idEquipo AS eq_idEquipo,
+            eq.laboratorio AS eq_laboratorio,
+            eq.fechaRegistro AS eq_fecharegistro,
+            eq.disponible AS eq_disponible,
+            eq.estado AS eq_estado,
+
+            la.nombre AS la_nombre
+        FROM
+            novedad n
+            INNER JOIN
+            usuario u
+            	ON n.usuario = u.idusuario
+            RIGHT JOIN
+            elemento e
+            	ON e.idElemento = n.idElemento
+            RIGHT JOIN
+            equipo eq
+                ON eq.idEquipo = e.idEquipo
+            INNER JOIN
+            laboratorio la
+                ON la.idlaboratorio = eq.laboratorio
+            WHERE
+                eq.estado = 'ACTIVO'
+            ORDER BY n_idEquipo;
+    </select>
+
+    <select id="consultarEquipo" parameterType="int" resultMap="EquipoResult">
+        SELECT
+            e.idElemento AS e_idElemento,
+            e.tipo AS e_tipo,
+            e.nombre AS e_nombre,
+            e.descripcion AS e_descripcion,
+            e.idEquipo AS e_idEquipo,
+            e.disponible AS e_disponible,
+            e.estado AS e_estado,
+
+            n.idNovedad AS n_idNovedad,
+            n.titulo AS n_titulo ,
+            n.detalle AS n_detalle ,
+            n.fecha AS n_fecha,
+            n.usuario AS n_usuario,
+            n.idElemento AS n_idElemento,
+            n.idEquipo AS n_idEquipo,
+
+            u.correo AS u_correo,
+
+            eq.idEquipo AS eq_idEquipo,
+            eq.laboratorio AS eq_laboratorio,
+            eq.fechaRegistro AS eq_fecharegistro,
+            eq.disponible AS eq_disponible,
+            eq.estado AS eq_estado,
+
+            la.nombre AS la_nombre
+        FROM
+            novedad n
+            INNER JOIN
+            usuario u
+            	ON n.usuario = u.idusuario
+            RIGHT JOIN
+            elemento e
+            	ON e.idElemento = n.idElemento
+            RIGHT JOIN
+            equipo eq
+                ON eq.idEquipo = e.idEquipo
+            INNER JOIN
+            laboratorio la
+                ON la.idlaboratorio = eq.laboratorio
+            WHERE
+                eq.idEquipo = #{idEquipo}
+            ORDER BY n_idEquipo;
+    </select>
+    <insert id="registrarEquipo">
+        INSERT INTO equipo(idEquipo, laboratorio,fechaRegistro, disponible, estado)
+        VALUES(#{idEquipo},#{lab},CURRENT_DATE, 1,'ACTIVO');
+    </insert>
+
+    <update id="asociar">
+        UPDATE Equipo
+        SET Laboratorio = #{idLab}
+        WHERE idEquipo = #{idEquipo};
+    </update>
+
+    <update id="cambiarEstado">
+        UPDATE Equipo
+        SET estado = #{change}
+        WHERE idEquipo = #{idEquipo};
+    </update>
+
+    <resultMap id="EquipoResult" type="Equipo">
+        <id property="idEquipo" column="eq_idEquipo"/>
+        <result property="idLab" column="eq_laboratorio"/>
+        <result property="lab" column="la_nombre"/>
+        <result property="fechaRegistro" column="eq_fecharegistro"/>
+        <result property="disponible" column="eq_disponible"/>
+        <result property="estado" column="eq_estado"/>
+        <collection property="elementos" ofType="Elemento" resultMap="edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper.ElementoResult"/>
+        <collection property="novedades" ofType="Novedad" resultMap="edu.eci.cvds.persistence.mybatis.mappers.NovedadMapper.NovedadResult"/>
+    </resultMap>
+</mapper>

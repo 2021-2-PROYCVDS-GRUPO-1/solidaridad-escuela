@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="edu.eci.cvds.entities.User" alias="User"/>
+    </typeAliases>
+    <environments default="test">
+        <environment id="test">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="org.h2.Driver" />
+                <property name="url" value="jdbc:h2:file:./target/db/testdb;MODE=PostgreSQL" />
+                <property name="username" value="sa" />
+                <property name="password" value="sa" />
+            </dataSource>
+        </environment>
+    </environments>
+      <mappers>
+          <mapper resource="mappers/UserMapper.xml"></mapper>
+      </mappers>
+</configuration>
