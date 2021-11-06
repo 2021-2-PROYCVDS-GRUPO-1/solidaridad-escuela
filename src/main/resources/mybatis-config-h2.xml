@@ -5,6 +5,8 @@
 <configuration>
     <typeAliases>
         <typeAlias type="edu.eci.cvds.entities.User" alias="User"/>
+        <typeAlias type="edu.eci.cvds.entities.Category" alias="Category"/>
+        <typeAlias type="edu.eci.cvds.entities.Offer" alias="Offer"/>
     </typeAliases>
     <environments default="test">
         <environment id="test">
@@ -19,5 +21,7 @@
     </environments>
       <mappers>
           <mapper resource="mappers/UserMapper.xml"></mapper>
+          <mapper resource="mappers/CategoryMapper.xml"></mapper>
+          <mapper resource="mappers/OfferMapper.xml"></mapper>
       </mappers>
 </configuration>

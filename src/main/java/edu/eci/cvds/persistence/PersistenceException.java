@@ -1,13 +1,13 @@
 package edu.eci.cvds.persistence;
 
 /**
- * @author Ana Gabriela Silva
- * @author Juan Andrés Pico
- * @author Leonardo Galeano
- * @author Iván Camilo Rincón Saavedra
- * @version 10/28/2020
+ * @author Laura Valentina García León
+ * @author Laura Nathalia García
+ * @author Juan Sebastián Cadavid
+ * @author Juan David Murillo
+ * @version 17/10/2021
  *
- * Clase que representa las posibles excepciones que pueden encontrarse al momento de estar realizando persistencia
+ * Class in charge of handling the persistence exceptions
  */
 public class PersistenceException extends Exception {
     public PersistenceException(String message,Exception exception){
