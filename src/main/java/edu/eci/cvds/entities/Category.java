@@ -27,7 +27,6 @@ public class Category {
      * @param dateCreate creation start date
      * @param state what state is the category in
      * @param dateModification date of the last modification
-     * @throws PersistenceException
      */
     public Category(int id, String name, String description, Date dateCreate, String state, Date dateModification) {
         this.id = id;

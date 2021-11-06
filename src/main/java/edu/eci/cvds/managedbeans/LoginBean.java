@@ -10,7 +10,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import com.google.inject.Inject;
 import javax.servlet.http.HttpSession;
-import edu.eci.cvds.security.Log;
 
 /**
  * @author Laura Valentina García León

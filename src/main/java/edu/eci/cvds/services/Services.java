@@ -1,7 +1,6 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.User;
-import edu.eci.cvds.entities.Usuario;
 
 /**
  * This is the class where all the DB calls and operations will be handled

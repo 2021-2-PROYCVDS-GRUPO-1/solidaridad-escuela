@@ -1,10 +1,6 @@
 package edu.eci.cvds;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.entities.Usuario;
-import edu.eci.cvds.services.HistorialEquiposException;
-import edu.eci.cvds.services.HistorialServicios;
-import edu.eci.cvds.services.HistorialServiciosFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +12,7 @@ import org.junit.Test;
  * @version 11/5/2020
  */
 public class HistorialServiciosTest {
-
+    /*
     @Inject
     private HistorialServicios historialServicios;
 
@@ -24,11 +20,11 @@ public class HistorialServiciosTest {
     public HistorialServiciosTest() {
         historialServicios = HistorialServiciosFactory.getInstance().getHistorialServiciosTesting();
     }
-    /*
+
     @Before
     public void setUp() {
     }
-    */
+
 
     @Test
     public void consultarUsuarioSinError() throws HistorialEquiposException {
@@ -45,6 +41,6 @@ public class HistorialServiciosTest {
         Assert.assertEquals(u.getCorreo(), correo);
     }
 
-
+    */
 
 }
