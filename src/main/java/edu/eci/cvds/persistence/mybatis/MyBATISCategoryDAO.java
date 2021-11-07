@@ -36,13 +36,30 @@ public class MyBATISCategoryDAO implements CategoryDAO {
         }
     }
 
-    /**
-     @Override
+    @Override
+    public void addCategory(String name, String description, String state) throws PersistenceException {
+        try{
+            categoryMapper.addCategory(name, description, state);
+        } catch(PersistenceException e) {
+            throw  new PersistenceException("Error al añadir la categoria con el nombre: "+ name);
+        }
+    }
+
+    @Override
      public void upCategoryId(String id, String name, String description, String state) throws PersistenceException {
-     try{
-     categoryMapper.updCategoryId(id, name, description, state);
-     } catch(PersistenceException e) {
-     throw  new PersistenceException("Error al actualizar la categoria con el id: "+ id);
+         try{
+            categoryMapper.updCategoryId(id, name, description, state);
+         } catch(PersistenceException e) {
+            throw  new PersistenceException("Error al actualizar la categoria con el id: "+ id);
+         }
      }
-     }*/
+
+    @Override
+    public void upCategoryName(String name, String description, String state) throws PersistenceException {
+        try{
+            categoryMapper.upCategoryName(name, description, state);
+        } catch(PersistenceException e) {
+            throw  new PersistenceException("Error al actualizar la categoria con el name: "+ name);
+        }
+    }
 }
