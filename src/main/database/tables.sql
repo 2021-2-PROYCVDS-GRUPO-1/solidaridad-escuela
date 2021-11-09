@@ -39,6 +39,7 @@ CREATE TABLE DB_OFFERS (
  description        VARCHAR(100)    NOT NULL,
  status             VARCHAR(50)     NOT NULL,
  dateCreation       DATE            NOT NULL,
- dateModification   DATE            NOT NULL
+ dateModification   DATE            NOT NULL,
+ userId             INTEGER         NOT NULL
 );
 

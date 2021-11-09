@@ -17,6 +17,7 @@ public class Offer {
     private String status;
     private Date dateCreate;
     private Date dateModification;
+    private int userId;
 
     public Offer(){}
 
@@ -57,6 +58,10 @@ public class Offer {
     public Date getDateModification() { return dateModification; }
 
     public void setDateModification(Date dateModification) { this.dateModification = dateModification; }
+
+    public int getUserId() { return userId; }
+
+    public void setUserId(int userId) { this.userId = userId; }
 }
 
 
