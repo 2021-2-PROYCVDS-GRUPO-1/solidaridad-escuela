@@ -17,6 +17,8 @@ public class CategoryBean extends BasePageBean{
     private String state;
 
     public void createCategory() {
+        state="completo";
+        System.out.println(name+" "+state+" "+description);
         try{
             categoryServices.addCategory(name, description, state);
 

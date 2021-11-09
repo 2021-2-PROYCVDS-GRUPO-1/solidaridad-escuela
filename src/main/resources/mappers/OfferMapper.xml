@@ -20,7 +20,7 @@
     </select>
 
     <!-- GET OFFER BY ID -->
-    <select id="getOfferByID" resultMap="OfferMapper">
+    <select id="getOfferByID" resultMap="OfferResult">
         SELECT
         offerId AS o_idOffer,
         offerCategory AS o_category,

@@ -32,7 +32,7 @@
 
     <!-- ADD CATEGORY -->
     <insert parameterType="map" id="addCategory">
-        INSERT INTO DB_Category (Name, Description, Status) VALUES (#{name}, #{description}, #{state});
+        INSERT INTO DB_Category (Name, Description, State) VALUES (#{name}, #{description}, #{state});
     </insert>
 
     <update parameterType="map" id="upCategoryId">
