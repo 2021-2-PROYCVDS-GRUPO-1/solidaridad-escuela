@@ -18,6 +18,7 @@ public class Offer {
     private Date dateCreate;
     private Date dateModification;
     private int userId;
+    private int maxneeds;
 
     public Offer(){}
 
@@ -62,6 +63,10 @@ public class Offer {
     public int getUserId() { return userId; }
 
     public void setUserId(int userId) { this.userId = userId; }
+
+    public int getMaxneeds() { return maxneeds; }
+
+    public void setMaxneeds(int maxneeds) { this.maxneeds = maxneeds; }
 }
 
 

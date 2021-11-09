@@ -32,9 +32,9 @@ public class OfferServicesImpl implements OfferServices {
     }
 
     @Override
-    public void registrarOferta(int offerId, String offerCategory, String name, String description) throws ServicesException {
+    public void registrarOferta(int offerCategory, String name, String description, int userId) throws ServicesException {
         try{
-            offerDAO.registrarOferta(offerId, offerCategory, name, description);
+            offerDAO.registrarOferta(offerCategory, name, description, userId);
         }
         catch (PersistenceException e){
             throw new ServicesException(e.getMessage(),e );

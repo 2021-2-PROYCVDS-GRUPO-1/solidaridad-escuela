@@ -23,7 +23,7 @@ public interface OfferServices {
     /*
     INSERT
      */
-    public void registrarOferta(int offerId, String offerCategory, String name, String description) throws ServicesException;
+    public void registrarOferta(int offerCategory, String name, String description, int userId) throws ServicesException;
 
 
     /*

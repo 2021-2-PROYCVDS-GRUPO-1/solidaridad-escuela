@@ -127,7 +127,7 @@
                     <!-- ROW 1 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
                         <p>Nombre de la oferta</p>
-                        <h:inputText id="createOfferName" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="Nombre de la oferta"/>
+                        <h:inputText id="createOfferName" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{offerBean.name}" placeholder="Nombre de la oferta"/>
 
                         <p>Estado</p>
                         <select name="Nstates" id="MultState" class="flex-1 rounded pl-4 border-2 border-gray-500" >
@@ -141,23 +141,23 @@
                     <!-- ROW 2 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
                         <p>Categoría</p>
-                        <h:inputText id="createOfferCategory" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="categoria"/>
+                        <h:inputText id="createOfferCategory" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="int" value="#{offerBean.offerCategory}" placeholder="categoria"/>
                     </div>
                     <!-- ROW 2 END -->
 
                     <!-- ROW 3 -->
                     <p>Descripción</p>
-                    <h:inputTextarea id="createOfferDescription" value="#{categoryBean.description}" cols="30" rows="10" placeholder="Descripción"
+                    <h:inputTextarea id="createOfferDescription" value="#{offerBean.description}" cols="30" rows="10" placeholder="Descripción"
                                      class="pl-4 mx-2 rounded border-2 border-gray-500"/>
                     <!-- ROW 3 END -->
 
                     <!-- ROW 3 -->
                     <p>Fecha de hoy</p>
-                    <h:inputText id="createOfferTodayDate" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="fecha de hoy"/>
+<!--                    <h:inputText id="createOfferTodayDate" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="fecha de hoy"/>-->
                     <!-- ROW 3 END -->
 
                     <!-- ROW 3 -->
-                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear oferta" actionListener="#{categoryBean.createCategory}" update="categoryCreate"/>
+                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear oferta" actionListener="#{offerBean.registrarOferta}" update="categoryCreate"/>
 
                     <!-- ROW 3 END -->
                 </h:form>
