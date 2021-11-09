@@ -1,12 +1,12 @@
 package edu.eci.cvds.managedbeans;
 
-import edu.eci.cvds.entities.Elemento;
+/*import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Novedad;
 import edu.eci.cvds.entities.Usuario;
 import edu.eci.cvds.services.HistorialEquiposException;
 import edu.eci.cvds.services.HistorialServicios;
 import edu.eci.cvds.services.ServiciosElemento;
-import edu.eci.cvds.services.ServiciosNovedad;
+import edu.eci.cvds.services.ServiciosNovedad;*/
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.checkerframework.checker.units.qual.A;

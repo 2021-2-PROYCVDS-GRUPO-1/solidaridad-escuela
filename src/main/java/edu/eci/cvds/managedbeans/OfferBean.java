@@ -6,7 +6,6 @@ import edu.eci.cvds.services.OfferServices;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
-import javax.xml.bind.SchemaOutputResolver;
 
 /**
  * @author Laura Valentina García León

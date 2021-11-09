@@ -27,5 +27,9 @@ public interface CategoryDAO {
      */
     public Category getCategoryId(int id) throws PersistenceException;
 
-    //public void  upCategoryId(String id, String name, String description, String state) throws PersistenceException;
+    public void addCategory(String name, String description, String state) throws PersistenceException;
+
+    public void  upCategoryId(String id, String name, String description, String state) throws PersistenceException;
+
+    public void upCategoryName(String name, String description, String state) throws PersistenceException;
 }
