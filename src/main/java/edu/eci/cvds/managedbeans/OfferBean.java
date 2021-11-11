@@ -6,6 +6,8 @@ import edu.eci.cvds.services.OfferServices;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,6 +34,10 @@ public class OfferBean extends BasePageBean{
     private int userId;
 
 
+    //----------------------------
+    private List<String> statusList = new ArrayList<String>(Arrays.asList("SOLVED", "IN PROCESS"));
+
+
 
 
     public void registrarOferta(){
@@ -46,7 +52,7 @@ public class OfferBean extends BasePageBean{
     }
 
     public void changeStatus(){
-//        status = "SOLVED";
+        status = "SOLVED";
         try{
             offerServices.changeStatus(name, status);
         }catch(Exception e){
