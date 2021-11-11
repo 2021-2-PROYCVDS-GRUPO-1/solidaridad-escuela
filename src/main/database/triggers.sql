@@ -147,4 +147,10 @@ CREATE TRIGGER UP_dateModificationNeed
   FOR EACH ROW
 EXECUTE PROCEDURE dateModificationNeed();
 
+-- -----------------------------------------------------
+-- Table `Answer`
+-- -----------------------------------------------------
+CREATE FUNCTION AD_date_Create() RETURNS TRIGGER AS ' BEGIN NEW.Date_Create := CURRENT_DATE; RETURN NEW; END; ' LANGUAGE plpgsql;
+CREATE TRIGGER AD_DateCreate_Answer BEFORE INSERT ON DB_Answer FOR EACH ROW EXECUTE PROCEDURE AD_date_Create();
+
 

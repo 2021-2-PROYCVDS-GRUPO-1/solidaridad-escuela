@@ -19,13 +19,13 @@ CREATE TABLE IF NOT EXISTS DB_USER(
 -- Table `DB_Category`
 -- -----------------------------------------------------
 CREATE TABLE DB_Category(
-Id SERIAL PRIMARY KEY,
-Name VARCHAR(50) NOT NULL,
-Description VARCHAR(150) NOT NULL,
-Date_Create DATE NOT NULL,
-State VARCHAR(40) NOT NULL,
-Date_Modification  DATE,
-CONSTRAINT UC_Category UNIQUE (Name)
+    Id                  SERIAL          PRIMARY KEY,
+    Name                VARCHAR(50)     NOT NULL,
+    Description         VARCHAR(150)    NOT NULL,
+    Date_Create         DATE            NOT NULL,
+    State               VARCHAR(40)     NOT NULL,
+    Date_Modification   DATE            NOT NULL,
+    CONSTRAINT UC_Category UNIQUE (Name)
 );
 
 -- -----------------------------------------------------
@@ -57,4 +57,16 @@ CREATE TABLE DB_Needs(
 	status              VARCHAR(40)     NOT NULL,
 	modificationDate    DATE            NOT NULL,
 	idUser              INTEGER         NOT NULL
+);
+
+-- -----------------------------------------------------
+-- Table `DB_Answer`
+-- -----------------------------------------------------
+CREATE TABLE DB_Answer(
+    Id                  SERIAL          PRIMARY KEY,
+    Name                VARCHAR(50)     NOT NULL,
+    Comments            VARCHAR(150)    NOT NULL,
+    Date_Create         DATE            NOT NULL,
+    IdOffer             INTEGER,
+    IdNeeds            INTEGER
 );
