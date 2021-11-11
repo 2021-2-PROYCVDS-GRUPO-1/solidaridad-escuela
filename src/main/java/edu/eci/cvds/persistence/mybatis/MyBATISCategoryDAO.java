@@ -46,9 +46,9 @@ public class MyBATISCategoryDAO implements CategoryDAO {
     }
 
     @Override
-     public void upCategoryId(String id, String name, String description, String state) throws PersistenceException {
+     public void upCategoryId(int id, String name, String description, String state) throws PersistenceException {
          try{
-            categoryMapper.updCategoryId(id, name, description, state);
+            categoryMapper.upCategoryId(id, name, description, state);
          } catch(PersistenceException e) {
             throw  new PersistenceException("Error al actualizar la categoria con el id: "+ id);
          }

@@ -37,7 +37,7 @@
 
     <update parameterType="map" id="upCategoryId">
         UPDATE DB_Category
-        SET Name = #{name}, Description = #{description}, Status = #{state}
+        SET Name = #{name}, Description = #{description}, State = #{state}
         WHERE Id = #{id}
     </update>
 
