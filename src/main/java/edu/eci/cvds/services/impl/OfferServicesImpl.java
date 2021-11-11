@@ -42,9 +42,9 @@ public class OfferServicesImpl implements OfferServices {
     }
 
     @Override
-    public void changeStatus(Offer offer, String status) throws ServicesException {
+    public void changeStatus(String offerName, String status) throws ServicesException {
         try{
-            offerDAO.changeStatus(offer,status);
+            offerDAO.changeStatus(offerName,status);
         }
         catch (PersistenceException e){
             throw new ServicesException(e.getMessage(),e );

@@ -30,7 +30,7 @@ public interface OfferServices {
     UPDATE
      */
 
-    public void changeStatus(Offer offer, String status) throws ServicesException;
+    public void changeStatus(String offerName, String status) throws ServicesException;
 
 
 }
