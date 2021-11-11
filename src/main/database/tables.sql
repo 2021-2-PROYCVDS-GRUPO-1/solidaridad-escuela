@@ -44,3 +44,17 @@ CREATE TABLE DB_OFFERS (
  maxneeds           INTEGER         NOT NULL
 );
 
+-- -----------------------------------------------------
+-- Table `DB_Need`
+-- -----------------------------------------------------
+CREATE TABLE DB_Needs(
+	Id                  SERIAL          PRIMARY KEY,
+	category            VARCHAR(50)     NOT NULL,
+	name                VARCHAR(50)     NOT NULL,
+	description         VARCHAR(150)    NOT NULL,
+	urgency             VARCHAR(40)     NOT NULL,
+	creationDate        DATE            NOT NULL,
+	status              VARCHAR(40)     NOT NULL,
+	modificationDate    DATE            NOT NULL,
+	idUser              INTEGER         NOT NULL
+);
