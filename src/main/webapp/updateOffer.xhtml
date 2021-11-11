@@ -141,14 +141,14 @@
                     <!-- ROW 2 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
                         <p>Categoría</p>
-                        <h:inputText id="updateOfferCategory" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="int" value="#{offerBean.offerCategory}" placeholder="categoria"/>
+<!--                        <h:inputText id="updateOfferCategory" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="int" value="#{offerBean.offerCategory}" placeholder="categoria"/>-->
                     </div>
                     <!-- ROW 2 END -->
 
                     <!-- ROW 3 -->
                     <p>Descripción</p>
-                    <h:inputTextarea id="updateOfferDescription" value="#{offerBean.description}" cols="30" rows="10" placeholder="Descripción"
-                                     class="pl-4 mx-2 rounded border-2 border-gray-500"/>
+<!--                    <h:inputTextarea id="updateOfferDescription" value="#{offerBean.description}" cols="30" rows="10" placeholder="Descripción"-->
+<!--                                     class="pl-4 mx-2 rounded border-2 border-gray-500"/>-->
                     <!-- ROW 3 END -->
 
                     <!-- ROW 3 -->
@@ -157,7 +157,7 @@
                     <!-- ROW 3 END -->
 
                     <!-- ROW 3 -->
-                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear oferta" actionListener="#{offerBean.registrarOferta}" update="categoryCreate"/>
+                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Actualizar Oferta" actionListener="#{offerBean.changeStatus}" update="categoryCreate"/>
 
                     <!-- ROW 3 END -->
                 </h:form>

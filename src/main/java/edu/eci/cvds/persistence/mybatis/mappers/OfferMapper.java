@@ -18,7 +18,11 @@ public interface OfferMapper {
 
     public Offer getOfferByID(@Param("idOffer") int idOffer) throws PersistenceException;
 
-    public void registrarOferta(@Param ("offerCategory") int offerCategory, @Param ("name") String name, @Param ("description") String description, @Param ("userId") int userId) throws PersistenceException;
+    public void registrarOferta(@Param ("offerCategory") int offerCategory,
+                                @Param ("name") String name,
+                                @Param ("description") String description,
+                                @Param ("userId") int userId) throws PersistenceException;
 
-    public void changeStatus(@Param ("offer") Offer offer, @Param ("status") String status) throws PersistenceException;
+    public void changeStatus(@Param ("offerName") String offerName,
+                             @Param ("status") String status) throws PersistenceException;
 }

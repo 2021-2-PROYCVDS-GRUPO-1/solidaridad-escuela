@@ -13,6 +13,7 @@
         <typeAlias type="edu.eci.cvds.entities.User" alias="User"/>
         <typeAlias type="edu.eci.cvds.entities.Category" alias="Category"/>
         <typeAlias type="edu.eci.cvds.entities.Offer" alias="Offer"/>
+        <typeAlias type="edu.eci.cvds.entities.Need" alias="Need"/>
     </typeAliases>
 
     <environments default="development">
