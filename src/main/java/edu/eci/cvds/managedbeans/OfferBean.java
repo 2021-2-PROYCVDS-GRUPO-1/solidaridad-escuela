@@ -6,6 +6,7 @@ import edu.eci.cvds.services.OfferServices;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * @author Laura Valentina García León
@@ -27,8 +28,11 @@ public class OfferBean extends BasePageBean{
     private int offerCategory;
     private String name;
     private String description;
-    //private String status;
+    private String status;
     private int userId;
+
+
+
 
     public void registrarOferta(){
         userId = 1001184238;
@@ -36,6 +40,15 @@ public class OfferBean extends BasePageBean{
         try{
             offerServices.registrarOferta(offerCategory, name, description, userId);
 
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void changeStatus(){
+//        status = "SOLVED";
+        try{
+            offerServices.changeStatus(name, status);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
