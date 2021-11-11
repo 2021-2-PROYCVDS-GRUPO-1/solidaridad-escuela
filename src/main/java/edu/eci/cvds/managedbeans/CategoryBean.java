@@ -1,6 +1,7 @@
 package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.services.CategoryServices;
+import edu.eci.cvds.services.ServicesException;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -11,20 +12,32 @@ import javax.inject.Inject;
 public class CategoryBean extends BasePageBean{
     @Inject
     private CategoryServices categoryServices;
-
+    
+    private int id;
     private String name;
     private String description;
     private String state;
 
     public void createCategory() {
-        state="completo";
-        System.out.println(name+" "+state+" "+description);
+        //state="Completo";
         try{
             categoryServices.addCategory(name, description, state);
 
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public void updateCategory() throws ServicesException {
+        //id=31;
+        //state="Incompleto";
+        try{
+            categoryServices.upCategoryId(id, name, description, state);
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public String getName() {
@@ -50,5 +63,9 @@ public class CategoryBean extends BasePageBean{
     public void setState(String state) {
         this.state = state;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 }
 

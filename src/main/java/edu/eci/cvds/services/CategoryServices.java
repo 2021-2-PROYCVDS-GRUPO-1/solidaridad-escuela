@@ -27,6 +27,6 @@ public interface CategoryServices {
     UPDATE
      */
 
-    public void upCategoryId(String id, String name, String description, String state) throws ServicesException;
+    public void upCategoryId(int id, String name, String description, String state) throws ServicesException;
     public void upCategoryName(String name, String description, String state) throws ServicesException;
 }
