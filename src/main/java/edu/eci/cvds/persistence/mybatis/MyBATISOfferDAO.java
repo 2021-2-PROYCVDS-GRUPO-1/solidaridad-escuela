@@ -37,9 +37,9 @@ public class MyBATISOfferDAO implements OfferDAO {
     }
 
     @Override
-    public void registrarOferta(int offerId, String offerCategory, String name, String description) throws PersistenceException {
+    public void registrarOferta(int offerCategory, String name, String description, int userId) throws PersistenceException {
         try{
-            offerMapper.registrarOferta(offerId, offerCategory, name, description);
+            offerMapper.registrarOferta(offerCategory, name, description,  userId);
         }catch (PersistenceException e) {
             throw new PersistenceException("Error al registrar la oferta");
         }

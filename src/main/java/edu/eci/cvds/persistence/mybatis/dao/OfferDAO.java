@@ -35,7 +35,7 @@ public interface OfferDAO {
      * @param description The offer's description
      * @throws PersistenceException
      */
-    public void registrarOferta(int offerId, String offerCategory, String name, String description) throws PersistenceException;
+    public void registrarOferta(int offerCategory, String name, String description, int userId) throws PersistenceException;
 
 
     public void changeStatus(Offer offer, String status ) throws PersistenceException;

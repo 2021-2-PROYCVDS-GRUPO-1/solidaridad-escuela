@@ -34,12 +34,14 @@ CONSTRAINT UC_Category UNIQUE (Name)
 
 CREATE TABLE DB_OFFERS (
  offerId            SERIAL          PRIMARY KEY,
- offerCategory      VARCHAR(50)     NOT NULL,
+ offerCategory      SERIAL          NOT NULL,
  name               VARCHAR(50)     NOT NULL,
  description        VARCHAR(100)    NOT NULL,
  status             VARCHAR(50)     NOT NULL,
  dateCreation       DATE            NOT NULL,
- dateModification   DATE            NOT NULL
+ dateModification   DATE            NOT NULL,
+ userId             INTEGER         NOT NULL,
+ maxneeds           INTEGER         NOT NULL
 );
 
 -- -----------------------------------------------------
