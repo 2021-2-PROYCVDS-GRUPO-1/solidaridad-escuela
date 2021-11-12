@@ -44,7 +44,7 @@ public class OfferBean extends BasePageBean{
         userId = 1001184238;
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
-            offerServices.registrarOferta(offerCategory, name, description, userId);
+            offerServices.createOffer(offerCategory, name, description, userId);
 
         }catch(Exception e){
             System.out.println(e.getMessage());

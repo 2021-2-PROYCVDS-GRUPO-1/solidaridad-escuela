@@ -71,6 +71,34 @@ CREATE TRIGGER UP_dateModificationOffer
   BEFORE UPDATE ON public.DB_OFFERS
   FOR EACH ROW
 EXECUTE PROCEDURE dateModificationOffer();
+
+-- Update status
+
+CREATE OR REPLACE FUNCTION updateStatus()
+    RETURNS TRIGGER
+AS
+'
+BEGIN
+    IF old.status IS 'ACTIVE' AND (new.status IS " SOLVED" OR new.status IS "CLOSED") THEN
+        RETURN("NO es posible ese cambio de estado");
+    else
+        RETURN NEW;
+END;
+'
+LANGUAGE plpgsql;
+
+CREATE TRIGGER UP_status
+  BEFORE INSERT ON public.DB_OFFERS
+  FOR EACH ROW
+EXECUTE PROCEDURE updateStatus();
+
+
+
+
+
+
+
+
 -------------------------------------------------------
 
 -- -----------------------------------------------------

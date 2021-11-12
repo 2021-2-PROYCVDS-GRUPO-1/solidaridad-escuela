@@ -5,16 +5,18 @@
 <mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.OfferMapper">
 
 
+    <!-- SELECT  OFFER -->
+
     <!-- GET OFFER BY NAME -->
     <select id="getOfferByName" resultMap="OfferResult">
         SELECT
-        offerId AS o_idOffer,
-        offerCategory AS o_category,
-        name AS o_name,
-        description AS o_description,
-        status AS o_status,
-        dateCreation AS o_dateCreation,
-        dateModification AS o_dateModification
+        offerId AS IdOffer,
+        offerCategory AS CategoryOffer,
+        name AS Name,
+        description AS Description,
+        status AS Status,
+        dateCreation AS DateCreation,
+        dateModification AS DateModification
         FROM DB_OFFERS
         WHERE #{name} = DB_OFFERS.name;
     </select>
@@ -22,21 +24,58 @@
     <!-- GET OFFER BY ID -->
     <select id="getOfferByID" resultMap="OfferResult">
         SELECT
-        offerId AS o_idOffer,
-        offerCategory AS o_category,
-        name AS o_name,
-        description AS o_description,
-        status AS o_status,
-        dateCreation AS o_dateCreation,
-        dateModification AS o_dateModification
+        offerId AS IdOffer,
+        offerCategory AS CategoryOffer,
+        name AS Name,
+        description AS Description,
+        status AS Status,
+        dateCreation AS DateCreation,
+        dateModification AS DateModification
         FROM DB_OFFERS
         WHERE #{idOffer} = DB_OFFERS.offerId;
     </select>
 
+    <!-- GET OFFER BY Status -->
+    <select id="getOffersByStatus" resultMap="OfferResult">
+        SELECT
+        DB_OFFERS.offerId AS IdOffer,
+        DB_OFFERS.offerCategory AS CategoryOffer,
+        DB_OFFERS.name AS Name,
+        DB_OFFERS.description AS Description,
+        DB_OFFERS.status AS Status,
+        DB_OFFERS.dateCreation AS DateCreation,
+        DB_OFFERS.dateModification AS DateModification,
+        CONCAT(DB_USER.firstName, ' ',  DB_USER.lastName)  AS UserName
+        FROM DB_OFFERS
+            INNER JOIN DB_USER ON DB_OFFERS.userId = DB_USER.userId
+        WHERE
+            #{status} = DB_OFFERS.status;
+    </select>
+
+<!--     GET OFFER BY User-->
+    <select id="getOffersByUserId" resultMap="OfferResult">
+        SELECT
+        DB_OFFERS.offerId AS IdOffer,
+        DB_OFFERS.offerCategory AS CategoryOffer,
+        DB_OFFERS.name AS Name,
+        DB_OFFERS.description AS Description,
+        DB_OFFERS.status AS Status,
+        DB_OFFERS.dateCreation AS DateCreation,
+        DB_OFFERS.dateModification AS DateModification,
+        CONCAT(DB_USER.firstName, ' ',  DB_USER.lastName)  AS UserName
+        FROM DB_OFFERS
+            INNER JOIN DB_USER ON DB_OFFERS.userId = DB_USER.userId
+        WHERE
+            #{userId} = DB_USER.userId;
+    </select>
+
+
+
+
 
     <!-- INSERT OFFER -->
-    <insert id="registrarOferta">
-        INSERT INTO DB_OFFERS (offerCategory, name, description, status, userId, maxneeds) VALUES (#{offerCategory}, #{name}, #{description}, 'ACTIVE', #{userId}, 5)
+    <insert id="createOffer">
+        INSERT INTO DB_OFFERS (offerCategory, name, description, status, userId) VALUES (#{offerCategory}, #{name}, #{description}, 'ACTIVE', #{userId})
     </insert>
 
     <!-- UPDATE OFFER -->
