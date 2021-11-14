@@ -37,6 +37,27 @@
         WHERE #{email} = email;
     </select>
 
+    <!-- ADD USER -->
+    <insert parameterType="map" id="registerUser">
+        INSERT INTO DB_USER (userid,
+            status,
+            firstname,
+            lastname,
+            email,
+            username,
+            password,
+            role,
+            maxNeeds) VALUES (
+            #{userId},
+            #{status},
+            #{firstName},
+            #{lastname},
+            #{email},
+            #{username},
+            #{password},
+            #{role},
+            #{maxNeeds});
+    </insert>
 
     <resultMap id="userResult" type="User" >
         <id property="userId" column="userid"/>
