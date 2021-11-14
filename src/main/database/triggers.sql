@@ -87,10 +87,10 @@ AS
 		count_needs	INTEGER;
 	BEGIN
 		SELECT  maxNeeds INTO max_needs FROM DB_USER;
-		SELECT COUNT(*) INTO count_needs FROM DB_NEEDS WHERE idUser=idUser;
+		SELECT COUNT(*) INTO count_needs FROM DB_NEEDS WHERE createdByUser=createdByUser;
 		if (max_needs > count_needs) THEN
-			INSERT INTO DB_Needs (category,name,description,urgency,creationDate,status,modificationDate,idUser)
-        		VALUES (NEW.category,NEW.name,NEW.description,NEW.urgency,CURRENT_DATE,"Active",CURRENT_DATE,NEW.idUser);
+			INSERT INTO DB_Needs (category,name,description,urgency,creationDate,status,modificationDate,createdByUser)
+        		VALUES (NEW.category,NEW.name,NEW.description,NEW.urgency,CURRENT_DATE,"Active",CURRENT_DATE,NEW.createdByUser);
         		RETURN NEW;
 		else
 			RETURN ("el numero de necesidades registradas alcanzo su maximo");

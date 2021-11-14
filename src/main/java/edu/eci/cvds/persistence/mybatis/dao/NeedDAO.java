@@ -3,6 +3,7 @@ package edu.eci.cvds.persistence.mybatis.dao;
 import edu.eci.cvds.entities.Need;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.PersistenceException;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author Laura Valentina García León
@@ -13,7 +14,13 @@ import edu.eci.cvds.persistence.PersistenceException;
  */
 public interface NeedDAO {
 
-    public void save(Need necesidad) throws PersistenceException;
+    public void addNecessity(@Param("name") String name,
+                             @Param("description") String description,
+                             @Param("status") String status,
+                             @Param("categoryId") int categoryId,
+                             @Param("urgency") String urgency,
+                             @Param("createdByUser") int createdByUser
+                            ) throws PersistenceException;
 
     /**
      * Get the Need by its name

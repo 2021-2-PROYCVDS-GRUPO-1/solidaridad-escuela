@@ -45,9 +45,9 @@ CREATE TABLE DB_OFFERS (
 );
 
 -- -----------------------------------------------------
--- Table `DB_Need`
+-- Table `DB_NEEDS`
 -- -----------------------------------------------------
-CREATE TABLE DB_Needs(
+CREATE TABLE DB_NEEDS(
 	Id                  SERIAL          PRIMARY KEY,
 	category            VARCHAR(50)     NOT NULL,
 	name                VARCHAR(50)     NOT NULL,
@@ -56,5 +56,5 @@ CREATE TABLE DB_Needs(
 	creationDate        DATE            NOT NULL,
 	status              VARCHAR(40)     NOT NULL,
 	modificationDate    DATE            NOT NULL,
-	idUser              INTEGER         NOT NULL
+	createdByUser       INTEGER         NOT NULL
 );

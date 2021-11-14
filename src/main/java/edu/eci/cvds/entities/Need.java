@@ -20,9 +20,9 @@ public class Need {
     private Date creationDate;
     private String status;
     private Date modificationDate;
-    private String idUser;
+    private String createdByUser;
 
-    private Need(int id,String category,String name, String description, String urgency,Date creationDate, String status, Date modificationDate,String idUser){
+    private Need(int id,String category,String name, String description, String urgency,Date creationDate, String status, Date modificationDate,String createdByUser){
         this.id = id;
         this.category = category;
         this.name = name;
@@ -31,7 +31,7 @@ public class Need {
         this.creationDate = creationDate;
         this.status = status;
         this.modificationDate = modificationDate;
-        this.idUser=idUser;
+        this.createdByUser=createdByUser;
     }
 
     public int getId() {
@@ -98,11 +98,11 @@ public class Need {
         this.modificationDate = modificationDate;
     }
 
-    public String getIdUser() {
-        return idUser;
+    public String getcreatedByUser() {
+        return createdByUser;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setcreatedByUser(String createdByUser) {
+        this.createdByUser = createdByUser;
     }
 }

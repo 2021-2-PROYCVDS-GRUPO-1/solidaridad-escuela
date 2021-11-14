@@ -15,7 +15,12 @@ import org.apache.ibatis.annotations.Param;
 
 public interface NeedMapper {
 
-    public void registerNeed(@Param("need") Need need);
+    public void registerNeed(@Param("name") String name,
+                             @Param("description") String description,
+                             @Param("status") String status,
+                             @Param("categoryId") int categoryId,
+                             @Param("urgency") String urgency,
+                             @Param("createdByUser") int createdByUser) throws PersistenceException;
 
     public User getNeedByName(@Param("name") String name) throws PersistenceException;
 
