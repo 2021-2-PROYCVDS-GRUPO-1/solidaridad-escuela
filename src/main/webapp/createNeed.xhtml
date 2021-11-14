@@ -117,7 +117,7 @@
             </nav>
 
 
-            <!-- UPDATE CATEGORY FORM -->
+            <!-- CREATE NECESSITY FORM -->
             <div class="container max-w-3xl bg-yellow-300 mt-12 mx-auto">
                 <h2 class="text-center text-3xl">Registrar Necesidad</h2>
 
@@ -128,11 +128,12 @@
                         <input type="text" name="" id="" placeholder="Nombre de la necesidad"
                             class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" />
 
-                        <select name="" id="" class="flex-1 rounded pl-4 border-2 border-gray-500">
-                            <option>Opción 1</option>
-                            <option>Opción 2</option>
-                            <option>Opción 3</option>
-                        </select>
+                        <!-- CATEGORY -->
+                        <p:selectOneMenu id="createNecessityCategory" value="#{categoryBean.state}" style="width:125px"
+                            class="flex-1 rounded pl-4 border-2 border-gray-500">
+                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                            <f:selectItems value="#{categoryBean.statusList}" />
+                        </p:selectOneMenu>
                     </div>
                     <!-- ROW 1 END -->
 
@@ -143,17 +144,19 @@
 
                     <!-- ROW 3 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <select name="" id="" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500">
-                            <option>Opción 1</option>
-                            <option>Opción 2</option>
-                            <option>Opción 3</option>
-                        </select>
+                        <!-- URGENCIA -->
+                        <p:selectOneMenu id="createNecessityUrgency" value="#{categoryBean.state}" style="width:125px"
+                            class="flex-1 rounded pl-4 border-2 border-gray-500">
+                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                            <f:selectItems value="#{categoryBean.statusList}" />
+                        </p:selectOneMenu>
 
-                        <select name="" id="" class="flex-1 rounded pl-4 border-2 border-gray-500">
-                            <option>Opción 1</option>
-                            <option>Opción 2</option>
-                            <option>Opción 3</option>
-                        </select>
+                        <!-- ESTADO -->
+                        <p:selectOneMenu id="createNecessityStatus" value="#{categoryBean.state}" style="width:125px"
+                            class="flex-1 rounded pl-4 border-2 border-gray-500">
+                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                            <f:selectItems value="#{categoryBean.statusList}" />
+                        </p:selectOneMenu>
                     </div>
                     <!-- ROW 3 END -->
 

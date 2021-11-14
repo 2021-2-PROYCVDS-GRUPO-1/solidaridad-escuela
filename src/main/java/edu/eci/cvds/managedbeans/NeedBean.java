@@ -7,11 +7,16 @@ import edu.eci.cvds.services.NeedServices;
 import edu.eci.cvds.services.ServicesException;
 
 
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import java.util.ArrayList;
 
-
+@ManagedBean(name = "needBean")
+@ApplicationScoped
 public class NeedBean extends BasePageBean{
-    @Inject private NeedServices needServices;
+    @Inject
+    private NeedServices needServices;
+
     private Need need;
     ArrayList<Category> categories = new ArrayList<Category>();
 
