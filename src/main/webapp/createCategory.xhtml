@@ -118,32 +118,35 @@
 
 
             <!-- CREATE CATEGORY FORM -->
-            <!--  -->
             <div class="container max-w-3xl bg-yellow-300 mt-12 mx-auto">
                 <h2 class="text-center text-3xl">Crear Categoría</h2>
 
                 <!-- <form action="" class="grid grid-cols-1 grid-rows-3 gap-y-1"> -->
-                <h:form id="categoryCreate" class="flex flex-col">
+                <h:form id="createCategoryForm" class="flex flex-col">
                     <!-- ROW 1 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <h:inputText id="nam" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="Nombre de la categoría"/>
+                        <p:inputText id="createCategoryName" placeholder="Nombre de la categoría"
+                            class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String"
+                            value="#{categoryBean.name}" />
 
-                        <select name="Nstates" id="MultState" class="flex-1 rounded pl-4 border-2 border-gray-500" >
-                            <option disabled="" selected="">Selccione el status</option>
-                            <option >Completo</option>
-                            <option >Incompleto</option>
-                        </select>
+                        <p:selectOneMenu id="console" value="#{categoryBean.state}" style="width:125px">
+
+                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                            <f:selectItems value="#{categoryBean.statusList}" />
+                        </p:selectOneMenu>
                     </div>
                     <!-- ROW 1 END -->
 
                     <!-- ROW 2 -->
-                    <h:inputTextarea id="descrip" value="#{categoryBean.description}" cols="30" rows="10" placeholder="Descripción"
-                                     class="pl-4 mx-2 rounded border-2 border-gray-500"/>
+                    <p:inputTextarea id="createCategoryDescription" value="#{categoryBean.description}" cols="30"
+                        rows="10" placeholder="Descripción" class="pl-4 mx-2 rounded border-2 border-gray-500" />
                     <!-- ROW 2 END -->
 
                     <!-- ROW 3 -->
-                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear categoría" actionListener="#{categoryBean.createCategory}" update="categoryCreate"/>
-
+                    <p:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500"
+                        value="Crear categoría" actionListener="#{categoryBean.createCategory}"
+                        update="createCategoryForm">
+                    </p:commandButton>
                     <!-- ROW 3 END -->
                 </h:form>
             </div>

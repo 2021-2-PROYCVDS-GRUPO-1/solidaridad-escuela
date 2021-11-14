@@ -1,10 +1,17 @@
 package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.services.CategoryServices;
+import edu.eci.cvds.services.ServicesException;
+import edu.eci.cvds.utils.DatabaseStatus;
+import org.checkerframework.checker.units.qual.A;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 
 @ManagedBean(name = "categoryBean")
 @ApplicationScoped
@@ -15,15 +22,33 @@ public class CategoryBean extends BasePageBean{
     private String name;
     private String description;
     private String state;
+    private List<String> statusList;
+
+    @PostConstruct
+    public void init(){
+        statusList = new ArrayList<>();
+
+        try{
+            for(DatabaseStatus status : DatabaseStatus.values()){
+                System.out.println(status.toString());
+                statusList.add(status.toString());
+            }
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
 
     public void createCategory() {
-        state="completo";
-        System.out.println(name+" "+state+" "+description);
         try{
-            categoryServices.addCategory(name, description, state);
+            System.out.println("Anadiendo categoría con nombre: " + this.name
+            + "\nDescripcion: " + this.description
+            + "\nEstado: " + this.state);
 
+            categoryServices.addCategory(this.name, this.description, this.state);
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -50,5 +75,15 @@ public class CategoryBean extends BasePageBean{
     public void setState(String state) {
         this.state = state;
     }
+
+    public List<String> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<String> statusList) {
+        this.statusList = statusList;
+    }
+
+
 }
 
