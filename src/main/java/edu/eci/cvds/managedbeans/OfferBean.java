@@ -34,13 +34,12 @@ public class OfferBean extends BasePageBean{
     private int userId;
 
 
-    //----------------------------
-    private List<String> statusList = new ArrayList<String>(Arrays.asList("SOLVED", "IN PROCESS"));
 
 
 
 
-    public void registrarOferta(){
+
+    public void createOffer(){
         userId = 1001184238;
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
