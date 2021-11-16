@@ -2,6 +2,7 @@ package edu.eci.cvds.persistence.mybatis.dao;
 
 import edu.eci.cvds.entities.Category;
 import edu.eci.cvds.persistence.PersistenceException;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author Laura Valentina García León
@@ -27,7 +28,9 @@ public interface CategoryDAO {
      */
     public Category getCategoryId(int id) throws PersistenceException;
 
-    public void addCategory(String name, String description, String state) throws PersistenceException;
+    public void addCategory(@Param("name") String name,
+                            @Param("description") String description,
+                            @Param("state") String state) throws PersistenceException;
 
     public void  upCategoryId(int id, String name, String description, String state) throws PersistenceException;
 

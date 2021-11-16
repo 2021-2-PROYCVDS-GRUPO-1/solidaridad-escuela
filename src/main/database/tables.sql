@@ -34,20 +34,19 @@ CONSTRAINT UC_Category UNIQUE (Name)
 
 CREATE TABLE DB_OFFERS (
  offerId            SERIAL          PRIMARY KEY,
- offerCategory      SERIAL          NOT NULL,
+ offerCategory      INTEGER          NOT NULL,
  name               VARCHAR(50)     NOT NULL,
  description        VARCHAR(100)    NOT NULL,
  status             VARCHAR(50)     NOT NULL,
  dateCreation       DATE            NOT NULL,
  dateModification   DATE            NOT NULL,
- userId             INTEGER         NOT NULL,
- maxneeds           INTEGER         NOT NULL
+ userId             INTEGER         NOT NULL
 );
 
 -- -----------------------------------------------------
--- Table `DB_Need`
+-- Table `DB_NEEDS`
 -- -----------------------------------------------------
-CREATE TABLE DB_Needs(
+CREATE TABLE DB_NEEDS(
 	Id                  SERIAL          PRIMARY KEY,
 	category            VARCHAR(50)     NOT NULL,
 	name                VARCHAR(50)     NOT NULL,
@@ -56,5 +55,5 @@ CREATE TABLE DB_Needs(
 	creationDate        DATE            NOT NULL,
 	status              VARCHAR(40)     NOT NULL,
 	modificationDate    DATE            NOT NULL,
-	idUser              INTEGER         NOT NULL
+	createdByUser       INTEGER         NOT NULL
 );
