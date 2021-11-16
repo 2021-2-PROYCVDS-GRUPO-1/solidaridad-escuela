@@ -2,10 +2,13 @@ package edu.eci.cvds.managedbeans;
 
 
 import edu.eci.cvds.services.OfferServices;
+import edu.eci.cvds.utils.DatabaseStatus;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,8 +21,6 @@ import java.util.List;
 
 @ManagedBean(name = "offerBean")
 @SessionScoped
-
-
 public class OfferBean extends BasePageBean{
     @Inject
     private OfferServices offerServices;
@@ -30,9 +31,22 @@ public class OfferBean extends BasePageBean{
     private String description;
     private String status;
     private int userId;
+    private List<String> statusList;
 
+    @PostConstruct
+    public void init(){
+        statusList = new ArrayList<>();
 
-
+        try{
+            for(DatabaseStatus status : DatabaseStatus.values()){
+                System.out.println(status.toString());
+                statusList.add(status.toString());
+            }
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
 
     public void registrarOferta(){
         userId = 1001184238;
@@ -73,4 +87,20 @@ public class OfferBean extends BasePageBean{
     public int getUserId() { return userId; }
 
     public void setUserId(int userId) { this.userId = userId; }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public List<String> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<String> statusList) {
+        this.statusList = statusList;
+    }
 }

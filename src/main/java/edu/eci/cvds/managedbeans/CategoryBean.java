@@ -28,6 +28,15 @@ public class CategoryBean extends BasePageBean{
     public void init(){
         statusList = new ArrayList<>();
 
+        categoryServices = getInjector().getInstance(CategoryServices.class);
+
+        System.out.println("  ");
+        System.out.println("  ");
+        System.out.println("---- CATEGORY SERVICES ----");
+        System.out.println(categoryServices);
+        System.out.println("  ");
+        System.out.println("  ");
+
         try{
             for(DatabaseStatus status : DatabaseStatus.values()){
                 System.out.println(status.toString());
@@ -84,6 +93,12 @@ public class CategoryBean extends BasePageBean{
         this.statusList = statusList;
     }
 
+    public CategoryServices getCategoryServices() {
+        return categoryServices;
+    }
 
+    public void setCategoryServices(CategoryServices categoryServices) {
+        this.categoryServices = categoryServices;
+    }
 }
 
