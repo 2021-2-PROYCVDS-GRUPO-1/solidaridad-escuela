@@ -18,7 +18,8 @@ import java.util.List;
 public class CategoryBean extends BasePageBean{
     @Inject
     private CategoryServices categoryServices;
-
+    
+    private int id;
     private String name;
     private String description;
     private String state;
@@ -59,6 +60,18 @@ public class CategoryBean extends BasePageBean{
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void updateCategory() throws ServicesException {
+        //id=31;
+        //state="Incompleto";
+        try{
+            categoryServices.upCategoryId(id, name, description, state);
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public String getName() {
