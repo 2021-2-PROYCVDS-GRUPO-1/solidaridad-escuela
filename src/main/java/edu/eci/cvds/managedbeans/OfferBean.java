@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -42,6 +43,7 @@ public class OfferBean extends BasePageBean{
 
         offerServices = getInjector().getInstance(OfferServices.class);
 
+        // $
         // Borrar
         categoryListTest = new ArrayList<>();
 
@@ -62,11 +64,14 @@ public class OfferBean extends BasePageBean{
         }
     }
 
-    public void registrarOferta(){
+
+
+
+    public void createOffer(){
         userId = 1001184238;
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
-            offerServices.registrarOferta(offerCategory, name, description, userId);
+            offerServices.createOffer(offerCategory, name, description, userId);
 
         }catch(Exception e){
             e.printStackTrace();
@@ -74,7 +79,7 @@ public class OfferBean extends BasePageBean{
     }
 
     public void changeStatus(){
-//        status = "SOLVED";
+        status = "SOLVED";
         try{
             offerServices.changeStatus(name, status);
         }catch(Exception e){
