@@ -36,7 +36,7 @@
 
     <!-- INSERT OFFER -->
     <insert id="registrarOferta">
-        INSERT INTO DB_OFFERS (offerCategory, name, description, status, userId, maxneeds) VALUES (#{offerCategory}, #{name}, #{description}, 'ACTIVE', #{userId}, 5)
+        INSERT INTO DB_OFFERS (offerCategory, name, description, status, userId) VALUES (#{offerCategory}, #{name}, #{description}, 'ACTIVE', #{userId})
     </insert>
 
     <!-- UPDATE OFFER -->

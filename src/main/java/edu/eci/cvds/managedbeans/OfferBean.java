@@ -1,6 +1,8 @@
 package edu.eci.cvds.managedbeans;
 
 
+import edu.eci.cvds.entities.Offer;
+import edu.eci.cvds.services.CategoryServices;
 import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.utils.DatabaseStatus;
 
@@ -32,16 +34,28 @@ public class OfferBean extends BasePageBean{
     private String status;
     private int userId;
     private List<String> statusList;
+    private List<Integer> categoryListTest;
 
     @PostConstruct
     public void init(){
         statusList = new ArrayList<>();
+
+        offerServices = getInjector().getInstance(OfferServices.class);
+
+        // Borrar
+        categoryListTest = new ArrayList<>();
+
+        categoryListTest.add(7);
+        categoryListTest.add(31);
+        categoryListTest.add(38);
 
         try{
             for(DatabaseStatus status : DatabaseStatus.values()){
                 System.out.println(status.toString());
                 statusList.add(status.toString());
             }
+
+
         }
         catch (Exception exception) {
             exception.printStackTrace();
@@ -55,7 +69,7 @@ public class OfferBean extends BasePageBean{
             offerServices.registrarOferta(offerCategory, name, description, userId);
 
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -102,5 +116,13 @@ public class OfferBean extends BasePageBean{
 
     public void setStatusList(List<String> statusList) {
         this.statusList = statusList;
+    }
+
+    public List<Integer> getCategoryListTest() {
+        return categoryListTest;
+    }
+
+    public void setCategoryListTest(List<Integer> categoryListTest) {
+        this.categoryListTest = categoryListTest;
     }
 }
