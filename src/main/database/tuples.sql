@@ -21,3 +21,12 @@ ADD CONSTRAINT CK_OFFER_STATUS
 CHECK (
     status IN ('ACTIVE', 'IN PROCESS', 'SOLVED', 'CLOSED')
 );
+
+-- -----------------------------------------------------
+-- Table `DB_NEEDS`
+-- -----------------------------------------------------
+ALTER TABLE DB_NEEDS
+ADD CONSTRAINT CK_NEED_STATUS
+CHECK (
+    status IN ('ACTIVE', 'IN PROCESS', 'SOLVED', 'CLOSED')
+);

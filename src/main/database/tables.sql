@@ -34,11 +34,26 @@ CREATE TABLE DB_Category(
 
 CREATE TABLE DB_OFFERS (
  offerId            SERIAL          PRIMARY KEY,
- offerCategory      VARCHAR(50)     NOT NULL,
+ offerCategory      INTEGER          NOT NULL,
  name               VARCHAR(50)     NOT NULL,
  description        VARCHAR(100)    NOT NULL,
  status             VARCHAR(50)     NOT NULL,
  dateCreation       DATE            NOT NULL,
- dateModification   DATE            NOT NULL
+ dateModification   DATE            NOT NULL,
+ userId             INTEGER         NOT NULL
 );
 
+-- -----------------------------------------------------
+-- Table `DB_NEEDS`
+-- -----------------------------------------------------
+CREATE TABLE DB_NEEDS(
+	Id                  SERIAL          PRIMARY KEY,
+	category            VARCHAR(50)     NOT NULL,
+	name                VARCHAR(50)     NOT NULL,
+	description         VARCHAR(150)    NOT NULL,
+	urgency             VARCHAR(40)     NOT NULL,
+	creationDate        DATE            NOT NULL,
+	status              VARCHAR(40)     NOT NULL,
+	modificationDate    DATE            NOT NULL,
+	createdByUser       INTEGER         NOT NULL
+);

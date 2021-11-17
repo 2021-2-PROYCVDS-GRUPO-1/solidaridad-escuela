@@ -8,6 +8,8 @@ package edu.eci.cvds.entities;
  * @version 17/10/2021
  */
 public class User {
+    // TODO: Pasar el rol y el estado a los utils
+
     private int userId;
     private int databaseId;
     private String status;

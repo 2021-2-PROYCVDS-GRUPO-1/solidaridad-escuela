@@ -7,6 +7,8 @@ import edu.eci.cvds.persistence.mybatis.dao.OfferDAO;
 import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.services.ServicesException;
 
+import java.util.List;
+
 public class OfferServicesImpl implements OfferServices {
     @Inject
     private OfferDAO offerDAO;
@@ -32,9 +34,29 @@ public class OfferServicesImpl implements OfferServices {
     }
 
     @Override
-    public void registrarOferta(int offerId, String offerCategory, String name, String description) throws ServicesException {
+    public List<Offer> getByStatus(String status) throws ServicesException {
         try{
-            offerDAO.registrarOferta(offerId, offerCategory, name, description);
+            return offerDAO.getByStatus(status);
+        }
+        catch (PersistenceException e){
+            throw new ServicesException( e.getMessage(), e );
+        }
+    }
+
+    @Override
+    public List<Offer> getByUserID(int userId) throws ServicesException {
+        try{
+            return offerDAO.getByUserId(userId);
+        }
+        catch (PersistenceException e){
+            throw new ServicesException( e.getMessage(), e );
+        }
+    }
+
+    @Override
+    public void createOffer(int offerCategory, String name, String description, int userId) throws ServicesException {
+        try{
+            offerDAO.createOffer(offerCategory, name, description, userId);
         }
         catch (PersistenceException e){
             throw new ServicesException(e.getMessage(),e );
@@ -42,9 +64,9 @@ public class OfferServicesImpl implements OfferServices {
     }
 
     @Override
-    public void changeStatus(Offer offer, String status) throws ServicesException {
+    public void changeStatus(String offerName, String status) throws ServicesException {
         try{
-            offerDAO.changeStatus(offer,status);
+            offerDAO.changeStatus(offerName,status);
         }
         catch (PersistenceException e){
             throw new ServicesException(e.getMessage(),e );
