@@ -13,5 +13,10 @@
  -- -----------------------------------------------------
  -- Table `DB_OFFERs`
  -- -----------------------------------------------------
- INSERT INTO DB_OFFERS (offerCategory, name, description, status, userid, maxneeds) VALUES (7, 'Prueba2', 'Esto es una prueba', 'ACTIVE', 1001184238, 7)
+ INSERT INTO DB_OFFERS (offerCategory, name, description, status, userid, maxneeds) VALUES (7, 'Prueba2', 'Esto es una prueba', 'ACTIVE', 1001184238, 7);
+
+-- -----------------------------------------------------
+-- Table `DB_ANSWER`
+-- -----------------------------------------------------
+INSERT INTO DB_Answer(Name, Comments, IdOffer, IdNeeds) VALUES('Juan', 'Insert desde la base de datos', 3, NULL);
 

@@ -68,5 +68,5 @@ CREATE TABLE DB_Answer(
     Comments            VARCHAR(150)    NOT NULL,
     Date_Create         DATE            NOT NULL,
     IdOffer             INTEGER,
-    IdNeeds            INTEGER
+    IdNeeds             INTEGER
 );
