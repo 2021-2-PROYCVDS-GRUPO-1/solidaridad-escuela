@@ -19,7 +19,6 @@ public class CategoryBean extends BasePageBean{
     private String state;
 
     public void createCategory() {
-        //state="Completo";
         try{
             categoryServices.addCategory(name, description, state);
 
@@ -29,8 +28,6 @@ public class CategoryBean extends BasePageBean{
     }
 
     public void updateCategory() throws ServicesException {
-        //id=31;
-        //state="Incompleto";
         try{
             categoryServices.upCategoryId(id, name, description, state);
 
