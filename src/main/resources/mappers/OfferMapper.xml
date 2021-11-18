@@ -36,9 +36,9 @@
     </select>
 
     <!-- GET OFFER BY Status -->
-    <select id="getOffersByStatus" resultMap="OfferResult">
+    <select id="getByStatus" resultMap="OfferResult">
         SELECT
-        DB_OFFERS.offerId AS IdOffer,
+        DB_OFFERS.offerId AS offerId,
         DB_OFFERS.offerCategory AS CategoryOffer,
         DB_OFFERS.name AS Name,
         DB_OFFERS.description AS Description,
@@ -53,9 +53,9 @@
     </select>
 
 <!--     GET OFFER BY User-->
-    <select id="getOffersByUserId" resultMap="OfferResult">
+    <select id="getByUserId" resultMap="OfferResult">
         SELECT
-        DB_OFFERS.offerId AS IdOffer,
+        DB_OFFERS.offerId AS offerId,
         DB_OFFERS.offerCategory AS CategoryOffer,
         DB_OFFERS.name AS Name,
         DB_OFFERS.description AS Description,
@@ -72,7 +72,7 @@
 
     <!-- INSERT OFFER -->
     <insert id="createOffer">
-        INSERT INTO DB_OFFERS (offerCategory, name, description, status, userId) VALUES (#{offerCategory}, #{name}, #{description}, 'ACTIVE', #{userId})
+        INSERT INTO DB_OFFERS (offerCategory, name, description, userId) VALUES (#{offerCategory}, #{name}, #{description}, #{userId})
     </insert>
 
     <!-- UPDATE OFFER -->
@@ -93,7 +93,7 @@
         <result property="status" column="status" />
         <result property="dateCreation" column="dateCreation" />
         <result property="dateModification" column="dateModification" />
-        <association property="category" javaType="Category" columnPrefix="category" resultMap="edu.eci.cvds.persistence.mybatis.mappers.CategoryMapper"/>
-        <association property="userId" javaType="User" columnPrefix="userId" resultMap="edu.eci.cvds.persistence.mybatis.mappers.UserMapper"/>
+<!--        <association property="category" javaType="Category" columnPrefix="category" resultMap="edu.eci.cvds.persistence.mybatis.mappers.CategoryMapper"/>-->
+<!--        <association property="userId" javaType="User" columnPrefix="userId" resultMap="edu.eci.cvds.persistence.mybatis.mappers.UserMapper"/>-->
     </resultMap>
 </mapper>

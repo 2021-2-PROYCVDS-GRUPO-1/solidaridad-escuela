@@ -15,10 +15,9 @@ public class Offer {
     private String name;
     private String description;
     private String status;
-    private Date dateCreate;
+    private Date dateCreation;
     private Date dateModification;
     private int userId;
-    private int maxneeds;
 
     public Offer(){}
 
@@ -28,7 +27,7 @@ public class Offer {
         this.name = name;
         this.description = description;
         this.status = status;
-        this.dateCreate = dateCreate;
+        this.dateCreation = dateCreate;
         this.dateModification = dateModification;
     }
 
@@ -52,9 +51,9 @@ public class Offer {
 
     public void setStatus(String status) { this.status = status; }
 
-    public Date getDateCreate() { return dateCreate; }
+    public Date getDateCreation() { return dateCreation; }
 
-    public void setDateCreate(Date dateCreate) { this.dateCreate = dateCreate; }
+    public void setDateCreation(Date dateCreate) { this.dateCreation = dateCreate; }
 
     public Date getDateModification() { return dateModification; }
 
@@ -63,10 +62,6 @@ public class Offer {
     public int getUserId() { return userId; }
 
     public void setUserId(int userId) { this.userId = userId; }
-
-    public int getMaxneeds() { return maxneeds; }
-
-    public void setMaxneeds(int maxneeds) { this.maxneeds = maxneeds; }
 }
 
 

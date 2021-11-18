@@ -3,6 +3,10 @@ package edu.eci.cvds.services;
 import edu.eci.cvds.entities.Category;
 import edu.eci.cvds.persistence.PersistenceException;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author Laura Valentina García León
  * @author Laura Nathalia García
@@ -29,4 +33,8 @@ public interface CategoryServices {
 
     public void upCategoryId(int id, String name, String description, String state) throws ServicesException;
     public void upCategoryName(String name, String description, String state) throws ServicesException;
+
+
+    public HashMap<String, Integer> getCategories();
+
 }

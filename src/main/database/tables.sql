@@ -34,10 +34,10 @@ CREATE TABLE DB_Category(
 
 CREATE TABLE DB_OFFERS (
  offerId            SERIAL          PRIMARY KEY,
- offerCategory      INTEGER          NOT NULL,
+ offerCategory      INTEGER         NOT NULL,
  name               VARCHAR(50)     NOT NULL,
  description        VARCHAR(100)    NOT NULL,
- status             VARCHAR(50)     NOT NULL,
+ status             VARCHAR(50)     NOT NULL DEFAULT 'ACTIVE',
  dateCreation       DATE            NOT NULL,
  dateModification   DATE            NOT NULL,
  userId             INTEGER         NOT NULL
