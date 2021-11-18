@@ -2,7 +2,6 @@ package edu.eci.cvds.persistence.mybatis;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Need;
-import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.NeedDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.NeedMapper;
@@ -34,7 +33,16 @@ public class MyBATISNeedDAO implements NeedDAO {
     }
 
     @Override
-    public User getNeedByName(String name) throws PersistenceException {
+    public void updateStatus(String name, String status) throws PersistenceException{
+        try {
+            needMapper.updateStatus(name,status);
+        }catch (Exception exception){
+            throw new PersistenceException("Error al actualizar el estado de la enecesidad");
+        }
+    }
+
+    @Override
+    public Need getNeedByName(String name) throws PersistenceException {
         try{
             return needMapper.getNeedByName(name);
         } catch (PersistenceException e) {
@@ -43,7 +51,7 @@ public class MyBATISNeedDAO implements NeedDAO {
     }
 
     @Override
-    public User getNeedByID(String id) throws PersistenceException {
+    public Need getNeedByID(int id) throws PersistenceException {
         try{
             return needMapper.getNeedByID(id);
         } catch (PersistenceException e) {

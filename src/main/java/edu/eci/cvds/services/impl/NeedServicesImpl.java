@@ -28,4 +28,14 @@ public class NeedServicesImpl implements NeedServices {
             throw new ServicesException(exception.getMessage(),exception);
         }
     }
+
+    @Override
+    public void updateStatus(String name, String status) throws ServicesException{
+        try {
+            needDAO.updateStatus(name,status);
+        }catch (PersistenceException exception){
+            throw new ServicesException(exception.getMessage(),exception);
+        }
+    }
+
 }
