@@ -1,7 +1,8 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Category;
-import edu.eci.cvds.persistence.PersistenceException;
+import edu.eci.cvds.utils.DatabaseStatus;
+import edu.eci.cvds.utils.Role;
 
 /**
  * @author Laura Valentina García León
@@ -10,7 +11,7 @@ import edu.eci.cvds.persistence.PersistenceException;
  * @author Juan David Murillo
  * @version 28/10/2021
  */
-public interface CategoryServices {
+public interface UserServices {
     /*
     SELECT
      */
@@ -21,12 +22,20 @@ public interface CategoryServices {
     /*
     INSERT
      */
-    public void addCategory(String name, String description, String state) throws ServicesException;
+    public void registerUser(int userId,
+            String status,
+            String firstname,
+            String lastname,
+            String email,
+            String username,
+            String password,
+            String role,
+            int maxNeeds) throws ServicesException;
 
     /*
     UPDATE
      */
 
-    public void upCategoryId(int id, String name, String description, String state) throws ServicesException;
+    public void upCategoryId(String id, String name, String description, String state) throws ServicesException;
     public void upCategoryName(String name, String description, String state) throws ServicesException;
 }

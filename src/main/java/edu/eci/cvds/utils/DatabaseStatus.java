@@ -8,6 +8,6 @@ package edu.eci.cvds.utils;
  * @version 17/10/2021
  */
 public enum DatabaseStatus {
-    ENABLED,
-    DISABLED
+    HABILITADO,
+    DESHABILITADO
 }

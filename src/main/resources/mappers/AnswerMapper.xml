@@ -22,6 +22,14 @@
         INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, #{idOffer}, #{idNeeds});
     </insert>
 
+    <insert parameterType="map" id="addAnswerOffer">
+        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, #{idOffer}, NULL);
+    </insert>
+
+    <insert parameterType="map" id="addAnswerNeeds">
+        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, NULL, #{idNeeds});
+    </insert>
+
     <resultMap id="answerResult" type="Answer" >
         <id property="Id" column="a_id"/>
         <result property="Name" column="a_name" />

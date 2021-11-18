@@ -22,7 +22,14 @@ public class AnswerBean extends BasePageBean{
 
     public void createAnswer() {
         try{
-            answerServices.addAnswer(name, comments, idOffer, idNeeds);
+            if((idOffer == 0) || (idNeeds == 0)) {
+                if (idOffer == 0) {
+                    answerServices.addAnswerNeeds(name, comments, idNeeds);
+                } else if(idNeeds == 0){
+                    answerServices.addAnswerOffer(name, comments, idOffer);
+                }
+            }
+
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

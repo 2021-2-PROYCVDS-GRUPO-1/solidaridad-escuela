@@ -32,12 +32,12 @@
 
     <!-- ADD CATEGORY -->
     <insert parameterType="map" id="addCategory">
-        INSERT INTO DB_Category (Name, Description, State) VALUES (#{name}, #{description}, #{state});
+        INSERT INTO DB_CATEGORY (name, description, state) VALUES (#{name}, #{description}, #{state});
     </insert>
 
     <update parameterType="map" id="upCategoryId">
         UPDATE DB_Category
-        SET Name = #{name}, Description = #{description}, Status = #{state}
+        SET Name = #{name}, Description = #{description}, State = #{state}
         WHERE Id = #{id}
     </update>
 

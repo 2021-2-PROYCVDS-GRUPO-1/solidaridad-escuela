@@ -20,7 +20,7 @@ public interface CategoryMapper {
                             @Param("description") String description,
                             @Param("state") String state) throws PersistenceException;
 
-    public void updCategoryId(@Param("id") String id,
+    public void upCategoryId(@Param("id") int id,
                               @Param("name") String name,
                               @Param("description") String description,
                               @Param("state") String state) throws PersistenceException;

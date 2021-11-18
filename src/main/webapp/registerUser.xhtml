@@ -14,14 +14,57 @@
     <h:body>
         <h1>Register User</h1>
 
-        <h:form id="registerUser">
+        <!-- private int userId; DONE
+                private int databaseId; NO APLICA
+                private String status; DONE
+                private String firstName; DONE
+                private String lastname; DONE
+                private String email; DONE
+                private String username; DONE
+                private String password; DONE
+                private String role; DONE
+                private int maxNeeds; -->
+
+        <h:form id="registerUserForm">
             <h:outputText value="Número de identificación" />
-            <p:inputText id="email" styleClass="input-text" type="String" value="#{loginBean.email}" />
+            <p:inputText id="createUserID" styleClass="input-text" type="String" value="#{userBean.userId}" />
 
+            <!-- TODO: Verificar como mejorar el combo -->
+            <p>Estado</p>
+            <select name="createUserState" id="createUserState" class="flex-1 rounded pl-4 border-2 border-gray-500" >
+                <option disabled="" selected="">Seleccione el estado del usuario</option>
+                <option >Completo</option>
+                <option >Incompleto</option>
+            </select>
+
+            <h:outputText value="Nombre" />
+            <p:inputText id="createUserName" styleClass="input-text" type="String" value="#{userBean.firstName}" />
+
+            <h:outputText value="Apellidos" />
+            <p:inputText id="createUserLastname" styleClass="input-text" type="String" value="#{userBean.lastname}" />
+
+            <h:outputText value="Correo electrónico" />
+            <p:inputText id="createUserEmail" styleClass="input-text" type="String" value="#{userBean.email}" />
+
+            <h:outputText value="Username" />
+            <p:inputText id="createUserUsername" styleClass="input-text" type="String" value="#{userBean.username}" />
+
+            <!-- TODO: Modificar el tipo a password -->
             <h:outputText value="Contraseña:" />
-            <p:password id="password" styleClass="input-text" type="String" value="#{loginBean.password}" />
+            <p:password id="createUserPassword" styleClass="input-text" type="String" value="#{userBean.password}" />
 
-            <p:commandButton styleClass="myButton" actionListener="#{loginBean.signIn}" update="loginForm"
+            <!-- TODO: Verificar como mejorar el combo -->
+            <p>Estado</p>
+            <select name="createUserRole" id="createUserRole" class="flex-1 rounded pl-4 border-2 border-gray-500" >
+                <option disabled="" selected="">Seleccione el estado del usuario</option>
+                <option >Completo</option>
+                <option >Incompleto</option>
+            </select>
+
+            <h:outputText value="Máximo de necesidades" />
+            <p:inputText id="createUserMaxNeeds" styleClass="input-text" type="String" value="#{userBean.maxNeeds}" />
+
+            <p:commandButton styleClass="myButton" actionListener="#{userBean.createUser}" update="registerUserForm"
                              value="Ingresar">
             </p:commandButton>
         </h:form>

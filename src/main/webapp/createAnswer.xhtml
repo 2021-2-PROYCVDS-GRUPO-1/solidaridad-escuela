@@ -123,30 +123,32 @@
             <!-- CREATE ANSWER FORM -->
             <!--  -->
             <div class="container max-w-3xl bg-yellow-300 mt-12 mx-auto">
-                <h2 class="text-center text-3xl">Crear Categoría</h2>
+                <h2 class="text-center text-3xl">Crear una Respuesta</h2>
 
                 <!-- <form action="" class="grid grid-cols-1 grid-rows-3 gap-y-1"> -->
                 <h:form id="categoryCreate" class="flex flex-col">
                     <!-- ROW 1 -->
                     <div class="p-field p-col-12 p-md-4">
-                        <h:inputText id="nam" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.name}" placeholder="Nombre de la categoría"/>
+                        <h:inputText id="name" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.name}" placeholder="Nombre de la categoría"/>
+                        <h:inputText id="idoffer" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.idOffer}" placeholder="Nombre de la categoría"/>
+                        <h:inputText id="idneeds" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.idNeeds}" placeholder="Nombre de la categoría"/>
 
                         <!--p:outputLabel  for="@next" value="Basic"/-->
-                        <p:selectOneMenu  id="option" value="#{categoryBean.state}">
+                        <!--p:selectOneMenu  id="option" value="#{categoryBean.state}">
                             <f:selectItem itemLabel="Selccione el status" itemValue=""/>
                             <f:selectItem itemLabel="Completo" itemValue="Option1"/>
                             <f:selectItem itemLabel="Incompleto" itemValue="Option2"/>
-                        </p:selectOneMenu>
+                        </p:selectOneMenu-->
                     </div>
                     <!-- ROW 1 END -->
 
                     <!-- ROW 2 -->
-                    <h:inputTextarea id="descrip" value="#{categoryBean.description}" cols="30" rows="10" placeholder="Descripción"
+                    <h:inputTextarea id="comment" value="#{answerBean.comments}" cols="30" rows="10" placeholder="Descripción"
                                      class="pl-4 mx-2 rounded border-2 border-gray-500"/>
                     <!-- ROW 2 END -->
 
                     <!-- ROW 3 -->
-                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear categoría" actionListener="#{categoryBean.createCategory}" update="categoryCreate"/>
+                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear categoría" actionListener="#{answerBean.createAnswer}" update="categoryCreate"/>
 
                     <!-- ROW 3 END -->
                 </h:form>

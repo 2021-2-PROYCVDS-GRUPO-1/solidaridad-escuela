@@ -3,6 +3,8 @@ package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Offer;
 
+import java.util.List;
+
 /**
  * @author Laura Valentina García León
  * @author Laura Nathalia García
@@ -20,10 +22,15 @@ public interface OfferServices {
 
     public Offer getOfferById(int idLab) throws ServicesException;
 
+    public List<Offer> getByStatus(String status) throws  ServicesException;
+
+    public List<Offer> getByUserID(int userId) throws  ServicesException;
+
+
     /*
     INSERT
      */
-    public void registrarOferta(int offerCategory, String name, String description, int userId) throws ServicesException;
+    public void createOffer(int offerCategory, String name, String description, int userId) throws ServicesException;
 
 
     /*

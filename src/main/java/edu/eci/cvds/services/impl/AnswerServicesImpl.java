@@ -18,4 +18,22 @@ public class AnswerServicesImpl implements AnswerServices {
             throw  new ServicesException("Error al añadir la respuesta con el nombre: "+ name);
         }
     }
+
+    @Override
+    public void addAnswerOffer(String name, String comments, int idOffer) throws ServicesException {
+        try{
+            answerDAO.addAnswerOffer(name, comments, idOffer);
+        }catch (PersistenceException e) {
+            throw  new ServicesException("Error al añadir la respuesta con el nombre: "+ name);
+        }
+    }
+
+    @Override
+    public void addAnswerNeeds(String name, String comments, int idNeeds) throws ServicesException {
+        try{
+            answerDAO.addAnswerNeeds(name, comments, idNeeds);
+        }catch (PersistenceException e) {
+            throw  new ServicesException("Error al añadir la respuesta con el nombre: "+ name);
+        }
+    }
 }

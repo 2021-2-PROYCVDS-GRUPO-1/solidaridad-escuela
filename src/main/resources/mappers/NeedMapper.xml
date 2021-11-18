@@ -33,6 +33,23 @@
         WHERE #{id} = id;
     </select>
 
+    <!-- ADD NECESSITY -->
+    <insert parameterType="map" id="registerNeed">
+
+        INSERT INTO DB_NEEDS (category,
+        name,
+        description,
+        urgency,
+        status,
+        createdbyuser) VALUES (
+        #{categoryId},
+        #{name},
+        #{description},
+        #{status},
+        #{urgency},
+        #{createdByUser});
+    </insert>
+
 
     <resultMap id="NeedResult" type="Need" >
         <id property="id" column="id"/>

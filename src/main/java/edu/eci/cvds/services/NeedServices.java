@@ -4,6 +4,13 @@ import edu.eci.cvds.entities.Need;
 
 public interface NeedServices {
 
-    public void registerNeed(Need need) throws ServicesException;
-
+    /**
+     * INSERT
+     */
+    public void registerNeed(String name,
+                             String description,
+                             String status,
+                             int categoryId,
+                             String urgency,
+                             int createdByUser) throws ServicesException;
 }

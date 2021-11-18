@@ -39,7 +39,7 @@ public class CategoryServicesImpl implements CategoryServices {
     }
 
     @Override
-    public void upCategoryId(String id, String name, String description, String state) throws ServicesException {
+    public void upCategoryId(int id, String name, String description, String state) throws ServicesException {
         try{
             categoryDAO.upCategoryId(id, name, description, state);
         } catch(PersistenceException e) {
