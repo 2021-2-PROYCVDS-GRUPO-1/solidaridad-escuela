@@ -2,6 +2,7 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Category;
+import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.UserDAO;
 import edu.eci.cvds.services.ServicesException;
@@ -19,6 +20,16 @@ public class UserServicesImpl implements UserServices {
     @Override
     public Category getCategoryId(int id) throws ServicesException {
         return null;
+    }
+
+    @Override
+    public User getUserByEmail(String email) throws ServicesException {
+        try{
+            return userDAO.getUserByEmail(email);
+        }
+        catch (PersistenceException e){
+            throw new ServicesException( e.getMessage(), e );
+        }
     }
 
     @Override

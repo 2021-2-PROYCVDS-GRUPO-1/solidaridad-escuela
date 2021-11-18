@@ -126,15 +126,20 @@
                 <h:form id="categoryCreate" class="flex flex-col">
                     <!-- ROW 1 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <p>Nombre de la oferta</p>
-                        <h:inputText id="updateOfferName" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{offerBean.name}" placeholder="Nombre de la oferta"/>
 
-                        <p>Estado</p>
-                        <select name="updateOfferState" id="MultState" class="flex-1 rounded pl-4 border-2 border-gray-500" >
-                            <option disabled="" selected="">Selccione el status</option>
-                            <option >Completo</option>
-                            <option >Incompleto</option>
-                        </select>
+                        <div class="flex bg-green-400 px-2 my-4 h-8">
+                            <p:selectOneMenu id="offerName" value="#{offerBean.name}"
+                                             style="width:125px">
+                                <f:selectItem itemLabel="Seleccione una Categoria" itemValue="" />
+                                <f:selectItems value="#{offerBean.offerByUser}" />
+                            </p:selectOneMenu>
+                        </div>
+
+
+                        <p:selectOneMenu id="createOfferState" value="#{offerBean.status}" style="width:125px">
+                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                            <f:selectItems value="#{offerBean.statusList}" />
+                        </p:selectOneMenu>
 
 
                     </div>

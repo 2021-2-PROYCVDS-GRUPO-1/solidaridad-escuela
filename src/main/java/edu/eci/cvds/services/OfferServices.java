@@ -42,7 +42,10 @@ public interface OfferServices {
 
 
 
-    public List<String> testOfferbystatus();
+    public List<String> Offerbystatus();
+
+
+    public List<String> OfferbyUserId(int userId);
 }
 
 

@@ -3,6 +3,7 @@ package edu.eci.cvds.managedbeans;
 import edu.eci.cvds.services.UserServices;
 import edu.eci.cvds.utils.DatabaseStatus;
 import edu.eci.cvds.utils.Role;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -47,7 +48,7 @@ public class UserBean extends BasePageBean{
         try{
             userServices.registerUser(this.userId,this.status
                     ,this.firstName,this.lastname,this.lastname,
-                    this.username, this.password,this.role, this.maxNeeds);
+                    this.username, new Sha256Hash(this.password).toHex(),this.role, this.maxNeeds);
 
         }catch(Exception e){
             System.out.println(e.getMessage());

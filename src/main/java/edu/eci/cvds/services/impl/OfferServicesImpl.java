@@ -79,7 +79,7 @@ public class OfferServicesImpl implements OfferServices {
 
 
     @Override
-    public List<String> testOfferbystatus(){
+    public List<String> Offerbystatus(){
         List<String>  finalList = new ArrayList<>();
         try{
 
@@ -88,11 +88,29 @@ public class OfferServicesImpl implements OfferServices {
                 finalList.add(newlist.get(i).getName());
             }
 
-
-
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
         return finalList;
     }
+
+    @Override
+    public List<String> OfferbyUserId(int userId){
+        List<String>  finalList = new ArrayList<>();
+        try{
+
+            List<Offer> newlist = offerDAO.getByUserId(userId);
+            for(int i = 0; i < newlist.size(); i++){
+                finalList.add(newlist.get(i).getName());
+            }
+
+       }catch(Exception e){
+            System.out.println(e.getMessage());
+
+        }
+        return finalList;
+
+    }
+
+
 }
