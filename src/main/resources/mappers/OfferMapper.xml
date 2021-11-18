@@ -5,7 +5,18 @@
 <mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.OfferMapper">
 
 
-    <!-- SELECT  OFFER -->
+    <!--GET OFFER ALL-->
+    <select id="getOffers" resultMap="OfferResult">
+        SELECT
+            DB_OFFERS.offerId AS offerId,
+            DB_OFFERS.offerCategory AS CategoryOffer,
+            DB_OFFERS.name AS Name,
+            DB_OFFERS.description AS Description,
+            DB_OFFERS.status AS Status,
+            DB_OFFERS.dateCreation AS DateCreation,
+            DB_OFFERS.dateModification AS DateModification
+        FROM DB_OFFERS
+    </select>
 
     <!-- GET OFFER BY NAME -->
     <select id="getOfferByName" resultMap="OfferResult">

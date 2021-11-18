@@ -27,6 +27,7 @@ public interface OfferServices {
 
     public List<Offer> getByUserID(int userId) throws  ServicesException;
 
+    public HashMap<Integer, String> getOffers();
 
     /*
     INSERT

@@ -66,6 +66,7 @@ public interface OfferDAO {
      */
     public Offer getOfferByID(int id) throws PersistenceException;
 
+    public List<Offer> getOffers() throws PersistenceException;
 }
 
 

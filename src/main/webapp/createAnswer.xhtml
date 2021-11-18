@@ -130,8 +130,18 @@
                     <!-- ROW 1 -->
                     <div class="p-field p-col-12 p-md-4">
                         <h:inputText id="name" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.name}" placeholder="Nombre de la categoría"/>
-                        <h:inputText id="idoffer" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.idOffer}" placeholder="Nombre de la categoría"/>
-                        <h:inputText id="idneeds" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.idNeeds}" placeholder="Nombre de la categoría"/>
+                        <!--h:inputText id="idoffer" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.idOffer}" placeholder="Nombre de la categoría"/-->
+                        <!--h:inputText id="idneeds" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.idNeeds}" placeholder="Nombre de la categoría"/-->
+                        <p:selectOneMenu id="createNeedCategory" value="#{answerBean.nameNeed}"
+                                         style="width:125px">
+                            <f:selectItem itemLabel="Seleccione una Need" itemValue="" />
+                            <f:selectItems value="#{answerBean.listNeeds}" />
+                        </p:selectOneMenu>
+                        <p:selectOneMenu id="createOfferCategory" value="#{answerBean.nameOffer}"
+                                         style="width:125px">
+                            <f:selectItem itemLabel="Seleccione una Offer" itemValue="" />
+                            <f:selectItems value="#{answerBean.listOffer}" />
+                        </p:selectOneMenu>
                         <!--p:outputLabel  for="@next" value="Basic"/-->
                         <!--p:selectOneMenu  id="option" value="#{categoryBean.state}">
                             <f:selectItem itemLabel="Selccione el status" itemValue=""/>
@@ -147,7 +157,7 @@
                     <!-- ROW 2 END -->
 
                     <!-- ROW 3 -->
-                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear categoría" actionListener="#{answerBean.createAnswer}" update="categoryCreate"/>
+                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Crear una Respuestas" actionListener="#{answerBean.createAnswer}" update="categoryCreate"/>
 
                     <!-- ROW 3 END -->
                 </h:form>

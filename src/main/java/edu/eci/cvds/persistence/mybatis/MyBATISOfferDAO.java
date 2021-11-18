@@ -80,6 +80,12 @@ public class MyBATISOfferDAO implements OfferDAO {
         }
     }
 
-
-
+    @Override
+    public List<Offer> getOffers() throws PersistenceException {
+        try{
+            return offerMapper.getOffers();
+        } catch (PersistenceException e) {
+            throw new PersistenceException("Error al consultar las ofertas");
+        }
+    }
 }
