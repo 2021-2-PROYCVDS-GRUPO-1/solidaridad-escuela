@@ -26,3 +26,10 @@ DROP TRIGGER IF EXISTS VAL_NEED ON DB_Needs CASCADE;
 DROP FUNCTION dateModificationNeed CASCADE;
 DROP FUNCTION dateCreationNeed CASCADE;
 DROP FUNCTION validate_registration_need CASCADE;
+
+-- -----------------------------------------------------
+-- Table `DB_ANSWER`
+-- -----------------------------------------------------
+DROP TRIGGER AD_DateCreate_Answer ON DB_Answer;
+DROP FUNCTION AD_date_Create;
+

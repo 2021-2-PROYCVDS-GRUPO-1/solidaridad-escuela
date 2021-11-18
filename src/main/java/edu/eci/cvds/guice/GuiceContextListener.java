@@ -43,6 +43,7 @@ public class GuiceContextListener implements ServletContextListener {
                 bind(CategoryDAO.class).to(MyBATISCategoryDAO.class);
                 bind(OfferDAO.class).to(MyBATISOfferDAO.class);
                 bind(NeedDAO.class).to(MyBATISNeedDAO.class);
+                bind(AnswerDAO.class).to(MyBATISAnswerDAO.class);
                 bind(UserDAO.class).to(MyBATISUserDAO.class);
                 // bind(NovedadDAO.class).to(MyBATISNovedadDAO.class);
                 // bind(ElementoDAO.class).to(MyBATISElementoDAO.class);
@@ -55,6 +56,7 @@ public class GuiceContextListener implements ServletContextListener {
                 bind(CategoryServices.class).to(CategoryServicesImpl.class);
                 bind(OfferServices.class).to(OfferServicesImpl.class);
                 bind(NeedServices.class).to(NeedServicesImpl.class);
+                bind(AnswerServices.class).to(AnswerServicesImpl.class);
                 bind(UserServices.class).to(UserServicesImpl.class);
                 // bind(HistorialServicios.class).to(HistorialServiciosImpl.class);
                 // bind(ServiciosEquipo.class).to(ServiciosEquipoImpl.class);

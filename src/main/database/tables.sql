@@ -57,3 +57,15 @@ CREATE TABLE DB_NEEDS(
 	modificationDate    DATE            NOT NULL,
 	createdByUser       INTEGER         NOT NULL
 );
+
+-- -----------------------------------------------------
+-- Table `DB_Answer`
+-- -----------------------------------------------------
+CREATE TABLE DB_Answer(
+    Id                  SERIAL          PRIMARY KEY,
+    Name                VARCHAR(50)     NOT NULL,
+    Comments            VARCHAR(150)    NOT NULL,
+    Date_Create         DATE            NOT NULL,
+    IdOffer             INTEGER,
+    IdNeeds             INTEGER
+);

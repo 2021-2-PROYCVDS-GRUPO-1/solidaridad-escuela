@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.AnswerMapper">
+    <!-- GET CATEGORY ID >
+    <select parameterType="map" id="getCategoryId" resultMap="categoryResult">
+        SELECT
+            Id AS c_id,
+            Name AS c_name,
+            Description AS c_description,
+            Date_Create AS c_dateCreate,
+            State AS c_state,
+            Date_Modification AS c_dateModification
+        FROM DB_Category
+        WHERE #{id} = Id;
+    </select-->
+
+    <!-- ADD CATEGORY -->
+    <insert parameterType="map" id="addAnswer">
+        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, #{idOffer}, #{idNeeds});
+    </insert>
+
+    <insert parameterType="map" id="addAnswerOffer">
+        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, #{idOffer}, NULL);
+    </insert>
+
+    <insert parameterType="map" id="addAnswerNeeds">
+        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, NULL, #{idNeeds});
+    </insert>
+
+    <resultMap id="answerResult" type="Answer" >
+        <id property="Id" column="a_id"/>
+        <result property="Name" column="a_name" />
+        <result property="Comments" column="a_comments" />
+        <result property="Date_Creation" column="a_dateCreate" />
+        <association property="IdOffer" javaType="Offer" columnPrefix="IdOffer" resultMap="edu.eci.cvds.persistence.mybatis.mappers.OfferMapper"/>
+        <association property="IdNeeds" javaType="Need" columnPrefix="IdNeeds" resultMap="edu.eci.cvds.persistence.mybatis.mappers.NeedMapper"/>
+    </resultMap>
+</mapper>
