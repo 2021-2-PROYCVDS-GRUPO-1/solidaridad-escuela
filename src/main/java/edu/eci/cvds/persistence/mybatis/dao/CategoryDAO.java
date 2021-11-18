@@ -4,6 +4,8 @@ import edu.eci.cvds.entities.Category;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author Laura Valentina García León
  * @author Laura Nathalia García
@@ -35,4 +37,9 @@ public interface CategoryDAO {
     public void  upCategoryId(int id, String name, String description, String state) throws PersistenceException;
 
     public void upCategoryName(String name, String description, String state) throws PersistenceException;
+
+
+    /*----BORRAR SI SALE MAL ---------*/
+
+    public List<Category> getCategories() throws PersistenceException;
 }

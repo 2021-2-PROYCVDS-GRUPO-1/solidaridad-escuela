@@ -6,6 +6,7 @@ import edu.eci.cvds.persistence.mybatis.dao.CategoryDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.CategoryMapper;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * @author Laura Valentina García León
@@ -62,4 +63,17 @@ public class MyBATISCategoryDAO implements CategoryDAO {
             throw  new PersistenceException("Error al actualizar la categoria con el name: "+ name);
         }
     }
+
+
+    /*----BORRAR SI SALE MAL ---------*/
+    @Override
+    public List<Category> getCategories() throws PersistenceException {
+        try {
+            return categoryMapper.getCategories();
+        }catch (PersistenceException e){
+            throw new PersistenceException("Error al consultar Categorias");
+        }
+    }
+
+
 }

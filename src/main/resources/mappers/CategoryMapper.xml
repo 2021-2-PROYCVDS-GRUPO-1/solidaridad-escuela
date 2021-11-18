@@ -41,6 +41,27 @@
         WHERE Id = #{id}
     </update>
 
+
+    <!-- BORRAR SI SALE MAL-->
+    <select parameterType="map" id="getCategories" resultMap="categoryResult">
+        SELECT
+        Id AS Id,
+        Name AS name,
+        Description AS description,
+        Date_Create AS dateCreate,
+        State AS state,
+        Date_Modification AS dateModification
+        FROM DB_Category
+
+    </select>
+
+
+
+
+
+
+
+
     <resultMap id="categoryResult" type="Category" >
         <id property="Id" column="c_id"/>
         <result property="Name" column="c_name" />
@@ -49,4 +70,7 @@
         <result property="State" column="c_state" />
         <result property="Date_Modification" column="c_dateModification" />
     </resultMap>
+
+
+
 </mapper>

@@ -7,6 +7,7 @@ import edu.eci.cvds.persistence.mybatis.dao.OfferDAO;
 import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.services.ServicesException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OfferServicesImpl implements OfferServices {
@@ -72,5 +73,24 @@ public class OfferServicesImpl implements OfferServices {
             throw new ServicesException(e.getMessage(),e );
         }
 
+    }
+
+
+    @Override
+    public List<String> testOfferbystatus(){
+        List<String>  finalList = new ArrayList<>();
+        try{
+
+            List<Offer> newlist = offerDAO.getByUserId(1001184238);
+            for(int i = 0; i < newlist.size(); i++){
+                finalList.add(newlist.get(i).getName());
+            }
+
+
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return finalList;
     }
 }

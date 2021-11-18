@@ -40,6 +40,8 @@ public interface OfferServices {
     public void changeStatus(String offerName, String status) throws ServicesException;
 
 
+
+    public List<String> testOfferbystatus();
 }
 
 

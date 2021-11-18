@@ -10,9 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Laura Valentina García León
@@ -28,20 +26,28 @@ public class OfferBean extends BasePageBean{
     @Inject
     private OfferServices offerServices;
 
+    @Inject
+    private  CategoryServices categoryServices;
+
     //private int offerId;
     private int offerCategory;
+    private String categoryName;
     private String name;
     private String description;
     private String status;
     private int userId;
     private List<String> statusList;
     private List<Integer> categoryListTest;
+    private HashMap<String, Integer> categories;
+    private Collection<String> catTest;
 
     @PostConstruct
     public void init(){
         statusList = new ArrayList<>();
+        categories = new HashMap<String, Integer>();
 
         offerServices = getInjector().getInstance(OfferServices.class);
+        categoryServices = getInjector().getInstance(CategoryServices.class);
 
         // $
         // Borrar
@@ -51,12 +57,17 @@ public class OfferBean extends BasePageBean{
         categoryListTest.add(31);
         categoryListTest.add(38);
 
+        categories = categoryServices.getCategories();
+        catTest = categories.keySet();
+        System.out.println(catTest);
+
         try{
             for(DatabaseStatus status : DatabaseStatus.values()){
                 System.out.println(status.toString());
                 statusList.add(status.toString());
             }
 
+            System.out.println(catTest);
 
         }
         catch (Exception exception) {
@@ -71,7 +82,7 @@ public class OfferBean extends BasePageBean{
         userId = 1001184238;
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
-            offerServices.createOffer(offerCategory, name, description, userId);
+            offerServices.createOffer(categories.get(categoryName), name, description, userId);
 
         }catch(Exception e){
             e.printStackTrace();
@@ -130,4 +141,38 @@ public class OfferBean extends BasePageBean{
     public void setCategoryListTest(List<Integer> categoryListTest) {
         this.categoryListTest = categoryListTest;
     }
+
+    public Collection<String> getOfferListTest() {
+        return catTest;
+    }
+
+    public void setOfferListTest(List<String> offerListTest) {
+        this.catTest = offerListTest;
+    }
+
+    public CategoryServices getCategoryServices() {
+        return categoryServices;
+    }
+
+    public void setCategoryServices(CategoryServices categoryServices) {
+        this.categoryServices = categoryServices;
+    }
+
+    public Collection<String> getCatTest() {
+        return catTest;
+    }
+
+    public void setCatTest(List<String> catTest) {
+        this.catTest = catTest;
+    }
+
+    public String getCategoryName() { return categoryName; }
+
+    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
+
+    public HashMap<String, Integer> getCategories() { return categories; }
+
+    public void setCategories(HashMap<String, Integer> categories) { this.categories = categories; }
+
+    public void setCatTest(Collection<String> catTest) { this.catTest = catTest; }
 }

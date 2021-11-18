@@ -11,10 +11,12 @@ DROP FUNCTION ADUP_date_Modification;
 -- Table `DB_OFEFRS`
 -- -----------------------------------------------------
 DROP TRIGGER  IF EXISTS AD_dateModificationOffer ON DB_OFFERS CASCADE;
-DROP TRIGGER IF EXISTS AD_dateCreationOffer ON DB_OFFERS CASCADE;
-
 DROP FUNCTION dateModificationOffer CASCADE;
+
+DROP TRIGGER  IF EXISTS AD_dateCreationOffer ON DB_OFFERS CASCADE;
 DROP FUNCTION dateCreationOffer CASCADE;
+
+DROP TRIGGER IF EXISTS UP_dateModificationOffer ON DB_OFFERS CASCADE;
 
 -- -----------------------------------------------------
 -- Table `DB_NEEDS`
