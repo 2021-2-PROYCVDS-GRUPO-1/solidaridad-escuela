@@ -1,6 +1,7 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Category;
+import edu.eci.cvds.entities.User;
 import edu.eci.cvds.utils.DatabaseStatus;
 import edu.eci.cvds.utils.Role;
 
@@ -18,6 +19,8 @@ public interface UserServices {
 
     public Category getCategoryName(String name) throws ServicesException;
     public Category getCategoryId(int id) throws ServicesException;
+
+    public User getUserByEmail(String email) throws ServicesException;
 
     /*
     INSERT

@@ -2,9 +2,14 @@ package edu.eci.cvds.managedbeans;
 
 
 import edu.eci.cvds.entities.Offer;
+import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.CategoryServices;
 import edu.eci.cvds.services.OfferServices;
+import edu.eci.cvds.services.UserServices;
 import edu.eci.cvds.utils.DatabaseStatus;
+import edu.eci.cvds.utils.OfferStatus;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -29,6 +34,10 @@ public class OfferBean extends BasePageBean{
     @Inject
     private  CategoryServices categoryServices;
 
+    @Inject
+    private UserServices userServices;
+
+    private User usuario;
     //private int offerId;
     private int offerCategory;
     private String categoryName;
@@ -37,9 +46,10 @@ public class OfferBean extends BasePageBean{
     private String status;
     private int userId;
     private List<String> statusList;
-    private List<Integer> categoryListTest;
     private HashMap<String, Integer> categories;
     private Collection<String> catTest;
+    private List<String> offerByUser;
+
 
     @PostConstruct
     public void init(){
@@ -48,26 +58,27 @@ public class OfferBean extends BasePageBean{
 
         offerServices = getInjector().getInstance(OfferServices.class);
         categoryServices = getInjector().getInstance(CategoryServices.class);
+        userServices = getInjector().getInstance(UserServices.class);
 
-        // $
-        // Borrar
-        categoryListTest = new ArrayList<>();
 
-        categoryListTest.add(7);
-        categoryListTest.add(31);
-        categoryListTest.add(38);
+
+
 
         categories = categoryServices.getCategories();
         catTest = categories.keySet();
         System.out.println(catTest);
+        this.offerByUser = offerServices.OfferbyUserId(1001184238);
+        System.out.println(offerByUser);
 
         try{
-            for(DatabaseStatus status : DatabaseStatus.values()){
-                System.out.println(status.toString());
-                statusList.add(status.toString());
+            for(OfferStatus status : OfferStatus.values()){
+                System.out.println(status.getName());
+                statusList.add(status.getName());
             }
 
-            System.out.println(catTest);
+
+
+
 
         }
         catch (Exception exception) {
@@ -76,10 +87,12 @@ public class OfferBean extends BasePageBean{
     }
 
 
-
-
     public void createOffer(){
-        userId = 1001184238;
+
+        Subject subject = SecurityUtils.getSubject();
+        System.out.println(subject.isAuthenticated());
+        this.userId = (int) subject.getSession().getAttribute("userId");
+
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
             offerServices.createOffer(categories.get(categoryName), name, description, userId);
@@ -90,7 +103,6 @@ public class OfferBean extends BasePageBean{
     }
 
     public void changeStatus(){
-        status = "SOLVED";
         try{
             offerServices.changeStatus(name, status);
         }catch(Exception e){
@@ -134,14 +146,6 @@ public class OfferBean extends BasePageBean{
         this.statusList = statusList;
     }
 
-    public List<Integer> getCategoryListTest() {
-        return categoryListTest;
-    }
-
-    public void setCategoryListTest(List<Integer> categoryListTest) {
-        this.categoryListTest = categoryListTest;
-    }
-
     public Collection<String> getOfferListTest() {
         return catTest;
     }
@@ -175,4 +179,12 @@ public class OfferBean extends BasePageBean{
     public void setCategories(HashMap<String, Integer> categories) { this.categories = categories; }
 
     public void setCatTest(Collection<String> catTest) { this.catTest = catTest; }
+
+    public List<String> getOfferByUser() {
+        return offerByUser;
+    }
+
+    public void setOfferByUser(List<String> offerByUser) {
+        this.offerByUser = offerByUser;
+    }
 }

@@ -1,15 +1,25 @@
 package edu.eci.cvds.managedbeans;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import edu.eci.cvds.entities.User;
 import edu.eci.cvds.security.Login;
+import edu.eci.cvds.services.CategoryServices;
+import edu.eci.cvds.services.OfferServices;
+import edu.eci.cvds.services.UserServices;
+import edu.eci.cvds.utils.OfferStatus;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import com.google.inject.Inject;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Laura Valentina García León
@@ -28,12 +38,28 @@ public class LoginBean extends BasePageBean {
     @Inject
     private Login login;
 
+    @Inject
+    private UserServices userServices;
+
+
     private String email;
     private String password;
     private boolean rememberMe;
     private Subject currentUser;
     private String message;
     private FacesMessage.Severity status;
+
+
+    @PostConstruct
+    public void init(){
+        userServices = getInjector().getInstance(UserServices.class);
+        login = getInjector().getInstance(Login.class);
+    }
+
+
+
+
+
 
     // TODO -> verify everything
     /**
@@ -44,18 +70,26 @@ public class LoginBean extends BasePageBean {
         try{
             sinErrores();
             currentUser = SecurityUtils.getSubject();
-            if (this.login.isLoggedIn()) {
-                System.out.println("Ya esta loggeado----------------------------");
-                //throw new HistorialEquiposException("Ya estas loggeado");//solo atrapar los errores.
-            }
-            else {
-                this.login.signIn(email, password, false);
-                //redireccionar();
+//            if (this.login.isLoggedIn()) {
+            if (false) {
 
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/index.xhtml");
+                    System.out.println("Ya esta loggeado----------------------------");
+                    //throw new HistorialEquiposException("Ya estas loggeado");//solo atrapar los errores.
+                }
+                else {
+                    System.out.println(email + "-" +password);
+                    System.out.println(email + "-" +new Sha256Hash(password).toHex());
+                    this.login.signIn(email,password, false);
+                    //redireccionar();
+                    User user = userServices.getUserByEmail(email);
+                    Subject subject = SecurityUtils.getSubject();
+                    subject.getSession().setAttribute("userId", user.getUserId());
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/index.xhtml");
+                }
             }
-        }
+
         catch( Exception exception){
+            exception.printStackTrace();
             message = exception.getMessage();
             status = FacesMessage.SEVERITY_WARN;
             restablecer();

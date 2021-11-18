@@ -23,15 +23,15 @@
     <!-- GET USER BY EMAIL -->
     <select id="getUserByEmail" resultMap="userResult">
         SELECT
-        userid
-        databaseid
-        status
-        firstname
-        lastname
-        email
-        username
-        password
-        role
+        userid,
+        databaseid,
+        status,
+        firstname,
+        lastname,
+        email,
+        username,
+        password,
+        role,
         maxneeds
         FROM db_user
         WHERE #{email} = email;
@@ -58,6 +58,9 @@
             #{role},
             #{maxNeeds});
     </insert>
+
+
+
 
     <resultMap id="userResult" type="User" >
         <id property="userId" column="userid"/>

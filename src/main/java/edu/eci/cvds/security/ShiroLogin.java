@@ -1,11 +1,13 @@
 package edu.eci.cvds.security;
 
 import edu.eci.cvds.services.ServicesException;
+import edu.eci.cvds.services.UserServices;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import java.io.IOException;
 
 /**
@@ -16,6 +18,8 @@ import java.io.IOException;
  * @version 17/10/2021
  */
 public class ShiroLogin implements Login {
+
+
 
     @Override
     public void signIn(String email, String password, boolean rememberMe) throws ServicesException {
