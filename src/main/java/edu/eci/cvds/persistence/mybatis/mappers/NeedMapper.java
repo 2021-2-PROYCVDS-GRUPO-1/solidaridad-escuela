@@ -1,7 +1,6 @@
 package edu.eci.cvds.persistence.mybatis.mappers;
 
 import edu.eci.cvds.entities.Need;
-import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,7 +21,10 @@ public interface NeedMapper {
                              @Param("urgency") String urgency,
                              @Param("createdByUser") int createdByUser) throws PersistenceException;
 
-    public User getNeedByName(@Param("name") String name) throws PersistenceException;
+    public void updateStatus(@Param("name") String name, @Param("status") String status);
 
-    public User getNeedByID(@Param("id") String name) throws PersistenceException;
+    public Need getNeedByName(@Param("name") String name) throws PersistenceException;
+
+    public Need getNeedByID(@Param("id") int id) throws PersistenceException;
+
 }

@@ -1,7 +1,6 @@
 package edu.eci.cvds.persistence.mybatis.dao;
 
 import edu.eci.cvds.entities.Need;
-import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,13 +21,24 @@ public interface NeedDAO {
                              @Param("createdByUser") int createdByUser
                             ) throws PersistenceException;
 
+
+    /**
+     * Update the status of the need
+     * @param name name of need
+     * @param status new status
+     * @throws PersistenceException
+     */
+    public void updateStatus(String name,String status) throws PersistenceException;
+
+
+
     /**
      * Get the Need by its name
      * @param name The offer's name
      * @return
      * @throws PersistenceException
      */
-    public User getNeedByName(String name) throws PersistenceException;
+    public Need getNeedByName(String name) throws PersistenceException;
 
     /**
      * Get the Need by its id
@@ -36,7 +46,7 @@ public interface NeedDAO {
      * @return
      * @throws PersistenceException
      */
-    public User getNeedByID(String id) throws PersistenceException;
+    public Need getNeedByID(int id) throws PersistenceException;
 
 
 }
