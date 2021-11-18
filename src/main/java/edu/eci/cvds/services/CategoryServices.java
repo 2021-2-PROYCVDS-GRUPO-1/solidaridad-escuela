@@ -34,7 +34,7 @@ public interface CategoryServices {
     public void upCategoryId(int id, String name, String description, String state) throws ServicesException;
     public void upCategoryName(String name, String description, String state) throws ServicesException;
 
-    /*----BORRAR SI SALE MAL ---------*/
+
     public HashMap<String, Integer> getCategories();
 
 }

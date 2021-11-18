@@ -64,8 +64,6 @@ public class MyBATISCategoryDAO implements CategoryDAO {
         }
     }
 
-
-    /*----BORRAR SI SALE MAL ---------*/
     @Override
     public List<Category> getCategories() throws PersistenceException {
         try {

@@ -42,7 +42,7 @@
     </update>
 
 
-    <!-- BORRAR SI SALE MAL-->
+
     <select parameterType="map" id="getCategories" resultMap="categoryResult">
         SELECT
         Id AS Id,

@@ -63,7 +63,7 @@ public class CategoryServicesImpl implements CategoryServices {
     }
 
 
-    /*----- BORRAR SI SALE MAL -----*/
+
     @Override
     public HashMap<String, Integer> getCategories()  {
         HashMap<String, Integer> finalList = new HashMap<String, Integer>();

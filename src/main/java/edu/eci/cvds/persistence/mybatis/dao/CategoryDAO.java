@@ -39,7 +39,5 @@ public interface CategoryDAO {
     public void upCategoryName(String name, String description, String state) throws PersistenceException;
 
 
-    /*----BORRAR SI SALE MAL ---------*/
-
     public List<Category> getCategories() throws PersistenceException;
 }

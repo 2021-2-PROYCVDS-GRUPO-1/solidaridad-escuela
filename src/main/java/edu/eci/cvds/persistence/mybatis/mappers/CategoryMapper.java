@@ -31,7 +31,6 @@ public interface CategoryMapper {
                                 @Param("description") String description,
                                 @Param("state") String state) throws PersistenceException;
 
-    /*-----BORRAR SI SALE MAL---*/
     public List<Category> getCategories() throws PersistenceException;
 
 }
