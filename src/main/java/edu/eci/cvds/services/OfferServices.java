@@ -3,6 +3,7 @@ package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Offer;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**

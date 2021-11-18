@@ -69,4 +69,5 @@ public interface OfferMapper {
      * @throws PersistenceException
      */
     public List<Offer> getByUserId(@Param("userId") int userId) throws  PersistenceException;
+
 }

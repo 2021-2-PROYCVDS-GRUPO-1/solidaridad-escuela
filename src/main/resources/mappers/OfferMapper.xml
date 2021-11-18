@@ -69,7 +69,6 @@
             #{userId} = DB_USER.userId;
     </select>
 
-
     <!-- INSERT OFFER -->
     <insert id="createOffer">
         INSERT INTO DB_OFFERS (offerCategory, name, description, userId) VALUES (#{offerCategory}, #{name}, #{description}, #{userId})
@@ -81,10 +80,6 @@
         SET status = #{status}
         WHERE  #{offerName} = DB_OFFERS.name;
     </update>
-
-
-
-
 
     <resultMap id="OfferResult" type="Offer" >
         <id property="idOffer" column="idOffer"/>

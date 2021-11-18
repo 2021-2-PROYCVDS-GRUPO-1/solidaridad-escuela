@@ -1,6 +1,7 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Category;
 import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.OfferDAO;
@@ -8,6 +9,7 @@ import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.services.ServicesException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class OfferServicesImpl implements OfferServices {

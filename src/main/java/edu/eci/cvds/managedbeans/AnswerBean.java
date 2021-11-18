@@ -1,17 +1,25 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.services.AnswerServices;
+import edu.eci.cvds.services.CategoryServices;
+import edu.eci.cvds.services.OfferServices;
+import edu.eci.cvds.utils.DatabaseStatus;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
-import java.util.Date;
+import java.util.*;
 
 @ManagedBean(name = "answerBean")
 @ApplicationScoped
 public class AnswerBean extends BasePageBean{
     @Inject
     private AnswerServices answerServices;
+
+    @Inject
+    private OfferServices offerServices;
 
     private int id;
     private String name;
@@ -22,11 +30,27 @@ public class AnswerBean extends BasePageBean{
 
     public void createAnswer() {
         try{
+            boolean comp = true;
             if((idOffer == 0) || (idNeeds == 0)) {
                 if (idOffer == 0) {
                     answerServices.addAnswerNeeds(name, comments, idNeeds);
-                } else if(idNeeds == 0){
-                    answerServices.addAnswerOffer(name, comments, idOffer);
+
+                } else if (idNeeds == 0) {
+                    List<Offer> offersAct = offerServices.getByStatus("ACTIVE");
+                    for (Offer off : offersAct) {
+                        if (off.getOfferId() == idOffer) {
+                            answerServices.addAnswerOffer(name, comments, idOffer);
+                            comp = false;
+                        }
+                    }
+                    if (comp) {
+                        List<Offer> offersPro = offerServices.getByStatus("IN PROCESS");
+                        for (Offer off : offersPro) {
+                            if (idOffer == (off.getOfferId())) {
+                                answerServices.addAnswerOffer(name, comments, idOffer);
+                            }
+                        }
+                    }
                 }
             }
 
