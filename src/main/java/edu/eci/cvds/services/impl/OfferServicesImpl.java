@@ -8,6 +8,7 @@ import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.services.ServicesException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class OfferServicesImpl implements OfferServices {
@@ -110,5 +111,18 @@ public class OfferServicesImpl implements OfferServices {
 
     }
 
-
+    @Override
+    public HashMap<Integer, String> getOffers() {
+        HashMap<Integer, String> listOffer = new HashMap<Integer, String>();
+        try{
+            for(Offer newlist: offerDAO.getOffers()) {
+                if((newlist.getStatus().equals("ACTIVE")) || (newlist.getStatus().equals( "IN PROCESS"))){
+                    listOffer.put(newlist.getOfferId(), newlist.getName());
+                }
+            }
+        } catch(PersistenceException e) {
+            System.out.println(e.getMessage());
+        }
+        return listOffer;
+    }
 }

@@ -50,9 +50,6 @@ public interface OfferDAO {
     public List<Offer> getByUserId(int userId) throws PersistenceException;
 
 
-
-
-
     /**
      * Get an offer by its name
      * @param name The offer's name
@@ -68,6 +65,8 @@ public interface OfferDAO {
      * @throws PersistenceException
      */
     public Offer getOfferByID(int id) throws PersistenceException;
+
+    public List<Offer> getOffers() throws PersistenceException;
 }
 
 

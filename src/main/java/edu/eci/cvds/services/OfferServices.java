@@ -3,6 +3,7 @@ package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Offer;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public interface OfferServices {
 
     public List<Offer> getByUserID(int userId) throws  ServicesException;
 
+    public HashMap<Integer, String> getOffers();
 
     /*
     INSERT
