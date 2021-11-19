@@ -2,16 +2,14 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Category;
-import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.CategoryDAO;
 import edu.eci.cvds.services.CategoryServices;
 import edu.eci.cvds.services.ServicesException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class CategoryServicesImpl implements CategoryServices {
     @Inject

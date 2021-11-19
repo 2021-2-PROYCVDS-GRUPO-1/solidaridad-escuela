@@ -1,8 +1,6 @@
 package edu.eci.cvds.managedbeans;
 
-import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.services.AnswerServices;
-import edu.eci.cvds.services.NeedServices;
 import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.utils.DatabaseStatus;
 
@@ -64,13 +62,13 @@ public class AnswerBean extends BasePageBean{
 
     public void createAnswer() {
         try{
-            if((nameOffer == "") && (nameNeed != "")){
+            if((nameOffer.equals("")) && !(nameNeed.equals(""))){
                 for(Integer date : listIdNeeds.keySet()) {
                     if (listIdNeeds.get(date).equals(nameNeed)) {
                         answerServices.addAnswerOffer(name, comments, date);
                     }
                 }
-            } else if((nameOffer != "") && (nameNeed == "")){
+            } else if(!(nameOffer.equals("")) && (nameNeed.equals(""))){
                 for(Integer date : listIdOffer.keySet()) {
                     if (listIdOffer.get(date).equals(nameOffer)) {
                         answerServices.addAnswerOffer(name, comments, date);

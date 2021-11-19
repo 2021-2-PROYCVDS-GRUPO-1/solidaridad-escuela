@@ -1,7 +1,6 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.entities.Category;
 import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.OfferDAO;
