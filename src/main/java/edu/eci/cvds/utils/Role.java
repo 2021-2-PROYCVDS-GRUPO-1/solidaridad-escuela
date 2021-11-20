@@ -9,10 +9,10 @@ package edu.eci.cvds.utils;
  */
 public enum Role {
     ADMIN("ADMIN"),
-    STUDENT("ESTUDIANTE"),
-    TEACHER("PROFESOR"),
-    GRADUATED("EGRESADO"),
-    ADMINISTRATIVE("ADMINISTRATIVO");
+    STUDENT("STUDENT"),
+    TEACHER("TEACHER"),
+    GRADUATED("GRADUATED"),
+    ADMINISTRATIVE("ADMINISTRATIVE");
 
     private String name;
 
