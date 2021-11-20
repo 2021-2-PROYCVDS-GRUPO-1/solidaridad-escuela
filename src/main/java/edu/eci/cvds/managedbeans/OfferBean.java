@@ -60,7 +60,7 @@ public class OfferBean extends BasePageBean{
         statusList = new ArrayList<>();
         categories = new HashMap<String, Integer>();
         generateServices();
-        userInformation();
+        getUserInformation();
         generateList();
         pieModel = createPieModel();
         System.out.println("-------PIE MODEL ------");
@@ -95,8 +95,8 @@ public class OfferBean extends BasePageBean{
         this.offerByUser = offerServices.OfferbyUserId(userId);
     }
 
-    private void userInformation(){
-        System.out.println("edu.eci.cvds.managedbeans.OfferBean.userInformation()");
+    private void getUserInformation(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.getUserInformation()");
 
         Subject subject = SecurityUtils.getSubject();
         this.userId = (int) subject.getSession().getAttribute("userId");
@@ -128,7 +128,7 @@ public class OfferBean extends BasePageBean{
     public void createOffer(){
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.createOffer()");
 
-        userInformation();
+        getUserInformation();
         generateList();
 
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );

@@ -35,7 +35,6 @@
 
     <!-- ADD NECESSITY -->
     <insert parameterType="map" id="registerNeed">
-
         INSERT INTO DB_NEEDS (category,
         name,
         description,
@@ -45,8 +44,8 @@
         #{categoryId},
         #{name},
         #{description},
-        #{status},
         #{urgency},
+        #{status},
         #{createdByUser});
     </insert>
 

@@ -14,11 +14,11 @@ import org.apache.ibatis.annotations.Param;
 
 public interface NeedMapper {
 
-    public void registerNeed(@Param("name") String name,
+    public void registerNeed(@Param("categoryId") int categoryId,
+                             @Param("name") String name,
                              @Param("description") String description,
-                             @Param("status") String status,
-                             @Param("categoryId") int categoryId,
                              @Param("urgency") String urgency,
+                             @Param("status") String status,
                              @Param("createdByUser") int createdByUser) throws PersistenceException;
 
     public void updateStatus(@Param("name") String name, @Param("status") String status);

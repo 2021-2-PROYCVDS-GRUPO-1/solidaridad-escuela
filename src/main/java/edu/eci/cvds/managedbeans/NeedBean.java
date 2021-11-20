@@ -3,18 +3,18 @@ package edu.eci.cvds.managedbeans;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Category;
 import edu.eci.cvds.entities.Need;
-import edu.eci.cvds.services.NeedServices;
-import edu.eci.cvds.services.ServicesException;
+import edu.eci.cvds.services.*;
 import edu.eci.cvds.utils.DatabaseStatus;
+import edu.eci.cvds.utils.OfferStatus;
 import edu.eci.cvds.utils.Urgency;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @ManagedBean(name = "needBean")
 @ApplicationScoped
@@ -22,19 +22,27 @@ public class NeedBean extends BasePageBean{
     @Inject
     private NeedServices needServices;
 
+    @Inject
+    private  CategoryServices categoryServices;
+
     private int id;
     private int category;
     private String name;
     private String description;
+    private String categoryName;
     private String urgency;
     private Date creationDate;
     private String status;
     private Date modificationDate;
     private int createdByUser;
+    private int userId;
 
     private List<String> statusList;
     private List<Category> categoryList;
     private List<String> urgencyList;
+
+    private HashMap<String, Integer> categories;
+    private Collection<String> catTest;
 
     @PostConstruct
     public void init(){
@@ -44,22 +52,49 @@ public class NeedBean extends BasePageBean{
         categoryList = new ArrayList<>();
         urgencyList = new ArrayList<>();
 
+        categories = new HashMap<String, Integer>();
+
+        this.generateServices();
+        this.getUserInformation();
+        this.generateList();
+
         try{
             // Status
-            for(DatabaseStatus status : DatabaseStatus.values()){
-                statusList.add(status.toString());
+            for(OfferStatus status : OfferStatus.values()){
+                statusList.add(status.getName());
             }
 
             // Urgency
             for(Urgency myUrgency : Urgency.values()){
                 urgencyList.add(myUrgency.toString());
             }
-
-            // TODO: Categories -> ¿cómo hago un fetch?
         }
         catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+
+    private void generateServices(){
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.generateServices()");
+
+        needServices = getInjector().getInstance(NeedServices.class);
+        categoryServices = getInjector().getInstance(CategoryServices.class);
+    }
+
+    private void getUserInformation(){
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.userInformation()");
+
+        Subject subject = SecurityUtils.getSubject();
+        this.userId = (int) subject.getSession().getAttribute("userId");
+    }
+
+    public void generateList(){
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.generateList()");
+
+        categories = categoryServices.getCategories();
+        catTest = categories.keySet();
+
+        //this.offerByUser = offerServices.OfferbyUserId(userId);
     }
 
     public void registerNeed(){
@@ -77,12 +112,13 @@ public class NeedBean extends BasePageBean{
                     + "\nPor el usuario: " + testUser
                     );
 
-            needServices.registerNeed(this.name,
+            needServices.registerNeed(categories.get(categoryName),
+                    this.name,
                     this.description,
-                    this.status,
-                    this.category,
                     this.urgency,
-                    0);
+                    this.status,
+                    this.userId
+                    );
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -182,5 +218,37 @@ public class NeedBean extends BasePageBean{
 
     public void setUrgencyList(List<String> urgencyList) {
         this.urgencyList = urgencyList;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public HashMap<String, Integer> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(HashMap<String, Integer> categories) {
+        this.categories = categories;
+    }
+
+    public Collection<String> getCatTest() {
+        return catTest;
+    }
+
+    public void setCatTest(Collection<String> catTest) {
+        this.catTest = catTest;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

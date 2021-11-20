@@ -8,11 +8,11 @@ public interface NeedServices {
     /**
      * INSERT
      */
-    public void registerNeed(String name,
+    public void registerNeed(int categoryId,
+                             String name,
                              String description,
-                             String status,
-                             int categoryId,
                              String urgency,
+                             String status,
                              int createdByUser) throws ServicesException;
 
 

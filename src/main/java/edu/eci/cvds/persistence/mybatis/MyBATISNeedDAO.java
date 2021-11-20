@@ -19,9 +19,19 @@ public class MyBATISNeedDAO implements NeedDAO {
     private NeedMapper needMapper;
 
     @Override
-    public void addNecessity(String name, String description, String status, int categoryId, String urgency, int createdByUser) throws PersistenceException {
+    public void addNecessity(int categoryId,
+                             String name,
+                             String description,
+                             String urgency,
+                             String status,
+                             int createdByUser) throws PersistenceException {
         try {
-            needMapper.registerNeed(name, description, status, categoryId, urgency, createdByUser);
+            needMapper.registerNeed(categoryId,
+                    name,
+                    description,
+                    urgency,
+                    status,
+                    createdByUser);
         } catch (PersistenceException e){
             if(e.getMessage().contains("el numero de necesidades registradas alcanzo su maximo")){
                 throw new PersistenceException("Número máximo de necesidades registradas", e);

@@ -130,10 +130,10 @@
                             value="#{needBean.name}" />
 
                         <!-- CATEGORY -->
-                        <p:selectOneMenu id="createNecessityCategory" value="#{needBean.status}" style="width:125px"
-                            class="flex-1 rounded pl-4 border-2 border-gray-500">
-                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
-                            <f:selectItems value="#{needBean.statusList}" />
+                        <p:selectOneMenu id="createNecessityCategory" value="#{needBean.categoryName}"
+                            style="width:125px" class="flex-1 rounded pl-4 border-2 border-gray-500">
+                            <f:selectItem itemLabel="Seleccione una categoría" itemValue="" />
+                            <f:selectItems value="#{needBean.catTest}" />
                         </p:selectOneMenu>
                     </div>
                     <!-- ROW 1 END -->
