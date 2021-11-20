@@ -47,10 +47,10 @@ public class ShiroLogin implements Login {
     }
 
     @Override
-    public void logout()throws ServicesException {
+    public void signOut()throws ServicesException {
         SecurityUtils.getSubject().logout();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/index.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/login.xhtml");
         } catch (IOException ioException) {
             ioException.printStackTrace();
             throw new ServicesException("Ocurrio un error al encontrar la pagina",ioException);

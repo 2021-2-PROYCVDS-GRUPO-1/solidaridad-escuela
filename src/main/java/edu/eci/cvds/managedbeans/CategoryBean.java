@@ -27,6 +27,8 @@ public class CategoryBean extends BasePageBean{
 
     @PostConstruct
     public void init(){
+        System.out.println("edu.eci.cvds.managedbeans.CategoryBean.init()");
+
         statusList = new ArrayList<>();
 
         categoryServices = getInjector().getInstance(CategoryServices.class);
@@ -49,8 +51,9 @@ public class CategoryBean extends BasePageBean{
         }
     }
 
-
     public void createCategory() {
+        System.out.println("edu.eci.cvds.managedbeans.CategoryBean.createCategory()");
+
         try{
             System.out.println("Anadiendo categoría con nombre: " + this.name
             + "\nDescripcion: " + this.description
@@ -63,9 +66,10 @@ public class CategoryBean extends BasePageBean{
     }
 
     public void updateCategory() throws ServicesException {
+        System.out.println("edu.eci.cvds.managedbeans.CategoryBean.updateCategory()");
+
         try{
             categoryServices.upCategoryId(id, name, description, state);
-
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

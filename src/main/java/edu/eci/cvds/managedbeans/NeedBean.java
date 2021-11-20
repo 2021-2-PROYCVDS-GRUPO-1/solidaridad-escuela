@@ -38,6 +38,8 @@ public class NeedBean extends BasePageBean{
 
     @PostConstruct
     public void init(){
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.init()");
+
         statusList = new ArrayList<>();
         categoryList = new ArrayList<>();
         urgencyList = new ArrayList<>();
@@ -61,6 +63,8 @@ public class NeedBean extends BasePageBean{
     }
 
     public void registerNeed(){
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.registerNeed()");
+
         // TODO -> Traer el id del usuario que necesito
         int testUser = 0;
 

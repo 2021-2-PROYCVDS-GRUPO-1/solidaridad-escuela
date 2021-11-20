@@ -52,13 +52,11 @@ public class LoginBean extends BasePageBean {
 
     @PostConstruct
     public void init(){
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.init()");
+
         userServices = getInjector().getInstance(UserServices.class);
         login = getInjector().getInstance(Login.class);
     }
-
-
-
-
 
 
     // TODO -> verify everything
@@ -67,6 +65,8 @@ public class LoginBean extends BasePageBean {
      * FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"log","Usuario desconocido."));
      */
     public void signIn(){
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.signIn()");
+
         try{
             sinErrores();
             currentUser = SecurityUtils.getSubject();
@@ -108,6 +108,8 @@ public class LoginBean extends BasePageBean {
      * Metodo que redirecciona al usuario a una pagina, dependiendo de su rol
      */
     public void redireccionar() {
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.redireccionar()");
+
         try {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             if (esAdmin()) {
@@ -122,16 +124,18 @@ public class LoginBean extends BasePageBean {
             }
         }
         catch (Exception exception) {
-            logOut();
+            signOut();
         }
     }
 
     /**
      * Metodo que cierra la sesion del usuario actual
      */
-    public void logOut(){
+    public void signOut(){
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.signOut()");
+
         try{
-            this.login.logout();
+            this.login.signOut();
             restablecer();
         }
         catch(Exception exception){

@@ -39,6 +39,8 @@ public class UserBean extends BasePageBean{
 
     @PostConstruct
     public void init(){
+        System.out.println("edu.eci.cvds.managedbeans.UserBean.init()");
+
         statusList = new ArrayList<>();
         userRoleList = new ArrayList<>();
 
@@ -62,6 +64,8 @@ public class UserBean extends BasePageBean{
 
 
     public void createUser() {
+        System.out.println("edu.eci.cvds.managedbeans.UserBean.createUser()");
+
         // this.status = DatabaseStatus.ENABLED;
         //this.status = "ENABLED";
         // this.role = Role.STUDENT;

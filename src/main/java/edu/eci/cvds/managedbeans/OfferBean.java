@@ -55,6 +55,8 @@ public class OfferBean extends BasePageBean{
 
     @PostConstruct
     public void init(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.init()");
+
         statusList = new ArrayList<>();
         categories = new HashMap<String, Integer>();
         generateServices();
@@ -77,12 +79,16 @@ public class OfferBean extends BasePageBean{
     }
 
     private void generateServices(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.generateServices()");
+
         offerServices = getInjector().getInstance(OfferServices.class);
         categoryServices = getInjector().getInstance(CategoryServices.class);
         userServices = getInjector().getInstance(UserServices.class);
     }
 
     public void generateList(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.generateList()");
+
         categories = categoryServices.getCategories();
         catTest = categories.keySet();
 
@@ -90,11 +96,15 @@ public class OfferBean extends BasePageBean{
     }
 
     private void userInformation(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.userInformation()");
+
         Subject subject = SecurityUtils.getSubject();
         this.userId = (int) subject.getSession().getAttribute("userId");
     }
 
     private PieChartModel createPieModel(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.createPieModel()");
+
         pieModel = new PieChartModel();
         System.out.println("---------COUNT----------");
         System.out.println("CUENTA " + "" + offerServices.countByStatus("ACTIVE"));
@@ -116,6 +126,8 @@ public class OfferBean extends BasePageBean{
     }
 
     public void createOffer(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.createOffer()");
+
         userInformation();
         generateList();
 
@@ -129,6 +141,8 @@ public class OfferBean extends BasePageBean{
     }
 
     public void changeStatus(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.changeStatus()");
+
         generateList();
         try{
             offerServices.changeStatus(name, status);
