@@ -21,6 +21,12 @@
                 display: flex;
             }
         </style>
+
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{offerBean.generateList}"/>
+        </f:metadata>
+
+
     </h:head>
     <h:body>
         <div class="min-h-screen bg-gray-200 flex flex-col">
@@ -167,6 +173,13 @@
                     <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Actualizar Oferta" actionListener="#{offerBean.changeStatus}" update="categoryCreate"/>
 
                     <!-- ROW 3 END -->
+
+
+                </h:form>
+
+                <h:form id="graficas">
+                    <h1 align="center">Diagrama circular</h1>
+                    <p:chart  type="pie" model="#{offerBean.pieModel}" style="width: 50%; height: 500px;margin: auto"/>
                 </h:form>
             </div>
 

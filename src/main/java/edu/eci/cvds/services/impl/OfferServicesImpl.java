@@ -110,5 +110,12 @@ public class OfferServicesImpl implements OfferServices {
 
     }
 
-
+    @Override
+    public int countByStatus(String status) {
+        try{
+            return offerDAO.getByStatus(status).size();
+        }catch(PersistenceException e) {
+            return 0;
+        }
+    }
 }

@@ -26,6 +26,7 @@ public interface OfferServices {
 
     public List<Offer> getByUserID(int userId) throws  ServicesException;
 
+    public int countByStatus(String status);
 
     /*
     INSERT

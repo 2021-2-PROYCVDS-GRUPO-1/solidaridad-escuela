@@ -52,7 +52,7 @@
             #{status} = DB_OFFERS.status;
     </select>
 
-<!--     GET OFFER BY User-->
+    <!--GET OFFER BY User-->
     <select id="getByUserId" resultMap="OfferResult">
         SELECT
         DB_OFFERS.offerId AS offerId,
@@ -68,6 +68,7 @@
         WHERE
             #{userId} = DB_USER.userId;
     </select>
+
 
 
     <!-- INSERT OFFER -->

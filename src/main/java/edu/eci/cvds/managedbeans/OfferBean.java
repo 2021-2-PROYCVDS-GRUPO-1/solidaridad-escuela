@@ -10,6 +10,7 @@ import edu.eci.cvds.utils.DatabaseStatus;
 import edu.eci.cvds.utils.OfferStatus;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.primefaces.model.chart.*;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -49,26 +50,19 @@ public class OfferBean extends BasePageBean{
     private HashMap<String, Integer> categories;
     private Collection<String> catTest;
     private List<String> offerByUser;
+    private PieChartModel pieModel;
 
 
     @PostConstruct
     public void init(){
         statusList = new ArrayList<>();
         categories = new HashMap<String, Integer>();
-
-        offerServices = getInjector().getInstance(OfferServices.class);
-        categoryServices = getInjector().getInstance(CategoryServices.class);
-        userServices = getInjector().getInstance(UserServices.class);
-
-
-
-
-
-        categories = categoryServices.getCategories();
-        catTest = categories.keySet();
-        System.out.println(catTest);
-        this.offerByUser = offerServices.OfferbyUserId(1001184238);
-        System.out.println(offerByUser);
+        generateServices();
+        userInformation();
+        generateList();
+        pieModel = createPieModel();
+        System.out.println("-------PIE MODEL ------");
+        System.out.println(pieModel);
 
         try{
             for(OfferStatus status : OfferStatus.values()){
@@ -76,22 +70,54 @@ public class OfferBean extends BasePageBean{
                 statusList.add(status.getName());
             }
 
-
-
-
-
         }
         catch (Exception exception) {
             exception.printStackTrace();
         }
     }
 
+    private void generateServices(){
+        offerServices = getInjector().getInstance(OfferServices.class);
+        categoryServices = getInjector().getInstance(CategoryServices.class);
+        userServices = getInjector().getInstance(UserServices.class);
+    }
+
+    public void generateList(){
+        categories = categoryServices.getCategories();
+        catTest = categories.keySet();
+
+        this.offerByUser = offerServices.OfferbyUserId(userId);
+    }
+
+    private void userInformation(){
+        Subject subject = SecurityUtils.getSubject();
+        this.userId = (int) subject.getSession().getAttribute("userId");
+    }
+
+    private PieChartModel createPieModel(){
+        pieModel = new PieChartModel();
+        System.out.println("---------COUNT----------");
+        System.out.println("CUENTA " + "" + offerServices.countByStatus("ACTIVE"));
+        pieModel.set("Active", offerServices.countByStatus("ACTIVE"));
+        pieModel.set("In Process", offerServices.countByStatus("IN PROCESS"));
+        pieModel.set("Solved", offerServices.countByStatus("SOLVED"));
+        pieModel.set("Closed", offerServices.countByStatus("CLOSED"));
+        pieModel.setTitle("");
+        pieModel.setShowDataLabels(true);
+        pieModel.setDataLabelFormatString("%dK");
+        pieModel.setLegendPosition("e");
+        pieModel.setShowDatatip(true);
+        pieModel.setShowDataLabels(true);
+        pieModel.setDataFormat("value");
+        pieModel.setDataLabelFormatString("%d");
+        pieModel.setSeriesColors("00FF64, ff8c00, 87cefa, B477DE");
+        return pieModel;
+
+    }
 
     public void createOffer(){
-
-        Subject subject = SecurityUtils.getSubject();
-        System.out.println(subject.isAuthenticated());
-        this.userId = (int) subject.getSession().getAttribute("userId");
+        userInformation();
+        generateList();
 
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
@@ -103,6 +129,7 @@ public class OfferBean extends BasePageBean{
     }
 
     public void changeStatus(){
+        generateList();
         try{
             offerServices.changeStatus(name, status);
         }catch(Exception e){
@@ -186,5 +213,13 @@ public class OfferBean extends BasePageBean{
 
     public void setOfferByUser(List<String> offerByUser) {
         this.offerByUser = offerByUser;
+    }
+
+    public PieChartModel getPieModel() {
+        return pieModel;
+    }
+
+    public void setPieModel(PieChartModel pieModel) {
+        this.pieModel = pieModel;
     }
 }
