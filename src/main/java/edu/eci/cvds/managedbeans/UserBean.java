@@ -1,13 +1,17 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.services.CategoryServices;
 import edu.eci.cvds.services.UserServices;
 import edu.eci.cvds.utils.DatabaseStatus;
 import edu.eci.cvds.utils.Role;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @ManagedBean(name = "userBean")
 @ApplicationScoped
@@ -30,11 +34,38 @@ public class UserBean extends BasePageBean{
     //private Role role;
     private int maxNeeds;
 
+    private List<String> statusList;
+    private List<String> userRoleList;
+
+    @PostConstruct
+    public void init(){
+        statusList = new ArrayList<>();
+        userRoleList = new ArrayList<>();
+
+        userServices = getInjector().getInstance(UserServices.class);
+
+        try{
+            for(DatabaseStatus status : DatabaseStatus.values()){
+                System.out.println(status.toString());
+                statusList.add(status.toString());
+            }
+
+            for (Role role: Role.values()){
+                System.out.println(role.getName());
+                userRoleList.add(role.getName());
+            }
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+
     public void createUser() {
         // this.status = DatabaseStatus.ENABLED;
-        this.status = "ENABLED";
+        //this.status = "ENABLED";
         // this.role = Role.STUDENT;
-        this.role = "STUDENT";
+        //this.role = "STUDENT";
 
         System.out.println("User ID: "+ this.userId +
                 "\nStatus: " + this.status +
@@ -51,7 +82,8 @@ public class UserBean extends BasePageBean{
                     this.username, new Sha256Hash(this.password).toHex(),this.role, this.maxNeeds);
 
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
+            //System.out.println(e.getMessage());
         }
     }
 
@@ -133,6 +165,22 @@ public class UserBean extends BasePageBean{
 
     public void setMaxNeeds(int maxNeeds) {
         this.maxNeeds = maxNeeds;
+    }
+
+    public List<String> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<String> statusList) {
+        this.statusList = statusList;
+    }
+
+    public List<String> getUserRoleList() {
+        return userRoleList;
+    }
+
+    public void setUserRoleList(List<String> userRoleList) {
+        this.userRoleList = userRoleList;
     }
 }
 

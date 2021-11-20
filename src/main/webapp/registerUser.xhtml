@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
 
 
@@ -14,28 +14,17 @@
     <h:body>
         <h1>Register User</h1>
 
-        <!-- private int userId; DONE
-                private int databaseId; NO APLICA
-                private String status; DONE
-                private String firstName; DONE
-                private String lastname; DONE
-                private String email; DONE
-                private String username; DONE
-                private String password; DONE
-                private String role; DONE
-                private int maxNeeds; -->
-
         <h:form id="registerUserForm">
             <h:outputText value="Número de identificación" />
             <p:inputText id="createUserID" styleClass="input-text" type="String" value="#{userBean.userId}" />
 
             <!-- TODO: Verificar como mejorar el combo -->
             <p>Estado</p>
-            <select name="createUserState" id="createUserState" class="flex-1 rounded pl-4 border-2 border-gray-500" >
-                <option disabled="" selected="">Seleccione el estado del usuario</option>
-                <option >Completo</option>
-                <option >Incompleto</option>
-            </select>
+            <p:selectOneMenu name="createUserState" id="createUserState"
+                class="flex-1 rounded pl-4 border-2 border-gray-500" value="#{userBean.status}">
+                <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                <f:selectItems value="#{userBean.statusList}" />
+            </p:selectOneMenu>
 
             <h:outputText value="Nombre" />
             <p:inputText id="createUserName" styleClass="input-text" type="String" value="#{userBean.firstName}" />
@@ -54,18 +43,18 @@
             <p:password id="createUserPassword" styleClass="input-text" type="String" value="#{userBean.password}" />
 
             <!-- TODO: Verificar como mejorar el combo -->
-            <p>Estado</p>
-            <select name="createUserRole" id="createUserRole" class="flex-1 rounded pl-4 border-2 border-gray-500" >
-                <option disabled="" selected="">Seleccione el estado del usuario</option>
-                <option >Completo</option>
-                <option >Incompleto</option>
-            </select>
+            <p>ROL</p>
+            <p:selectOneMenu name="createUserRole" id="createUserRole"
+                class="flex-1 rounded pl-4 border-2 border-gray-500" value="#{userBean.role}">
+                <f:selectItem itemLabel="Seleccione un rol" itemValue="" />
+                <f:selectItems value="#{userBean.userRoleList}" />
+            </p:selectOneMenu>
 
             <h:outputText value="Máximo de necesidades" />
             <p:inputText id="createUserMaxNeeds" styleClass="input-text" type="String" value="#{userBean.maxNeeds}" />
 
             <p:commandButton styleClass="myButton" actionListener="#{userBean.createUser}" update="registerUserForm"
-                             value="Ingresar">
+                value="Ingresar">
             </p:commandButton>
         </h:form>
 
