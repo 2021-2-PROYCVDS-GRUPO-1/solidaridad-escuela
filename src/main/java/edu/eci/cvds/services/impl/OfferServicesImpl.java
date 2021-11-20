@@ -124,5 +124,11 @@ public class OfferServicesImpl implements OfferServices {
             System.out.println(e.getMessage());
         }
         return listOffer;
+    public int countByStatus(String status) {
+        try{
+            return offerDAO.getByStatus(status).size();
+        }catch(PersistenceException e) {
+            return 0;
+        }
     }
 }

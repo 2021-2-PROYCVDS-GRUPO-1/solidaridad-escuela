@@ -63,7 +63,7 @@
             #{status} = DB_OFFERS.status;
     </select>
 
-<!--     GET OFFER BY User-->
+    <!--GET OFFER BY User-->
     <select id="getByUserId" resultMap="OfferResult">
         SELECT
         DB_OFFERS.offerId AS offerId,
