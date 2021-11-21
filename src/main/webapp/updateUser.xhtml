@@ -3,7 +3,9 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-
+<f:metadata>
+    <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+</f:metadata>
 <f:metadata>
     <!-- VALIDAR QUE EXISTA UN NOMBRE DE USUARIO -->
     <f:viewAction action="#{userBean.verifyValidUpdate}" />

@@ -17,6 +17,8 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import com.google.inject.Inject;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -143,6 +145,35 @@ public class LoginBean extends BasePageBean {
     }
 
     /**
+     *  Si el usuario no está autenticado, devuelve al login
+     */
+    public void verifyIfUserIsAuthenticated() {
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.verifyIfUserIsAuthenticated()");
+
+        System.out.println("   ");
+        System.out.println("   ");
+        //System.out.println(SecurityUtils.getSubject().isAuthenticated());
+
+        if ( SecurityUtils.getSubject().isAuthenticated()){
+            System.out.println("   ");
+            System.out.println("   ");
+            System.out.println(((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURI());
+            System.out.println("   ");
+            System.out.println("   ");
+
+
+            return;
+        }
+
+        try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/login.xhtml");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
      * Funcion que retorna si el rol del usuario actual es Admin
      * @return boolean, que dice si el rol del usuario actual es Admin
      */
@@ -204,4 +235,6 @@ public class LoginBean extends BasePageBean {
     public void statusLogin() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(status, "LogIn", message));
     }
+
+
 }
