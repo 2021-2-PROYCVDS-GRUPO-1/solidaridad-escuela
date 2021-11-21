@@ -43,4 +43,22 @@ public class UserServicesImpl implements UserServices {
         }
 
     }
+
+    @Override
+    public void updateUser(int userId, String status, String firstname, String lastname, String email, String username, String password, String role, int maxNeeds, int databaseId) throws ServicesException {
+        try {
+            userDAO.updateUser(userId, status, firstname, lastname, email, username, password, role, maxNeeds, databaseId);
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteUser(int databaseId) throws ServicesException {
+        try {
+            userDAO.deleteUser(databaseId);
+        } catch (PersistenceException e){
+            e.printStackTrace();
+        }
+    }
 }

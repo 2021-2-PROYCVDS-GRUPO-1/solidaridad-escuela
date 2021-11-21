@@ -57,4 +57,22 @@ public class MyBATISUserDAO implements UserDAO {
             throw  new PersistenceException("Error al registrar el usuario con ID: " + userId);
         }
     }
+
+    @Override
+    public void updateUser(int userId, String status, String firstName, String lastname, String email, String username, String password, String role, int maxNeeds, int databaseId) throws PersistenceException {
+        try {
+            userMapper.updateUser(userId, status,  firstName, lastname, email, username, password, role, maxNeeds, databaseId);
+        } catch (PersistenceException e){
+            throw new PersistenceException("Error al actualizar el usuario con ID: " + userId);
+        }
+    }
+
+    @Override
+    public void deleteUser(int databaseId) throws PersistenceException {
+        try {
+            userMapper.deleteUser(databaseId);
+        } catch (PersistenceException e){
+            throw new PersistenceException("Error al eliminar el usuario don DB ID: " + databaseId);
+        }
+    }
 }

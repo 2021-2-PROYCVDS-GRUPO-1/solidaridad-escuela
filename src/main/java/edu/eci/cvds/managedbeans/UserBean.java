@@ -91,11 +91,49 @@ public class UserBean extends BasePageBean{
                     ,this.firstName,this.lastname,this.lastname,
                     this.username, new Sha256Hash(this.password).toHex(),this.role, this.maxNeeds);
 
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/userList.xhtml");
+
         }catch(Exception e){
             e.printStackTrace();
             //System.out.println(e.getMessage());
         }
     }
+
+    public void updateUser() {
+        System.out.println("edu.eci.cvds.managedbeans.UserBean.updateUser()");
+
+        System.out.println("User ID: "+ this.userId +
+                "\nStatus: " + this.status +
+                "\nFirst Name: " + this.firstName +
+                "\nLastname: " + this.lastname +
+                "\nEmail: " + this.lastname +
+                "\nUsername: " + this.username +
+                "\nPassword: " + this.password +
+                "\nRole: " + this.role +
+                "\nMax needs: " + this.maxNeeds);
+        try{
+            userServices.updateUser(this.userId,this.status
+                    ,this.firstName,this.lastname,this.lastname,
+                    this.username, new Sha256Hash(this.password).toHex(),this.role, this.maxNeeds, this.databaseId);
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/userList.xhtml");
+        }catch(Exception e){
+            e.printStackTrace();
+            //System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteUser(User userToDelete) {
+        System.out.println("edu.eci.cvds.managedbeans.UserBean.deleteUser()");
+
+        try{
+            userServices.deleteUser(userToDelete.getDatabaseId());
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/userList.xhtml");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     public void getUserList(){
         System.out.println("edu.eci.cvds.managedbeans.UserBean.getUserList()");
@@ -132,17 +170,19 @@ public class UserBean extends BasePageBean{
     public void verifyValidUpdate(){
         try {
             if (this.userToEdit.getDatabaseId() >= 0){
-                // Setear los campos
-                System.out.println("   ");
-                System.out.println("   ");
-                System.out.println("TODO EN ORDEN, SETEAR LOS CAMPOS");
-                System.out.println("   ");
-                System.out.println("   ");
+                this.userId = this.userToEdit.getUserId();
+                this.status = this.userToEdit.getStatus();
+                this.firstName = this.userToEdit.getFirstName();
+                this.lastname = this.userToEdit.getLastname();
+                this.email = this.userToEdit.getEmail();
+                this.username = this.userToEdit.getUsername();
+                this.role = this.userToEdit.getRole();
+                this.maxNeeds = this.userToEdit.getMaxNeeds();
+                this.databaseId = this.userToEdit.getDatabaseId();
             }
 
             this.userToEdit = null;
         } catch (Exception e){
-            e.printStackTrace();
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/userList.xhtml");
             } catch (Exception ex){

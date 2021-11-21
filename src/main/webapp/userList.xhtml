@@ -21,8 +21,7 @@
     </h:head>
     <h:body id="userListBody">
         <h:form>
-            <p:commandButton actionListener="#{userBean.getUserList}" value="Actualizar lista" update="userListBody">
-            </p:commandButton>
+            <a href="registerUser.xhtml">Crear Usuario</a>
         </h:form>
 
         <p:dataTable var="user" value="#{userBean.allUsers}">
@@ -70,7 +69,7 @@
 
             <p:column>
                 <h:form>
-                    <p:commandButton actionListener="#{userBean.getUserList}" value="Eliminar usuario">
+                    <p:commandButton actionListener="#{userBean.deleteUser(user)}" value="Eliminar usuario">
                     </p:commandButton>
                 </h:form>
             </p:column>

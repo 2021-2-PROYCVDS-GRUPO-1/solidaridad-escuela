@@ -75,8 +75,26 @@
             #{maxNeeds});
     </insert>
 
+    <!-- UPDATE USER -->
+    <update id="updateUser">
+        UPDATE DB_USER
+        SET
+            userid = #{userId},
+            status = #{status},
+            firstname = #{firstName},
+            lastname = #{lastname},
+            email = #{email},
+            username = #{username},
+            password = #{password},
+            role = #{role},
+            maxNeeds = #{maxNeeds}
+        WHERE  #{databaseId} = databaseid;
+    </update>
 
-
+    <!-- DELETE USER -->
+    <delete id="deleteUser">
+        DELETE FROM DB_USER WHERE  #{databaseId} = databaseid;
+    </delete>
 
     <resultMap id="userResult" type="User" >
         <id property="userId" column="userid"/>

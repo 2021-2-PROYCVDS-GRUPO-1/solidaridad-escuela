@@ -37,5 +37,20 @@ public interface UserServices {
     /*
     UPDATE
      */
+    public void updateUser(int userId,
+                             String status,
+                             String firstname,
+                             String lastname,
+                             String email,
+                             String username,
+                             String password,
+                             String role,
+                             int maxNeeds,
+                             int databaseId) throws ServicesException;
+
+    /*
+    DELETE
+     */
+    public void deleteUser(int databaseId) throws ServicesException;
 
 }

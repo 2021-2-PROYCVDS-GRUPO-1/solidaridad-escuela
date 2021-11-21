@@ -30,4 +30,18 @@ public interface UserMapper {
                              @Param("role") String role,
                              @Param("maxNeeds") int maxNeeds)
             throws PersistenceException;
+
+    public void updateUser(@Param("userId") int userId,
+                             @Param("status") String status,
+                             @Param("firstName") String firstName,
+                             @Param("lastname") String lastname,
+                             @Param("email") String email,
+                             @Param("username") String username,
+                             @Param("password") String password,
+                             @Param("role") String role,
+                             @Param("maxNeeds") int maxNeeds,
+                             @Param("databaseId") int databaseId)
+            throws PersistenceException;
+
+    public void deleteUser(@Param("databaseId") int databaseId) throws PersistenceException;
 }
