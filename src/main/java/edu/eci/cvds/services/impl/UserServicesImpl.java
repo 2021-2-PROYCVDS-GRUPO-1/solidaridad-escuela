@@ -8,19 +8,11 @@ import edu.eci.cvds.persistence.mybatis.dao.UserDAO;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.services.UserServices;
 
+import java.util.List;
+
 public class UserServicesImpl implements UserServices {
     @Inject
     private UserDAO userDAO;
-
-    @Override
-    public Category getCategoryName(String name) throws ServicesException {
-        return null;
-    }
-
-    @Override
-    public Category getCategoryId(int id) throws ServicesException {
-        return null;
-    }
 
     @Override
     public User getUserByEmail(String email) throws ServicesException {
@@ -28,6 +20,16 @@ public class UserServicesImpl implements UserServices {
             return userDAO.getUserByEmail(email);
         }
         catch (PersistenceException e){
+            throw new ServicesException( e.getMessage(), e );
+        }
+    }
+
+    @Override
+    public List<User> getAllUsers() throws ServicesException {
+        try {
+            return userDAO.getAllUsers();
+        } catch (PersistenceException e) {
+            e.printStackTrace();
             throw new ServicesException( e.getMessage(), e );
         }
     }
@@ -43,13 +45,20 @@ public class UserServicesImpl implements UserServices {
     }
 
     @Override
-    public void upCategoryId(String id, String name, String description, String state) throws ServicesException {
-
+    public void updateUser(int userId, String status, String firstname, String lastname, String email, String username, String password, String role, int maxNeeds, int databaseId) throws ServicesException {
+        try {
+            userDAO.updateUser(userId, status, firstname, lastname, email, username, password, role, maxNeeds, databaseId);
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void upCategoryName(String name, String description, String state) throws ServicesException {
-
+    public void deleteUser(int databaseId) throws ServicesException {
+        try {
+            userDAO.deleteUser(databaseId);
+        } catch (PersistenceException e){
+            e.printStackTrace();
+        }
     }
-
 }

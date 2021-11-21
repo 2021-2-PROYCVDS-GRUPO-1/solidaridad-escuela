@@ -25,7 +25,7 @@ public interface Login {
      * Method for logging out of the app
      * @throws ServicesException
      */
-    public void logout() throws ServicesException;
+    public void signOut() throws ServicesException;
 
     /**
      * Method that verifies if the user is logged in

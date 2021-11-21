@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
  * Referencia: https://stackoverflow.com/questions/55668274/with-shiro-ini-how-i-can-block-a-page-of-a-logged-users-only-not-logged-user
  */
 public class OnlyNotAutenticated extends AccessControlFilter {
-    String welcomeurl ="/index.xhtml";
+    String welcomeurl ="/index.html";
 
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {

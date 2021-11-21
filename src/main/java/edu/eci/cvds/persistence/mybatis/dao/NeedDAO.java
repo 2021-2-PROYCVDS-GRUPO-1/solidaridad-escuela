@@ -15,11 +15,11 @@ import java.util.List;
  */
 public interface NeedDAO {
 
-    public void addNecessity(@Param("name") String name,
+    public void addNecessity(@Param("categoryId") int categoryId,
+                             @Param("name") String name,
                              @Param("description") String description,
-                             @Param("status") String status,
-                             @Param("categoryId") int categoryId,
                              @Param("urgency") String urgency,
+                             @Param("status") String status,
                              @Param("createdByUser") int createdByUser
                             ) throws PersistenceException;
 

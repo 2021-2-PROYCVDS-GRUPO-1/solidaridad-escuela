@@ -39,6 +39,8 @@ public class AnswerBean extends BasePageBean{
 
     @PostConstruct
     public void init(){
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.init()");
+
         statusList = new ArrayList<>();
 
         answerServices = getInjector().getInstance(AnswerServices.class);
@@ -62,6 +64,8 @@ public class AnswerBean extends BasePageBean{
     }
 
     public void createAnswer() {
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.createAnswer()");
+
         try{
             if((nameOffer.equals("")) && !(nameNeed.equals(""))){
                 for(Integer date : listIdNeeds.keySet()) {

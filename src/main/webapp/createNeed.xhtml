@@ -4,7 +4,9 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-
+<f:metadata>
+    <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+</f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -130,10 +132,10 @@
                             value="#{needBean.name}" />
 
                         <!-- CATEGORY -->
-                        <p:selectOneMenu id="createNecessityCategory" value="#{needBean.status}" style="width:125px"
-                            class="flex-1 rounded pl-4 border-2 border-gray-500">
-                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
-                            <f:selectItems value="#{needBean.statusList}" />
+                        <p:selectOneMenu id="createNecessityCategory" value="#{needBean.categoryName}"
+                            style="width:125px" class="flex-1 rounded pl-4 border-2 border-gray-500">
+                            <f:selectItem itemLabel="Seleccione una categoría" itemValue="" />
+                            <f:selectItems value="#{needBean.catTest}" />
                         </p:selectOneMenu>
                     </div>
                     <!-- ROW 1 END -->

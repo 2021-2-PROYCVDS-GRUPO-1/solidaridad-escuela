@@ -13,18 +13,18 @@ public class NeedServicesImpl implements NeedServices {
     @Inject private NeedDAO needDAO;
 
     @Override
-    public void registerNeed(String name,
+    public void registerNeed(int categoryId,
+                             String name,
                              String description,
-                             String status,
-                             int categoryId,
                              String urgency,
+                             String status,
                              int createdByUser) throws ServicesException {
         try{
-            needDAO.addNecessity(name,
+            needDAO.addNecessity(categoryId,
+                    name,
                     description,
-                    status,
-                    categoryId,
                     urgency,
+                    status,
                     createdByUser);
         }catch(PersistenceException exception){
             throw new ServicesException(exception.getMessage(),exception);

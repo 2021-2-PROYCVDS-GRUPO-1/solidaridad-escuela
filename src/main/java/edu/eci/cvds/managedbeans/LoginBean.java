@@ -17,6 +17,8 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import com.google.inject.Inject;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,13 +54,11 @@ public class LoginBean extends BasePageBean {
 
     @PostConstruct
     public void init(){
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.init()");
+
         userServices = getInjector().getInstance(UserServices.class);
         login = getInjector().getInstance(Login.class);
     }
-
-
-
-
 
 
     // TODO -> verify everything
@@ -67,6 +67,8 @@ public class LoginBean extends BasePageBean {
      * FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"log","Usuario desconocido."));
      */
     public void signIn(){
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.signIn()");
+
         try{
             sinErrores();
             currentUser = SecurityUtils.getSubject();
@@ -84,7 +86,7 @@ public class LoginBean extends BasePageBean {
                     User user = userServices.getUserByEmail(email);
                     Subject subject = SecurityUtils.getSubject();
                     subject.getSession().setAttribute("userId", user.getUserId());
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/index.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/mainMenu.xhtml");
                 }
             }
 
@@ -108,6 +110,8 @@ public class LoginBean extends BasePageBean {
      * Metodo que redirecciona al usuario a una pagina, dependiendo de su rol
      */
     public void redireccionar() {
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.redireccionar()");
+
         try {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             if (esAdmin()) {
@@ -122,21 +126,52 @@ public class LoginBean extends BasePageBean {
             }
         }
         catch (Exception exception) {
-            logOut();
+            signOut();
         }
     }
 
     /**
      * Metodo que cierra la sesion del usuario actual
      */
-    public void logOut(){
+    public void signOut(){
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.signOut()");
+
         try{
-            this.login.logout();
+            this.login.signOut();
             restablecer();
         }
         catch(Exception exception){
         }
     }
+
+    /**
+     *  Si el usuario no está autenticado, devuelve al login
+     */
+    public void verifyIfUserIsAuthenticated() {
+        System.out.println("edu.eci.cvds.managedbeans.LoginBean.verifyIfUserIsAuthenticated()");
+
+        System.out.println("   ");
+        System.out.println("   ");
+        //System.out.println(SecurityUtils.getSubject().isAuthenticated());
+
+        if ( SecurityUtils.getSubject().isAuthenticated()){
+            System.out.println("   ");
+            System.out.println("   ");
+            System.out.println(((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURI());
+            System.out.println("   ");
+            System.out.println("   ");
+
+
+            return;
+        }
+
+        try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/login.xhtml");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Funcion que retorna si el rol del usuario actual es Admin
@@ -200,4 +235,6 @@ public class LoginBean extends BasePageBean {
     public void statusLogin() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(status, "LogIn", message));
     }
+
+
 }

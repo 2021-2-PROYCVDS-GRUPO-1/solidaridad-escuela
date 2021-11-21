@@ -44,7 +44,7 @@ END;
 LANGUAGE plpgsql;
 
 CREATE TRIGGER AD_dateModificationOffer
-  BEFORE INSERT ON public.DB_OFFERS
+  BEFORE INSERT OR UPDATE ON public.DB_OFFERS
   FOR EACH ROW
 EXECUTE PROCEDURE dateModificationOffer();
 

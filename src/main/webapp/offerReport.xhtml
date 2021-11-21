@@ -1,0 +1,53 @@
+<!-- Dropdown menu from: https://tailwindcomponents.com/component/multi-level-dropdown-menu -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+</f:metadata>
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        </link>
+
+        <!-- MATERIAL ICONS -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+            integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
+
+        <style>
+            .dropdown-menu[data-show] {
+                display: flex;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <p:dataTable var="car" value="#{carBean.cars}">
+            <f:facet name="header">
+                List of Cars
+            </f:facet>
+            <p:column>
+                <f:facet name="header">
+                    Model
+                </f:facet>
+                #{car.model}
+                <f:facet name="footer">
+                    8 digit code
+                </f:facet>
+            </p:column>
+            <p:column headerText="Year" footerText="1960-2010">
+                #{car.year}
+            </p:column>
+            //more columns
+            <f:facet name="footer">
+                In total there are #{fn:length(carBean.cars)} cars.
+            </f:facet>
+        </p:dataTable>
+    </h:body>
+
+</f:view>
+
+</html>

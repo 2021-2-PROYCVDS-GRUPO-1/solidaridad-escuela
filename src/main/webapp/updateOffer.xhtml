@@ -1,10 +1,12 @@
 <!-- Dropdown menu from: https://tailwindcomponents.com/component/multi-level-dropdown-menu -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-
+<f:metadata>
+    <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+</f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,14 +15,20 @@
 
         <!-- MATERIAL ICONS -->
         <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
-              integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
+            href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+            integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
 
         <style>
             .dropdown-menu[data-show] {
                 display: flex;
             }
         </style>
+
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{offerBean.generateList}" />
+        </f:metadata>
+
+
     </h:head>
     <h:body>
         <div class="min-h-screen bg-gray-200 flex flex-col">
@@ -31,10 +39,10 @@
                     <div class="dropdown relative inline-flex cursor-pointer">
                         <!-- dropdown text -->
                         <span
-                                class="dropdown-text flex px-4 py-3 bg-gray-400 rounded text-gray-800 items-center hover:bg-gray-800 hover:text-white whitespace-no-wrap">Dropdown
+                            class="dropdown-text flex px-4 py-3 bg-gray-400 rounded text-gray-800 items-center hover:bg-gray-800 hover:text-white whitespace-no-wrap">Dropdown
                             Level 1
                             <i
-                                    class="material-icons ml-2 h-4 w-4 text-2xl inline-flex items-center justify-center">keyboard_arrow_down</i>
+                                class="material-icons ml-2 h-4 w-4 text-2xl inline-flex items-center justify-center">keyboard_arrow_down</i>
                         </span>
                         <!-- dropdown text -->
                         <!-- dropdown menu -->
@@ -42,12 +50,12 @@
                             <div class="rounded flex flex-col flex-grow bg-gray-400 divide-y divide-gray-200">
                                 <div class="dropdown-item flex min-w-full">
                                     <a href="#"
-                                       class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
+                                        class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
                                         One</a>
                                 </div>
                                 <div class="dropdown-item flex min-w-full">
                                     <a href="#"
-                                       class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
+                                        class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
                                         Two</a>
                                 </div>
                             </div>
@@ -60,10 +68,10 @@
                     <div class="dropdown relative inline-flex cursor-pointer">
                         <!-- dropdown text -->
                         <span
-                                class="dropdown-text flex px-4 py-3 bg-gray-400 rounded text-gray-800 items-center hover:bg-gray-800 hover:text-white whitespace-no-wrap">Dropdown
+                            class="dropdown-text flex px-4 py-3 bg-gray-400 rounded text-gray-800 items-center hover:bg-gray-800 hover:text-white whitespace-no-wrap">Dropdown
                             Level 1
                             <i
-                                    class="material-icons ml-2 h-4 w-4 text-2xl inline-flex items-center justify-center">keyboard_arrow_down</i>
+                                class="material-icons ml-2 h-4 w-4 text-2xl inline-flex items-center justify-center">keyboard_arrow_down</i>
                         </span>
                         <!-- dropdown text -->
                         <!-- dropdown menu -->
@@ -71,12 +79,12 @@
                             <div class="rounded flex flex-col flex-grow bg-gray-400 divide-y divide-gray-200">
                                 <div class="dropdown-item flex min-w-full">
                                     <a href="#"
-                                       class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
+                                        class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
                                         One</a>
                                 </div>
                                 <div class="dropdown-item flex min-w-full">
                                     <a href="#"
-                                       class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
+                                        class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
                                         Two</a>
                                 </div>
                             </div>
@@ -91,9 +99,9 @@
                 <div class="dropdown relative inline-flex cursor-pointer">
                     <!-- dropdown text -->
                     <span
-                            class="dropdown-text flex px-4 py-3 bg-gray-400 rounded text-gray-800 items-center hover:bg-gray-800 hover:text-white whitespace-no-wrap">USER
+                        class="dropdown-text flex px-4 py-3 bg-gray-400 rounded text-gray-800 items-center hover:bg-gray-800 hover:text-white whitespace-no-wrap">USER
                         <i
-                                class="material-icons ml-2 h-4 w-4 text-2xl inline-flex items-center justify-center">keyboard_arrow_down</i>
+                            class="material-icons ml-2 h-4 w-4 text-2xl inline-flex items-center justify-center">keyboard_arrow_down</i>
                     </span>
                     <!-- dropdown text -->
                     <!-- dropdown menu -->
@@ -101,12 +109,12 @@
                         <div class="rounded flex flex-col flex-grow bg-gray-400 divide-y divide-gray-200">
                             <div class="dropdown-item flex min-w-full">
                                 <a href="#"
-                                   class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
+                                    class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
                                     One</a>
                             </div>
                             <div class="dropdown-item flex min-w-full">
                                 <a href="#"
-                                   class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
+                                    class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
                                     Two</a>
                             </div>
                         </div>
@@ -128,8 +136,7 @@
                     <div class="flex bg-green-400 px-2 my-4 h-8">
 
                         <div class="flex bg-green-400 px-2 my-4 h-8">
-                            <p:selectOneMenu id="offerName" value="#{offerBean.name}"
-                                             style="width:125px">
+                            <p:selectOneMenu id="offerName" value="#{offerBean.name}" style="width:125px">
                                 <f:selectItem itemLabel="Seleccione una Categoria" itemValue="" />
                                 <f:selectItems value="#{offerBean.offerByUser}" />
                             </p:selectOneMenu>
@@ -148,25 +155,33 @@
                     <!-- ROW 2 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
                         <p>Categoría</p>
-<!--                        <h:inputText id="updateOfferCategory" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="int" value="#{offerBean.offerCategory}" placeholder="categoria"/>-->
+                        <!--                        <h:inputText id="updateOfferCategory" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="int" value="#{offerBean.offerCategory}" placeholder="categoria"/>-->
                     </div>
                     <!-- ROW 2 END -->
 
                     <!-- ROW 3 -->
                     <p>Descripción</p>
-<!--                    <h:inputTextarea id="updateOfferDescription" value="#{offerBean.description}" cols="30" rows="10" placeholder="Descripción"-->
-<!--                                     class="pl-4 mx-2 rounded border-2 border-gray-500"/>-->
+                    <!--                    <h:inputTextarea id="updateOfferDescription" value="#{offerBean.description}" cols="30" rows="10" placeholder="Descripción"-->
+                    <!--                                     class="pl-4 mx-2 rounded border-2 border-gray-500"/>-->
                     <!-- ROW 3 END -->
 
                     <!-- ROW 3 -->
                     <p>Fecha de hoy</p>
-<!--                    <h:inputText id="updateOfferTodayDate" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="fecha de hoy"/>-->
+                    <!--                    <h:inputText id="updateOfferTodayDate" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="fecha de hoy"/>-->
                     <!-- ROW 3 END -->
 
                     <!-- ROW 3 -->
-                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500" value="Actualizar Oferta" actionListener="#{offerBean.changeStatus}" update="categoryCreate"/>
+                    <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500"
+                        value="Actualizar Oferta" actionListener="#{offerBean.changeStatus}" update="categoryCreate" />
 
                     <!-- ROW 3 END -->
+
+
+                </h:form>
+
+                <h:form id="graficas">
+                    <h1 align="center">Diagrama circular</h1>
+                    <p:chart type="pie" model="#{offerBean.pieModel}" style="width: 50%; height: 500px;margin: auto" />
                 </h:form>
             </div>
 
@@ -176,9 +191,9 @@
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-                integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper.min.js"
-                integrity="sha256-FT/LokHAO3u6YAZv6/EKb7f2e0wXY3Ff/9Ww5NzT+Bk=" crossorigin="anonymous"></script>
+            integrity="sha256-FT/LokHAO3u6YAZv6/EKb7f2e0wXY3Ff/9Ww5NzT+Bk=" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function () {
                 $(".dropdown").each(function (_, dropdown) {

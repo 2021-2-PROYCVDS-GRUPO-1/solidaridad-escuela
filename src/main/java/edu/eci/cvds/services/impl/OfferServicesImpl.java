@@ -114,15 +114,23 @@ public class OfferServicesImpl implements OfferServices {
     @Override
     public HashMap<Integer, String> getOffers() {
         HashMap<Integer, String> listOffer = new HashMap<Integer, String>();
-        try{
-            for(Offer newlist: offerDAO.getOffers()) {
-                if((newlist.getStatus().equals("ACTIVE")) || (newlist.getStatus().equals( "IN PROCESS"))){
+        try {
+            for (Offer newlist : offerDAO.getOffers()) {
+                if ((newlist.getStatus().equals("ACTIVE")) || (newlist.getStatus().equals("IN PROCESS"))) {
                     listOffer.put(newlist.getOfferId(), newlist.getName());
                 }
             }
-        } catch(PersistenceException e) {
+        } catch (PersistenceException e) {
             System.out.println(e.getMessage());
         }
         return listOffer;
+    }
+
+    public int countByStatus(String status) {
+        try{
+            return offerDAO.getByStatus(status).size();
+        }catch(PersistenceException e) {
+            return 0;
+        }
     }
 }

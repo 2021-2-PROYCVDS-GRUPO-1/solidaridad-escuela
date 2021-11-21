@@ -3,9 +3,12 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-
 <f:metadata>
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+</f:metadata>
+<f:metadata>
+    <!-- VALIDAR QUE EXISTA UN NOMBRE DE USUARIO -->
+    <f:viewAction action="#{userBean.verifyValidUpdate}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
@@ -14,9 +17,9 @@
         </link>
     </h:head>
     <h:body>
-        <!-- REGISTER USER FORM -->
+        <!-- UPDATE USER FORM -->
         <div class="container max-w-3xl bg-yellow-300 mt-12 mx-auto">
-            <h2 class="text-center text-3xl">Registrar Usuario</h2>
+            <h2 class="text-center text-3xl">Actualizar Usuario</h2>
 
             <h:form id="registerUserForm" class="flex flex-col">
                 <!-- ROW START -->
@@ -95,8 +98,8 @@
 
                 <!-- ROW START -->
                 <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <p:commandButton styleClass="myButton" actionListener="#{userBean.createUser}"
-                        update="registerUserForm" value="Ingresar">
+                    <p:commandButton styleClass="myButton" actionListener="#{userBean.updateUser}"
+                        update="registerUserForm" value="Actualizar usuario">
                     </p:commandButton>
                 </div>
                 <!-- ROW END -->
