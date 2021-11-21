@@ -6,6 +6,8 @@ import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.NeedDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.NeedMapper;
 
+import java.util.List;
+
 /**
  * @author Laura Valentina García León
  * @author Laura Nathalia García
@@ -56,6 +58,15 @@ public class MyBATISNeedDAO implements NeedDAO {
             return needMapper.getNeedByID(id);
         } catch (PersistenceException e) {
             throw new PersistenceException("Error al consultar la necesidad con el ID: " + id);
+        }
+    }
+
+    @Override
+    public List<Need> getNeeds() throws PersistenceException {
+        try{
+            return needMapper.getNeeds();
+        } catch (PersistenceException e) {
+            throw new PersistenceException("Error al consultar las necesidades: ");
         }
     }
 

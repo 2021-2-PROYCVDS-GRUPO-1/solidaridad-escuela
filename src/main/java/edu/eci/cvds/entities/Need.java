@@ -13,7 +13,7 @@ import java.util.Date;
 public class Need {
 
     private int id;
-    private String category;
+    private int category;
     private String name;
     private String description;
     private String urgency;
@@ -22,16 +22,31 @@ public class Need {
     private Date modificationDate;
     private String createdByUser;
 
-    private Need(int id,String category,String name, String description, String urgency,Date creationDate, String status, Date modificationDate,String createdByUser){
+    private Need(){
+    }
+
+    public Need(int id, int category, String name, String description, String urgency, Date creationDate, String status, Date modificationDate, String createdByUser) {
         this.id = id;
         this.category = category;
         this.name = name;
         this.description = description;
-        this.urgency=urgency;
+        this.urgency = urgency;
         this.creationDate = creationDate;
         this.status = status;
         this.modificationDate = modificationDate;
-        this.createdByUser=createdByUser;
+        this.createdByUser = createdByUser;
+    }
+
+    public Need(int id, int category, String name, String description, String urgency, Date creationDate, String status, Date modificationDate) {
+
+        this.id = id;
+        this.category = category;
+        this.name = name;
+        this.description = description;
+        this.urgency = urgency;
+        this.creationDate = creationDate;
+        this.status = status;
+        this.modificationDate = modificationDate;
     }
 
     public int getId() {
@@ -42,11 +57,11 @@ public class Need {
         this.id = id;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 
@@ -98,11 +113,11 @@ public class Need {
         this.modificationDate = modificationDate;
     }
 
-    public String getcreatedByUser() {
+    public String getCreatedByUser() {
         return createdByUser;
     }
 
-    public void setcreatedByUser(String createdByUser) {
+    public void setCreatedByUser(String createdByUser) {
         this.createdByUser = createdByUser;
     }
 }

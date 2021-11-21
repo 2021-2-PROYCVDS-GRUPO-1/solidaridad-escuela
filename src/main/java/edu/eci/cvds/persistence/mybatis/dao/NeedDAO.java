@@ -4,6 +4,8 @@ import edu.eci.cvds.entities.Need;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author Laura Valentina García León
  * @author Laura Nathalia García
@@ -48,5 +50,5 @@ public interface NeedDAO {
      */
     public Need getNeedByID(int id) throws PersistenceException;
 
-
+    public List<Need> getNeeds() throws PersistenceException;
 }
