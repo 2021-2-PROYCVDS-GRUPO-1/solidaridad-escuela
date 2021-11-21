@@ -1,6 +1,7 @@
 package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.services.AnswerServices;
+import edu.eci.cvds.services.NeedServices;
 import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.utils.DatabaseStatus;
 
@@ -19,8 +20,8 @@ public class AnswerBean extends BasePageBean{
     @Inject
     private OfferServices offerServices;
 
-    /*@Inject
-    private NeedServices needServices;*/
+    @Inject
+    private NeedServices needServices;
 
     private int id;
     private String name;
@@ -42,12 +43,12 @@ public class AnswerBean extends BasePageBean{
 
         answerServices = getInjector().getInstance(AnswerServices.class);
         offerServices = getInjector().getInstance(OfferServices.class);
+        needServices = getInjector().getInstance(NeedServices.class);
 
         listIdOffer = offerServices.getOffers();
         listOffer = listIdOffer.values();
-        /*listIdNeeds = needServices.getNeeds();
-        listNeeds = listIdNeeds.values();*/
-        listNeeds = new ArrayList<>();
+        listIdNeeds = needServices.getNeeds();
+        listNeeds = listIdNeeds.values();
 
         try{
             for(DatabaseStatus status : DatabaseStatus.values()){
@@ -65,7 +66,7 @@ public class AnswerBean extends BasePageBean{
             if((nameOffer.equals("")) && !(nameNeed.equals(""))){
                 for(Integer date : listIdNeeds.keySet()) {
                     if (listIdNeeds.get(date).equals(nameNeed)) {
-                        answerServices.addAnswerOffer(name, comments, date);
+                        answerServices.addAnswerNeeds(name, comments, date);
                     }
                 }
             } else if(!(nameOffer.equals("")) && (nameNeed.equals(""))){

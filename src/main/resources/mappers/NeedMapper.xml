@@ -23,14 +23,28 @@
         SELECT
         id AS n_id,
         category AS n_category,
-        name AS o_name,
+        name AS n_name,
         description AS n_description,
         urgency As n_urgency,
-        status AS n_status,
         dateCreation AS n_dateCreation,
+        status AS n_status,
         dateModification AS n_dateModification
         FROM Need
         WHERE #{id} = id;
+    </select>
+
+    <!--GET Needs ALL-->
+    <select id="getNeeds" resultMap="NeedResult">
+        SELECT
+        id AS n_id,
+        category AS n_category,
+        name AS n_name,
+        description AS n_description,
+        urgency AS n_urgency,
+        creationDate AS n_creationDate,
+        status AS n_status,
+        modificationDate AS n_modificationDate
+        FROM DB_Needs
     </select>
 
     <!-- ADD NECESSITY -->
@@ -52,12 +66,14 @@
 
 
     <resultMap id="NeedResult" type="Need" >
-        <id property="id" column="id"/>
-        <result property="name" column="name" />
-        <result property="description" column="description" />
-        <result property=" urgency" column=" urgency"/>
-        <result property="creationDate" column="creationDate" />
-        <result property="status" column="status" />
-        <result property="modificationDate" column="modificationDate" />
+        <id property="id" column="n_id"/>
+        <result property="category" column="n_category" />
+        <result property="name" column="n_name" />
+        <result property="description" column="n_description"/>
+        <result property="urgency" column="n_urgency"/>
+        <result property="creationDate" column="n_creationDate" />
+        <result property="status" column="n_status"/>
+        <result property="modificationDate" column="n_modificationDate" />
+        <result property="createdbyuser" column="n_createdbyuser" />
     </resultMap>
 </mapper>
