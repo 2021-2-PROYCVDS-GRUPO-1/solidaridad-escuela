@@ -37,6 +37,22 @@
         WHERE #{email} = email;
     </select>
 
+    <!-- GET ALL USERS -->
+    <select id="getAllUsers" resultMap="userResult">
+        SELECT
+        userid,
+        databaseid,
+        status,
+        firstname,
+        lastname,
+        email,
+        username,
+        password,
+        role,
+        maxneeds
+        FROM db_user;
+    </select>
+
     <!-- ADD USER -->
     <insert parameterType="map" id="registerUser">
         INSERT INTO DB_USER (userid,

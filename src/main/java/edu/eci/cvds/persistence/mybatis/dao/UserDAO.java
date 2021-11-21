@@ -4,6 +4,8 @@ import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author Laura Valentina García León
  * @author Laura Nathalia García
@@ -27,6 +29,8 @@ public interface UserDAO {
      * @throws PersistenceException
      */
     public User getUserByEmail(String email) throws PersistenceException;
+
+    public List<User> getAllUsers() throws PersistenceException;
 
     /**
      * Register user

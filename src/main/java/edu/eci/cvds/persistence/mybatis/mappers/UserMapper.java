@@ -4,6 +4,8 @@ import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author Laura Valentina García León
  * @author Laura Nathalia García
@@ -15,6 +17,8 @@ public interface UserMapper {
     public User getUserByUsername(@Param("username") String username) throws PersistenceException;
 
     public User getUserByEmail(@Param("email") String email) throws PersistenceException;
+
+    public List<User> getAllUsers() throws PersistenceException;
 
     public void registerUser(@Param("userId") int userId,
                              @Param("status") String status,

@@ -5,6 +5,8 @@ import edu.eci.cvds.entities.User;
 import edu.eci.cvds.utils.DatabaseStatus;
 import edu.eci.cvds.utils.Role;
 
+import java.util.List;
+
 /**
  * @author Laura Valentina García León
  * @author Laura Nathalia García
@@ -16,11 +18,8 @@ public interface UserServices {
     /*
     SELECT
      */
-
-    public Category getCategoryName(String name) throws ServicesException;
-    public Category getCategoryId(int id) throws ServicesException;
-
     public User getUserByEmail(String email) throws ServicesException;
+    public List<User> getAllUsers() throws ServicesException;
 
     /*
     INSERT
@@ -39,6 +38,4 @@ public interface UserServices {
     UPDATE
      */
 
-    public void upCategoryId(String id, String name, String description, String state) throws ServicesException;
-    public void upCategoryName(String name, String description, String state) throws ServicesException;
 }

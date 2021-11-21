@@ -84,7 +84,7 @@ public class LoginBean extends BasePageBean {
                     User user = userServices.getUserByEmail(email);
                     Subject subject = SecurityUtils.getSubject();
                     subject.getSession().setAttribute("userId", user.getUserId());
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/index.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/mainMenu.xhtml");
                 }
             }
 

@@ -6,6 +6,7 @@ import edu.eci.cvds.persistence.mybatis.dao.UserDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.UserMapper;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * @author Ana Gabriela Silva
@@ -36,6 +37,15 @@ public class MyBATISUserDAO implements UserDAO {
         }
         catch (Exception exception){
             throw new PersistenceException("Error al consultar al usuario con email "+ email);
+        }
+    }
+
+    @Override
+    public List<User> getAllUsers() throws PersistenceException {
+        try {
+            return userMapper.getAllUsers();
+        } catch (Exception e){
+            throw new PersistenceException("Error al consultar la lista de usuarios");
         }
     }
 

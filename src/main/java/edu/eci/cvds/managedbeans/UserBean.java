@@ -1,5 +1,6 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.CategoryServices;
 import edu.eci.cvds.services.UserServices;
 import edu.eci.cvds.utils.DatabaseStatus;
@@ -9,7 +10,9 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +40,10 @@ public class UserBean extends BasePageBean{
     private List<String> statusList;
     private List<String> userRoleList;
 
+    private List<User> allUsers;
+
+    private User userToEdit;
+
     @PostConstruct
     public void init(){
         System.out.println("edu.eci.cvds.managedbeans.UserBean.init()");
@@ -61,7 +68,6 @@ public class UserBean extends BasePageBean{
             exception.printStackTrace();
         }
     }
-
 
     public void createUser() {
         System.out.println("edu.eci.cvds.managedbeans.UserBean.createUser()");
@@ -88,6 +94,61 @@ public class UserBean extends BasePageBean{
         }catch(Exception e){
             e.printStackTrace();
             //System.out.println(e.getMessage());
+        }
+    }
+
+    public void getUserList(){
+        System.out.println("edu.eci.cvds.managedbeans.UserBean.getUserList()");
+
+        try {
+            this.allUsers = userServices.getAllUsers();
+
+            for(User user : this.allUsers){
+                System.out.println(user.getEmail());
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void goToUpdateUser(User user) {
+        System.out.println("edu.eci.cvds.managedbeans.UserBean.goToUpdateUser()");
+
+        System.out.println("   ");
+        System.out.println("   ");
+        System.out.println("Editando el usuario: " + user.getUsername());
+        System.out.println("   ");
+        System.out.println("   ");
+
+        this.userToEdit = user;
+
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/updateUser.xhtml");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyValidUpdate(){
+        try {
+            if (this.userToEdit.getDatabaseId() >= 0){
+                // Setear los campos
+                System.out.println("   ");
+                System.out.println("   ");
+                System.out.println("TODO EN ORDEN, SETEAR LOS CAMPOS");
+                System.out.println("   ");
+                System.out.println("   ");
+            }
+
+            this.userToEdit = null;
+        } catch (Exception e){
+            e.printStackTrace();
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/userList.xhtml");
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+
         }
     }
 
@@ -185,6 +246,22 @@ public class UserBean extends BasePageBean{
 
     public void setUserRoleList(List<String> userRoleList) {
         this.userRoleList = userRoleList;
+    }
+
+    public void setAllUsers(List<User> allUsers) {
+        this.allUsers = allUsers;
+    }
+
+    public List<User> getAllUsers() {
+        return allUsers;
+    }
+
+    public User getUserToEdit() {
+        return userToEdit;
+    }
+
+    public void setUserToEdit(User userToEdit) {
+        this.userToEdit = userToEdit;
     }
 }
 
