@@ -4,10 +4,10 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-
 <f:metadata>
-    <f:viewAction action="#{categoryBean.getCategoryList}" />
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+    <f:viewAction action="#{categoryBean.verifyIfUserHasAccess}" />
+    <!-- <f:viewAction action="#{categoryBean.getCategoryList}" /> -->
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
