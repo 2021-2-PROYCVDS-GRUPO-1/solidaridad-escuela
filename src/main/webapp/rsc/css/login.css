@@ -1,0 +1,78 @@
+body {
+    background-image: url("../img/img.jpg");
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: Ubuntu,sans-serif;
+}
+
+.contenedorNegro {
+    height: 400px;
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    position: relative;
+    border: 2px solid darkred;
+    border-radius: 15%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.contenedor-circular {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    left: 43.5%;
+    border-radius: 100%;
+    background-color: #852525;
+}
+
+.contenedor-circular > .imagenCircular {
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+}
+
+div#negro {
+    height: 130px;
+    width: 100%;
+    position: relative;
+    margin-top: 200px;
+    border: 2px solid darkred ;
+    border-radius: 4%;
+    background-color: black;
+}
+
+div#negro > a {
+    color: white;
+    position: absolute;
+    background-color: #852525;
+    border: 2px solid white;
+    border-radius: 10%;
+    right: 46% ;
+    width: 100px;
+    margin-top: 80px;
+}
+
+.form { margin-top: 100px; }
+
+.myText{
+    color: white;
+    display: block;
+    margin-top: 10px;
+}
+
+.input-text{
+    color: black;
+    display: block;
+    margin-top: 10px;
+}
+
+.myButton{
+    background-color: #68c950;
+    margin-top: 10px;
+    color: black;
+    border: 2px solid black ;
+    border-radius: 5%;
+}
+
+

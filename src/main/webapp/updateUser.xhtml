@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{userBean.verifyValidUpdate}" />
+    <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+</f:metadata>
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        </link>
+    </h:head>
+    <h:body>
+        <!-- UPDATE USER FORM -->
+        <div class="container max-w-3xl bg-yellow-300 mt-12 mx-auto">
+            <h2 class="text-center text-3xl">Actualizar Usuario</h2>
+
+            <h:form id="registerUserForm" class="flex flex-col">
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <h:outputText value="Número de identificación" />
+                    <p:inputText id="createUserID" styleClass="input-text" type="String" value="#{userBean.userId}" />
+                </div>
+                <!-- ROW END -->
+
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <p:selectOneMenu name="createUserState" id="createUserState"
+                        class="flex-1 rounded pl-4 border-2 border-gray-500" value="#{userBean.status}">
+                        <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                        <f:selectItems value="#{userBean.statusList}" />
+                    </p:selectOneMenu>
+                </div>
+                <!-- ROW END -->
+
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <h:outputText value="Nombre" />
+                    <p:inputText id="createUserName" styleClass="input-text" type="String"
+                        value="#{userBean.firstName}" />
+                </div>
+                <!-- ROW END -->
+
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <h:outputText value="Apellidos" />
+                    <p:inputText id="createUserLastname" styleClass="input-text" type="String"
+                        value="#{userBean.lastname}" />
+                </div>
+                <!-- ROW END -->
+
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <h:outputText value="Correo electrónico" />
+                    <p:inputText id="createUserEmail" styleClass="input-text" type="String" value="#{userBean.email}" />
+                </div>
+                <!-- ROW END -->
+
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <h:outputText value="Username" />
+                    <p:inputText id="createUserUsername" styleClass="input-text" type="String"
+                        value="#{userBean.username}" />
+                </div>
+                <!-- ROW END -->
+
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <h:outputText value="Contraseña:" />
+                    <p:password id="createUserPassword" styleClass="input-text" type="String"
+                        value="#{userBean.password}" />
+                </div>
+                <!-- ROW END -->
+
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <p:selectOneMenu name="createUserRole" id="createUserRole"
+                        class="flex-1 rounded pl-4 border-2 border-gray-500" value="#{userBean.role}">
+                        <f:selectItem itemLabel="Seleccione un rol" itemValue="" />
+                        <f:selectItems value="#{userBean.userRoleList}" />
+                    </p:selectOneMenu>
+                </div>
+                <!-- ROW END -->
+
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <h:outputText value="Máximo de necesidades" />
+                    <p:inputText id="createUserMaxNeeds" styleClass="input-text" type="String"
+                        value="#{userBean.maxNeeds}" />
+                </div>
+                <!-- ROW END -->
+
+                <!-- ROW START -->
+                <div class="flex bg-green-400 px-2 my-4 h-8">
+                    <p:commandButton styleClass="myButton" actionListener="#{userBean.updateUser}"
+                        update="registerUserForm" value="Actualizar usuario">
+                    </p:commandButton>
+                </div>
+                <!-- ROW END -->
+            </h:form>
+        </div>
+    </h:body>
+</f:view>
+
+</html>

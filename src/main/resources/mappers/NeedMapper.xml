@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.NeedMapper">
+    <!-- GET USER BY USERNAME -->
+    <select id="getNeedByName" resultMap="NeedResult">
+        SELECT
+        id AS n_id,
+        category AS n_category,
+        name AS n_name,
+        description AS n_description,
+        urgency As n_urgency,
+        status AS n_status,
+        creationDate AS n_dateCreation,
+        modificationDate AS n_dateModification
+        FROM Need
+        WHERE #{name} = name;
+    </select>
+
+    <!-- GET USER BY EMAIL -->
+    <select id="getNeedByID" resultMap="NeedResult">
+        SELECT
+        id AS n_id,
+        category AS n_category,
+        name AS n_name,
+        description AS n_description,
+        urgency As n_urgency,
+        dateCreation AS n_dateCreation,
+        status AS n_status,
+        dateModification AS n_dateModification
+        FROM Need
+        WHERE #{id} = id;
+    </select>
+
+    <!--GET Needs ALL-->
+    <select id="getNeeds" resultMap="NeedResult">
+        SELECT
+        id AS n_id,
+        category AS n_category,
+        name AS n_name,
+        description AS n_description,
+        urgency AS n_urgency,
+        creationDate AS n_creationDate,
+        status AS n_status,
+        modificationDate AS n_modificationDate
+        FROM DB_Needs
+    </select>
+
+    <!-- ADD NECESSITY -->
+    <insert parameterType="map" id="registerNeed">
+        INSERT INTO DB_NEEDS (category,
+        name,
+        description,
+        urgency,
+        status,
+        createdbyuser) VALUES (
+        #{categoryId},
+        #{name},
+        #{description},
+        #{urgency},
+        #{status},
+        #{createdByUser});
+    </insert>
+
+
+    <resultMap id="NeedResult" type="Need" >
+        <id property="id" column="n_id"/>
+        <result property="category" column="n_category" />
+        <result property="name" column="n_name" />
+        <result property="description" column="n_description"/>
+        <result property="urgency" column="n_urgency"/>
+        <result property="creationDate" column="n_creationDate" />
+        <result property="status" column="n_status"/>
+        <result property="modificationDate" column="n_modificationDate" />
+        <result property="createdbyuser" column="n_createdbyuser" />
+    </resultMap>
+</mapper>

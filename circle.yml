@@ -7,4 +7,3 @@ deployment:
     branch: master
     heroku:
       appname: solidaridad-escuela
-

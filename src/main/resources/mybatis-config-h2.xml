@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="edu.eci.cvds.entities.User" alias="User"/>
+        <typeAlias type="edu.eci.cvds.entities.Category" alias="Category"/>
+        <!--typeAlias type="edu.eci.cvds.entities.Offer" alias="Offer"/>
+        <typeAlias type="edu.eci.cvds.entities.Need" alias="Need"/>
+        <typeAlias type="edu.eci.cvds.entities.Answer" alias="Answer"/-->
+    </typeAliases>
+    <environments default="test">
+        <environment id="test">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="org.h2.Driver" />
+                <property name="url" value="jdbc:h2:file:./target/db/testdb;MODE=PostgreSQL" />
+                <property name="username" value="sa" />
+                <property name="password" value="sa" />
+            </dataSource>
+        </environment>
+    </environments>
+      <mappers>
+          <mapper resource="mappers/UserMapper.xml"></mapper>
+          <mapper resource="mappers/CategoryMapper.xml"></mapper>
+          <!--mapper resource="mappers/OfferMapper.xml"></mapper>
+          <mapper resource="mappers/NeedMapper.xml"></mapper>
+          <mapper resource="mappers/AnswerMapper.xml"></mapper-->
+      </mappers>
+</configuration>

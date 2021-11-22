@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:P="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Consultar Elementos</title>
+    <link rel="icon" href="rsc/img/logo.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</h:head>
+<h:body>
+    <h1>Reporte de elemento.</h1>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="elemento.xhtml">Volver</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <h:form>
+                        <h:commandButton  class="btn btn-link" style="color:#FFFFFF;" actionListener="#{login.logOut}" value="salir" />
+                    </h:form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h:form id="ReporteElemento">
+        <h1 align="center">Elementos Seleccionados</h1>
+        <p:messages id="mensaje" showDetail="true" autoUpdate="true"
+                    closable="true" globalOnly="true"/>
+        <p:dataTable class="table table-dark" id="TablaReporteElemento"
+                     value="#{elementoBean.elementosSeleccionados}"
+                     var="elemento"
+                     rowKey="#{elemento.idElemento}"
+                     rows="10"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="1,5,10,15">
+            <f:facet name="{Exporters}">
+                <h:commandLink>
+                    <p:graphicImage url="../rsc/img/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="TablaReporteElemento" fileName="elementos"/>
+                </h:commandLink>
+            </f:facet>
+            <p:column headerText="idElemento" filterBy="#{elemento.idElemento}>">
+                <p:outputLabel value="#{elemento.idElemento}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Tipo" filterBy="#{elemento.tipo}" filterMatchMode="contains">
+                <p:outputLabel value="#{elemento.tipo}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Nombre" filterBy="#{elemento.nombre}" filterMatchMode="contains">
+                <p:outputLabel value="#{elemento.nombre}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Descripcion" filterBy="#{elemento.descripcion}" filterMatchMode="contains">
+                <p:outputLabel value="#{elemento.descripcion}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Disponible" filterBy="#{elemento.disponible}">
+                <p:outputLabel value="#{elemento.disponible}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="IdEquipo" filterBy="#{elemento.idEquipo}">
+                <p:outputLabel value="#{elemento.idEquipo}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Estado" filterBy="#{elemento.estado}">
+                <p:outputLabel value="#{elemento.estado}"></p:outputLabel>
+            </p:column>
+        </p:dataTable>
+        <div class="form-group" align="center" >
+            <p:commandButton class="btn btn-dark" update="ReporteElemento" value="Actualizar" actionListener="#{elementoBean.actualizar}"/>
+            <pr></pr>
+            <p:growl id="message" showDetail="true" />
+            <p:commandButton class="btn btn-dark" value="Cambiar estado." actionListener="#{elementoBean.cambiarEstadoElemento}" action="#{elementoBean.info}" update="message">
+                <p:confirm header="Confirmation" message="¿Realizar cambio de elemento?" icon="pi pi-exclamation-triangle" />
+            </p:commandButton>
+            <p:confirmDialog global="true">
+                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times"/>
+            </p:confirmDialog>
+        </div>
+        <br/>
+        <br/>
+        <h1 align="center">Novedades</h1>
+        <p:dataTable class="table table-dark" id="TablaNovedadElemento"
+                     value="#{elementoBean.novedades}"
+                     var="novedad"
+                     rowKey="#{novedad.idNovedad}"
+                     rows="10"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="1,5,10,15">
+            <f:facet name="{Exporters}">
+                <h:commandLink>
+                    <p:graphicImage url="../rsc/img/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="TablaNovedadElemento" fileName="novedadesElementos"/>
+                </h:commandLink>
+            </f:facet>
+            <p:column headerText="idNovedad" filterBy="#{novedad.idNovedad}">
+                <p:outputLabel value="#{novedad.idNovedad}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Titulo" filterBy="#{novedad.titulo}">
+                <p:outputLabel value="#{novedad.titulo}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Detalle" filterBy="#{novedad.detalle}">
+                <p:outputLabel value="#{novedad.detalle}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Fecha" filterBy="#{novedad.fecha}">
+                <p:outputLabel value="#{novedad.fecha}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="idEquipo" filterBy="#{novedad.idEquipo}">
+                <p:outputLabel value="#{novedad.idEquipo}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="idElemento" filterBy="#{novedad.idElemento}">
+                <p:outputLabel value="#{novedad.idElemento}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Responsable" filterBy="#{novedad.idUsuario}">
+                <p:outputLabel value="#{novedad.idUsuario}"></p:outputLabel>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

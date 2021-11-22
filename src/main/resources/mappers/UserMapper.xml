@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.UserMapper">
+    <!-- GET USER BY USERNAME -->
+    <select id="getUserByUsername" resultMap="userResult">
+        SELECT
+        userid
+        databaseid
+        status
+        firstname
+        lastname
+        email
+        username
+        password
+        role
+        maxneeds
+        FROM db_user
+        WHERE #{username} = username;
+    </select>
+
+    <!-- GET USER BY EMAIL -->
+    <select id="getUserByEmail" resultMap="userResult">
+        SELECT
+        userid,
+        databaseid,
+        status,
+        firstname,
+        lastname,
+        email,
+        username,
+        password,
+        role,
+        maxneeds
+        FROM db_user
+        WHERE #{email} = email;
+    </select>
+
+    <!-- GET ALL USERS -->
+    <select id="getAllUsers" resultMap="userResult">
+        SELECT
+        userid,
+        databaseid,
+        status,
+        firstname,
+        lastname,
+        email,
+        username,
+        password,
+        role,
+        maxneeds
+        FROM db_user;
+    </select>
+
+    <!-- ADD USER -->
+    <insert parameterType="map" id="registerUser">
+        INSERT INTO DB_USER (userid,
+            status,
+            firstname,
+            lastname,
+            email,
+            username,
+            password,
+            role,
+            maxNeeds) VALUES (
+            #{userId},
+            #{status},
+            #{firstName},
+            #{lastname},
+            #{email},
+            #{username},
+            #{password},
+            #{role},
+            #{maxNeeds});
+    </insert>
+
+    <!-- UPDATE USER -->
+    <update id="updateUser">
+        UPDATE DB_USER
+        SET
+            userid = #{userId},
+            status = #{status},
+            firstname = #{firstName},
+            lastname = #{lastname},
+            email = #{email},
+            username = #{username},
+            password = #{password},
+            role = #{role},
+            maxNeeds = #{maxNeeds}
+        WHERE  #{databaseId} = databaseid;
+    </update>
+
+    <!-- DELETE USER -->
+    <delete id="deleteUser">
+        DELETE FROM DB_USER WHERE  #{databaseId} = databaseid;
+    </delete>
+
+    <resultMap id="userResult" type="User" >
+        <id property="userId" column="userid"/>
+        <result property="databaseId" column="databaseid" />
+        <result property="firstName" column="firstname" />
+        <result property="lastname" column="lastname" />
+        <result property="email" column="email" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="role" column="role" />
+        <result property="maxNeeds" column="maxneeds" />
+    </resultMap>
+</mapper>
+

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.CategoryMapper">
+    <!-- GET CATEGORY NAME -->
+    <select parameterType="map" id="getCategoryName" resultMap="categoryResult">
+        SELECT
+        Id AS c_id,
+        Name AS c_name,
+        Description AS c_description,
+        Date_Create AS c_dateCreate,
+        State AS c_state,
+        Date_Modification AS c_dateModification
+        FROM DB_Category
+        WHERE #{name} = Name;
+    </select>
+
+    <!-- GET CATEGORY ID -->
+    <select parameterType="map" id="getCategoryId" resultMap="categoryResult">
+        SELECT
+        Id AS c_id,
+        Name AS c_name,
+        Description AS c_description,
+        Date_Create AS c_dateCreate,
+        State AS c_state,
+        Date_Modification AS c_dateModification
+        FROM DB_Category
+        WHERE #{id} = Id;
+    </select>
+
+    <!-- GET ALL CATEGORIES -->
+    <select parameterType="map" id="getAllCategories" resultMap="categoryResult">
+        SELECT
+        id,
+        name,
+        description,
+        Date_Create AS dateCreate,
+        State AS state,
+        Date_Modification AS dateModification
+        FROM DB_Category;
+    </select>
+
+    <!-- ADD CATEGORY -->
+    <insert parameterType="map" id="addCategory">
+        INSERT INTO DB_CATEGORY (name, description, state) VALUES (#{name}, #{description}, #{state});
+    </insert>
+
+    <update parameterType="map" id="upCategoryId">
+        UPDATE DB_Category
+        SET Name = #{name}, Description = #{description}, State = #{state}
+        WHERE Id = #{id}
+    </update>
+
+    <select parameterType="map" id="getCategories" resultMap="categoryResult">
+        SELECT
+        Id AS id,
+        Name AS name,
+        Description AS description,
+        Date_Create AS dateCreate,
+        State AS state,
+        Date_Modification AS dateModification
+        FROM DB_Category
+
+    </select>
+
+    <!-- DELETE CATEGORY -->
+    <delete id="deleteCategory">
+        DELETE FROM DB_Category WHERE #{id} = id;
+    </delete>
+
+    <resultMap id="categoryResult" type="Category" >
+        <id property="Id" column="c_id"/>
+        <result property="Name" column="c_name" />
+        <result property="Description" column="c_description" />
+        <result property="Date_Creation" column="c_dateCreate" />
+        <result property="State" column="c_state" />
+        <result property="Date_Modification" column="c_dateModification" />
+    </resultMap>
+
+
+
+</mapper>

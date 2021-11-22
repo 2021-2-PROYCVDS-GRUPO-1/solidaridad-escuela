@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:P="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Registrar Laboratorio</title>
+    <link rel="icon" href="rsc/img/logo.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</h:head>
+<h:body>
+    <h1>Registrar Laboratorio</h1>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="admin.xhtml">Inicio</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <h:form>
+                        <h:commandButton  class="btn btn-link" style="color:#FFFFFF;" actionListener="#{login.logOut}" value="salir" />
+                    </h:form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h:form id="DatosLaboratorio">
+        <p:messages id="mensaje" showDetail="true" autoUpdate="true"
+                    closable="true" globalOnly="true"/>
+        <div class="form-group">
+            <label for="idLab">Id Laboratorio</label>
+            <p:inputText  id="idLab" type="int" class="form-control" placeholder="id Laboratorio" value="#{laboratorioBean.idLaboratorio}"/>
+        </div>
+        <div class="form-group">
+            <label for="nombreLab">Nombre del laboratorio</label>
+            <p:inputText  id="nombreLab" type="String" class="form-control" placeholder="Nombre del laboratorio" value="#{laboratorioBean.nombreLaboratorio}"/>
+        </div>
+        <div align="center">
+            <h:commandButton class="btn btn-dark"  update="DatosLaboratorio" value="Registrar" action="#{laboratorioBean.info}" actionListener="#{laboratorioBean.registrarLab}"/>
+        </div>
+        <br/>
+
+        <div align="center">
+            <p:dataTable class="table display table-striped table-bordered"
+                         id="selectTorre"
+                         value="#{laboratorioBean.disponibles}"
+                         var="equipo"
+                         style="width: 50%;"
+                         selection="#{laboratorioBean.aAsociar}"
+                         rowKey="#{equipo.idEquipo}"
+                         rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="1,5,10,15">
+                <f:facet name="header">
+                    Selecciona equipos para asociar al Laboratorio a crear
+                </f:facet>
+                <p:column  headerText= "Opc" selectionMode="multiple" style="width:50px;text-align:center"/>
+                <p:column headerText="id Equipo" filterBy="#{equipo.idEquipo}" filterMatchMode="contains">
+                    <p:outputLabel value="#{equipo.idEquipo}"></p:outputLabel>
+                </p:column>
+            </p:dataTable>
+            <h:commandButton class="btn btn-dark" update="DatosLaboratorio" value="Actualizar" action="#{laboratorioBean.actualizar}" actionListener="#{laboratorioBean.actualizar}">
+            </h:commandButton>
+        </div>
+    </h:form>
+</h:body>
+</html>

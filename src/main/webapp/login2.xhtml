@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html
+      xmlns:p="http://primefaces.org/ui" xmlns:P="http://java.sun.com/jsf/html"
+      xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>LogIn</title>
+    <link rel="stylesheet" href="rsc/css/login.css"/>
+    <link rel="icon" href="rsc/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+</h:head>
+<h:body>
+    <div id="div2" class="contenedorNegro">
+        <div class="contenedor-circular">
+            <img class="imagenCircular" src="rsc/img/logo.png" />
+        </div>
+        <div id="div1" class="form"  align="center">
+            <h:form id="loginForm">
+                <p:messages id="mensaje" showDetail="true" autoUpdate="true"
+                            closable="true" globalOnly="true"/>
+                <h:outputText styleClass="myText" value="Usuario:"/>
+                <p:inputText id="correo" styleClass="input-text" type="String" value="#{login.correo}" />
+                <h:outputText styleClass="myText" value="Contraseña:"/>
+                <p:password id="contraseña" styleClass="input-text" type="String" value="#{login.contraseña}" />
+                <p:commandButton  styleClass="myButton" actionListener="#{login.doLogIn}" update="loginForm" value="Ingresar" action="#{login.estadoLogin}">
+                </p:commandButton>
+                <div align="center">
+                    <a href="index.html" >Pagina principal</a>
+                </div>
+            </h:form>
+
+        </div>
+    </div>
+</h:body>
+</html>

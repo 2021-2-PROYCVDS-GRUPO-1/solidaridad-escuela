@@ -1,0 +1,85 @@
+<!-- Dropdown menu from: https://tailwindcomponents.com/component/multi-level-dropdown-menu -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+
+<f:metadata>
+    <f:viewAction action="#{userBean.getUserList}" />
+    <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+</f:metadata>
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        </link>
+
+        <!-- MATERIAL ICONS -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+            integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
+    </h:head>
+    <h:body id="userListBody">
+        <h:form>
+            <a href="registerUser.xhtml">Crear Usuario</a>
+        </h:form>
+
+        <p:dataTable var="user" value="#{userBean.allUsers}">
+            <f:facet name="header">
+                Lista de Usuarios
+            </f:facet>
+            <p:column headerText="User ID">
+                #{user.userId}
+            </p:column>
+
+            <p:column headerText="Status">
+                #{user.status}
+            </p:column>
+
+            <p:column headerText="Rol">
+                #{user.role}
+            </p:column>
+
+            <p:column headerText="Nombres">
+                #{user.firstName}
+            </p:column>
+
+            <p:column headerText="Apellidos">
+                #{user.lastname}
+            </p:column>
+
+            <p:column headerText="Email">
+                #{user.email}
+            </p:column>
+
+            <p:column headerText="Nombre de Usuario">
+                #{user.username}
+            </p:column>
+
+            <p:column headerText="Máximo de necesidades">
+                #{user.maxNeeds}
+            </p:column>
+
+            <p:column>
+                <h:form>
+                    <p:commandButton actionListener="#{userBean.goToUpdateUser(user)}" value="Editar usuario">
+                    </p:commandButton>
+                </h:form>
+            </p:column>
+
+            <p:column>
+                <h:form>
+                    <p:commandButton actionListener="#{userBean.deleteUser(user)}" value="Eliminar usuario">
+                    </p:commandButton>
+                </h:form>
+            </p:column>
+
+
+        </p:dataTable>
+
+    </h:body>
+
+</f:view>
+
+</html>

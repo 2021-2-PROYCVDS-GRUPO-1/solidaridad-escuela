@@ -1,0 +1,28 @@
+.team-member {
+    display: block;
+    margin-bottom: 0.5px;
+    text-align: center;
+}
+.team-member img {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    border: 0.5rem solid rgba(0, 0, 0, 0.1);
+}
+.team-member h4 {
+    margin-top: 0.5px;
+    margin-bottom: 0;
+    color: white;
+}
+
+body {
+    background-image: url("../img/Back.png");
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+}
+
+p{
+    width: 75px;
+    margin: auto;
+    background-color: black;
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:P="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Registrar Elementos</title>
+    <link rel="icon" href="rsc/img/logo.png" />
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</h:head>
+
+<h:body>
+    <h1>Asociación Elemento-Equipo</h1>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="admin.xhtml">Inicio</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <h:form>
+                        <h:commandButton  class="btn btn-link" style="color:#FFFFFF;" actionListener="#{login.logOut}" value="salir" />
+                    </h:form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h:form id="InputEquipo">
+        <p:messages id="mensaje" showDetail="true" autoUpdate="true"
+                    closable="true" globalOnly="true"/>
+        <div class="form-group">
+            <label for="idElemento">id Equipo:</label>
+            <p:inputText  id="idElemento" type="Integer" class="form-control"  placeholder="Equipo a establecer elementos" value="#{elementoBean.idEquipo}"/>
+        </div>
+
+        <!-- tabla-->
+        <p:dataTable class="table table-dark"
+                     id="infoElementos"
+                     value="#{elementoBean.elementos}"
+                     var="elemento"
+                     rowKey="#{elemento.idElemento}"
+                     rows="10"
+                     selection="#{elementoBean.elementosSeleccionados}"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="1,5,10,15">
+            <f:facet name="header">
+                Elementos
+            </f:facet>
+            <p:column  headerText= "Opc" selectionMode="multiple" style="width:50px;text-align:center"/>
+            <p:column headerText="idElemento" >
+                <p:outputLabel value="#{elemento.idElemento}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Nombre" >
+                <p:outputLabel value="#{elemento.nombre}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Tipo">
+                <p:outputLabel value="#{elemento.tipo}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Descripcion">
+                <p:outputLabel value="#{elemento.descripcion}"></p:outputLabel>
+            </p:column>
+            <p:column headerText="Disponible">
+                <p:outputLabel value="#{elemento.disponible}"></p:outputLabel>
+            </p:column>
+        </p:dataTable>
+
+
+
+        <p:growl id="message" showDetail="true" />
+
+        <p:commandButton class="btn btn-dark" value="Asociar" actionListener="#{elementoBean.asociarEquipo}" action="#{elementoBean.info}" update="message">
+            <p:confirm header="Confirmation" message="¿Realizar cambio de equipo?" icon="pi pi-exclamation-triangle" />
+        </p:commandButton>
+
+        <p:commandButton class="btn btn-dark" value="Actualizar" actionListener="#{elementoBean.actualizar}" update="InputEquipo">
+        </p:commandButton>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+            <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times"/>
+        </p:confirmDialog>
+    </h:form>
+
+
+
+</h:body>
+</html>
