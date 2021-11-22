@@ -30,7 +30,7 @@
         WHERE #{id} = Id;
     </select>
 
-    <!-- GET CATEGORY ID -->
+    <!-- GET ALL CATEGORIES -->
     <select parameterType="map" id="getAllCategories" resultMap="categoryResult">
         SELECT
         id,

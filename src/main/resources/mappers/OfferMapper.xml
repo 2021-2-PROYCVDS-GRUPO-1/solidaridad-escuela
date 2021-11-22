@@ -80,6 +80,19 @@
             #{userId} = DB_USER.userId;
     </select>
 
+    <!-- GET ALL OFFERS -->
+    <select parameterType="map" id="getAllOffers" resultMap="OfferResult">
+        SELECT
+        offerId,
+        offerCategory,
+        name,
+        description,
+        status,
+        dateCreation,
+        dateModification
+        FROM DB_OFFERS;
+    </select>
+
     <!-- INSERT OFFER -->
     <insert id="createOffer">
         INSERT INTO DB_OFFERS (offerCategory, name, description, userId) VALUES (#{offerCategory}, #{name}, #{description}, #{userId})
@@ -91,6 +104,11 @@
         SET status = #{status}
         WHERE  #{offerName} = DB_OFFERS.name;
     </update>
+
+    <!-- DELETE OFFER -->
+    <delete id="deleteOffer">
+        DELETE FROM DB_OFFERS WHERE #{id} = offerid;
+    </delete>
 
     <resultMap id="OfferResult" type="Offer" >
         <id property="idOffer" column="idOffer"/>

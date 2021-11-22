@@ -81,11 +81,31 @@ public class MyBATISOfferDAO implements OfferDAO {
     }
 
     @Override
+    public List<Offer> getAllOffers() throws PersistenceException {
+        try{
+            return offerMapper.getAllOffers();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistenceException("Error al consultar las ofertas");
+        }
+    }
+
+    @Override
     public List<Offer> getOffers() throws PersistenceException {
         try{
             return offerMapper.getOffers();
         } catch (PersistenceException e) {
             throw new PersistenceException("Error al consultar las ofertas");
+        }
+    }
+
+    @Override
+    public void deleteOffer(int offerId) throws PersistenceException {
+        try {
+            offerMapper.deleteOffer(offerId);
+        } catch (PersistenceException e) {
+            throw new PersistenceException("Error al eliminar la oferta");
         }
     }
 }
