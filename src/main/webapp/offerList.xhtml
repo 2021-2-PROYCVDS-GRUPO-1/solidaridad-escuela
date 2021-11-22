@@ -6,8 +6,9 @@
 
 
 <f:metadata>
-    <f:viewAction action="#{offerBean.getOfferList}" />
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+    <f:viewAction action="#{offerBean.verifyIfUserHasAccess}" />
+    <f:viewAction action="#{offerBean.getOfferList}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>

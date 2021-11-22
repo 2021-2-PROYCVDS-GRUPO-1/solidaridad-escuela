@@ -62,17 +62,30 @@ public class OfferBean extends BasePageBean{
     private String dateCreate;
     private String dateModification;
 
+    private String userRole;
+
     @PostConstruct
     public void init(){
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.init()");
 
         this.verifyValidUpdate();
 
-        statusList = new ArrayList<>();
-        categories = new HashMap<String, Integer>();
         generateServices();
+
         getUserInformation();
         generateList();
+
+
+        System.out.println("   ");
+        System.out.println("   ");
+        System.out.println(" --- USER ROLE ---");
+        System.out.println(this.userRole);
+        System.out.println("   ");
+        System.out.println("   ");
+
+        statusList = new ArrayList<>();
+        categories = new HashMap<String, Integer>();
+
         pieModel = createPieModel();
         System.out.println("-------PIE MODEL ------");
         System.out.println(pieModel);
@@ -111,6 +124,7 @@ public class OfferBean extends BasePageBean{
 
         Subject subject = SecurityUtils.getSubject();
         this.userId = (int) subject.getSession().getAttribute("userId");
+        this.userRole = (String) subject.getSession().getAttribute("role");
     }
 
     private PieChartModel createPieModel(){
@@ -208,6 +222,8 @@ public class OfferBean extends BasePageBean{
     }
 
     public void verifyValidUpdate(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.verifyValidUpdate()");
+
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd");
 
@@ -233,6 +249,21 @@ public class OfferBean extends BasePageBean{
             }
 
         }
+    }
+
+    public void verifyIfUserHasAccess() {
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.verifyIfUserHasAccess()");
+
+        if (!this.userRole.equals("ADMIN")){
+            return;
+        }
+
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/mainMenu.xhtml");
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
     }
 
     public OfferServices getOfferServices() { return offerServices; }
@@ -359,5 +390,13 @@ public class OfferBean extends BasePageBean{
 
     public void setDateModification(String dateModification) {
         this.dateModification = dateModification;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 }

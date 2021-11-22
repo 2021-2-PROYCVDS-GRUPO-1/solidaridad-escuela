@@ -5,6 +5,8 @@ import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.CategoryServices;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.utils.DatabaseStatus;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.checkerframework.checker.units.qual.A;
 
 import javax.annotation.PostConstruct;
@@ -36,13 +38,26 @@ public class CategoryBean extends BasePageBean{
     private List<Category> allCategories;
     private Category categoryToEdit;
 
+    private String userRole;
+    private int userId;
+
     @PostConstruct
     public void init(){
         System.out.println("edu.eci.cvds.managedbeans.CategoryBean.init()");
 
         statusList = new ArrayList<>();
 
+        getUserInformation();
+
+        // TODO -> crear una funcion que genere los servicios, como en OfferBean
         categoryServices = getInjector().getInstance(CategoryServices.class);
+
+        System.out.println("   ");
+        System.out.println("   ");
+        System.out.println(" --- USER ROLE ---");
+        System.out.println(this.userRole);
+        System.out.println("   ");
+        System.out.println("   ");
 
         System.out.println("  ");
         System.out.println("  ");
@@ -60,6 +75,14 @@ public class CategoryBean extends BasePageBean{
         catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+
+    private void getUserInformation(){
+        System.out.println("edu.eci.cvds.managedbeans.CategoryBean.getUserInformation()");
+
+        Subject subject = SecurityUtils.getSubject();
+        this.userId = (int) subject.getSession().getAttribute("userId");
+        this.userRole = (String) subject.getSession().getAttribute("role");
     }
 
     public void createCategory() {
@@ -151,7 +174,21 @@ public class CategoryBean extends BasePageBean{
             } catch (Exception ex){
                 ex.printStackTrace();
             }
+        }
+    }
 
+    public void verifyIfUserHasAccess() {
+        System.out.println("edu.eci.cvds.managedbeans.CategoryBean.verifyIfUserHasAccess()");
+
+        if (this.userRole.equals("ADMIN")){
+            this.getCategoryList();
+            return;
+        }
+
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/mainMenu.xhtml");
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 
@@ -233,6 +270,22 @@ public class CategoryBean extends BasePageBean{
 
     public void setDateModification(String dateModification) {
         this.dateModification = dateModification;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
 
