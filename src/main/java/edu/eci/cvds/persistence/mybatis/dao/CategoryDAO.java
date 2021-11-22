@@ -30,6 +30,9 @@ public interface CategoryDAO {
      */
     public Category getCategoryId(int id) throws PersistenceException;
 
+    public List<Category> getAllCategories() throws PersistenceException;
+
+
     public void addCategory(@Param("name") String name,
                             @Param("description") String description,
                             @Param("state") String state) throws PersistenceException;
@@ -40,4 +43,6 @@ public interface CategoryDAO {
 
 
     public List<Category> getCategories() throws PersistenceException;
+
+    public void deleteCategory(int categoryId) throws PersistenceException;
 }

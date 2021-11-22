@@ -72,11 +72,6 @@ public class UserBean extends BasePageBean{
     public void createUser() {
         System.out.println("edu.eci.cvds.managedbeans.UserBean.createUser()");
 
-        // this.status = DatabaseStatus.ENABLED;
-        //this.status = "ENABLED";
-        // this.role = Role.STUDENT;
-        //this.role = "STUDENT";
-
         System.out.println("User ID: "+ this.userId +
                 "\nStatus: " + this.status +
                 "\nFirst Name: " + this.firstName +

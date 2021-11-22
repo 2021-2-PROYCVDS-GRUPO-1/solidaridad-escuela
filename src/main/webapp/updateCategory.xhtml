@@ -5,6 +5,7 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
+    <f:viewAction action="#{categoryBean.verifyValidUpdate}" />
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
@@ -130,19 +131,22 @@
                         <h:inputText id="nameCategory" type="String" value="#{categoryBean.name}"
                             placeholder="Nombre de la categoría"
                             class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" />
-                        <select name="" id="" class="flex-1 rounded pl-4 border-2 border-gray-500">
-                            <option>Opción 1</option>
-                            <option>Opción 2</option>
-                            <option>Opción 3</option>
-                        </select>
+                        <p:selectOneMenu name="updateCategoryState" id="updateCategoryState"
+                            class="flex-1 rounded pl-4 border-2 border-gray-500" value="#{categoryBean.state}">
+                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                            <f:selectItems value="#{categoryBean.statusList}" />
+                        </p:selectOneMenu>
                     </div>
                     <!-- ROW 1 END -->
 
                     <!-- ROW 2 -->
                     <div class="flex bg-blue-200 content-evently mb-2 mx-2">
-                        <p class="flex-1 text-center">Id categoría: 22</p>
-                        <p class="flex-1 text-center">Fecha de creación: 18/10/202</p>
-                        <p class="flex-1 text-center">Última edición: -</p>
+                        <p:outputLabel class="flex-1 text-center" value="Id categoría: #{categoryBean.id}">
+                        </p:outputLabel>
+                        <p:outputLabel class="flex-1 text-center"
+                            value="Fecha de creación: #{categoryBean.dateCreate.toString()} "></p:outputLabel>
+                        <p:outputLabel class="flex-1 text-center"
+                            value="Última edición: #{categoryBean.dateModification.toString()} "></p:outputLabel>
                     </div>
                     <!-- ROW 2 END -->
 

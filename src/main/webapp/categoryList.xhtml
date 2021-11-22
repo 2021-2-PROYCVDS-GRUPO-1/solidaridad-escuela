@@ -1,0 +1,69 @@
+<!-- Dropdown menu from: https://tailwindcomponents.com/component/multi-level-dropdown-menu -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+
+<f:metadata>
+    <f:viewAction action="#{categoryBean.getCategoryList}" />
+    <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+</f:metadata>
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        </link>
+
+        <!-- MATERIAL ICONS -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+            integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
+    </h:head>
+    <h:body id="CategoryListBody">
+        <h:form>
+            <a href="createCategory.xhtml">Crear Categoría</a>
+        </h:form>
+
+        <!-- LISTA DE CATEGORÍAS -->
+        <p:dataGrid var="category" value="#{categoryBean.allCategories}" columns="3" rows="6" paginator="true">
+            <p:column>
+                <p:panel header="#{category.name}">
+                    <h:panelGrid columns="1">
+                        <div class="user-data-row">
+                            <p:outputLabel value="Nombre: "></p:outputLabel>
+                            <p:outputLabel value="#{category.name}" />
+                        </div>
+                        <div class="user-data-row">
+                            <p:outputLabel value="Status: "></p:outputLabel>
+                            <p:outputLabel value="#{category.state}" />
+                        </div>
+                        <div class="user-data-row">
+                            <p:outputLabel value="Descripción: "></p:outputLabel>
+                            <p:outputLabel value="#{category.description}" />
+                        </div>
+
+                        <div class="user-data-row">
+                            <h:form>
+                                <p:commandButton actionListener="#{categoryBean.goToUpdateCategory(category)}"
+                                    value="Editar categoría">
+                                </p:commandButton>
+                            </h:form>
+                        </div>
+
+                        <div class="user-data-row">
+                            <h:form>
+                                <p:commandButton actionListener="#{categoryBean.deleteCategory(category)}"
+                                    value="Eliminar categoría">
+                                </p:commandButton>
+                            </h:form>
+                        </div>
+                    </h:panelGrid>
+                </p:panel>
+            </p:column>
+        </p:dataGrid>
+    </h:body>
+
+</f:view>
+
+</html>
