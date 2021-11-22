@@ -21,6 +21,8 @@ public interface CategoryServices {
 
     public Category getCategoryName(String name) throws ServicesException;
     public Category getCategoryId(int id) throws ServicesException;
+    public List<Category> getAllCategories() throws ServicesException;
+    public HashMap<String, Integer> getCategories();
 
     /*
     INSERT
@@ -35,6 +37,10 @@ public interface CategoryServices {
     public void upCategoryName(String name, String description, String state) throws ServicesException;
 
 
-    public HashMap<String, Integer> getCategories();
+    /*
+    DELETE
+     */
+    public void deleteCategory(int categoryId) throws ServicesException;
+
 
 }

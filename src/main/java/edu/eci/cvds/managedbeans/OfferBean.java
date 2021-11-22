@@ -1,6 +1,7 @@
 package edu.eci.cvds.managedbeans;
 
 
+import edu.eci.cvds.entities.Category;
 import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.CategoryServices;
@@ -15,7 +16,10 @@ import org.primefaces.model.chart.*;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -39,7 +43,7 @@ public class OfferBean extends BasePageBean{
     private UserServices userServices;
 
     private User usuario;
-    //private int offerId;
+    private int offerId;
     private int offerCategory;
     private String categoryName;
     private String name;
@@ -52,10 +56,17 @@ public class OfferBean extends BasePageBean{
     private List<String> offerByUser;
     private PieChartModel pieModel;
 
+    private List<Offer> allOffers;
+    private Offer offerToEdit;
+
+    private String dateCreate;
+    private String dateModification;
 
     @PostConstruct
     public void init(){
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.init()");
+
+        this.verifyValidUpdate();
 
         statusList = new ArrayList<>();
         categories = new HashMap<String, Integer>();
@@ -134,7 +145,7 @@ public class OfferBean extends BasePageBean{
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
             offerServices.createOffer(categories.get(categoryName), name, description, userId);
-
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -144,10 +155,83 @@ public class OfferBean extends BasePageBean{
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.changeStatus()");
 
         generateList();
+
         try{
             offerServices.changeStatus(name, status);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
         }catch(Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteOffer(Offer offerToDelete) {
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.deleteOffer()");
+
+        try{
+            offerServices.deleteOffer(offerToDelete.getOfferId());
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void getOfferList(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.getOfferList()");
+
+        try {
+            this.allOffers = offerServices.getAllOffers();
+
+            for(Offer offer : this.allOffers){
+                System.out.println(offer.getName());
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void goToUpdateOffer(Offer offer) {
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.goToUpdateOffer()");
+
+        System.out.println("   ");
+        System.out.println("   ");
+        System.out.println("Editando la oferta: " + offer.getName());
+        System.out.println("   ");
+        System.out.println("   ");
+
+        this.offerToEdit = offer;
+
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/updateOffer.xhtml");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyValidUpdate(){
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd");
+
+            // TODO -> traer el nombre de la categoría
+            // TODO -> Tengo acceso al ID pero no al nombre, ¿cómo lo traigo?
+
+            if (this.offerToEdit.getOfferId() >= 0){
+                this.offerId = this.offerToEdit.getOfferId();
+                this.name = this.offerToEdit.getName();
+                this.status = this.offerToEdit.getStatus();
+                this.description = this.offerToEdit.getDescription();
+                this.categoryName = "LAU CAMBIAME";
+                this.dateCreate = dateFormat.format(this.offerToEdit.getDateCreation());
+                this.dateModification = dateFormat.format(this.offerToEdit.getDateModification());
+            }
+
+            this.offerToEdit = null;
+        } catch (Exception e){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+
         }
     }
 
@@ -235,5 +319,45 @@ public class OfferBean extends BasePageBean{
 
     public void setPieModel(PieChartModel pieModel) {
         this.pieModel = pieModel;
+    }
+
+    public int getOfferId() {
+        return offerId;
+    }
+
+    public void setOfferId(int offerId) {
+        this.offerId = offerId;
+    }
+
+    public List<Offer> getAllOffers() {
+        return allOffers;
+    }
+
+    public void setAllOffers(List<Offer> allOffers) {
+        this.allOffers = allOffers;
+    }
+
+    public Offer getOfferToEdit() {
+        return offerToEdit;
+    }
+
+    public void setOfferToEdit(Offer offerToEdit) {
+        this.offerToEdit = offerToEdit;
+    }
+
+    public String getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(String dateCreate) {
+        this.dateCreate = dateCreate;
+    }
+
+    public String getDateModification() {
+        return dateModification;
+    }
+
+    public void setDateModification(String dateModification) {
+        this.dateModification = dateModification;
     }
 }

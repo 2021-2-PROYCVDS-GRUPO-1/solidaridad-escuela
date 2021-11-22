@@ -56,6 +56,16 @@ public class OfferServicesImpl implements OfferServices {
     }
 
     @Override
+    public List<Offer> getAllOffers() throws ServicesException {
+        try{
+            return offerDAO.getAllOffers();
+        }
+        catch (PersistenceException e){
+            throw new ServicesException( e.getMessage(), e );
+        }
+    }
+
+    @Override
     public void createOffer(int offerCategory, String name, String description, int userId) throws ServicesException {
         try{
             offerDAO.createOffer(offerCategory, name, description, userId);
@@ -109,6 +119,15 @@ public class OfferServicesImpl implements OfferServices {
         }
         return finalList;
 
+    }
+
+    @Override
+    public void deleteOffer(int offerId) throws ServicesException {
+        try {
+            offerDAO.deleteOffer(offerId);
+        } catch (PersistenceException e) {
+            throw new ServicesException( e.getMessage(),e );
+        }
     }
 
     @Override

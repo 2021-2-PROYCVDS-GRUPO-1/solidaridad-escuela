@@ -29,7 +29,17 @@ public class CategoryServicesImpl implements CategoryServices {
         try{
             return categoryDAO.getCategoryId(id);
         }catch (PersistenceException e) {
-            throw  new ServicesException("Error al consultar la categoria con el id: "+ id);
+            throw new ServicesException("Error al consultar la categoria con el id: "+ id);
+        }
+    }
+
+    @Override
+    public List<Category> getAllCategories() throws ServicesException {
+        try {
+            return categoryDAO.getAllCategories();
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            throw new ServicesException("Error al consultar la lista de categorías");
         }
     }
 
@@ -60,6 +70,14 @@ public class CategoryServicesImpl implements CategoryServices {
         }
     }
 
+    @Override
+    public void deleteCategory(int categoryId) throws ServicesException {
+        try{
+            categoryDAO.deleteCategory(categoryId);
+        } catch(PersistenceException e) {
+            throw  new ServicesException("Error al eliminar la categoria con ID: "+ categoryId);
+        }
+    }
 
 
     @Override

@@ -49,6 +49,8 @@ public interface OfferDAO {
      */
     public List<Offer> getByUserId(int userId) throws PersistenceException;
 
+    public List<Offer> getAllOffers() throws PersistenceException;
+
 
     /**
      * Get an offer by its name
@@ -67,6 +69,8 @@ public interface OfferDAO {
     public Offer getOfferByID(int id) throws PersistenceException;
 
     public List<Offer> getOffers() throws PersistenceException;
+
+    public void deleteOffer(int offerId) throws PersistenceException;
 }
 
 

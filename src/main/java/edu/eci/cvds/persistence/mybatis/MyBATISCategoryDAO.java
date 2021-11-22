@@ -38,6 +38,15 @@ public class MyBATISCategoryDAO implements CategoryDAO {
     }
 
     @Override
+    public List<Category> getAllCategories() throws PersistenceException {
+        try{
+            return categoryMapper.getAllCategories();
+        }catch (PersistenceException e) {
+            throw new PersistenceException("Error al consultar la lista de categorías: ");
+        }
+    }
+
+    @Override
     public void addCategory(String name, String description, String state) throws PersistenceException {
         try{
             categoryMapper.addCategory(name, description, state);
@@ -70,6 +79,15 @@ public class MyBATISCategoryDAO implements CategoryDAO {
             return categoryMapper.getCategories();
         }catch (PersistenceException e){
             throw new PersistenceException("Error al consultar Categorias");
+        }
+    }
+
+    @Override
+    public void deleteCategory(int categoryId) throws PersistenceException {
+        try {
+            categoryMapper.deleteCategory(categoryId);
+        }catch (PersistenceException e){
+            throw new PersistenceException("Error al eliminar la categoría");
         }
     }
 

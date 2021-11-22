@@ -30,6 +30,18 @@
         WHERE #{id} = Id;
     </select>
 
+    <!-- GET ALL CATEGORIES -->
+    <select parameterType="map" id="getAllCategories" resultMap="categoryResult">
+        SELECT
+        id,
+        name,
+        description,
+        Date_Create AS dateCreate,
+        State AS state,
+        Date_Modification AS dateModification
+        FROM DB_Category;
+    </select>
+
     <!-- ADD CATEGORY -->
     <insert parameterType="map" id="addCategory">
         INSERT INTO DB_CATEGORY (name, description, state) VALUES (#{name}, #{description}, #{state});
@@ -43,7 +55,7 @@
 
     <select parameterType="map" id="getCategories" resultMap="categoryResult">
         SELECT
-        Id AS Id,
+        Id AS id,
         Name AS name,
         Description AS description,
         Date_Create AS dateCreate,
@@ -52,6 +64,11 @@
         FROM DB_Category
 
     </select>
+
+    <!-- DELETE CATEGORY -->
+    <delete id="deleteCategory">
+        DELETE FROM DB_Category WHERE #{id} = id;
+    </delete>
 
     <resultMap id="categoryResult" type="Category" >
         <id property="Id" column="c_id"/>

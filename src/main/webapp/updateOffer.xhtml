@@ -5,6 +5,7 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
+    <f:viewAction action="#{offerBean.verifyValidUpdate}" />
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
@@ -124,51 +125,62 @@
                 <!-- USER MENU END -->
             </nav>
 
-
             <!-- UPDATE OFFER FORM -->
-            <!--  -->
             <div class="container max-w-3xl bg-yellow-300 mt-12 mx-auto">
                 <h2 class="text-center text-3xl">Editar Oferta</h2>
 
                 <!-- <form action="" class="grid grid-cols-1 grid-rows-3 gap-y-1"> -->
-                <h:form id="categoryCreate" class="flex flex-col">
+                <h:form id="updateOffer" class="flex flex-col">
                     <!-- ROW 1 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
+                        <p:outputLabel class="flex-1 text-center" value="ID Oferta: #{offerBean.offerId}">
+                        </p:outputLabel>
+                    </div>
+                    <!-- ROW 1 END -->
 
-                        <div class="flex bg-green-400 px-2 my-4 h-8">
-                            <p:selectOneMenu id="offerName" value="#{offerBean.name}" style="width:125px">
-                                <f:selectItem itemLabel="Seleccione una Categoria" itemValue="" />
-                                <f:selectItems value="#{offerBean.offerByUser}" />
-                            </p:selectOneMenu>
-                        </div>
-
-
-                        <p:selectOneMenu id="createOfferState" value="#{offerBean.status}" style="width:125px">
+                    <!-- ROW 1 -->
+                    <div class="flex bg-green-400 px-2 my-4 h-8">
+                        <p:selectOneMenu name="updateOfferState" id="updateOfferState"
+                            class="flex-1 rounded pl-4 border-2 border-gray-500" value="#{offerBean.status}">
                             <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
                             <f:selectItems value="#{offerBean.statusList}" />
                         </p:selectOneMenu>
+                    </div>
 
 
+                    <!-- ROW 1 END -->
+
+                    <!-- ROW 1 -->
+                    <div class="flex bg-green-400 px-2 my-4 h-8">
+                        <p:outputLabel id="offerName" type="String" value="Nombre: #{offerBean.name}"
+                            class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500">
+                        </p:outputLabel>
                     </div>
                     <!-- ROW 1 END -->
 
                     <!-- ROW 2 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <p>Categoría</p>
-                        <!--                        <h:inputText id="updateOfferCategory" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="int" value="#{offerBean.offerCategory}" placeholder="categoria"/>-->
+                        <p:outputLabel class="flex-1 text-center" value="Categoría: #{offerBean.categoryName}">
+                        </p:outputLabel>
                     </div>
                     <!-- ROW 2 END -->
 
-                    <!-- ROW 3 -->
-                    <p>Descripción</p>
-                    <!--                    <h:inputTextarea id="updateOfferDescription" value="#{offerBean.description}" cols="30" rows="10" placeholder="Descripción"-->
-                    <!--                                     class="pl-4 mx-2 rounded border-2 border-gray-500"/>-->
-                    <!-- ROW 3 END -->
+                    <!-- ROW 2 -->
+                    <div class="flex bg-green-400 px-2 my-4 h-8">
+                        <p>Descripción:</p>
+                        <p:outputLabel class="flex-1 text-center" value="#{offerBean.description}">
+                        </p:outputLabel>
+                    </div>
+                    <!-- ROW 2 END -->
 
-                    <!-- ROW 3 -->
-                    <p>Fecha de hoy</p>
-                    <!--                    <h:inputText id="updateOfferTodayDate" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="fecha de hoy"/>-->
-                    <!-- ROW 3 END -->
+                    <!-- ROW 2 -->
+                    <div class="flex bg-blue-200 content-evently mb-2 mx-2">
+                        <p:outputLabel class="flex-1 text-center"
+                            value="Fecha de creación: #{offerBean.dateCreate.toString()} "></p:outputLabel>
+                        <p:outputLabel class="flex-1 text-center"
+                            value="Última edición: #{offerBean.dateModification.toString()} "></p:outputLabel>
+                    </div>
+                    <!-- ROW 2 END -->
 
                     <!-- ROW 3 -->
                     <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500"

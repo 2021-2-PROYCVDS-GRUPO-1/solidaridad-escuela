@@ -32,6 +32,8 @@ public interface OfferMapper {
      */
     public Offer getOfferByID(@Param("idOffer") int idOffer) throws PersistenceException;
 
+    public List<Offer> getAllOffers() throws PersistenceException;
+
     /**
      *
      * @param offerCategory
@@ -71,4 +73,6 @@ public interface OfferMapper {
     public List<Offer> getByUserId(@Param("userId") int userId) throws  PersistenceException;
 
     public List<Offer> getOffers() throws PersistenceException;
+
+    public void deleteOffer(@Param("id") int id) throws PersistenceException;
 }

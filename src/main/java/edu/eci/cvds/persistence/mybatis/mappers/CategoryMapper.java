@@ -18,6 +18,8 @@ public interface CategoryMapper {
 
     public Category getCategoryName(@Param("name") String name) throws PersistenceException;
 
+    public List<Category> getAllCategories() throws PersistenceException;
+
     public void addCategory(@Param("name") String name,
                             @Param("description") String description,
                             @Param("state") String state) throws PersistenceException;
@@ -32,5 +34,7 @@ public interface CategoryMapper {
                                 @Param("state") String state) throws PersistenceException;
 
     public List<Category> getCategories() throws PersistenceException;
+
+    public void deleteCategory(@Param("id") int id) throws PersistenceException;
 
 }

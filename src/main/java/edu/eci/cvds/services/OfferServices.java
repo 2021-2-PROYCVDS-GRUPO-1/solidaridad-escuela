@@ -27,6 +27,8 @@ public interface OfferServices {
 
     public List<Offer> getByUserID(int userId) throws  ServicesException;
 
+    public List<Offer> getAllOffers() throws ServicesException;
+
     public HashMap<Integer, String> getOffers();
     public int countByStatus(String status);
 
@@ -48,6 +50,11 @@ public interface OfferServices {
 
 
     public List<String> OfferbyUserId(int userId);
+
+    /*
+    DELETE
+     */
+    public void deleteOffer(int offerId) throws ServicesException;
 }
 
 
