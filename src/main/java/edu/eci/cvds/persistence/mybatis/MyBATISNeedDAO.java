@@ -20,6 +20,7 @@ public class MyBATISNeedDAO implements NeedDAO {
     @Inject
     private NeedMapper needMapper;
 
+    // CREATE
     @Override
     public void addNecessity(int categoryId,
                              String name,
@@ -44,33 +45,7 @@ public class MyBATISNeedDAO implements NeedDAO {
         }
     }
 
-    @Override
-    public void updateStatus(int id, String status) throws PersistenceException{
-        try {
-            needMapper.updateStatus(id, status);
-        }catch (Exception exception){
-            throw new PersistenceException("Error al actualizar el estado de la necesidad");
-        }
-    }
-
-    @Override
-    public Need getNeedByName(String name) throws PersistenceException {
-        try{
-            return needMapper.getNeedByName(name);
-        } catch (PersistenceException e) {
-            throw new PersistenceException("Error al consultar la necesidad con el nombre: " + name);
-        }
-    }
-
-    @Override
-    public Need getNeedByID(int id) throws PersistenceException {
-        try{
-            return needMapper.getNeedByID(id);
-        } catch (PersistenceException e) {
-            throw new PersistenceException("Error al consultar la necesidad con el ID: " + id);
-        }
-    }
-
+    // READ
     @Override
     public List<Need> getAllNeeds() throws PersistenceException {
         try{
@@ -80,6 +55,17 @@ public class MyBATISNeedDAO implements NeedDAO {
         }
     }
 
+    // UPDATE
+    @Override
+    public void updateStatus(int id, String status) throws PersistenceException{
+        try {
+            needMapper.updateStatus(id, status);
+        }catch (Exception exception){
+            throw new PersistenceException("Error al actualizar el estado de la necesidad");
+        }
+    }
+
+    // DELETE
     @Override
     public void deleteNeed(int needId) throws PersistenceException {
         try{
@@ -88,5 +74,4 @@ public class MyBATISNeedDAO implements NeedDAO {
             throw new PersistenceException("Error al eliminar la necesidad con ID: " + needId);
         }
     }
-
 }

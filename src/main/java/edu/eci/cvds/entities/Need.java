@@ -14,13 +14,14 @@ public class Need {
 
     private int id;
     private int category;
+    private int createdByUser;
     private String name;
     private String description;
     private String urgency;
-    private Date creationDate;
     private String status;
     private Date modificationDate;
-    private int createdByUser;
+    private Date creationDate;
+
 
     private Need(){
     }

@@ -4,12 +4,10 @@ import com.google.inject.Inject;
 import edu.eci.cvds.entities.Category;
 import edu.eci.cvds.entities.Need;
 import edu.eci.cvds.services.*;
-import edu.eci.cvds.utils.DatabaseStatus;
 import edu.eci.cvds.utils.OfferStatus;
 import edu.eci.cvds.utils.Urgency;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
@@ -30,6 +28,8 @@ public class NeedBean extends BasePageBean{
 
     private int id;
     private int category;
+    private int createdByUser;
+    private int userId;
     private String name;
     private String description;
     private String categoryName;
@@ -37,18 +37,13 @@ public class NeedBean extends BasePageBean{
     private String creationDate;
     private String status;
     private String modificationDate;
-    private int createdByUser;
-    private int userId;
-
-    private List<String> statusList;
-    private List<Category> categoryList;
-    private List<String> urgencyList;
-
-    private HashMap<String, Integer> categories;
-    private Collection<String> catTest;
-
-    private List<Need> allNeeds;
     private Need needToEdit;
+    private List<String> statusList;
+    private List<String> urgencyList;
+    private List<Category> categoryList;
+    private List<Need> allNeeds;
+    private Collection<String> catTest;
+    private HashMap<String, Integer> categories;
 
     @PostConstruct
     public void init(){
@@ -173,12 +168,6 @@ public class NeedBean extends BasePageBean{
 
     public void goToUpdateNeed(Need need) {
         System.out.println("edu.eci.cvds.managedbeans.NeedBean.goToUpdateNeed()");
-
-        System.out.println("   ");
-        System.out.println("   ");
-        System.out.println("Editando la necesidad: " + need.getName());
-        System.out.println("   ");
-        System.out.println("   ");
 
         this.needToEdit = need;
 
@@ -365,6 +354,4 @@ public class NeedBean extends BasePageBean{
     public void setNeedToEdit(Need needToEdit) {
         this.needToEdit = needToEdit;
     }
-
-
 }

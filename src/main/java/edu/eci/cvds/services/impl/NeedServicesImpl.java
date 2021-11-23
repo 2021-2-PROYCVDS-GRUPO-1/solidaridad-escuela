@@ -13,6 +13,7 @@ import java.util.List;
 public class NeedServicesImpl implements NeedServices {
     @Inject private NeedDAO needDAO;
 
+    // CREATE
     @Override
     public void registerNeed(int categoryId,
                              String name,
@@ -32,6 +33,17 @@ public class NeedServicesImpl implements NeedServices {
         }
     }
 
+    // READ
+    @Override
+    public List<Need> getAllNeeds() throws ServicesException {
+        try {
+            return needDAO.getAllNeeds();
+        }catch (PersistenceException exception){
+            throw new ServicesException(exception.getMessage(),exception);
+        }
+    }
+
+    // UPDATE
     @Override
     public void updateStatus(int id, String status) throws ServicesException {
         try {
@@ -41,6 +53,7 @@ public class NeedServicesImpl implements NeedServices {
         }
     }
 
+    // DELETE
     @Override
     public void deleteNeed(int needId) throws ServicesException {
         try {
@@ -50,14 +63,7 @@ public class NeedServicesImpl implements NeedServices {
         }
     }
 
-    @Override
-    public List<Need> getAllNeeds() throws ServicesException {
-        try {
-            return needDAO.getAllNeeds();
-        }catch (PersistenceException exception){
-            throw new ServicesException(exception.getMessage(),exception);
-        }
-    }
+
 
 
 }

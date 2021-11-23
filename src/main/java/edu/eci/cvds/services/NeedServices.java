@@ -8,9 +8,7 @@ import java.util.List;
 
 public interface NeedServices {
 
-    /**
-     * INSERT
-     */
+    // CREATE
     public void registerNeed(int categoryId,
                              String name,
                              String description,
@@ -18,24 +16,12 @@ public interface NeedServices {
                              String status,
                              int createdByUser) throws ServicesException;
 
-
-    /**
-     * UPDATE STATE
-     * @param id
-     * @param state
-     * @throws ServicesException
-     */
-    public void updateStatus(int id, String state) throws ServicesException;
-
-    /*
-    DELETE
-     */
-    public void deleteNeed (int needId) throws ServicesException;
-
+    // READ
     public List<Need> getAllNeeds() throws ServicesException;
 
-    //public Need getNeedByID(int id) throws ServicesException;
+    // UPDATE
+    public void updateStatus(int id, String state) throws ServicesException;
 
-    //public Need getNeedByName(String name) throws ServicesException;
-
+    // DELETE
+    public void deleteNeed (int needId) throws ServicesException;
 }
