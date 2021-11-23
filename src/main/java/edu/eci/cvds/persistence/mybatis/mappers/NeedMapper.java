@@ -23,11 +23,13 @@ public interface NeedMapper {
                              @Param("status") String status,
                              @Param("createdByUser") int createdByUser) throws PersistenceException;
 
-    public void updateStatus(@Param("name") String name, @Param("status") String status);
+    public void updateStatus(@Param("id") int id, @Param("status") String status);
 
     public Need getNeedByName(@Param("name") String name) throws PersistenceException;
 
     public Need getNeedByID(@Param("id") int id) throws PersistenceException;
 
-    public List<Need> getNeeds() throws PersistenceException;
+    public List<Need> getAllNeeds() throws PersistenceException;
+
+    public void deleteNeed(@Param("id") int needId) throws PersistenceException;
 }

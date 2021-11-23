@@ -4,6 +4,7 @@ import edu.eci.cvds.entities.Need;
 import edu.eci.cvds.persistence.PersistenceException;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface NeedServices {
 
@@ -20,13 +21,18 @@ public interface NeedServices {
 
     /**
      * UPDATE STATE
-     * @param name
+     * @param id
      * @param state
      * @throws ServicesException
      */
-    public void updateStatus(String name, String state) throws ServicesException;
+    public void updateStatus(int id, String state) throws ServicesException;
 
-    public HashMap<Integer, String> getNeeds();
+    /*
+    DELETE
+     */
+    public void deleteNeed (int needId) throws ServicesException;
+
+    public List<Need> getAllNeeds() throws ServicesException;
 
     //public Need getNeedByID(int id) throws ServicesException;
 

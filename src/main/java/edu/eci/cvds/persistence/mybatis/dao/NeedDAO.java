@@ -24,13 +24,8 @@ public interface NeedDAO {
                             ) throws PersistenceException;
 
 
-    /**
-     * Update the status of the need
-     * @param name name of need
-     * @param status new status
-     * @throws PersistenceException
-     */
-    public void updateStatus(String name,String status) throws PersistenceException;
+
+    public void updateStatus(int id,String status) throws PersistenceException;
 
 
 
@@ -50,5 +45,9 @@ public interface NeedDAO {
      */
     public Need getNeedByID(int id) throws PersistenceException;
 
-    public List<Need> getNeeds() throws PersistenceException;
+    public List<Need> getAllNeeds() throws PersistenceException;
+
+    public void deleteNeed(int needId) throws PersistenceException;
+
+
 }

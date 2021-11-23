@@ -45,11 +45,11 @@ public class MyBATISNeedDAO implements NeedDAO {
     }
 
     @Override
-    public void updateStatus(String name, String status) throws PersistenceException{
+    public void updateStatus(int id, String status) throws PersistenceException{
         try {
-            needMapper.updateStatus(name,status);
+            needMapper.updateStatus(id, status);
         }catch (Exception exception){
-            throw new PersistenceException("Error al actualizar el estado de la enecesidad");
+            throw new PersistenceException("Error al actualizar el estado de la necesidad");
         }
     }
 
@@ -72,11 +72,20 @@ public class MyBATISNeedDAO implements NeedDAO {
     }
 
     @Override
-    public List<Need> getNeeds() throws PersistenceException {
+    public List<Need> getAllNeeds() throws PersistenceException {
         try{
-            return needMapper.getNeeds();
+            return needMapper.getAllNeeds();
         } catch (PersistenceException e) {
-            throw new PersistenceException("Error al consultar las necesidades: ");
+            throw new PersistenceException("Error al consultar la lista de necesidades");
+        }
+    }
+
+    @Override
+    public void deleteNeed(int needId) throws PersistenceException {
+        try{
+            needMapper.deleteNeed(needId);
+        } catch (PersistenceException e) {
+            throw new PersistenceException("Error al eliminar la necesidad con ID: " + needId);
         }
     }
 

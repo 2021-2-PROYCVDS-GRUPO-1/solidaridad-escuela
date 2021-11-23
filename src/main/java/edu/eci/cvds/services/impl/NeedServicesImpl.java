@@ -8,6 +8,7 @@ import edu.eci.cvds.services.NeedServices;
 import edu.eci.cvds.services.ServicesException;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class NeedServicesImpl implements NeedServices {
     @Inject private NeedDAO needDAO;
@@ -32,27 +33,31 @@ public class NeedServicesImpl implements NeedServices {
     }
 
     @Override
-    public void updateStatus(String name, String status) throws ServicesException{
+    public void updateStatus(int id, String status) throws ServicesException {
         try {
-            needDAO.updateStatus(name,status);
+            needDAO.updateStatus(id,status);
         }catch (PersistenceException exception){
             throw new ServicesException(exception.getMessage(),exception);
         }
     }
 
     @Override
-    public HashMap<Integer, String> getNeeds() {
-        HashMap<Integer, String> listNeed = new HashMap<Integer, String>();
-        try{
-            for(Need newlist: needDAO.getNeeds()) {
-                if((newlist.getStatus().equals("ACTIVE")) || (newlist.getStatus().equals( "IN PROCESS"))){
-                    listNeed.put(newlist.getId(), newlist.getName());
-                }
-            }
-        } catch(PersistenceException e) {
-            System.out.println(e.getMessage());
+    public void deleteNeed(int needId) throws ServicesException {
+        try {
+            needDAO.deleteNeed(needId);
+        }catch (PersistenceException exception){
+            throw new ServicesException(exception.getMessage(),exception);
         }
-        return listNeed;
     }
+
+    @Override
+    public List<Need> getAllNeeds() throws ServicesException {
+        try {
+            return needDAO.getAllNeeds();
+        }catch (PersistenceException exception){
+            throw new ServicesException(exception.getMessage(),exception);
+        }
+    }
+
 
 }
