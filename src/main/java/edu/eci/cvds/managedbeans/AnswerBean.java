@@ -51,7 +51,7 @@ public class AnswerBean extends BasePageBean{
 
         listIdOffer = offerServices.getOffers();
         listOffer = listIdOffer.values();
-        listIdNeeds = needServices.getNeeds();
+        // listIdNeeds = needServices.getAllNeeds();
         listNeeds = listIdNeeds.values();
 
         try{

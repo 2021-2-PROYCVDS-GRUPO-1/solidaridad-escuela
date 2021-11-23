@@ -39,30 +39,33 @@ public class OfferBean extends BasePageBean{
     @Inject
     private  CategoryServices categoryServices;
 
-    @Inject
-    private UserServices userServices;
+//    @Inject
+//    private UserServices userServices;
+//
+//    private User usuario;
 
-    private User usuario;
+
+    private int userId;
     private int offerId;
     private int offerCategory;
-    private String categoryName;
+
     private String name;
-    private String description;
     private String status;
-    private int userId;
-    private List<String> statusList;
-    private HashMap<String, Integer> categories;
-    private Collection<String> catTest;
-    private List<String> offerByUser;
-    private PieChartModel pieModel;
-
-    private List<Offer> allOffers;
-    private Offer offerToEdit;
-
+    private String userRole;
     private String dateCreate;
+    private String description;
+    private String categoryName;
     private String dateModification;
 
-    private String userRole;
+    private Offer offerToEdit;
+
+    private List<Offer> allOffers;
+    private List<String> statusList;
+    private List<String> offerByUser;
+    private Collection<String> catTest;
+    private HashMap<String, Integer> categories;
+
+    private PieChartModel pieModel;
 
     @PostConstruct
     public void init(){
@@ -71,10 +74,8 @@ public class OfferBean extends BasePageBean{
         this.verifyValidUpdate();
 
         generateServices();
-
         getUserInformation();
         generateList();
-
 
         System.out.println("   ");
         System.out.println("   ");
@@ -107,16 +108,18 @@ public class OfferBean extends BasePageBean{
 
         offerServices = getInjector().getInstance(OfferServices.class);
         categoryServices = getInjector().getInstance(CategoryServices.class);
-        userServices = getInjector().getInstance(UserServices.class);
+//        userServices = getInjector().getInstance(UserServices.class);
     }
 
     public void generateList(){
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.generateList()");
 
-        categories = categoryServices.getCategories();
+        this.categories = categoryServices.getCategories();
         catTest = categories.keySet();
 
         this.offerByUser = offerServices.OfferbyUserId(userId);
+
+        this.allOffers = offerServices.testGetAllOffers();
     }
 
     private void getUserInformation(){
@@ -149,6 +152,21 @@ public class OfferBean extends BasePageBean{
         return pieModel;
 
     }
+
+    private String categoryName(int id){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.categoryName()");
+
+        for(Map.Entry<String, Integer> entry : categories.entrySet()){
+            System.out.println(id + " - " +entry.getValue());
+            if(id == entry.getValue()){
+                return entry.getKey();
+            }
+        }
+        return "";
+    }
+
+
+
 
     public void createOffer(){
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.createOffer()");
@@ -235,7 +253,7 @@ public class OfferBean extends BasePageBean{
                 this.name = this.offerToEdit.getName();
                 this.status = this.offerToEdit.getStatus();
                 this.description = this.offerToEdit.getDescription();
-                this.categoryName = "LAU CAMBIAME";
+                this.categoryName = categoryName(this.offerToEdit.getOfferCategory());
                 this.dateCreate = dateFormat.format(this.offerToEdit.getDateCreation());
                 this.dateModification = dateFormat.format(this.offerToEdit.getDateModification());
             }
@@ -263,7 +281,6 @@ public class OfferBean extends BasePageBean{
         } catch (Exception ex){
             ex.printStackTrace();
         }*/
-
     }
 
     public OfferServices getOfferServices() { return offerServices; }
@@ -399,4 +416,6 @@ public class OfferBean extends BasePageBean{
     public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
+
+
 }

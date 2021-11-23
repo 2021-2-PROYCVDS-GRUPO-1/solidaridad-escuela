@@ -36,6 +36,24 @@ public interface OfferMapper {
 
     /**
      *
+     * @param status
+     * @return
+     * @throws PersistenceException
+     */
+    public List<Offer> getByStatus(@Param("status") String status) throws  PersistenceException;
+
+    /**
+     *
+     * @param userId
+     * @return
+     * @throws PersistenceException
+     */
+    public List<Offer> getByUserId(@Param("userId") int userId) throws  PersistenceException;
+
+    public List<Offer> getOffers() throws PersistenceException;
+
+    /**
+     *
      * @param offerCategory
      * @param name
      * @param description
@@ -56,23 +74,7 @@ public interface OfferMapper {
     public void changeStatus(@Param ("offerName") String offerName,
                              @Param ("status") String status) throws PersistenceException;
 
-    /**
-     *
-     * @param status
-     * @return
-     * @throws PersistenceException
-     */
-    public List<Offer> getByStatus(@Param("status") String status) throws  PersistenceException;
 
-    /**
-     *
-     * @param userId
-     * @return
-     * @throws PersistenceException
-     */
-    public List<Offer> getByUserId(@Param("userId") int userId) throws  PersistenceException;
-
-    public List<Offer> getOffers() throws PersistenceException;
 
     public void deleteOffer(@Param("id") int id) throws PersistenceException;
 }

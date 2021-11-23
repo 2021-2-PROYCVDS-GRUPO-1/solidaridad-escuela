@@ -6,6 +6,8 @@
 
 <f:metadata>
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+    <f:viewAction action="#{needBean.verifyValidUpdate}" />
+
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
@@ -118,63 +120,59 @@
                 <!-- USER MENU END -->
             </nav>
 
-            <!-- UPDATE CATEGORY FORM -->
+            <!-- UPDATE NEED FORM -->
             <div class="container max-w-3xl bg-yellow-300 mt-12 mx-auto">
-                <h2 class="text-center text-3xl">Editar Necesidad</h2>
+                <h2 class="text-center text-3xl">Actualizar Necesidad</h2>
 
                 <!-- <form action="" class="grid grid-cols-1 grid-rows-3 gap-y-1"> -->
-                <form action="" class="flex flex-col">
+                <h:form id="updateNeedForm" class="flex flex-col">
                     <!-- ROW 1 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <input type="text" name="" id="" placeholder="Nombre de la necesidad"
-                            class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" />
+                        <p:inputText id="updateNecessityName" placeholder="Nombre de la necesidad"
+                            class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String"
+                            value="#{needBean.name}" />
 
-                        <input type="text" name="" id="" placeholder="Nombre de la necesidad"
-                            class="flex-1 rounded pl-4 border-2 border-gray-500" />
+                        <!-- CATEGORY -->
+                        <p:selectOneMenu id="updateNecessityCategory" value="#{needBean.categoryName}"
+                            style="width:125px" class="flex-1 rounded pl-4 border-2 border-gray-500">
+                            <f:selectItem itemLabel="Seleccione una categoría" itemValue="" />
+                            <f:selectItems value="#{needBean.catTest}" />
+                        </p:selectOneMenu>
                     </div>
                     <!-- ROW 1 END -->
 
                     <!-- ROW 2 -->
-                    <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <input type="text" name="" id="" placeholder="Nombre de la necesidad"
-                            class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" />
-
-                        <select name="" id="" class="flex-1 rounded pl-4 border-2 border-gray-500">
-                            <option>Opción 1</option>
-                            <option>Opción 2</option>
-                            <option>Opción 3</option>
-                        </select>
-                    </div>
+                    <p:inputTextarea id="updateNecessityDescription" value="#{needBean.description}" cols="30" rows="10"
+                        placeholder="Descripción" class="pl-4 mx-2 rounded border-2 border-gray-500" />
                     <!-- ROW 2 END -->
 
                     <!-- ROW 3 -->
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Descripción"
-                        class="pl-4 mx-2 rounded border-2 border-gray-500"></textarea>
+                    <div class="flex bg-green-400 px-2 my-4 h-8">
+                        <!-- URGENCIA -->
+                        <p:selectOneMenu id="updateNecessityUrgency" value="#{needBean.urgency}" style="width:125px"
+                            class="flex-1 rounded pl-4 border-2 border-gray-500">
+                            <f:selectItem itemLabel="Seleccione una urgencia" itemValue="" />
+                            <f:selectItems value="#{needBean.urgencyList}" />
+                        </p:selectOneMenu>
+
+                        <!-- ESTADO -->
+                        <p:selectOneMenu id="updateNecessityStatus" value="#{needBean.status}" style="width:125px"
+                            class="flex-1 rounded pl-4 border-2 border-gray-500">
+                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                            <f:selectItems value="#{needBean.statusList}" />
+                        </p:selectOneMenu>
+                    </div>
                     <!-- ROW 3 END -->
 
+
+
                     <!-- ROW 4 -->
-                    <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <select name="" id="" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500">
-                            <option>Opción 1</option>
-                            <option>Opción 2</option>
-                            <option>Opción 3</option>
-                        </select>
-
-                        <select name="" id="" class="flex-1 rounded pl-4 border-2 border-gray-500">
-                            <option>Opción 1</option>
-                            <option>Opción 2</option>
-                            <option>Opción 3</option>
-                        </select>
-                    </div>
+                    <p:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500"
+                        value="Actualizar necesidad" actionListener="#{needBean.updateNeedStatus}"
+                        update="updateNeedForm">
+                    </p:commandButton>
                     <!-- ROW 4 END -->
-
-
-
-                    <!-- ROW 5 -->
-                    <button class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500">Editar
-                        Necesidad</button>
-                    <!-- ROW 5 END -->
-                </form>
+                </h:form>
             </div>
 
 

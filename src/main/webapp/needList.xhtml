@@ -7,9 +7,7 @@
 
 <f:metadata>
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
-    <f:viewAction action="#{offerBean.verifyIfUserHasAccess}" />
-    <f:viewAction action="#{offerBean.getOfferList}" />
-    <f:viewAction action="#{offerBean.generateList}" />
+    <f:viewAction action="#{needBean.getNeedList}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
@@ -22,42 +20,48 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
             integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
     </h:head>
-    <h:body id="OfferListBody">
+    <h:body id="CategoryListBody">
         <h:form>
-            <a href="createOffer.xhtml">Crear Oferta</a>
+            <a href="createNeed.xhtml">Crear Necesidad</a>
         </h:form>
 
         <!-- LISTA DE OFERTAS -->
-        <p:dataGrid var="offer" value="#{offerBean.allOffers}" columns="3" rows="6" paginator="true">
+        <p:dataGrid var="need" value="#{needBean.allNeeds}" columns="3" rows="6" paginator="true">
             <p:column>
                 <p:panel header="#{offer.name}">
                     <h:panelGrid columns="1">
                         <div class="user-data-row">
-                            <p:outputLabel value="Nombre: #{offer.name}"></p:outputLabel>
+                            <p:outputLabel value="Nombre: #{need.name}"></p:outputLabel>
                         </div>
                         <div class="user-data-row">
-                            <p:outputLabel value="Categoría: #{offer.offerCategory}"></p:outputLabel>
+                            <p:outputLabel value="Categoría: #{need.category}"></p:outputLabel>
                         </div>
                         <div class="user-data-row">
-                            <p:outputLabel value="Status: #{offer.status}"></p:outputLabel>
+                            <p:outputLabel value="Creada por: #{need.createdByUser}"></p:outputLabel>
+                        </div>
+                        <div class="user-data-row">
+                            <p:outputLabel value="Status: #{need.status}"></p:outputLabel>
+                        </div>
+                        <div class="user-data-row">
+                            <p:outputLabel value="Urgencia: #{need.urgency}"></p:outputLabel>
                         </div>
                         <div class="user-data-row">
                             <p:outputLabel value="Descripción: "></p:outputLabel>
-                            <p:outputLabel value="#{offer.description}" />
+                            <p:outputLabel value="#{need.description}" />
                         </div>
 
                         <div class="user-data-row">
                             <h:form>
-                                <p:commandButton actionListener="#{offerBean.goToUpdateOffer(offer)}"
-                                    value="Editar oferta">
+                                <p:commandButton actionListener="#{needBean.goToUpdateNeed(need)}"
+                                    value="Editar necesidad">
                                 </p:commandButton>
                             </h:form>
                         </div>
 
                         <div class="user-data-row">
                             <h:form>
-                                <p:commandButton actionListener="#{offerBean.deleteOffer(offer)}"
-                                    value="Eliminar oferta">
+                                <p:commandButton actionListener="#{needBean.deleteNeed(need)}"
+                                    value="Eliminar necesidad">
                                 </p:commandButton>
                             </h:form>
                         </div>
@@ -65,13 +69,6 @@
                 </p:panel>
             </p:column>
         </p:dataGrid>
-
-
-
-        <h:form id="graficas">
-            <h1 align="center">Diagrama circular</h1>
-            <p:chart type="pie" model="#{offerBean.pieModel}" style="width: 50%; height: 500px;margin: auto" />
-        </h:form>
     </h:body>
 
 </f:view>

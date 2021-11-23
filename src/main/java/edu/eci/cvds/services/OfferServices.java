@@ -29,8 +29,15 @@ public interface OfferServices {
 
     public List<Offer> getAllOffers() throws ServicesException;
 
+    public List<String> Offerbystatus();
+
+    public List<String> OfferbyUserId(int userId);
+
     public HashMap<Integer, String> getOffers();
+
     public int countByStatus(String status);
+
+    public List<Offer> testGetAllOffers();
 
     /*
     INSERT
@@ -46,10 +53,6 @@ public interface OfferServices {
 
 
 
-    public List<String> Offerbystatus();
-
-
-    public List<String> OfferbyUserId(int userId);
 
     /*
     DELETE
