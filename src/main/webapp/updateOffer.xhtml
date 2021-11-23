@@ -7,6 +7,8 @@
 <f:metadata>
     <f:viewAction action="#{offerBean.verifyValidUpdate}" />
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+    <f:viewAction action="#{loginBean.init}" />
+
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
@@ -191,10 +193,7 @@
 
                 </h:form>
 
-                <h:form id="graficas">
-                    <h1 align="center">Diagrama circular</h1>
-                    <p:chart type="pie" model="#{offerBean.pieModel}" style="width: 50%; height: 500px;margin: auto" />
-                </h:form>
+
             </div>
 
 

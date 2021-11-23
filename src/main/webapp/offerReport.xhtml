@@ -25,27 +25,43 @@
         </style>
     </h:head>
     <h:body>
-        <p:dataTable var="car" value="#{carBean.cars}">
-            <f:facet name="header">
-                List of Cars
-            </f:facet>
-            <p:column>
-                <f:facet name="header">
-                    Model
-                </f:facet>
-                #{car.model}
-                <f:facet name="footer">
-                    8 digit code
-                </f:facet>
-            </p:column>
-            <p:column headerText="Year" footerText="1960-2010">
-                #{car.year}
-            </p:column>
-            //more columns
-            <f:facet name="footer">
-                In total there are #{fn:length(carBean.cars)} cars.
-            </f:facet>
-        </p:dataTable>
+        <h:form>
+            <a href="createOffer.xhtml">Crear Oferta</a>
+
+            <p:dataTable id='dtOffer' var="offer" value="#{offerBean.allOffers}">
+    <!--            <f:facet name="header">-->
+    <!--                List of Cars-->
+    <!--            </f:facet>-->
+    <!--            <p:column>-->
+    <!--                <f:facet name="header">-->
+    <!--                    Model-->
+    <!--                </f:facet>-->
+    <!--                #{car.model}-->
+    <!--                <f:facet name="footer">-->
+    <!--                    8 digit code-->
+    <!--                </f:facet>-->
+    <!--            </p:column>-->
+                <p:column headerText="OfferId" footerText="1960-2010">
+                    <p:outputLabel value="#{offer.offerId}" ></p:outputLabel>
+                </p:column>
+
+                <p:column headerText="CategoryId" footerText="1960-2010">
+                    <p:outputLabel value="#{offer.offerCategory}" ></p:outputLabel>
+                </p:column>
+
+                <p:column headerText="Name" footerText="1960-2010">
+                    <p:outputLabel value="#{offer.name}" ></p:outputLabel>
+                </p:column>
+
+
+
+
+            </p:dataTable>
+
+            <p:commandButton  value="XLS" styleClass="p-mr-2 p-mb-2">
+                <p:dataExporter type="xls" target="dtOffer" fileName="products"/>
+            </p:commandButton>
+        </h:form>
     </h:body>
 
 </f:view>

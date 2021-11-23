@@ -66,26 +66,19 @@ public class OfferServicesImpl implements OfferServices {
     }
 
     @Override
-    public void createOffer(int offerCategory, String name, String description, int userId) throws ServicesException {
-        try{
-            offerDAO.createOffer(offerCategory, name, description, userId);
+    public HashMap<Integer, String> getOffers() {
+        HashMap<Integer, String> listOffer = new HashMap<Integer, String>();
+        try {
+            for (Offer newlist : offerDAO.getOffers()) {
+                if ((newlist.getStatus().equals("ACTIVE")) || (newlist.getStatus().equals("IN PROCESS"))) {
+                    listOffer.put(newlist.getOfferId(), newlist.getName());
+                }
+            }
+        } catch (PersistenceException e) {
+            System.out.println(e.getMessage());
         }
-        catch (PersistenceException e){
-            throw new ServicesException(e.getMessage(),e );
-        }
+        return listOffer;
     }
-
-    @Override
-    public void changeStatus(String offerName, String status) throws ServicesException {
-        try{
-            offerDAO.changeStatus(offerName,status);
-        }
-        catch (PersistenceException e){
-            throw new ServicesException(e.getMessage(),e );
-        }
-
-    }
-
 
     @Override
     public List<String> Offerbystatus(){
@@ -113,11 +106,42 @@ public class OfferServicesImpl implements OfferServices {
                 finalList.add(newlist.get(i).getName());
             }
 
-       }catch(Exception e){
+        }catch(Exception e){
             System.out.println(e.getMessage());
 
         }
         return finalList;
+
+    }
+
+    public int countByStatus(String status) {
+        try{
+            return offerDAO.getByStatus(status).size();
+        }catch(PersistenceException e) {
+            return 0;
+        }
+    }
+
+
+
+    @Override
+    public void createOffer(int offerCategory, String name, String description, int userId) throws ServicesException {
+        try{
+            offerDAO.createOffer(offerCategory, name, description, userId);
+        }
+        catch (PersistenceException e){
+            throw new ServicesException(e.getMessage(),e );
+        }
+    }
+
+    @Override
+    public void changeStatus(String offerName, String status) throws ServicesException {
+        try{
+            offerDAO.changeStatus(offerName,status);
+        }
+        catch (PersistenceException e){
+            throw new ServicesException(e.getMessage(),e );
+        }
 
     }
 
@@ -131,25 +155,14 @@ public class OfferServicesImpl implements OfferServices {
     }
 
     @Override
-    public HashMap<Integer, String> getOffers() {
-        HashMap<Integer, String> listOffer = new HashMap<Integer, String>();
-        try {
-            for (Offer newlist : offerDAO.getOffers()) {
-                if ((newlist.getStatus().equals("ACTIVE")) || (newlist.getStatus().equals("IN PROCESS"))) {
-                    listOffer.put(newlist.getOfferId(), newlist.getName());
-                }
-            }
-        } catch (PersistenceException e) {
+    public List<Offer> testGetAllOffers() {
+        try{
+            return offerDAO.getAllOffers();
+        }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return listOffer;
+        return null;
     }
 
-    public int countByStatus(String status) {
-        try{
-            return offerDAO.getByStatus(status).size();
-        }catch(PersistenceException e) {
-            return 0;
-        }
-    }
+
 }

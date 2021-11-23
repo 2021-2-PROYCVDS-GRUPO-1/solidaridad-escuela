@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class Offer {
     private int offerId;
-    private String offerCategory;
+    private int offerCategory;
     private String name;
     private String description;
     private String status;
@@ -21,7 +21,7 @@ public class Offer {
 
     public Offer(){}
 
-    public Offer(int offerId, String offerCategory, String name, String description, Date dateCreate, Date dateModification){
+    public Offer(int offerId, int offerCategory, String name, String description, Date dateCreate, Date dateModification){
         this.offerId = offerId;
         this.offerCategory = offerCategory;
         this.name = name;
@@ -35,9 +35,9 @@ public class Offer {
 
     public void setOfferId(int offerId) { this.offerId = offerId; }
 
-    public String getOfferCategory() { return offerCategory; }
+    public int getOfferCategory() { return offerCategory; }
 
-    public void setOfferCategory(String offerCategory) { this.offerCategory = offerCategory; }
+    public void setOfferCategory(int offerCategory) { this.offerCategory = offerCategory; }
 
     public String getName() { return name; }
 

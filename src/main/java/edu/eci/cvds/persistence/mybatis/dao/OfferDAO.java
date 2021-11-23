@@ -13,6 +13,41 @@ import java.util.List;
  */
 public interface OfferDAO {
 
+    /**
+     * Get an offer by its name
+     * @param name The offer's name
+     * @return
+     * @throws PersistenceException
+     */
+    public Offer getOfferByName(String name) throws PersistenceException;
+
+    /**
+     * Get an offer by its id
+     * @param id The offer's id
+     * @return
+     * @throws PersistenceException
+     */
+    public Offer getOfferByID(int id) throws PersistenceException;
+
+    /**
+     * Get Offers by its status
+     * @param status, The offers status
+     * @return
+     * @throws PersistenceException
+     */
+    public List<Offer> getByStatus(String status) throws PersistenceException;
+
+    /**
+     * Get Offers from a user
+     * @param userId, The user's Id
+     * @return
+     * @throws PersistenceException
+     */
+    public List<Offer> getByUserId(int userId) throws PersistenceException;
+
+    public List<Offer> getAllOffers() throws PersistenceException;
+
+    public List<Offer> getOffers() throws PersistenceException;
 
     /**
      * Create an offer
@@ -31,44 +66,6 @@ public interface OfferDAO {
      * @throws PersistenceException
      */
     public void changeStatus(String offerName, String status ) throws PersistenceException;
-
-    /**
-     * Get Offers by its status
-     * @param status, The offers status
-     * @return
-     * @throws PersistenceException
-     */
-    public List<Offer> getByStatus(String status) throws PersistenceException;
-
-
-    /**
-     * Get Offers from a user
-     * @param userId, The user's Id
-     * @return
-     * @throws PersistenceException
-     */
-    public List<Offer> getByUserId(int userId) throws PersistenceException;
-
-    public List<Offer> getAllOffers() throws PersistenceException;
-
-
-    /**
-     * Get an offer by its name
-     * @param name The offer's name
-     * @return
-     * @throws PersistenceException
-     */
-    public Offer getOfferByName(String name) throws PersistenceException;
-
-    /**
-     * Get an offer by its id
-     * @param id The offer's id
-     * @return
-     * @throws PersistenceException
-     */
-    public Offer getOfferByID(int id) throws PersistenceException;
-
-    public List<Offer> getOffers() throws PersistenceException;
 
     public void deleteOffer(int offerId) throws PersistenceException;
 }
