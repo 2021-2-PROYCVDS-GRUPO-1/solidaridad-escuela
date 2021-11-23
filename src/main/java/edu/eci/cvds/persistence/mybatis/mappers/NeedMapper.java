@@ -16,6 +16,7 @@ import java.util.List;
 
 public interface NeedMapper {
 
+    // CREATE
     public void registerNeed(@Param("categoryId") int categoryId,
                              @Param("name") String name,
                              @Param("description") String description,
@@ -23,11 +24,12 @@ public interface NeedMapper {
                              @Param("status") String status,
                              @Param("createdByUser") int createdByUser) throws PersistenceException;
 
-    public void updateStatus(@Param("name") String name, @Param("status") String status);
+    // READ
+    public List<Need> getAllNeeds() throws PersistenceException;
 
-    public Need getNeedByName(@Param("name") String name) throws PersistenceException;
+    // UPDATE
+    public void updateStatus(@Param("id") int id, @Param("status") String status);
 
-    public Need getNeedByID(@Param("id") int id) throws PersistenceException;
-
-    public List<Need> getNeeds() throws PersistenceException;
+    // DELETE
+    public void deleteNeed(@Param("id") int needId) throws PersistenceException;
 }
