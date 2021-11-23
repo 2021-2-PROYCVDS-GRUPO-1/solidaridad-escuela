@@ -39,26 +39,6 @@ public class MyBATISOfferDAO implements OfferDAO {
     }
 
     @Override
-    public void createOffer(int offerCategory, String name, String description, int userId) throws PersistenceException {
-        try{
-            offerMapper.createOffer(offerCategory, name, description,  userId);
-        }catch (PersistenceException e) {
-            throw new PersistenceException("Error al registrar la oferta");
-        }
-    }
-
-    @Override
-    public void changeStatus(String offerName, String status) throws PersistenceException {
-        try{
-            offerMapper.changeStatus(offerName, status);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            throw new PersistenceException("Error al tratar de cambiar el estado de la oferta: " + offerName, e);
-        }
-    }
-
-    @Override
     public List<Offer> getByStatus(String status) throws PersistenceException {
         try{
             return offerMapper.getByStatus(status);
@@ -97,6 +77,26 @@ public class MyBATISOfferDAO implements OfferDAO {
             return offerMapper.getOffers();
         } catch (PersistenceException e) {
             throw new PersistenceException("Error al consultar las ofertas");
+        }
+    }
+
+    @Override
+    public void createOffer(int offerCategory, String name, String description, int userId) throws PersistenceException {
+        try{
+            offerMapper.createOffer(offerCategory, name, description,  userId);
+        }catch (PersistenceException e) {
+            throw new PersistenceException("Error al registrar la oferta");
+        }
+    }
+
+    @Override
+    public void changeStatus(String offerName, String status) throws PersistenceException {
+        try{
+            offerMapper.changeStatus(offerName, status);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistenceException("Error al tratar de cambiar el estado de la oferta: " + offerName, e);
         }
     }
 
