@@ -13,8 +13,8 @@ public class Category {
     private int id;
     private String name;
     private String description;
-    private Date dateCreate;
     private String state;
+    private Date dateCreate;
     private Date dateModification;
 
     public Category(){}

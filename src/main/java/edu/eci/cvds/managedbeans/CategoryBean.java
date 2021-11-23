@@ -28,18 +28,16 @@ public class CategoryBean extends BasePageBean{
     private CategoryServices categoryServices;
     
     private int id;
+    private int userId;
     private String name;
     private String description;
     private String state;
     private String dateCreate;
     private String dateModification;
+    private String userRole;
     private List<String> statusList;
-
     private List<Category> allCategories;
     private Category categoryToEdit;
-
-    private String userRole;
-    private int userId;
 
     @PostConstruct
     public void init(){
@@ -51,21 +49,6 @@ public class CategoryBean extends BasePageBean{
 
         // TODO -> crear una funcion que genere los servicios, como en OfferBean
         categoryServices = getInjector().getInstance(CategoryServices.class);
-
-        System.out.println("   ");
-        System.out.println("   ");
-        System.out.println(" --- USER ROLE ---");
-        System.out.println(this.userRole);
-        System.out.println("   ");
-        System.out.println("   ");
-
-        System.out.println("  ");
-        System.out.println("  ");
-        System.out.println("---- CATEGORY SERVICES ----");
-        System.out.println(categoryServices);
-        System.out.println("  ");
-        System.out.println("  ");
-
         try{
             for(DatabaseStatus status : DatabaseStatus.values()){
                 System.out.println(status.toString());
@@ -89,10 +72,6 @@ public class CategoryBean extends BasePageBean{
         System.out.println("edu.eci.cvds.managedbeans.CategoryBean.createCategory()");
 
         try{
-            System.out.println("Anadiendo categoría con nombre: " + this.name
-            + "\nDescripcion: " + this.description
-            + "\nEstado: " + this.state);
-
             categoryServices.addCategory(this.name, this.description, this.state);
             FacesContext.getCurrentInstance().getExternalContext().redirect("/categoryList.xhtml");
         }catch(Exception e){

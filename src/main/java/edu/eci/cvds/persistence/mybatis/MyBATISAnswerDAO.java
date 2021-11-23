@@ -1,11 +1,13 @@
 package edu.eci.cvds.persistence.mybatis;
 
+import edu.eci.cvds.entities.Answer;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.AnswerDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.AnswerMapper;
 import edu.eci.cvds.persistence.mybatis.mappers.CategoryMapper;
 
 import javax.inject.Inject;
+import java.util.List;
 
 public class MyBATISAnswerDAO implements AnswerDAO {
     @Inject
@@ -35,6 +37,15 @@ public class MyBATISAnswerDAO implements AnswerDAO {
             answerMapper.addAnswerNeeds(name, comments, idNeeds);
         }catch (PersistenceException e) {
             throw  new PersistenceException("Error al añadir la respuesta con el nombre: "+ name);
+        }
+    }
+
+    @Override
+    public List<Answer> getAnsOfferNeed() throws PersistenceException {
+        try{
+            return answerMapper.getAnsOfferNeed();
+        }catch (PersistenceException e) {
+            throw  new PersistenceException("Error al traer las respuestas");
         }
     }
 }
