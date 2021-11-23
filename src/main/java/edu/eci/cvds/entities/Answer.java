@@ -4,11 +4,12 @@ import java.util.Date;
 
 public class Answer {
     private int id;
-    private String name;
-    private String comments;
-    private Date dateCreate;
     private int idOffer;
     private int idNeeds;
+    private String name;
+    private String comments;
+    private String nameOfferORNeed;
+    private Date dateCreate;
 
     public Answer(){}
 
@@ -17,6 +18,14 @@ public class Answer {
         this.comments = comments;
         this.idOffer = idOffer;
         this.idNeeds = idNeeds;
+    }
+
+    public Answer(int id, String name, String comments, Date dateCreate, String nameOfferORNeed) {
+        this.id = id;
+        this.name = name;
+        this.comments = comments;
+        this.dateCreate = dateCreate;
+        this.nameOfferORNeed = nameOfferORNeed;
     }
 
     public int getId() {
@@ -61,6 +70,14 @@ public class Answer {
 
     public int getIdNeeds() {
         return idNeeds;
+    }
+
+    public String getNameOfferORNeed() {
+        return nameOfferORNeed;
+    }
+
+    public void setNameOfferORNeed(String nameOfferORNeed) {
+        this.nameOfferORNeed = nameOfferORNeed;
     }
 
     public void setIdNeeds(int idNeeds) {

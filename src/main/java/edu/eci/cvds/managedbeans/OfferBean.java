@@ -258,11 +258,11 @@ public class OfferBean extends BasePageBean{
             return;
         }
 
-        try {
+        /*try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/mainMenu.xhtml");
         } catch (Exception ex){
             ex.printStackTrace();
-        }
+        }*/
 
     }
 

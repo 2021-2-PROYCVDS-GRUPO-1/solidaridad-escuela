@@ -4,38 +4,43 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.AnswerMapper">
-    <!-- GET CATEGORY ID >
-    <select parameterType="map" id="getCategoryId" resultMap="categoryResult">
+    <!-- GET CATEGORY ID -->
+    <select parameterType="map" id="getAnsOfferNeed" resultMap="answerResult">
         SELECT
-            Id AS c_id,
-            Name AS c_name,
-            Description AS c_description,
-            Date_Create AS c_dateCreate,
-            State AS c_state,
-            Date_Modification AS c_dateModification
-        FROM DB_Category
-        WHERE #{id} = Id;
-    </select-->
+        DB_Answer.Id AS id,
+        DB_Answer.Name AS name,
+        DB_Answer.Comments AS comments,
+        DB_Answer.Date_Create AS dateCreate,
+        DB_Answer.IdOffer,
+        DB_Answer.IdNeeds,
+        CONCAT(DB_OFFERS.name, DB_Needs.name) AS nameOfferORNeed
+        FROM DB_Answer
+        LEFT JOIN DB_OFFERS ON DB_Answer.IdOffer = DB_OFFERS.offerId
+        LEFT JOIN DB_Needs ON DB_Answer.IdNeeds = DB_Needs.id
+    </select>
 
-    <!-- ADD CATEGORY -->
+    <!-- ADD ANSWER -->
     <insert parameterType="map" id="addAnswer">
         INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, #{idOffer}, #{idNeeds});
     </insert>
 
+    <!-- ADD ANSWER idOffer -->
     <insert parameterType="map" id="addAnswerOffer">
         INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, #{idOffer}, NULL);
     </insert>
 
+    <!-- ADD ANSWER idNeeds -->
     <insert parameterType="map" id="addAnswerNeeds">
         INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, NULL, #{idNeeds});
     </insert>
 
     <resultMap id="answerResult" type="Answer" >
-        <id property="Id" column="a_id"/>
-        <result property="Name" column="a_name" />
-        <result property="Comments" column="a_comments" />
-        <result property="Date_Creation" column="a_dateCreate" />
-        <association property="IdOffer" javaType="Offer" columnPrefix="IdOffer" resultMap="edu.eci.cvds.persistence.mybatis.mappers.OfferMapper"/>
-        <association property="IdNeeds" javaType="Need" columnPrefix="IdNeeds" resultMap="edu.eci.cvds.persistence.mybatis.mappers.NeedMapper"/>
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="comments" column="comments"/>
+        <result property="dateCreate" column="dateCreate"/>
+        <result property="nameOfferORNeed" column="nameOfferORNeed"/>
+        <!--association property="IdOffer" javaType="Offer" resultMap="edu.eci.cvds.persistence.mybatis.mappers.OfferMapper"/>
+        <association property="IdNeeds" javaType="Need" resultMap="edu.eci.cvds.persistence.mybatis.mappers.NeedMapper"/-->
     </resultMap>
 </mapper>

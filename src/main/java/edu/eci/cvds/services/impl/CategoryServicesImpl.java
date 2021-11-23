@@ -44,6 +44,23 @@ public class CategoryServicesImpl implements CategoryServices {
     }
 
     @Override
+    public HashMap<String, Integer> getCategories()  {
+        HashMap<String, Integer> finalList = new HashMap<String, Integer>();
+        try{
+
+            List<Category> newlist = categoryDAO.getCategories();
+            for(int i = 0; i <  newlist.size(); i++){
+                finalList.put(newlist.get(i).getName(), newlist.get(i).getId());
+
+            }
+
+        } catch(PersistenceException e) {
+            System.out.println(e.getMessage());
+        }
+        return  finalList;
+    }
+
+    @Override
     public void addCategory(String name, String description, String state) throws ServicesException {
         try{
             categoryDAO.addCategory(name, description, state);
@@ -78,26 +95,4 @@ public class CategoryServicesImpl implements CategoryServices {
             throw  new ServicesException("Error al eliminar la categoria con ID: "+ categoryId);
         }
     }
-
-
-    @Override
-    public HashMap<String, Integer> getCategories()  {
-        HashMap<String, Integer> finalList = new HashMap<String, Integer>();
-        try{
-
-            List<Category> newlist = categoryDAO.getCategories();
-            for(int i = 0; i <  newlist.size(); i++){
-                finalList.put(newlist.get(i).getName(), newlist.get(i).getId());
-
-        }
-
-        } catch(PersistenceException e) {
-            System.out.println(e.getMessage());
-        }
-        return  finalList;
-    }
-
-
-
-
 }

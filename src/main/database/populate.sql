@@ -8,7 +8,7 @@
 -- -----------------------------------------------------
 -- Table `DB_CATEGORY`
 -- -----------------------------------------------------
- INSERT INTO DB_Category (name, description, state) VALUES ('Kukis', 'Test trigger  create and modification', 'Completo');
+ INSERT INTO DB_Category (name, description, state) VALUES ('Kukis', 'Test trigger  create and modification', 'HABILITADO');
 
  -- -----------------------------------------------------
  -- Table `DB_OFFERs`
@@ -19,4 +19,7 @@
 -- -----------------------------------------------------
 -- Table `DB_ANSWER`
 -- -----------------------------------------------------
- INSERT INTO DB_Answer(Name, Comments, IdOffer, IdNeeds) VALUES('Juan', 'Insert desde la base de datos', 3, NULL);
+INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES ('Prueba1', 'Este es el comentario para la prueba1', 7, NULL);
+INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES ('Prueba2', 'Este es el comentario para la prueba2', 2, NULL);
+INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES ('Prueba3', 'Este es el comentario para la prueba3', NULL, 24);
+INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES ('Prueba4', 'Este es el comentario para la prueba4', NULL, 29);

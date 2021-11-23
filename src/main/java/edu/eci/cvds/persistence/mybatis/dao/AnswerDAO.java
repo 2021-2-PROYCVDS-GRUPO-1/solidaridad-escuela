@@ -1,6 +1,9 @@
 package edu.eci.cvds.persistence.mybatis.dao;
 
+import edu.eci.cvds.entities.Answer;
 import edu.eci.cvds.persistence.PersistenceException;
+
+import java.util.List;
 
 public interface AnswerDAO {
 
@@ -9,4 +12,7 @@ public interface AnswerDAO {
     public void addAnswerOffer(String name, String comments, int idOffer) throws PersistenceException;
 
     public void addAnswerNeeds(String name, String comments,int idNeeds) throws PersistenceException;
+
+    public List<Answer> getAnsOfferNeed() throws PersistenceException;
+
 }

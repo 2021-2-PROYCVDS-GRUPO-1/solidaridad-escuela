@@ -1,7 +1,10 @@
 package edu.eci.cvds.persistence.mybatis.mappers;
 
+import edu.eci.cvds.entities.Answer;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AnswerMapper {
     public void addAnswer(@Param("name")String name,
@@ -16,4 +19,6 @@ public interface AnswerMapper {
     public void addAnswerNeeds(@Param("name")String name,
                           @Param("comments")String comments,
                           @Param("idNeeds") int idNeeds) throws PersistenceException;
+
+    public List<Answer> getAnsOfferNeed() throws PersistenceException;
 }
