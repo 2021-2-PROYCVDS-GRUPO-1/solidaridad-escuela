@@ -7,12 +7,8 @@
     <!-- GET CATEGORY ID -->
     <select parameterType="map" id="getAnsOfferNeed" resultMap="answerResult">
         SELECT
-        DB_Answer.Id AS id,
         DB_Answer.Name AS name,
         DB_Answer.Comments AS comments,
-        DB_Answer.Date_Create AS dateCreate,
-        DB_Answer.IdOffer,
-        DB_Answer.IdNeeds,
         CONCAT(DB_OFFERS.name, DB_Needs.name) AS nameOfferORNeed
         FROM DB_Answer
         LEFT JOIN DB_OFFERS ON DB_Answer.IdOffer = DB_OFFERS.offerId

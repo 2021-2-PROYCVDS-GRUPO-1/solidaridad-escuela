@@ -7,18 +7,18 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface AnswerMapper {
-    public void addAnswer(@Param("name")String name,
-                          @Param("comments")String comments,
+    public void addAnswer(@Param("name") String name,
+                          @Param("comments") String comments,
                           @Param("idOffer") int idOffer,
                           @Param("idNeeds") int idNeeds) throws PersistenceException;
 
-    public void addAnswerOffer(@Param("name")String name,
-                          @Param("comments")String comments,
-                          @Param("idOffer") int idOffer) throws PersistenceException;
+    public void addAnswerOffer(@Param("name") String name,
+                               @Param("comments") String comments,
+                               @Param("idOffer") int idOffer) throws PersistenceException;
 
-    public void addAnswerNeeds(@Param("name")String name,
-                          @Param("comments")String comments,
-                          @Param("idNeeds") int idNeeds) throws PersistenceException;
+    public void addAnswerNeeds(@Param("name") String name,
+                               @Param("comments") String comments,
+                               @Param("idNeeds") int idNeeds) throws PersistenceException;
 
     public List<Answer> getAnsOfferNeed() throws PersistenceException;
 }

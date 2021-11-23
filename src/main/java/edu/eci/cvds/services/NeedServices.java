@@ -19,6 +19,8 @@ public interface NeedServices {
     // READ
     public List<Need> getAllNeeds() throws ServicesException;
 
+    public HashMap<Integer, String> getNeeds() throws ServicesException;
+
     // UPDATE
     public void updateStatus(int id, String state) throws ServicesException;
 

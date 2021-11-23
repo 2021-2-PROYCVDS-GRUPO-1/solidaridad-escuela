@@ -20,11 +20,9 @@ public class Answer {
         this.idNeeds = idNeeds;
     }
 
-    public Answer(int id, String name, String comments, Date dateCreate, String nameOfferORNeed) {
-        this.id = id;
+    public Answer(String name, String comments, String nameOfferORNeed) {
         this.name = name;
         this.comments = comments;
-        this.dateCreate = dateCreate;
         this.nameOfferORNeed = nameOfferORNeed;
     }
 
