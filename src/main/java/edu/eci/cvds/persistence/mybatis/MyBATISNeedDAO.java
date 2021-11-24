@@ -55,6 +55,17 @@ public class MyBATISNeedDAO implements NeedDAO {
         }
     }
 
+    @Override
+    public List<Need> getByStatus(String status) throws PersistenceException {
+        try{
+            return needMapper.getByStatus(status);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistenceException("Error al consultar las ofertas");
+        }
+    }
+
     // UPDATE
     @Override
     public void updateStatus(int id, String status) throws PersistenceException{

@@ -27,6 +27,8 @@ public interface NeedMapper {
     // READ
     public List<Need> getAllNeeds() throws PersistenceException;
 
+    public List<Need> getByStatus(@Param("status") String status) throws  PersistenceException;
+
     // UPDATE
     public void updateStatus(@Param("id") int id, @Param("status") String status);
 

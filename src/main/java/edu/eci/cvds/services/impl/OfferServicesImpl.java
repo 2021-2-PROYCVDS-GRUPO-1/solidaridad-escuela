@@ -85,7 +85,7 @@ public class OfferServicesImpl implements OfferServices {
         List<String>  finalList = new ArrayList<>();
         try{
 
-            List<Offer> newlist = offerDAO.getByUserId(1001184238);
+            List<Offer> newlist = offerDAO.getByStatus("ACTIVE");
             for(int i = 0; i < newlist.size(); i++){
                 finalList.add(newlist.get(i).getName());
             }

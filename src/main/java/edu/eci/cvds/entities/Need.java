@@ -23,6 +23,10 @@ public class Need {
     private Date creationDate;
 
 
+    private String userName;
+    private String categoryName;
+
+
     private Need(){
     }
 
@@ -122,5 +126,19 @@ public class Need {
         this.createdByUser = createdByUser;
     }
 
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 }

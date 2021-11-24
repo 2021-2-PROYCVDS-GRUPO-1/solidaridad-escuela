@@ -33,19 +33,42 @@
         WHERE #{id} = id;
     </select>
 
-    <!--GET ALL NEEDS-->
+    <!-- GET OFFER BY Status -->
+    <select id="getByStatus" resultMap="NeedResult">
+        SELECT
+        DB_NEEDS.id AS n_id,
+        DB_NEEDS.category AS n_category,
+        DB_NEEDS.name AS n_name,
+        DB_NEEDS.description AS n_description,
+        DB_NEEDS.urgency AS n_urgency,
+        DB_NEEDS.creationDate AS n_creationDate,
+        DB_NEEDS.status AS n_status,
+        DB_NEEDS.modificationDate AS n_modificationDate
+        FROM DB_NEEDS
+        WHERE
+            #{status} = DB_NEEDS.status;
+    </select>
+
+
     <select id="getAllNeeds" resultMap="NeedResult">
         SELECT
-        id AS n_id,
-        category AS n_category,
-        name AS n_name,
-        description AS n_description,
-        urgency AS n_urgency,
-        creationDate AS n_creationDate,
-        status AS n_status,
-        modificationDate AS n_modificationDate,
-        createdByUser AS n_createdbyuser
-        FROM DB_Needs;
+        DB_NEEDS.id AS n_id,
+        DB_NEEDS.category AS n_category,
+        DB_NEEDS.name AS n_name,
+        DB_NEEDS.description AS n_description,
+        DB_NEEDS.urgency AS n_urgency,
+        DB_NEEDS.creationDate AS n_creationDate,
+        DB_NEEDS.status AS n_status,
+        DB_NEEDS.modificationDate AS n_modificationDate,
+        DB_CATEGORY.name AS categoryName,
+        CONCAT(DB_USER.firstName, ' ',  DB_USER.lastName)  AS UserName
+
+        FROM DB_NEEDS
+        INNER JOIN DB_USER ON DB_NEEDS.createdByUser = DB_USER.userId
+        INNER JOIN DB_CATEGORY ON DB_NEEDS.category = DB_CATEGORY.id
+
+        ORDER BY DB_NEEDS.status
+
     </select>
 
     <!-- ADD NECESSITY -->
