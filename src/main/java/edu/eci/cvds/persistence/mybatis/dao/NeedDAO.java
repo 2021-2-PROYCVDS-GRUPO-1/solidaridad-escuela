@@ -29,7 +29,6 @@ public interface NeedDAO {
 
     public List<Need> getByStatus(String status) throws PersistenceException;
 
-
     // UPDATE
     public void updateStatus(int id,String status) throws PersistenceException;
 

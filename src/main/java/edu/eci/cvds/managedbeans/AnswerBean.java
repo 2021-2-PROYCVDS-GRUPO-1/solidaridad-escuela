@@ -1,8 +1,11 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.entities.Answer;
+import edu.eci.cvds.entities.Need;
 import edu.eci.cvds.services.AnswerServices;
 import edu.eci.cvds.services.NeedServices;
 import edu.eci.cvds.services.OfferServices;
+import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.utils.DatabaseStatus;
 
 import javax.annotation.PostConstruct;
@@ -24,21 +27,22 @@ public class AnswerBean extends BasePageBean{
     private NeedServices needServices;
 
     private int id;
-    private String name;
-    private String comments;
-    private Date dateCreate;
-    private String nameOffer;
-    private String nameNeed;
     private int idOffer;
     private int idNeeds;
+    private String name;
+    private String comments;
+    private String nameOffer;
+    private String nameNeed;
+    private String nameOfferORNeed;
+    private Date dateCreate;
     private List<String> statusList;
     private Collection<String> listOffer;
-    private HashMap<Integer, String> listIdOffer;
     private Collection<String> listNeeds;
+    private HashMap<Integer, String> listIdOffer;
     private HashMap<Integer, String> listIdNeeds;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println("edu.eci.cvds.managedbeans.AnswerBean.init()");
 
         statusList = new ArrayList<>();
@@ -49,7 +53,11 @@ public class AnswerBean extends BasePageBean{
 
         listIdOffer = offerServices.getOffers();
         listOffer = listIdOffer.values();
-        // listIdNeeds = needServices.getAllNeeds();
+        try {
+            listIdNeeds = needServices.getNeeds();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
         listNeeds = listIdNeeds.values();
 
         try{
@@ -81,6 +89,21 @@ public class AnswerBean extends BasePageBean{
                 }
             }
         }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void consultAnswer() {
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.consultAnswer()");
+        try {
+            for(Answer answers:answerServices.getAnsOfferNeed()) {
+                System.out.println("Answer{" +
+                        ", name='" + answers.getName() + '\'' +
+                        ", comments='" + answers.getComments() + '\'' +
+                        ", nameOfferORNeed='" + answers.getNameOfferORNeed() + '\'' +
+                        '}');
+            }
+        }catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -203,5 +226,13 @@ public class AnswerBean extends BasePageBean{
 
     public void setIdNeeds(int idNeeds) {
         this.idNeeds = idNeeds;
+    }
+
+    public String getNameOfferORNeed() {
+        return nameOfferORNeed;
+    }
+
+    public void setNameOfferORNeed(String nameOfferORNeed) {
+        this.nameOfferORNeed = nameOfferORNeed;
     }
 }
