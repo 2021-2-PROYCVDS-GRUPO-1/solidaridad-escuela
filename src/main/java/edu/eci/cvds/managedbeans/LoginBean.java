@@ -46,9 +46,9 @@ public class LoginBean extends BasePageBean {
 
     private String email;
     private String password;
+    private String message;
     private boolean rememberMe;
     private Subject currentUser;
-    private String message;
     private FacesMessage.Severity status;
 
 

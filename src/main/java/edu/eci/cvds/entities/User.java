@@ -12,6 +12,7 @@ public class User {
 
     private int userId;
     private int databaseId;
+    private int maxNeeds;
     private String status;
     private String firstName;
     private String lastname;
@@ -19,9 +20,6 @@ public class User {
     private String username;
     private String password;
     private String role;
-    private int maxNeeds;
-
-
 
     public User() {
     }

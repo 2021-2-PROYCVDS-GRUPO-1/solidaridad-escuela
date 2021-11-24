@@ -1,7 +1,6 @@
 package edu.eci.cvds.persistence.mybatis.dao;
 
 import edu.eci.cvds.entities.Need;
-import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
 
