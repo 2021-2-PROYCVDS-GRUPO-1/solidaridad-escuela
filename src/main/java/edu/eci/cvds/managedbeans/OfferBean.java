@@ -120,6 +120,7 @@ public class OfferBean extends BasePageBean{
         this.offerByUser = offerServices.OfferbyUserId(userId);
 
         this.allOffers = offerServices.testGetAllOffers();
+        System.out.println(allOffers);
     }
 
     private void getUserInformation(){
@@ -134,8 +135,6 @@ public class OfferBean extends BasePageBean{
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.createPieModel()");
 
         pieModel = new PieChartModel();
-        System.out.println("---------COUNT----------");
-        System.out.println("CUENTA " + "" + offerServices.countByStatus("ACTIVE"));
         pieModel.set("Active", offerServices.countByStatus("ACTIVE"));
         pieModel.set("In Process", offerServices.countByStatus("IN PROCESS"));
         pieModel.set("Solved", offerServices.countByStatus("SOLVED"));

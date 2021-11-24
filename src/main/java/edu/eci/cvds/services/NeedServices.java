@@ -1,6 +1,7 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Need;
+import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 
 import java.util.HashMap;
@@ -19,9 +20,17 @@ public interface NeedServices {
     // READ
     public List<Need> getAllNeeds() throws ServicesException;
 
+    public List<Need> testGetAllOffers();
+
+    public List<Need> getByStatus(String status) throws  ServicesException;
+
+
     // UPDATE
     public void updateStatus(int id, String state) throws ServicesException;
 
     // DELETE
     public void deleteNeed (int needId) throws ServicesException;
+
+    public int countByStatus(String status);
+
 }

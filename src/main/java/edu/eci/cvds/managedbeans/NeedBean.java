@@ -8,6 +8,7 @@ import edu.eci.cvds.utils.OfferStatus;
 import edu.eci.cvds.utils.Urgency;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.primefaces.model.chart.*;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
@@ -44,10 +45,16 @@ public class NeedBean extends BasePageBean{
     private List<Need> allNeeds;
     private Collection<String> catTest;
     private HashMap<String, Integer> categories;
+    private PieChartModel pieModel;
+
 
     @PostConstruct
     public void init(){
         System.out.println("edu.eci.cvds.managedbeans.NeedBean.init()");
+
+        this.generateServices();
+        this.getUserInformation();
+        this.generateList();
 
         statusList = new ArrayList<>();
         categoryList = new ArrayList<>();
@@ -55,9 +62,9 @@ public class NeedBean extends BasePageBean{
 
         categories = new HashMap<String, Integer>();
 
-        this.generateServices();
-        this.getUserInformation();
-        this.generateList();
+        pieModel = createPieModel();
+
+
 
         try{
             // Status
@@ -95,7 +102,30 @@ public class NeedBean extends BasePageBean{
         categories = categoryServices.getCategories();
         catTest = categories.keySet();
 
+        this.allNeeds = needServices.testGetAllOffers();
+        System.out.println(allNeeds);
         //this.offerByUser = offerServices.OfferbyUserId(userId);
+    }
+
+    private PieChartModel createPieModel(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.createPieModel()");
+
+        pieModel = new PieChartModel();
+        pieModel.set("Active", needServices.countByStatus("ACTIVE"));
+        pieModel.set("In Process", needServices.countByStatus("IN PROCESS"));
+        pieModel.set("Solved", needServices.countByStatus("SOLVED"));
+        pieModel.set("Closed", needServices.countByStatus("CLOSED"));
+        pieModel.setTitle("");
+        pieModel.setShowDataLabels(true);
+        pieModel.setDataLabelFormatString("%dK");
+        pieModel.setLegendPosition("e");
+        pieModel.setShowDatatip(true);
+        pieModel.setShowDataLabels(true);
+        pieModel.setDataFormat("value");
+        pieModel.setDataLabelFormatString("%d");
+        pieModel.setSeriesColors("00FF64, ff8c00, 87cefa, B477DE");
+        return pieModel;
+
     }
 
     public void registerNeed(){
@@ -353,5 +383,29 @@ public class NeedBean extends BasePageBean{
 
     public void setNeedToEdit(Need needToEdit) {
         this.needToEdit = needToEdit;
+    }
+
+    public NeedServices getNeedServices() {
+        return needServices;
+    }
+
+    public void setNeedServices(NeedServices needServices) {
+        this.needServices = needServices;
+    }
+
+    public CategoryServices getCategoryServices() {
+        return categoryServices;
+    }
+
+    public void setCategoryServices(CategoryServices categoryServices) {
+        this.categoryServices = categoryServices;
+    }
+
+    public PieChartModel getPieModel() {
+        return pieModel;
+    }
+
+    public void setPieModel(PieChartModel pieModel) {
+        this.pieModel = pieModel;
     }
 }
