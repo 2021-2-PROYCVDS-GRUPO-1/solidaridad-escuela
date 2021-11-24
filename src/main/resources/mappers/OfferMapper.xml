@@ -81,17 +81,38 @@
     </select>
 
     <!-- GET ALL OFFERS -->
-    <select parameterType="map" id="getAllOffers" resultMap="OfferResult">
+<!--    <select parameterType="map" id="getAllOffers" resultMap="OfferResult">-->
+<!--        SELECT-->
+<!--        offerId,-->
+<!--        offerCategory,-->
+<!--        name,-->
+<!--        description,-->
+<!--        status,-->
+<!--        dateCreation,-->
+<!--        dateModification-->
+<!--        FROM DB_OFFERS;-->
+<!--    </select>-->
+
+    <select id="getAllOffers" resultMap="OfferResult">
         SELECT
-        offerId,
-        offerCategory,
-        name,
-        description,
-        status,
-        dateCreation,
-        dateModification
-        FROM DB_OFFERS;
+        DB_OFFERS.offerId AS offerId,
+        DB_OFFERS.offerCategory AS offerCategory,
+        DB_OFFERS.name AS Name,
+        DB_OFFERS.description AS Description,
+        DB_OFFERS.status AS Status,
+        DB_OFFERS.dateCreation AS DateCreation,
+        DB_OFFERS.dateModification AS DateModification,
+        DB_CATEGORY.name AS categoryName,
+        CONCAT(DB_USER.firstName, ' ',  DB_USER.lastName)  AS UserName
+
+        FROM DB_OFFERS
+        INNER JOIN DB_USER ON DB_OFFERS.userId = DB_USER.userId
+        INNER JOIN DB_CATEGORY ON DB_OFFERS.offerCategory = DB_CATEGORY.id
+
+        ORDER BY DB_OFFERS.status
+
     </select>
+
 
     <!-- INSERT OFFER -->
     <insert id="createOffer">

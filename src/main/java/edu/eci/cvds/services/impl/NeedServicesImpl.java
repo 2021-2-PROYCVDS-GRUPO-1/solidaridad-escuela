@@ -2,6 +2,7 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Need;
+import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.NeedDAO;
 import edu.eci.cvds.services.NeedServices;
@@ -78,6 +79,36 @@ public class NeedServicesImpl implements NeedServices {
         }
     }
 
+
+
+    @Override
+    public List<Need> testGetAllOffers() {
+        try{
+            return needDAO.getAllNeeds();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public List<Need> getByStatus(String status) throws ServicesException {
+        try{
+            return needDAO.getByStatus(status);
+        }
+        catch (PersistenceException e){
+            throw new ServicesException( e.getMessage(), e );
+        }
+    }
+
+    @Override
+    public int countByStatus(String status) {
+        try{
+            return needDAO.getByStatus(status).size();
+        }catch(PersistenceException e) {
+            return 0;
+        }
+    }
 
 
 

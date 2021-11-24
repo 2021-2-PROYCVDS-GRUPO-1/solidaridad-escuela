@@ -10,14 +10,24 @@ import java.util.Date;
  * @version 19/10/2021
  */
 public class Offer {
+    private int userId;
     private int offerId;
     private int offerCategory;
+
+
     private String name;
-    private String description;
     private String status;
+    private String description;
+
+
     private Date dateCreation;
     private Date dateModification;
-    private int userId;
+
+
+    /* ----- TEMPORAL ------ */
+    private String userName;
+    private String categoryName;
+
 
     public Offer(){}
 
@@ -62,6 +72,22 @@ public class Offer {
     public int getUserId() { return userId; }
 
     public void setUserId(int userId) { this.userId = userId; }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 }
 
 

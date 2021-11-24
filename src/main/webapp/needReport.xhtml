@@ -1,8 +1,8 @@
 <!-- Dropdown menu from: https://tailwindcomponents.com/component/multi-level-dropdown-menu -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
@@ -15,8 +15,8 @@
 
         <!-- MATERIAL ICONS -->
         <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
-            integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
+              href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+              integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
 
         <style>
             .dropdown-menu[data-show] {
@@ -26,21 +26,21 @@
     </h:head>
     <h:body>
         <h:form>
-            <a href="offerReport.xhtml">Crear Oferta</a>
+            <a href="createNeed.xhtml">Crear Necesidad</a>
 
             <p:commandButton  value="XLSX" styleClass="p-mr-2 p-mb-2">
-                <p:dataExporter type="xlsxstream" target="dtOffer" fileName="Reporte de Ofertas"/>
+                <p:dataExporter type="xlsxstream" target="dtNeed" fileName="Reporte de Ofertas"/>
             </p:commandButton>
 
 
             <p:commandButton  value="PDF" styleClass="p-mr-2 p-mb-2">
-                <p:dataExporter type="pdf" target="dtOffer" fileName="Reporte de Ofertas"/>
+                <p:dataExporter type="pdf" target="dtNeed" fileName="Reporte de Ofertas"/>
             </p:commandButton>
 
-            <p:dataTable id='dtOffer'
-                         var="offer"
-                         value="#{offerBean.allOffers}"
-                         rowKey="#{offer.offerId}"
+            <p:dataTable id='dtNeed'
+                         var="need"
+                         value="#{needBean.allNeeds}"
+                         rowKey="#{need.id}"
                          rows="10"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
@@ -48,39 +48,39 @@
                          rowsPerPageTemplate="1,5,10,15"
                          style="margin-bottom:20px">
                 <f:facet name="header">
-                    Listado de Ofertas
+                    Listado de Necesidades
                 </f:facet>
 
-                <p:column headerText="OfferId" >
-                    <p:outputLabel value="#{offer.offerId}" sortBy="#{offer.offerId}"></p:outputLabel>
+                <p:column headerText="NeedId" >
+                    <p:outputLabel value="#{need.id}" sortBy="#{need.id}"></p:outputLabel>
                 </p:column>
 
                 <p:column headerText="Categoría">
-                    <p:outputLabel value="#{offer.categoryName}" ></p:outputLabel>
+                    <p:outputLabel value="#{need.categoryName}" ></p:outputLabel>
                 </p:column>
 
                 <p:column headerText="Nombre" >
-                    <p:outputLabel value="#{offer.name}" ></p:outputLabel>
+                    <p:outputLabel value="#{need.name}" ></p:outputLabel>
                 </p:column>
 
                 <p:column headerText="Descripción" >
-                    <p:outputLabel value="#{offer.name}" ></p:outputLabel>
+                    <p:outputLabel value="#{need.description}" ></p:outputLabel>
                 </p:column>
 
                 <p:column headerText="Fecha de Creación" >
-                    <p:outputLabel value="#{offer.dateCreation}" ></p:outputLabel>
+                    <p:outputLabel value="#{need.creationDate}" ></p:outputLabel>
                 </p:column>
 
                 <p:column headerText="Estado" >
-                    <p:outputLabel value="#{offer.status}" ></p:outputLabel>
+                    <p:outputLabel value="#{need.status}" ></p:outputLabel>
                 </p:column>
 
                 <p:column headerText="Fecha de Modificación" >
-                    <p:outputLabel value="#{offer.dateModification}" ></p:outputLabel>
+                    <p:outputLabel value="#{need.modificationDate}" ></p:outputLabel>
                 </p:column>
 
                 <p:column headerText="UserName" >
-                    <p:outputLabel value="#{offer.userName}" ></p:outputLabel>
+                    <p:outputLabel value="#{need.userName}" ></p:outputLabel>
                 </p:column>
 
 
@@ -93,9 +93,9 @@
 
         </h:form>
 
-        <h:form id="graficas">
+        <h:form id="graficasNeed">
             <h1 align="center">Diagrama circular</h1>
-            <p:chart type="pie" model="#{offerBean.pieModel}" style="width: 50%; height: 500px;margin: auto" />
+            <p:chart type="pie" model="#{needBean.pieModel}" style="width: 50%; height: 500px;margin: auto" />
         </h:form>
 
 
