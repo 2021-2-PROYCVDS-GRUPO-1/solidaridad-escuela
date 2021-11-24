@@ -6,8 +6,10 @@
 
 
 <f:metadata>
-    <f:viewAction action="#{offerBean.getOfferList}" />
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+    <f:viewAction action="#{offerBean.verifyIfUserHasAccess}" />
+    <f:viewAction action="#{offerBean.getOfferList}" />
+    <f:viewAction action="#{offerBean.generateList}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
@@ -20,7 +22,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
             integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
     </h:head>
-    <h:body id="CategoryListBody">
+    <h:body id="OfferListBody">
         <h:form>
             <a href="createOffer.xhtml">Crear Oferta</a>
         </h:form>
@@ -63,6 +65,10 @@
                 </p:panel>
             </p:column>
         </p:dataGrid>
+
+
+
+
     </h:body>
 
 </f:view>

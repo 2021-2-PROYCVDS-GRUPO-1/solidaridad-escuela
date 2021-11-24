@@ -4,16 +4,18 @@ import com.google.inject.Inject;
 import edu.eci.cvds.entities.Category;
 import edu.eci.cvds.entities.Need;
 import edu.eci.cvds.services.*;
-import edu.eci.cvds.utils.DatabaseStatus;
 import edu.eci.cvds.utils.OfferStatus;
 import edu.eci.cvds.utils.Urgency;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-
+import org.primefaces.model.chart.*;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @ManagedBean(name = "needBean")
@@ -27,26 +29,32 @@ public class NeedBean extends BasePageBean{
 
     private int id;
     private int category;
+    private int createdByUser;
+    private int userId;
     private String name;
     private String description;
     private String categoryName;
     private String urgency;
-    private Date creationDate;
+    private String creationDate;
     private String status;
-    private Date modificationDate;
-    private int createdByUser;
-    private int userId;
-
+    private String modificationDate;
+    private Need needToEdit;
     private List<String> statusList;
-    private List<Category> categoryList;
     private List<String> urgencyList;
-
-    private HashMap<String, Integer> categories;
+    private List<Category> categoryList;
+    private List<Need> allNeeds;
     private Collection<String> catTest;
+    private HashMap<String, Integer> categories;
+    private PieChartModel pieModel;
+
 
     @PostConstruct
     public void init(){
         System.out.println("edu.eci.cvds.managedbeans.NeedBean.init()");
+
+        this.generateServices();
+        this.getUserInformation();
+        this.generateList();
 
         statusList = new ArrayList<>();
         categoryList = new ArrayList<>();
@@ -54,9 +62,9 @@ public class NeedBean extends BasePageBean{
 
         categories = new HashMap<String, Integer>();
 
-        this.generateServices();
-        this.getUserInformation();
-        this.generateList();
+        pieModel = createPieModel();
+
+
 
         try{
             // Status
@@ -94,14 +102,34 @@ public class NeedBean extends BasePageBean{
         categories = categoryServices.getCategories();
         catTest = categories.keySet();
 
+        this.allNeeds = needServices.testGetAllOffers();
+        System.out.println(allNeeds);
         //this.offerByUser = offerServices.OfferbyUserId(userId);
+    }
+
+    private PieChartModel createPieModel(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.createPieModel()");
+
+        pieModel = new PieChartModel();
+        pieModel.set("Active", needServices.countByStatus("ACTIVE"));
+        pieModel.set("In Process", needServices.countByStatus("IN PROCESS"));
+        pieModel.set("Solved", needServices.countByStatus("SOLVED"));
+        pieModel.set("Closed", needServices.countByStatus("CLOSED"));
+        pieModel.setTitle("");
+        pieModel.setShowDataLabels(true);
+        pieModel.setDataLabelFormatString("%dK");
+        pieModel.setLegendPosition("e");
+        pieModel.setShowDatatip(true);
+        pieModel.setShowDataLabels(true);
+        pieModel.setDataFormat("value");
+        pieModel.setDataLabelFormatString("%d");
+        pieModel.setSeriesColors("00FF64, ff8c00, 87cefa, B477DE");
+        return pieModel;
+
     }
 
     public void registerNeed(){
         System.out.println("edu.eci.cvds.managedbeans.NeedBean.registerNeed()");
-
-        // TODO -> Traer el id del usuario que necesito
-        int testUser = 0;
 
         try{
             System.out.println("Anadiendo necesidad con con nombre: " + this.name
@@ -109,7 +137,7 @@ public class NeedBean extends BasePageBean{
                     + "\nEstado: " + this.status
                     + "\nCategoría: " + this.category
                     + "\nUrgencia: " + this.urgency
-                    + "\nPor el usuario: " + testUser
+                    + "\nPor el usuario: " + this.userId
                     );
 
             needServices.registerNeed(categories.get(categoryName),
@@ -119,8 +147,97 @@ public class NeedBean extends BasePageBean{
                     this.status,
                     this.userId
                     );
+
+            try{
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
         }catch(Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void updateNeedStatus(){
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.updateNeedStatus()");
+
+        generateList();
+
+        try{
+            needServices.updateStatus(id, status);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteNeed(Need needToDelete) {
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.deleteNeed()");
+
+        try{
+            needServices.deleteNeed(needToDelete.getId());
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void getNeedList(){
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.getNeedList()");
+
+        try {
+            this.allNeeds = needServices.getAllNeeds();
+
+            for(Need need : this.allNeeds){
+                System.out.println(need.getName());
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void goToUpdateNeed(Need need) {
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.goToUpdateNeed()");
+
+        this.needToEdit = need;
+
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/updateNeed.xhtml");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyValidUpdate(){
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.verifyValidUpdate()");
+
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd");
+
+            // TODO -> traer el nombre de la categoría
+            // TODO -> Tengo acceso al ID pero no al nombre, ¿cómo lo traigo?
+
+            if (this.needToEdit.getId() >= 0){
+                this.id = this.needToEdit.getId();
+                // TODO -> plis nombre de la categoría
+                this.categoryName = "LAU CAMBIAME";
+                this.name = this.needToEdit.getName();
+                this.description = this.needToEdit.getDescription();
+                this.urgency = this.needToEdit.getUrgency();
+                this.creationDate = dateFormat.format(this.needToEdit.getCreationDate());
+                this.status = this.needToEdit.getStatus();
+                this.modificationDate = dateFormat.format(this.needToEdit.getModificationDate());
+                this.createdByUser = this.needToEdit.getCreatedByUser();
+            }
+
+            this.needToEdit = null;
+        } catch (Exception e){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+
         }
     }
 
@@ -164,28 +281,12 @@ public class NeedBean extends BasePageBean{
         this.urgency = urgency;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Date getModificationDate() {
-        return modificationDate;
-    }
-
-    public void setModificationDate(Date modificationDate) {
-        this.modificationDate = modificationDate;
     }
 
     public int getCreatedByUser() {
@@ -250,5 +351,61 @@ public class NeedBean extends BasePageBean{
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getModificationDate() {
+        return modificationDate;
+    }
+
+    public void setModificationDate(String modificationDate) {
+        this.modificationDate = modificationDate;
+    }
+
+    public List<Need> getAllNeeds() {
+        return allNeeds;
+    }
+
+    public void setAllNeeds(List<Need> allNeeds) {
+        this.allNeeds = allNeeds;
+    }
+
+    public Need getNeedToEdit() {
+        return needToEdit;
+    }
+
+    public void setNeedToEdit(Need needToEdit) {
+        this.needToEdit = needToEdit;
+    }
+
+    public NeedServices getNeedServices() {
+        return needServices;
+    }
+
+    public void setNeedServices(NeedServices needServices) {
+        this.needServices = needServices;
+    }
+
+    public CategoryServices getCategoryServices() {
+        return categoryServices;
+    }
+
+    public void setCategoryServices(CategoryServices categoryServices) {
+        this.categoryServices = categoryServices;
+    }
+
+    public PieChartModel getPieModel() {
+        return pieModel;
+    }
+
+    public void setPieModel(PieChartModel pieModel) {
+        this.pieModel = pieModel;
     }
 }

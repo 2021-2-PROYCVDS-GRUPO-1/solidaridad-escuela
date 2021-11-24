@@ -4,10 +4,10 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
+
 <f:metadata>
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
-    <f:viewAction action="#{categoryBean.verifyIfUserHasAccess}" />
-    <!-- <f:viewAction action="#{categoryBean.getCategoryList}" /> -->
+    <f:viewAction action="#{needBean.getNeedList}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
@@ -22,39 +22,46 @@
     </h:head>
     <h:body id="CategoryListBody">
         <h:form>
-            <a href="createCategory.xhtml">Crear Categoría</a>
+            <a href="createNeed.xhtml">Crear Necesidad</a>
         </h:form>
 
-        <!-- LISTA DE CATEGORÍAS -->
-        <p:dataGrid var="category" value="#{categoryBean.allCategories}" columns="3" rows="6" paginator="true">
+        <!-- LISTA DE OFERTAS -->
+        <p:dataGrid var="need" value="#{needBean.allNeeds}" columns="3" rows="6" paginator="true">
             <p:column>
-                <p:panel header="#{category.name}">
+                <p:panel header="#{offer.name}">
                     <h:panelGrid columns="1">
                         <div class="user-data-row">
-                            <p:outputLabel value="Nombre: "></p:outputLabel>
-                            <p:outputLabel value="#{category.name}" />
+                            <p:outputLabel value="Nombre: #{need.name}"></p:outputLabel>
                         </div>
                         <div class="user-data-row">
-                            <p:outputLabel value="Status: "></p:outputLabel>
-                            <p:outputLabel value="#{category.state}" />
+                            <p:outputLabel value="Categoría: #{need.category}"></p:outputLabel>
+                        </div>
+                        <div class="user-data-row">
+                            <p:outputLabel value="Creada por: #{need.createdByUser}"></p:outputLabel>
+                        </div>
+                        <div class="user-data-row">
+                            <p:outputLabel value="Status: #{need.status}"></p:outputLabel>
+                        </div>
+                        <div class="user-data-row">
+                            <p:outputLabel value="Urgencia: #{need.urgency}"></p:outputLabel>
                         </div>
                         <div class="user-data-row">
                             <p:outputLabel value="Descripción: "></p:outputLabel>
-                            <p:outputLabel value="#{category.description}" />
+                            <p:outputLabel value="#{need.description}" />
                         </div>
 
                         <div class="user-data-row">
                             <h:form>
-                                <p:commandButton actionListener="#{categoryBean.goToUpdateCategory(category)}"
-                                    value="Editar categoría">
+                                <p:commandButton actionListener="#{needBean.goToUpdateNeed(need)}"
+                                    value="Editar necesidad">
                                 </p:commandButton>
                             </h:form>
                         </div>
 
                         <div class="user-data-row">
                             <h:form>
-                                <p:commandButton actionListener="#{categoryBean.deleteCategory(category)}"
-                                    value="Eliminar categoría">
+                                <p:commandButton actionListener="#{needBean.deleteNeed(need)}"
+                                    value="Eliminar necesidad">
                                 </p:commandButton>
                             </h:form>
                         </div>

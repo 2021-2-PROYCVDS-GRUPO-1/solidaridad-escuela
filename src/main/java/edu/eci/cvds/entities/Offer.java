@@ -10,18 +10,28 @@ import java.util.Date;
  * @version 19/10/2021
  */
 public class Offer {
+    private int userId;
     private int offerId;
-    private String offerCategory;
+    private int offerCategory;
+
+
     private String name;
-    private String description;
     private String status;
+    private String description;
+
+
     private Date dateCreation;
     private Date dateModification;
-    private int userId;
+
+
+    /* ----- TEMPORAL ------ */
+    private String userName;
+    private String categoryName;
+
 
     public Offer(){}
 
-    public Offer(int offerId, String offerCategory, String name, String description, Date dateCreate, Date dateModification){
+    public Offer(int offerId, int offerCategory, String name, String description, Date dateCreate, Date dateModification){
         this.offerId = offerId;
         this.offerCategory = offerCategory;
         this.name = name;
@@ -35,9 +45,9 @@ public class Offer {
 
     public void setOfferId(int offerId) { this.offerId = offerId; }
 
-    public String getOfferCategory() { return offerCategory; }
+    public int getOfferCategory() { return offerCategory; }
 
-    public void setOfferCategory(String offerCategory) { this.offerCategory = offerCategory; }
+    public void setOfferCategory(int offerCategory) { this.offerCategory = offerCategory; }
 
     public String getName() { return name; }
 
@@ -62,6 +72,22 @@ public class Offer {
     public int getUserId() { return userId; }
 
     public void setUserId(int userId) { this.userId = userId; }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 }
 
 

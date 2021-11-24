@@ -20,6 +20,7 @@ public class MyBATISNeedDAO implements NeedDAO {
     @Inject
     private NeedMapper needMapper;
 
+    // CREATE
     @Override
     public void addNecessity(int categoryId,
                              String name,
@@ -44,40 +45,44 @@ public class MyBATISNeedDAO implements NeedDAO {
         }
     }
 
+    // READ
     @Override
-    public void updateStatus(String name, String status) throws PersistenceException{
+    public List<Need> getAllNeeds() throws PersistenceException {
+        try{
+            return needMapper.getAllNeeds();
+        } catch (PersistenceException e) {
+            throw new PersistenceException("Error al consultar la lista de necesidades");
+        }
+    }
+
+    @Override
+    public List<Need> getByStatus(String status) throws PersistenceException {
+        try{
+            return needMapper.getByStatus(status);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistenceException("Error al consultar las ofertas");
+        }
+    }
+
+    // UPDATE
+    @Override
+    public void updateStatus(int id, String status) throws PersistenceException{
         try {
-            needMapper.updateStatus(name,status);
+            needMapper.updateStatus(id, status);
         }catch (Exception exception){
-            throw new PersistenceException("Error al actualizar el estado de la enecesidad");
+            throw new PersistenceException("Error al actualizar el estado de la necesidad");
         }
     }
 
+    // DELETE
     @Override
-    public Need getNeedByName(String name) throws PersistenceException {
+    public void deleteNeed(int needId) throws PersistenceException {
         try{
-            return needMapper.getNeedByName(name);
+            needMapper.deleteNeed(needId);
         } catch (PersistenceException e) {
-            throw new PersistenceException("Error al consultar la necesidad con el nombre: " + name);
+            throw new PersistenceException("Error al eliminar la necesidad con ID: " + needId);
         }
     }
-
-    @Override
-    public Need getNeedByID(int id) throws PersistenceException {
-        try{
-            return needMapper.getNeedByID(id);
-        } catch (PersistenceException e) {
-            throw new PersistenceException("Error al consultar la necesidad con el ID: " + id);
-        }
-    }
-
-    @Override
-    public List<Need> getNeeds() throws PersistenceException {
-        try{
-            return needMapper.getNeeds();
-        } catch (PersistenceException e) {
-            throw new PersistenceException("Error al consultar las necesidades: ");
-        }
-    }
-
 }

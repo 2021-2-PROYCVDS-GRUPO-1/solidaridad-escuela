@@ -1,15 +1,15 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Need;
+import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface NeedServices {
 
-    /**
-     * INSERT
-     */
+    // CREATE
     public void registerNeed(int categoryId,
                              String name,
                              String description,
@@ -17,19 +17,20 @@ public interface NeedServices {
                              String status,
                              int createdByUser) throws ServicesException;
 
+    // READ
+    public List<Need> getAllNeeds() throws ServicesException;
 
-    /**
-     * UPDATE STATE
-     * @param name
-     * @param state
-     * @throws ServicesException
-     */
-    public void updateStatus(String name, String state) throws ServicesException;
+    public List<Need> testGetAllOffers();
 
-    public HashMap<Integer, String> getNeeds();
+    public List<Need> getByStatus(String status) throws  ServicesException;
 
-    //public Need getNeedByID(int id) throws ServicesException;
 
-    //public Need getNeedByName(String name) throws ServicesException;
+    // UPDATE
+    public void updateStatus(int id, String state) throws ServicesException;
+
+    // DELETE
+    public void deleteNeed (int needId) throws ServicesException;
+
+    public int countByStatus(String status);
 
 }
