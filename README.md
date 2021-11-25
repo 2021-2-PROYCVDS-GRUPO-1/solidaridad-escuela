@@ -14,7 +14,8 @@
 
 ## Descripción del producto
 
-###Descripción General
+### Descripción General
+
 La _**Plataforma Solidaridad Escuela**_, es una herramienta para generar un entorno de comunicación y ayuda 
 dentro de la comunidad de la Escuela Colombiana de Ingeniería Julio Garavito. El sistema permite que los 
 estudiantes puedan expresar las necesidades que puedan tener de algún elemento para poder desarrollar sus 
@@ -97,7 +98,7 @@ _¿Cómo crear una respuesta?_
 
 _**Imagen crear Respuesta**_
 
-> ####**CONSULTAS.**
+> #### **CONSULTAS.**
 
 * _Consultar categoría._
 
@@ -108,14 +109,14 @@ dos botones:
 
 _**Imagen lista de categorías**_
 
-    * Eliminar Categoría: Eliminará la categoría seleccionada.
+* Eliminar Categoría: Eliminará la categoría seleccionada.
 
-    * Editar Categoría: Redireccionará al apartado de editar categoría. En este es posible cambiar el nombre, el estado 
-      y la descripción de la categoría. 
+* Editar Categoría: Redireccionará al apartado de editar categoría. En este es posible cambiar el nombre, el estado 
+y la descripción de la categoría. 
 
-    _**Imagen editar categoría**_
+_**Imagen editar categoría**_
 
-> ####**CONSULTAS.**
+
 
 * _Consultar Categorías._
 
@@ -126,12 +127,14 @@ dos botones:
 
 _**Imagen lista de categorías**_
 
-    * Eliminar Categoría: Eliminará la categoría seleccionada.
+* Eliminar Categoría: Eliminará la categoría seleccionada.
 
-    * Editar Categoría: Redireccionará al apartado de editar categoría. En este es posible cambiar el nombre, el estado 
-      y la descripción de la categoría. 
+* Editar Categoría: Redireccionará al apartado de editar categoría. En este es posible cambiar el nombre, el estado 
+y la descripción de la categoría. 
 
-    _**Imagen editar categoría**_
+_**Imagen editar categoría**_
+
+
 
 * _Consultar Ofertas._
 
@@ -142,12 +145,12 @@ dos botones:
 
 _**Imagen lista de ofertas**_
 
-    * Eliminar Oferta: Eliminará la oferta seleccionada.
+* Eliminar Oferta: Eliminará la oferta seleccionada.
 
-    * Editar Oferta: Redireccionará al apartado de editar oferta. En este es posible cambiar únicamente el estado de la
-      oferta
+* Editar Oferta: Redireccionará al apartado de editar oferta. En este es posible cambiar únicamente el estado de la
+oferta
 
-    _**Imagen editar oferta**_
+_**Imagen editar oferta**_
 
 * _Consultar Necesidades._
 
@@ -156,14 +159,14 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las necesidades que pertenecen al usuario que se encuentra logeado en la aplicación junto a
 dos botones:
 
-_**Imagen lista de ofertas**_
+_**Imagen lista de necesidades**_
 
-    * Eliminar Necesidad: Eliminará la necesidad seleccionada.
+* Eliminar Necesidad: Eliminará la necesidad seleccionada.
 
-    * Editar Oferta: Redireccionará al apartado de editar necesidad. En este es posible cambiar únicamente el estado de la
-      necesidad
+* Editar Oferta: Redireccionará al apartado de editar necesidad. En este es posible cambiar únicamente el estado de la
+necesidad
 
-    _**Imagen editar necesidad**_
+_**Imagen editar necesidad**_
 
 
 ### _Tecnologías utilizadas_
