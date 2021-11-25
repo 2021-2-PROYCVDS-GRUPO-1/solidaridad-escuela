@@ -131,7 +131,7 @@
                             class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String"
                             value="#{offerBean.name}" />
 
-                        <p:selectOneMenu id="createOfferState" value="#{offerBean.status}" style="width:125px">
+                        <p:selectOneMenu id="createOfferState" value="#{offerBean.status}" style="width:200px">
                             <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
                             <f:selectItems value="#{offerBean.statusList}" />
                         </p:selectOneMenu>
@@ -140,7 +140,7 @@
 
                     <!-- ROW 2 -->
                     <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <p:selectOneMenu id="createOfferCategory" value="#{offerBean.categoryName}" style="width:125px">
+                        <p:selectOneMenu id="createOfferCategory" value="#{offerBean.categoryName}" style="width:200px">
                             <f:selectItem itemLabel="Seleccione una Categoria" itemValue="" />
                             <f:selectItems value="#{offerBean.catTest}" />
                         </p:selectOneMenu>

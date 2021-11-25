@@ -132,12 +132,12 @@
                             value="#{answerBean.name}" placeholder="Nombre de la categoría" />
                         <!--h:inputText id="idoffer" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.idOffer}" placeholder="Nombre de la categoría"/-->
                         <!--h:inputText id="idneeds" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{answerBean.idNeeds}" placeholder="Nombre de la categoría"/-->
-                        <p:selectOneMenu id="createNeedCategory" value="#{answerBean.nameNeed}" style="width:125px">
-                            <f:selectItem itemLabel="Seleccione una Need" itemValue="" />
+                        <p:selectOneMenu id="createNeedCategory" value="#{answerBean.nameNeed}" style="width:225px">
+                            <f:selectItem itemLabel="Seleccione una Necesidad" itemValue="" />
                             <f:selectItems value="#{answerBean.listNeeds}" />
                         </p:selectOneMenu>
-                        <p:selectOneMenu id="createOfferCategory" value="#{answerBean.nameOffer}" style="width:125px">
-                            <f:selectItem itemLabel="Seleccione una Offer" itemValue="" />
+                        <p:selectOneMenu id="createOfferCategory" value="#{answerBean.nameOffer}" style="width:225 px">
+                            <f:selectItem itemLabel="Seleccione una Oferta" itemValue="" />
                             <f:selectItems value="#{answerBean.listOffer}" />
                         </p:selectOneMenu>
                         <!--p:outputLabel  for="@next" value="Basic"/-->
