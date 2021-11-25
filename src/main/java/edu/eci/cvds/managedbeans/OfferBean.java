@@ -60,8 +60,8 @@ public class OfferBean extends BasePageBean{
     private Offer offerToEdit;
 
     private List<Offer> allOffers;
+    private List<Offer> offerByUser;
     private List<String> statusList;
-    private List<String> offerByUser;
     private Collection<String> catTest;
     private HashMap<String, Integer> categories;
 
@@ -117,7 +117,7 @@ public class OfferBean extends BasePageBean{
         this.categories = categoryServices.getCategories();
         catTest = categories.keySet();
 
-        this.offerByUser = offerServices.OfferbyUserId(userId);
+        this.offerByUser = offerServices.getByUserID(userId);
 
         this.allOffers = offerServices.testGetAllOffers();
         System.out.println(allOffers);
@@ -352,11 +352,11 @@ public class OfferBean extends BasePageBean{
 
     public void setCatTest(Collection<String> catTest) { this.catTest = catTest; }
 
-    public List<String> getOfferByUser() {
+    public List<Offer> getOfferByUser() {
         return offerByUser;
     }
 
-    public void setOfferByUser(List<String> offerByUser) {
+    public void setOfferByUser(List<Offer> offerByUser) {
         this.offerByUser = offerByUser;
     }
 

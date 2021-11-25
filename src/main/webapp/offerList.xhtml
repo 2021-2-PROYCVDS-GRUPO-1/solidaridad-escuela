@@ -28,7 +28,7 @@
         </h:form>
 
         <!-- LISTA DE OFERTAS -->
-        <p:dataGrid var="offer" value="#{offerBean.allOffers}" columns="3" rows="6" paginator="true">
+        <p:dataGrid var="offer" value="#{offerBean.offerByUser}" columns="3" rows="6" paginator="true">
             <p:column>
                 <p:panel header="#{offer.name}">
                     <h:panelGrid columns="1">

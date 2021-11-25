@@ -46,13 +46,14 @@ public class OfferServicesImpl implements OfferServices {
     }
 
     @Override
-    public List<Offer> getByUserID(int userId) throws ServicesException {
+    public List<Offer> getByUserID(int userId) {
         try{
             return offerDAO.getByUserId(userId);
         }
         catch (PersistenceException e){
-            throw new ServicesException( e.getMessage(), e );
+            System.out.println(e.getMessage());;
         }
+        return null;
     }
 
     @Override
