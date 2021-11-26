@@ -61,6 +61,16 @@ public class CategoryServicesImpl implements CategoryServices {
     }
 
     @Override
+    public List<Category> getReportCategory() throws ServicesException {
+        try {
+            return categoryDAO.getReportCategory();
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            throw new ServicesException("Error al dar el reporte de las categorías");
+        }
+    }
+
+    @Override
     public void addCategory(String name, String description, String state) throws ServicesException {
         try{
             categoryDAO.addCategory(name, description, state);

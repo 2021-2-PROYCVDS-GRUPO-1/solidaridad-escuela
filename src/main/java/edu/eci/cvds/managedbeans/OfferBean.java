@@ -6,6 +6,7 @@ import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.CategoryServices;
 import edu.eci.cvds.services.OfferServices;
+import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.services.UserServices;
 import edu.eci.cvds.utils.DatabaseStatus;
 import edu.eci.cvds.utils.OfferStatus;
@@ -114,7 +115,11 @@ public class OfferBean extends BasePageBean{
     public void generateList(){
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.generateList()");
 
-        this.categories = categoryServices.getCategories();
+        try {
+            this.categories = categoryServices.getCategories();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
         catTest = categories.keySet();
 
         this.offerByUser = offerServices.OfferbyUserId(userId);
