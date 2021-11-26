@@ -7,25 +7,49 @@
     <!-- GET CATEGORY NAME -->
     <select parameterType="map" id="getCategoryName" resultMap="categoryResult">
         SELECT
-        Id AS c_id,
-        Name AS c_name,
-        Description AS c_description,
-        Date_Create AS c_dateCreate,
-        State AS c_state,
-        Date_Modification AS c_dateModification
+        id AS id,
+        name AS name,
+        description AS description,
+        date_Create AS date_Create,
+        state AS state,
+        date_Modification AS date_Modification
         FROM DB_Category
         WHERE #{name} = Name;
+    </select>
+
+    <!-- GET CATEGORY NAME -->
+    <select parameterType="map" id="getReportCategory" resultMap="categoryResult">
+        SELECT
+            name AS name,
+            offer AS offer,
+            need AS need,
+            sum(offer+need) AS total
+        FROM(
+                SELECT
+                    DB_Category.name,
+                    count(DB_OFFERS.name) AS OFFER
+                from DB_Category
+                         FULL JOIN DB_OFFERS ON DB_Category.id = DB_OFFERS.offercategory
+                GROUP BY DB_Category.name) AS T1
+                FULL OUTER JOIN(
+            SELECT
+                DB_Category.name AS nname,
+                COUNT(DB_NEEDS.category) AS NEED
+            FROM DB_Category
+                     LEFT JOIN DB_NEEDS ON DB_Category.id = DB_NEEDS.category
+            GROUP BY DB_Category.name) AS T2 ON T1.name = T2.nname
+        GROUP BY name, nname, OFFER, NEED
     </select>
 
     <!-- GET CATEGORY ID -->
     <select parameterType="map" id="getCategoryId" resultMap="categoryResult">
         SELECT
-        Id AS c_id,
-        Name AS c_name,
-        Description AS c_description,
-        Date_Create AS c_dateCreate,
-        State AS c_state,
-        Date_Modification AS c_dateModification
+        id AS id,
+        name AS name,
+        description AS description,
+        date_Create AS date_Create,
+        state AS state,
+        date_Modification AS date_Modification
         FROM DB_Category
         WHERE #{id} = Id;
     </select>
@@ -36,9 +60,9 @@
         id,
         name,
         description,
-        Date_Create AS dateCreate,
-        State AS state,
-        Date_Modification AS dateModification
+        date_Create AS date_Create,
+        state AS state,
+        date_Modification AS date_Modification
         FROM DB_Category;
     </select>
 
@@ -55,12 +79,12 @@
 
     <select parameterType="map" id="getCategories" resultMap="categoryResult">
         SELECT
-        Id AS id,
-        Name AS name,
-        Description AS description,
-        Date_Create AS dateCreate,
-        State AS state,
-        Date_Modification AS dateModification
+        id AS id,
+        name AS name,
+        description AS description,
+        date_Create AS date_Create,
+        state AS state,
+        date_Modification AS date_Modification
         FROM DB_Category
 
     </select>
@@ -71,12 +95,15 @@
     </delete>
 
     <resultMap id="categoryResult" type="Category" >
-        <id property="Id" column="c_id"/>
-        <result property="Name" column="c_name" />
-        <result property="Description" column="c_description" />
-        <result property="Date_Creation" column="c_dateCreate" />
-        <result property="State" column="c_state" />
-        <result property="Date_Modification" column="c_dateModification" />
+        <id property="id" column="id"/>
+        <result property="name" column="name" />
+        <result property="offer" column="offer" />
+        <result property="need" column="need" />
+        <result property="total" column="total" />
+        <result property="description" column="description" />
+        <result property="date_Create" column="date_Create" />
+        <result property="state" column="state" />
+        <result property="date_Modification" column="date_Modification" />
     </resultMap>
 
 

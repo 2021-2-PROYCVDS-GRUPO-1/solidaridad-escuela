@@ -96,10 +96,14 @@ public class NeedBean extends BasePageBean{
         this.userId = (int) subject.getSession().getAttribute("userId");
     }
 
-    public void generateList(){
+    public void generateList() {
         System.out.println("edu.eci.cvds.managedbeans.NeedBean.generateList()");
 
-        categories = categoryServices.getCategories();
+        try {
+            categories = categoryServices.getCategories();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
         catTest = categories.keySet();
 
         this.allNeeds = needServices.testGetAllOffers();

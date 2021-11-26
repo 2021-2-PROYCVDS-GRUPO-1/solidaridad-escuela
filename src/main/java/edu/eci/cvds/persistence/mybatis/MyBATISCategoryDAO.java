@@ -56,6 +56,15 @@ public class MyBATISCategoryDAO implements CategoryDAO {
     }
 
     @Override
+    public List<Category> getReportCategory() throws PersistenceException {
+        try {
+            return categoryMapper.getReportCategory();
+        }catch (PersistenceException e){
+            throw new PersistenceException("Error al dar el reporte de las Categorias");
+        }
+    }
+
+    @Override
     public void addCategory(String name, String description, String state) throws PersistenceException {
         try{
             categoryMapper.addCategory(name, description, state);

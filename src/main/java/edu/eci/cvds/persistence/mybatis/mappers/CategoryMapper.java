@@ -22,6 +22,8 @@ public interface CategoryMapper {
 
     public List<Category> getCategories() throws PersistenceException;
 
+    public List<Category> getReportCategory() throws PersistenceException;
+
     public void addCategory(@Param("name") String name,
                             @Param("description") String description,
                             @Param("state") String state) throws PersistenceException;
