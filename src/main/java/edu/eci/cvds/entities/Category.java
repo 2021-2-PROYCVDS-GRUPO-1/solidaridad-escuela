@@ -85,10 +85,6 @@ public class Category {
         this.name = name;
     }
 
-    public Date getDateCreate() {
-        return date_Create;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -109,19 +105,19 @@ public class Category {
         this.total = total;
     }
 
-    public Date getDate_Create() {
+    public Date getDateCreate() {
         return date_Create;
     }
 
-    public void setDate_Create(Date date_Create) {
+    public void setDateCreate(Date date_Create) {
         this.date_Create = date_Create;
     }
 
-    public Date getDate_Modification() {
+    public Date getDateModification() {
         return date_Modification;
     }
 
-    public void setDate_Modification(Date date_Modification) {
+    public void setDateModification(Date date_Modification) {
         this.date_Modification = date_Modification;
     }
 }

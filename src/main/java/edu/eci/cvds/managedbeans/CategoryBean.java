@@ -157,8 +157,8 @@ public class CategoryBean extends BasePageBean{
                 this.state = this.categoryToEdit.getState();
                 this.name = this.categoryToEdit.getName();
                 this.description = this.categoryToEdit.getDescription();
-                this.dateCreate = dateFormat.format(this.categoryToEdit.getDate_Create());
-                this.dateModification = dateFormat.format(this.categoryToEdit.getDate_Modification());
+                this.dateCreate = dateFormat.format(this.categoryToEdit.getDateCreate());
+                this.dateModification = dateFormat.format(this.categoryToEdit.getDateModification());
             }
 
             this.categoryToEdit = null;
