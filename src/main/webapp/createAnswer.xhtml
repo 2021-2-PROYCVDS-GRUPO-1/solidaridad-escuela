@@ -22,6 +22,18 @@
             .dropdown-menu[data-show] {
                 display: flex;
             }
+
+            body {
+                height: 100vh;
+
+                /* --- */
+                background-color: #1f2029;
+                overflow: hidden;
+                background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+                background-position: center;
+                background-repeat: repeat;
+                background-size: 4%;
+            }
         </style>
     </h:head>
     <h:body>
@@ -159,8 +171,8 @@
                         value="Crear una Respuestas" actionListener="#{answerBean.createAnswer}"
                         update="categoryCreate" />
                     <h:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500"
-                                     value="Crear una Respuestas" actionListener="#{answerBean.consultAnswer}"
-                                     update="categoryCreate" />
+                        value="Crear una Respuestas" actionListener="#{answerBean.consultAnswer}"
+                        update="categoryCreate" />
 
                     <!-- ROW 3 END -->
                 </h:form>

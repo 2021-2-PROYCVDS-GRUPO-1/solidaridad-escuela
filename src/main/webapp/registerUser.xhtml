@@ -12,95 +12,267 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
         </link>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                background: #f6f5f7;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-family: 'Montserrat', sans-serif;
+                height: 100vh;
+                margin: -20px 0 50px;
+
+                /* --- */
+                background-color: #1f2029;
+                overflow: hidden;
+                background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+                background-position: center;
+                background-repeat: repeat;
+                background-size: 4%;
+            }
+
+
+
+            h1 {
+                font-weight: bold;
+                margin: 0;
+            }
+
+            h2 {
+                text-align: center;
+            }
+
+            p {
+                font-size: 14px;
+                font-weight: 100;
+                line-height: 20px;
+                letter-spacing: 0.5px;
+                margin: 20px 0 30px;
+            }
+
+            span {
+                font-size: 12px;
+            }
+
+            a {
+                color: #333;
+                font-size: 14px;
+                text-decoration: none;
+                margin: 15px 0;
+            }
+
+            button {
+                border-radius: 20px;
+                border: 1px solid #FF4B2B;
+                background-color: #FF4B2B;
+                color: #FFFFFF;
+                font-size: 12px;
+                font-weight: bold;
+                padding: 12px 45px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                transition: transform 80ms ease-in;
+            }
+
+            button:active {
+                transform: scale(0.95);
+            }
+
+            button:focus {
+                outline: none;
+            }
+
+            button.ghost {
+                background-color: transparent;
+                border-color: #FFFFFF;
+            }
+
+            form {
+                background-color: #FFFFFF;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                padding: 0 50px;
+                height: 100%;
+                text-align: center;
+            }
+
+            input {
+                background-color: #eee;
+                border: none;
+                padding: 12px 15px;
+                margin: 8px 0;
+                width: 100%;
+            }
+
+            .container {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+                    0 10px 10px rgba(0, 0, 0, 0.22);
+                position: relative;
+                overflow: hidden;
+                width: 900px;
+                max-width: 100%;
+                min-height: 480px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /* min-height: 780px; */
+            }
+
+            /* CUSTOM STYLES */
+            .my-button {
+                margin-top: 10px !important;
+                /* background-color: rebeccapurple; */
+                width: 100%;
+            }
+
+            h1 {
+                margin-bottom: 15px;
+                font-size: 2rem;
+            }
+
+            .row {
+                /* background-color: rebeccapurple; */
+                width: 100%;
+                margin: 10px 0;
+                text-align: start;
+            }
+
+            #registerUserForm {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr; */
+                grid-template-rows: 1fr min-content min-content min-content min-content min-content 1fr;
+                gap: 10px 5px;
+                grid-template-areas:
+                    "title title"
+                    ". ."
+                    ". ."
+                    ". ."
+                    ". ."
+                    "needs needs"
+                    "button button";
+            }
+
+            .register-user-title {
+                grid-area: title;
+            }
+
+            .register-user-button {
+                grid-area: button;
+            }
+
+            .register-user-max-needs {
+                grid-area: needs;
+            }
+
+            .register-user-button button {
+                width: 100%;
+            }
+
+            #registerUserForm:createUserRole {
+                width: 100%;
+            }
+
+            body .ui-selectonemenu {
+                vertical-align: auto !important;
+            }
+
+            .form-container {
+                flex: 1;
+            }
+        </style>
     </h:head>
     <h:body>
         <!-- REGISTER USER FORM -->
-        <div class="container max-w-3xl bg-yellow-300 mt-12 mx-auto">
-            <h2 class="text-center text-3xl">Registrar Usuario</h2>
+        <div class="container">
+            <div class="form-container sign-up-container">
+                <h:form id="registerUserForm">
+                    <h1 class="register-user-title">Registrar Usuario</h1>
+                    <!-- ROW START -->
+                    <div class="">
+                        <p:inputText id="createUserID" placeholder="Número de documento" type="String"
+                            value="#{userBean.userId}" />
+                    </div>
+                    <!-- ROW END -->
 
-            <h:form id="registerUserForm" class="flex flex-col">
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <h:outputText value="Número de identificación" />
-                    <p:inputText id="createUserID" styleClass="input-text" type="String" value="#{userBean.userId}" />
-                </div>
-                <!-- ROW END -->
+                    <!-- ROW START -->
 
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <p:selectOneMenu name="createUserState" id="createUserState"
-                        class="flex-1 rounded pl-4 border-2 border-gray-500" value="#{userBean.status}">
+                    <p:selectOneMenu name="createUserState" id="createUserState" value="#{userBean.status}">
                         <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
                         <f:selectItems value="#{userBean.statusList}" />
                     </p:selectOneMenu>
-                </div>
-                <!-- ROW END -->
 
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <h:outputText value="Nombre" />
-                    <p:inputText id="createUserName" styleClass="input-text" type="String"
-                        value="#{userBean.firstName}" />
-                </div>
-                <!-- ROW END -->
+                    <!-- ROW END -->
 
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <h:outputText value="Apellidos" />
-                    <p:inputText id="createUserLastname" styleClass="input-text" type="String"
-                        value="#{userBean.lastname}" />
-                </div>
-                <!-- ROW END -->
+                    <!-- ROW START -->
+                    <div class="">
+                        <p:inputText id="createUserName" placeholder="Nombre" type="String"
+                            value="#{userBean.firstName}" />
+                    </div>
+                    <!-- ROW END -->
 
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <h:outputText value="Correo electrónico" />
-                    <p:inputText id="createUserEmail" styleClass="input-text" type="String" value="#{userBean.email}" />
-                </div>
-                <!-- ROW END -->
+                    <!-- ROW START -->
+                    <div class="">
+                        <p:inputText id="createUserLastname" placeholder="Apellidos" type="String"
+                            value="#{userBean.lastname}" />
+                    </div>
+                    <!-- ROW END -->
 
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <h:outputText value="Username" />
-                    <p:inputText id="createUserUsername" styleClass="input-text" type="String"
-                        value="#{userBean.username}" />
-                </div>
-                <!-- ROW END -->
+                    <!-- ROW START -->
+                    <div class="">
+                        <p:inputText id="createUserEmail" placeholder="Correo electrónico" type="String"
+                            value="#{userBean.email}" />
+                    </div>
+                    <!-- ROW END -->
 
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <h:outputText value="Contraseña:" />
-                    <p:password id="createUserPassword" styleClass="input-text" type="String"
-                        value="#{userBean.password}" />
-                </div>
-                <!-- ROW END -->
+                    <!-- ROW START -->
+                    <div class="">
+                        <p:inputText id="createUserUsername" placeholder="Username" type="String"
+                            value="#{userBean.username}" />
+                    </div>
+                    <!-- ROW END -->
 
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <p:selectOneMenu name="createUserRole" id="createUserRole"
-                        class="flex-1 rounded pl-4 border-2 border-gray-500" value="#{userBean.role}">
+                    <!-- ROW START -->
+                    <div class="">
+                        <p:password id="createUserPassword" placeholder="Contraseña" type="String"
+                            value="#{userBean.password}" />
+                    </div>
+                    <!-- ROW END -->
+
+                    <!-- ROW START -->
+                    <p:selectOneMenu name="createUserRole" id="createUserRole" value="#{userBean.role}">
                         <f:selectItem itemLabel="Seleccione un rol" itemValue="" />
                         <f:selectItems value="#{userBean.userRoleList}" />
                     </p:selectOneMenu>
-                </div>
-                <!-- ROW END -->
+                    <!-- ROW END -->
 
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <h:outputText value="Máximo de necesidades" />
-                    <p:inputText id="createUserMaxNeeds" styleClass="input-text" type="String"
-                        value="#{userBean.maxNeeds}" />
-                </div>
-                <!-- ROW END -->
+                    <!-- ROW START -->
+                    <div class="register-user-max-needs">
+                        <p:inputText id="createUserMaxNeeds" placeholder="Máximo de necesidades" type="String"
+                            value="#{userBean.maxNeeds}" />
+                    </div>
+                    <!-- ROW END -->
 
-                <!-- ROW START -->
-                <div class="flex bg-green-400 px-2 my-4 h-8">
-                    <p:commandButton styleClass="myButton" actionListener="#{userBean.createUser}"
-                        update="registerUserForm" value="Ingresar">
-                    </p:commandButton>
-                </div>
-                <!-- ROW END -->
-            </h:form>
+                    <!-- ROW START -->
+                    <div class="register-user-button">
+                        <p:commandButton actionListener="#{userBean.createUser}" update="registerUserForm"
+                            value="Ingresar">
+                        </p:commandButton>
+                    </div>
+                    <!-- ROW END -->
+                </h:form>
+            </div>
+
         </div>
     </h:body>
 </f:view>
