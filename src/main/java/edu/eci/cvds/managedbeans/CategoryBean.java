@@ -51,6 +51,9 @@ public class CategoryBean extends BasePageBean{
         // TODO -> crear una funcion que genere los servicios, como en OfferBean
         categoryServices = getInjector().getInstance(CategoryServices.class);
         statusList = new ArrayList<>();
+
+        this.resetFields();
+
         try {
             reportCategories = categoryServices.getReportCategory();
         } catch (ServicesException e) {
@@ -88,6 +91,7 @@ public class CategoryBean extends BasePageBean{
 
         try{
             categoryServices.addCategory(this.name, this.description, this.state);
+            this.resetFields();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/categoryList.xhtml");
         }catch(Exception e){
             e.printStackTrace();
@@ -99,6 +103,7 @@ public class CategoryBean extends BasePageBean{
 
         try{
             categoryServices.upCategoryId(id, name, description, state);
+            this.resetFields();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/categoryList.xhtml");
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -160,8 +165,8 @@ public class CategoryBean extends BasePageBean{
                 this.dateCreate = dateFormat.format(this.categoryToEdit.getDateCreate());
                 this.dateModification = dateFormat.format(this.categoryToEdit.getDateModification());
             }
-
             this.categoryToEdit = null;
+            //this.resetFields();
         } catch (Exception e){
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/categoryList.xhtml");
@@ -218,6 +223,14 @@ public class CategoryBean extends BasePageBean{
         pieModel2.setDataLabelFormatString("%d");
         //pieModel2.setSeriesColors("00FF64, ff8c00, 87cefa, B477DE");
 
+    }
+
+    public void resetFields(){
+        System.out.println("edu.eci.cvds.managedbeans.CategoryBean.resetFields()");
+
+        this.name = "";
+        this.description = "";
+        this.state = "";
     }
 
     public int getId() {
