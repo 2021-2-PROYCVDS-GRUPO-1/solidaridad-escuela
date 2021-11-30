@@ -53,6 +53,8 @@ public class UserBean extends BasePageBean{
 
         userServices = getInjector().getInstance(UserServices.class);
 
+        this.resetFields();
+
         try{
             for(DatabaseStatus status : DatabaseStatus.values()){
                 System.out.println(status.toString());
