@@ -6,6 +6,7 @@ import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.CategoryServices;
 import edu.eci.cvds.services.OfferServices;
+import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.services.UserServices;
 import edu.eci.cvds.utils.DatabaseStatus;
 import edu.eci.cvds.utils.OfferStatus;
@@ -73,6 +74,8 @@ public class OfferBean extends BasePageBean{
 
         this.verifyValidUpdate();
 
+        this.resetFields();
+
         generateServices();
         getUserInformation();
         generateList();
@@ -114,7 +117,11 @@ public class OfferBean extends BasePageBean{
     public void generateList(){
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.generateList()");
 
-        this.categories = categoryServices.getCategories();
+        try {
+            this.categories = categoryServices.getCategories();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
         catTest = categories.keySet();
 
         this.offerByUser = offerServices.getByUserID(userId);
@@ -165,8 +172,6 @@ public class OfferBean extends BasePageBean{
     }
 
 
-
-
     public void createOffer(){
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.createOffer()");
 
@@ -176,6 +181,7 @@ public class OfferBean extends BasePageBean{
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
             offerServices.createOffer(categories.get(categoryName), name, description, userId);
+            this.resetFields();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
         }catch(Exception e){
             e.printStackTrace();
@@ -258,6 +264,8 @@ public class OfferBean extends BasePageBean{
             }
 
             this.offerToEdit = null;
+
+            this.resetFields();
         } catch (Exception e){
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
@@ -280,6 +288,15 @@ public class OfferBean extends BasePageBean{
         } catch (Exception ex){
             ex.printStackTrace();
         }*/
+    }
+
+    public void resetFields(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.resetFields()");
+
+        this.categoryName = "";
+        this.name = "";
+        this.description = "";
+        this.status = "";
     }
 
     public OfferServices getOfferServices() { return offerServices; }

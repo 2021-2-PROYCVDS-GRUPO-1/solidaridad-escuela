@@ -22,7 +22,8 @@ public interface CategoryServices {
     public Category getCategoryName(String name) throws ServicesException;
     public Category getCategoryId(int id) throws ServicesException;
     public List<Category> getAllCategories() throws ServicesException;
-    public HashMap<String, Integer> getCategories();
+    public HashMap<String, Integer> getCategories() throws ServicesException;;
+    public List<Category> getReportCategory() throws ServicesException;;
 
     /*
     INSERT
