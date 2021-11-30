@@ -76,15 +76,17 @@ public class UserBean extends BasePageBean{
                 "\nStatus: " + this.status +
                 "\nFirst Name: " + this.firstName +
                 "\nLastname: " + this.lastname +
-                "\nEmail: " + this.lastname +
+                "\nEmail: " + this.email +
                 "\nUsername: " + this.username +
                 "\nPassword: " + this.password +
                 "\nRole: " + this.role +
                 "\nMax needs: " + this.maxNeeds);
         try{
             userServices.registerUser(this.userId,this.status
-                    ,this.firstName,this.lastname,this.lastname,
+                    ,this.firstName,this.lastname,this.email,
                     this.username, new Sha256Hash(this.password).toHex(),this.role, this.maxNeeds);
+
+            this.resetFields();
 
             FacesContext.getCurrentInstance().getExternalContext().redirect("/userList.xhtml");
 
@@ -111,6 +113,8 @@ public class UserBean extends BasePageBean{
                     ,this.firstName,this.lastname,this.lastname,
                     this.username, new Sha256Hash(this.password).toHex(),this.role, this.maxNeeds, this.databaseId);
 
+            this.resetFields();
+
             FacesContext.getCurrentInstance().getExternalContext().redirect("/userList.xhtml");
         }catch(Exception e){
             e.printStackTrace();
@@ -127,6 +131,20 @@ public class UserBean extends BasePageBean{
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void resetFields(){
+        System.out.println("edu.eci.cvds.managedbeans.UserBean.resetFields()");
+
+        this.userId = 0;
+        this.status = "";
+        this.firstName = "";
+        this.lastname = "";
+        this.email = "";
+        this.username = "";
+        this.password = "";
+        this.role = "";
+        this.maxNeeds = 0;
     }
 
 
