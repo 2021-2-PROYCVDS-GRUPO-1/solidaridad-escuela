@@ -1,5 +1,5 @@
 # Solidaridad Escuela
-## CICLOS DE VIDA Y DESARROLLO DE SOFTWARE / 2021-1
+## CICLOS DE VIDA Y DESARROLLO DE SOFTWARE / 2021-2
 
 # Integrantes
 |     Nombre    |     Rol         |
