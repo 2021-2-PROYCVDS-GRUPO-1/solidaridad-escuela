@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface NeedDAO {
     // CREATE
-    public void addNecessity(@Param("categoryId") int categoryId,
+    public void registerNeed(@Param("categoryId") int categoryId,
                              @Param("name") String name,
                              @Param("description") String description,
                              @Param("urgency") String urgency,

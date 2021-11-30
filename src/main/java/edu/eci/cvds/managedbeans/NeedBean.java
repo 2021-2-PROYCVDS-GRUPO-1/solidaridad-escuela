@@ -52,6 +52,8 @@ public class NeedBean extends BasePageBean{
     public void init(){
         System.out.println("edu.eci.cvds.managedbeans.NeedBean.init()");
 
+        categories = new HashMap<String, Integer>();
+
         this.generateServices();
         this.getUserInformation();
         this.generateList();
@@ -60,7 +62,7 @@ public class NeedBean extends BasePageBean{
         categoryList = new ArrayList<>();
         urgencyList = new ArrayList<>();
 
-        categories = new HashMap<String, Integer>();
+
 
         pieModel = createPieModel();
 
@@ -143,6 +145,18 @@ public class NeedBean extends BasePageBean{
                     + "\nUrgencia: " + this.urgency
                     + "\nPor el usuario: " + this.userId
                     );
+
+            System.out.println("--- NEED SERVICES ---");
+            System.out.println(needServices);
+
+            System.out.println("--- CATEGORIES ---");
+            System.out.println(categories.keySet().toString());
+
+            System.out.println("--- CATEGORY NAME ---");
+            System.out.println(categoryName);
+
+            System.out.println("--- CATEGORY GET NAME ---");
+            System.out.println(categories.get(categoryName));
 
             needServices.registerNeed(categories.get(categoryName),
                     this.name,

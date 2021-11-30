@@ -46,35 +46,8 @@ public class AnswerBean extends BasePageBean{
     public void init() {
         System.out.println("edu.eci.cvds.managedbeans.AnswerBean.init()");
 
-        statusList = new ArrayList<>();
-
-        answerServices = getInjector().getInstance(AnswerServices.class);
-        offerServices = getInjector().getInstance(OfferServices.class);
-        needServices = getInjector().getInstance(NeedServices.class);
-
-        listIdOffer = offerServices.getOffers();
-        listOffer = listIdOffer.values();
-        try {
-            listIdNeeds = needServices.getNeeds();
-        } catch (ServicesException e) {
-            e.printStackTrace();
-        }
-        try {
-            this.allAnswer = answerServices.getAnsOfferNeed();
-        } catch (ServicesException e) {
-            e.printStackTrace();
-        }
-        listNeeds = listIdNeeds.values();
-
-        try{
-            for(DatabaseStatus status : DatabaseStatus.values()){
-                System.out.println(status.toString());
-                statusList.add(status.toString());
-            }
-        }
-        catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        this.generateServices();
+        this.generateLists();
     }
 
     public void createAnswer() {
@@ -96,6 +69,44 @@ public class AnswerBean extends BasePageBean{
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void generateServices(){
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.generateServices()");
+
+        answerServices = getInjector().getInstance(AnswerServices.class);
+        offerServices = getInjector().getInstance(OfferServices.class);
+        needServices = getInjector().getInstance(NeedServices.class);
+    }
+
+    public void generateLists(){
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.generateLists()");
+
+        statusList = new ArrayList<>();
+        listIdOffer = offerServices.getOffers();
+        listOffer = listIdOffer.values();
+
+        try {
+            listIdNeeds = needServices.getNeeds();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            this.allAnswer = answerServices.getAnsOfferNeed();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
+
+        listNeeds = listIdNeeds.values();
+
+        try {
+            for(DatabaseStatus status : DatabaseStatus.values()){
+                statusList.add(status.toString());
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 
