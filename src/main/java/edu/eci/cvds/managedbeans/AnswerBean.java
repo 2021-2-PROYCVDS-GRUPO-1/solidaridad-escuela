@@ -273,4 +273,20 @@ public class AnswerBean extends BasePageBean{
     public void setNameOfferORNeed(String nameOfferORNeed) {
         this.nameOfferORNeed = nameOfferORNeed;
     }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
 }
