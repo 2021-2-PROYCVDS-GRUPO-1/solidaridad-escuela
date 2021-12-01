@@ -72,10 +72,11 @@ public class LoginBean extends BasePageBean {
         try{
             sinErrores();
             currentUser = SecurityUtils.getSubject();
-//            if (this.login.isLoggedIn()) {
-            if (false) {
+            if (this.login.isLoggedIn()) {
+//            if (false) {
 
                     System.out.println("Ya esta loggeado----------------------------");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/mainMenu.xhtml");
                     //throw new HistorialEquiposException("Ya estas loggeado");//solo atrapar los errores.
                 }
                 else {

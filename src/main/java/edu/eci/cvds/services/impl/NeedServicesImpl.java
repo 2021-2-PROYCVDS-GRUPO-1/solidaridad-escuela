@@ -22,7 +22,7 @@ public class NeedServicesImpl implements NeedServices {
                              String status,
                              int createdByUser) throws ServicesException {
         try{
-            needDAO.addNecessity(categoryId,
+            needDAO.registerNeed(categoryId,
                     name,
                     description,
                     urgency,

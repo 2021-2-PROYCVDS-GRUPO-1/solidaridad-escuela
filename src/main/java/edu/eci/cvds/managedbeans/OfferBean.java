@@ -61,8 +61,8 @@ public class OfferBean extends BasePageBean{
     private Offer offerToEdit;
 
     private List<Offer> allOffers;
+    private List<Offer> offerByUser;
     private List<String> statusList;
-    private List<String> offerByUser;
     private Collection<String> catTest;
     private HashMap<String, Integer> categories;
 
@@ -73,6 +73,8 @@ public class OfferBean extends BasePageBean{
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.init()");
 
         this.verifyValidUpdate();
+
+        this.resetFields();
 
         generateServices();
         getUserInformation();
@@ -122,7 +124,7 @@ public class OfferBean extends BasePageBean{
         }
         catTest = categories.keySet();
 
-        this.offerByUser = offerServices.OfferbyUserId(userId);
+        this.offerByUser = offerServices.getByUserID(userId);
 
         this.allOffers = offerServices.testGetAllOffers();
         System.out.println(allOffers);
@@ -170,8 +172,6 @@ public class OfferBean extends BasePageBean{
     }
 
 
-
-
     public void createOffer(){
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.createOffer()");
 
@@ -181,6 +181,7 @@ public class OfferBean extends BasePageBean{
         System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
             offerServices.createOffer(categories.get(categoryName), name, description, userId);
+            this.resetFields();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
         }catch(Exception e){
             e.printStackTrace();
@@ -263,6 +264,8 @@ public class OfferBean extends BasePageBean{
             }
 
             this.offerToEdit = null;
+
+            this.resetFields();
         } catch (Exception e){
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
@@ -285,6 +288,15 @@ public class OfferBean extends BasePageBean{
         } catch (Exception ex){
             ex.printStackTrace();
         }*/
+    }
+
+    public void resetFields(){
+        System.out.println("edu.eci.cvds.managedbeans.OfferBean.resetFields()");
+
+        this.categoryName = "";
+        this.name = "";
+        this.description = "";
+        this.status = "";
     }
 
     public OfferServices getOfferServices() { return offerServices; }
@@ -357,11 +369,11 @@ public class OfferBean extends BasePageBean{
 
     public void setCatTest(Collection<String> catTest) { this.catTest = catTest; }
 
-    public List<String> getOfferByUser() {
+    public List<Offer> getOfferByUser() {
         return offerByUser;
     }
 
-    public void setOfferByUser(List<String> offerByUser) {
+    public void setOfferByUser(List<Offer> offerByUser) {
         this.offerByUser = offerByUser;
     }
 

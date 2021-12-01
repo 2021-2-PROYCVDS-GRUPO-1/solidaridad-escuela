@@ -15,68 +15,127 @@
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
         </link>
 
-        <!-- MATERIAL ICONS -->
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
-            integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                background: #f6f5f7;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-family: 'Montserrat', sans-serif;
+                /* height: 100vh; */
+                /* margin: -20px 0 50px; */
+
+                /* --- */
+                background-color: #1f2029;
+                /* overflow: hidden; */
+                background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+                background-position: center;
+                background-repeat: repeat;
+                background-size: 4%;
+            }
+
+            .header {
+                background-color: white;
+                height: 2rem;
+                padding: 25px 0;
+
+                display: flex;
+                justify-content: start;
+                /* align-items: center; */
+            }
+
+            .header form {
+                align-self: center !important;
+
+            }
+
+            .header a {
+                background: #2196F3;
+                border: 1px solid #2196F3;
+                border-radius: 4px;
+                padding: 5px;
+                margin: 0 5px;
+
+                color: white;
+            }
+
+            .header a:hover {
+                cursor: pointer;
+            }
+        </style>
+
+
     </h:head>
     <h:body id="userListBody">
-        <h:form>
-            <a href="registerUser.xhtml">Crear Usuario</a>
-        </h:form>
+        <div class="container header">
+            <h:form>
+                <a onclick="history.back(-1)">Volver</a>
+                <a href="registerUser.xhtml">Crear Usuario</a>
+            </h:form>
+        </div>
 
-        <p:dataTable var="user" value="#{userBean.allUsers}">
-            <f:facet name="header">
-                Lista de Usuarios
-            </f:facet>
-            <p:column headerText="User ID">
-                #{user.userId}
-            </p:column>
+        <div class="container">
+            <p:dataTable var="user" value="#{userBean.allUsers}" rows="10" paginator="true"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                rowsPerPageTemplate="1,5,10,15">
+                <f:facet name="header">
+                    Lista de Usuarios
+                </f:facet>
+                <p:column headerText="User ID">
+                    #{user.userId}
+                </p:column>
 
-            <p:column headerText="Status">
-                #{user.status}
-            </p:column>
+                <p:column headerText="Status">
+                    #{user.status}
+                </p:column>
 
-            <p:column headerText="Rol">
-                #{user.role}
-            </p:column>
+                <p:column headerText="Rol">
+                    #{user.role}
+                </p:column>
 
-            <p:column headerText="Nombres">
-                #{user.firstName}
-            </p:column>
+                <p:column headerText="Nombres">
+                    #{user.firstName}
+                </p:column>
 
-            <p:column headerText="Apellidos">
-                #{user.lastname}
-            </p:column>
+                <p:column headerText="Apellidos">
+                    #{user.lastname}
+                </p:column>
 
-            <p:column headerText="Email">
-                #{user.email}
-            </p:column>
+                <p:column headerText="Email">
+                    #{user.email}
+                </p:column>
 
-            <p:column headerText="Nombre de Usuario">
-                #{user.username}
-            </p:column>
+                <p:column headerText="Nombre de Usuario">
+                    #{user.username}
+                </p:column>
 
-            <p:column headerText="Máximo de necesidades">
-                #{user.maxNeeds}
-            </p:column>
+                <p:column headerText="Máximo de necesidades">
+                    #{user.maxNeeds}
+                </p:column>
 
-            <p:column>
-                <h:form>
-                    <p:commandButton actionListener="#{userBean.goToUpdateUser(user)}" value="Editar usuario">
-                    </p:commandButton>
-                </h:form>
-            </p:column>
+                <p:column>
+                    <h:form>
+                        <p:commandButton actionListener="#{userBean.goToUpdateUser(user)}" value="Editar usuario">
+                        </p:commandButton>
+                    </h:form>
+                </p:column>
 
-            <p:column>
-                <h:form>
-                    <p:commandButton actionListener="#{userBean.deleteUser(user)}" value="Eliminar usuario">
-                    </p:commandButton>
-                </h:form>
-            </p:column>
+                <p:column>
+                    <h:form>
+                        <p:commandButton actionListener="#{userBean.deleteUser(user)}" value="Eliminar usuario">
+                        </p:commandButton>
+                    </h:form>
+                </p:column>
 
 
-        </p:dataTable>
+            </p:dataTable>
+        </div>
 
     </h:body>
 

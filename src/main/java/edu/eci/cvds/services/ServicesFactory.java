@@ -29,24 +29,16 @@ public class ServicesFactory {
                 // DAO
                 bind(UserDAO.class).to(MyBATISUserDAO.class);
                 bind(OfferDAO.class).to(MyBATISOfferDAO.class);
-                bind(CategoryDAO.class).to(CategoryDAO.class);
-                bind(AnswerDAO.class).to(AnswerDAO.class);
-                // bind(NovedadDAO.class).to(MyBATISNovedadDAO.class);
-                // bind(ElementoDAO.class).to(MyBATISElementoDAO.class);
-                // bind(EquipoDAO.class).to(MyBATISEquipoDAO.class);
-                // bind(UsuarioDAO.class).to(MyBATISUsuarioDAO.class);
-                // bind(LaboratorioDAO.class).to(MYBATISLaboratorioDAO.class);
+                bind(CategoryDAO.class).to(MyBATISCategoryDAO.class);
+                bind(AnswerDAO.class).to(MyBATISAnswerDAO.class);
+                bind(NeedDAO.class).to(MyBATISNeedDAO.class);
 
                 //Servicios
                 bind(Services.class).to(ServicesImpl.class);
                 bind(OfferServices.class).to(OfferServicesImpl.class);
                 bind(CategoryServices.class).to(CategoryServicesImpl.class);
                 bind(AnswerServices.class).to(AnswerServicesImpl.class);
-                // bind(HistorialServicios.class).to(HistorialServiciosImpl.class);
-                // bind(ServiciosEquipo.class).to(ServiciosEquipoImpl.class);
-                // bind(ServiciosElemento.class).to(ServiciosElementoImpl.class);
-                // bind(ServiciosLaboratorio.class).to(ServiciosLaboratorioImpl.class);
-                // bind(ServiciosNovedad.class).to(ServiciosNovedadImpl.class);
+                bind(NeedServices.class).to(NeedServicesImpl.class);
             }
         });
     }

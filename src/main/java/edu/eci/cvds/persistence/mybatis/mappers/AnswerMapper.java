@@ -10,15 +10,18 @@ public interface AnswerMapper {
     public void addAnswer(@Param("name") String name,
                           @Param("comments") String comments,
                           @Param("idOffer") int idOffer,
-                          @Param("idNeeds") int idNeeds) throws PersistenceException;
+                          @Param("idNeeds") int idNeeds,
+                          @Param("userId") int userId) throws PersistenceException;
 
     public void addAnswerOffer(@Param("name") String name,
                                @Param("comments") String comments,
-                               @Param("idOffer") int idOffer) throws PersistenceException;
+                               @Param("idOffer") int idOffer,
+                               @Param("userId") int userId) throws PersistenceException;
 
     public void addAnswerNeeds(@Param("name") String name,
                                @Param("comments") String comments,
-                               @Param("idNeeds") int idNeeds) throws PersistenceException;
+                               @Param("idNeeds") int idNeeds,
+                               @Param("userId") int userId) throws PersistenceException;
 
     public List<Answer> getAnsOfferNeed() throws PersistenceException;
 }

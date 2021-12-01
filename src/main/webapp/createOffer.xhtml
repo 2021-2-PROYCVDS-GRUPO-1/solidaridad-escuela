@@ -6,6 +6,7 @@
 
 <f:metadata>
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+    <f:viewAction action="#{offerBean.generateList}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
@@ -19,205 +20,218 @@
             integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
 
         <style>
-            .dropdown-menu[data-show] {
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                background: #f6f5f7;
                 display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-family: 'Montserrat', sans-serif;
+                height: 100vh;
+                margin: -20px 0 50px;
+
+                /* --- */
+                background-color: #1f2029;
+                overflow: hidden;
+                background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+                background-position: center;
+                background-repeat: repeat;
+                background-size: 4%;
+            }
+
+
+
+            h1 {
+                font-weight: bold;
+                margin: 0;
+            }
+
+            h2 {
+                text-align: center;
+            }
+
+            p {
+                font-size: 14px;
+                font-weight: 100;
+                line-height: 20px;
+                letter-spacing: 0.5px;
+                margin: 20px 0 30px;
+            }
+
+            span {
+                font-size: 12px;
+            }
+
+            a {
+                color: #333;
+                font-size: 14px;
+                text-decoration: none;
+                margin: 15px 0;
+            }
+
+            button {
+                border-radius: 20px;
+                border: 1px solid #FF4B2B;
+                background-color: #FF4B2B;
+                color: #FFFFFF;
+                font-size: 12px;
+                font-weight: bold;
+                padding: 12px 45px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                transition: transform 80ms ease-in;
+            }
+
+            button:active {
+                transform: scale(0.95);
+            }
+
+            button:focus {
+                outline: none;
+            }
+
+            button.ghost {
+                background-color: transparent;
+                border-color: #FFFFFF;
+            }
+
+            form {
+                background-color: #FFFFFF;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                padding: 0 50px;
+                height: 100%;
+                text-align: center;
+            }
+
+            input {
+                background-color: #eee;
+                border: none;
+                padding: 12px 15px;
+                margin: 8px 0;
+                width: 100%;
+            }
+
+            .container {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+                    0 10px 10px rgba(0, 0, 0, 0.22);
+                position: relative;
+                overflow: hidden;
+                width: 900px;
+                max-width: 100%;
+                min-height: 480px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* CUSTOM STYLES */
+            .my-button {
+                margin-top: 10px !important;
+                /* background-color: rebeccapurple; */
+                width: 100%;
+            }
+
+            h1 {
+                margin-bottom: 15px;
+                font-size: 2rem;
+            }
+
+            .row {
+                width: 100%;
+                margin: 10px 0;
+                text-align: start;
+            }
+
+            #createOfferForm {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr min-content min-content 1fr;
+                gap: 10px 5px;
+                grid-template-areas:
+                    "title title title"
+                    ". . ."
+                    "description description description"
+                    "button button button";
+            }
+
+            .create-offer-title {
+                grid-area: title;
+            }
+
+            .create-offer-button {
+                grid-area: button;
+            }
+
+            .create-offer-description {
+                grid-area: description;
+            }
+
+
+            .create-offer-button button {
+                width: 100%;
+            }
+
+            body .ui-selectonemenu {
+                vertical-align: auto !important;
+            }
+
+            .form-container {
+                flex: 1;
             }
         </style>
     </h:head>
     <h:body>
-        <div class="min-h-screen bg-gray-200 flex flex-col">
-            <nav class="bg-blue-200 flex">
-                <!-- NAVIGATION -->
-                <div class="flex-1">
-                    <!-- OPTION 1 -->
-                    <div class="dropdown relative inline-flex cursor-pointer">
-                        <!-- dropdown text -->
-                        <span
-                            class="dropdown-text flex px-4 py-3 bg-gray-400 rounded text-gray-800 items-center hover:bg-gray-800 hover:text-white whitespace-no-wrap">Dropdown
-                            Level 1
-                            <i
-                                class="material-icons ml-2 h-4 w-4 text-2xl inline-flex items-center justify-center">keyboard_arrow_down</i>
-                        </span>
-                        <!-- dropdown text -->
-                        <!-- dropdown menu -->
-                        <div class="dropdown-menu flex flex-col hidden absolute w-full">
-                            <div class="rounded flex flex-col flex-grow bg-gray-400 divide-y divide-gray-200">
-                                <div class="dropdown-item flex min-w-full">
-                                    <a href="#"
-                                        class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
-                                        One</a>
-                                </div>
-                                <div class="dropdown-item flex min-w-full">
-                                    <a href="#"
-                                        class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
-                                        Two</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- dropdown menu -->
-                    </div>
-                    <!-- OPTION 1 END -->
-
-                    <!-- OPTION 2 -->
-                    <div class="dropdown relative inline-flex cursor-pointer">
-                        <!-- dropdown text -->
-                        <span
-                            class="dropdown-text flex px-4 py-3 bg-gray-400 rounded text-gray-800 items-center hover:bg-gray-800 hover:text-white whitespace-no-wrap">Dropdown
-                            Level 1
-                            <i
-                                class="material-icons ml-2 h-4 w-4 text-2xl inline-flex items-center justify-center">keyboard_arrow_down</i>
-                        </span>
-                        <!-- dropdown text -->
-                        <!-- dropdown menu -->
-                        <div class="dropdown-menu flex flex-col hidden absolute w-full">
-                            <div class="rounded flex flex-col flex-grow bg-gray-400 divide-y divide-gray-200">
-                                <div class="dropdown-item flex min-w-full">
-                                    <a href="#"
-                                        class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
-                                        One</a>
-                                </div>
-                                <div class="dropdown-item flex min-w-full">
-                                    <a href="#"
-                                        class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
-                                        Two</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- dropdown menu -->
-                    </div>
-                    <!-- OPTION 2 END -->
-                </div>
-                <!-- NAVIGATION END -->
-
-                <!-- USER MENU -->
-                <div class="dropdown relative inline-flex cursor-pointer">
-                    <!-- dropdown text -->
-                    <span
-                        class="dropdown-text flex px-4 py-3 bg-gray-400 rounded text-gray-800 items-center hover:bg-gray-800 hover:text-white whitespace-no-wrap">USER
-                        <i
-                            class="material-icons ml-2 h-4 w-4 text-2xl inline-flex items-center justify-center">keyboard_arrow_down</i>
-                    </span>
-                    <!-- dropdown text -->
-                    <!-- dropdown menu -->
-                    <div class="dropdown-menu flex flex-col hidden absolute w-full">
-                        <div class="rounded flex flex-col flex-grow bg-gray-400 divide-y divide-gray-200">
-                            <div class="dropdown-item flex min-w-full">
-                                <a href="#"
-                                    class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
-                                    One</a>
-                            </div>
-                            <div class="dropdown-item flex min-w-full">
-                                <a href="#"
-                                    class="dropdown-link flex flex-grow px-4 py-3 text-gray-800 whitespace-no-wrap rounded hover:bg-gray-800 hover:text-white items-center justify-center">Link
-                                    Two</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- dropdown menu -->
-                </div>
-                <!-- USER MENU END -->
-            </nav>
-
-
-            <!-- CREATE OFFER FORM -->
-            <div class="container max-w-3xl bg-yellow-300 mt-12 mx-auto">
-                <h2 class="text-center text-3xl">Crear Oferta</h2>
-
-                <!-- <form action="" class="grid grid-cols-1 grid-rows-3 gap-y-1"> -->
-                <h:form id="createOfferForm" class="flex flex-col">
-                    <!-- ROW 1 -->
-                    <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <p:inputText id="createOfferName" placeholder="Nombre de la oferta"
-                            class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String"
+        <!-- CREATE OFFER FORM -->
+        <div class="container">
+            <div class="form-container sign-up-container">
+                <h:form id="createOfferForm">
+                    <h1 class="create-offer-title">Registrar Oferta</h1>
+                    <!-- ROW START -->
+                    <div class="">
+                        <p:inputText id="createOfferName" placeholder="Nombre de la oferta" class="" type="String"
                             value="#{offerBean.name}" />
-
-                        <p:selectOneMenu id="createOfferState" value="#{offerBean.status}" style="width:200px">
-                            <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
-                            <f:selectItems value="#{offerBean.statusList}" />
-                        </p:selectOneMenu>
                     </div>
-                    <!-- ROW 1 END -->
+                    <!-- ROW END -->
 
-                    <!-- ROW 2 -->
-                    <div class="flex bg-green-400 px-2 my-4 h-8">
-                        <p:selectOneMenu id="createOfferCategory" value="#{offerBean.categoryName}" style="width:200px">
-                            <f:selectItem itemLabel="Seleccione una Categoria" itemValue="" />
-                            <f:selectItems value="#{offerBean.catTest}" />
-                        </p:selectOneMenu>
-                    </div>
-                    <!-- ROW 2 END -->
+                    <!-- ROW START -->
+                    <p:selectOneMenu id="createOfferState" value="#{offerBean.status}">
+                        <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
+                        <f:selectItems value="#{offerBean.statusList}" />
+                    </p:selectOneMenu>
+                    <!-- ROW END -->
 
-                    <!-- ROW 3 -->
+                    <!-- ROW START -->
+                    <p:selectOneMenu id="createOfferCategory" value="#{offerBean.categoryName}">
+                        <f:selectItem itemLabel="Seleccione una Categoria" itemValue="" />
+                        <f:selectItems value="#{offerBean.catTest}" />
+                    </p:selectOneMenu>
+                    <!-- ROW END -->
+
+                    <!-- ROW START -->
                     <p:inputTextarea id="createOfferDescription" value="#{offerBean.description}" cols="30" rows="10"
-                        placeholder="Descripción" class="pl-4 mx-2 rounded border-2 border-gray-500" />
-                    <!-- ROW 3 END -->
+                        placeholder="Descripción" class="create-offer-description" />
+                    <!-- ROW END -->
 
-                    <!-- ROW 3 -->
-                    <p>Fecha de hoy</p>
-                    <!--                    <h:inputText id="createOfferTodayDate" class="flex-1 pl-4 mr-4 rounded border-2 border-gray-500" type="String" value="#{categoryBean.name}" placeholder="fecha de hoy"/>-->
-                    <!-- ROW 3 END -->
-
-                    <!-- ROW 3 -->
-                    <p:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500"
-                        value="Crear Oferta" actionListener="#{offerBean.createOffer}" update="createOfferForm">
-                    </p:commandButton>
-                    <!-- ROW 3 END -->
+                    <!-- ROW START -->
+                    <div class="create-offer-button">
+                        <p:commandButton class="mx-2 my-4 bg-white rounded h-10 border-2 border-gray-500"
+                            value="Crear Oferta" actionListener="#{offerBean.createOffer}" update="createOfferForm">
+                        </p:commandButton>
+                    </div>
+                    <!-- ROW END -->
                 </h:form>
             </div>
-
-
-
-
         </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper.min.js"
-            integrity="sha256-FT/LokHAO3u6YAZv6/EKb7f2e0wXY3Ff/9Ww5NzT+Bk=" crossorigin="anonymous"></script>
-        <script>
-            $(document).ready(function () {
-                $(".dropdown").each(function (_, dropdown) {
-                    const dropdownMenu = $(dropdown).find("> .dropdown-menu")[0];
-                    let popperInstance = null;
-
-                    function create() {
-                        popperInstance = Popper.createPopper(dropdown, dropdownMenu, {
-                            // placement: "auto-start",
-                            placement: "bottom",
-                            strategy: "absolute",
-                            modifiers: [
-                                {
-                                    name: "flip",
-                                    options: {
-                                        fallbackPlacements: ["top", "bottom", "left", "right"],
-                                    },
-                                },
-                            ],
-                        });
-                    }
-
-                    function destroy() {
-                        if (popperInstance) {
-                            popperInstance.destroy();
-                            popperInstance = null;
-                        }
-                    }
-
-                    function show() {
-                        $(dropdownMenu).attr("data-show", "");
-                        create();
-                    }
-
-                    function hide() {
-                        $(dropdownMenu).removeAttr("data-show");
-                        destroy();
-                    }
-
-                    $(dropdown).on("mouseenter focus", show);
-                    $(dropdown).on("mouseleave blur", hide);
-                });
-            });
-        </script>
     </h:body>
 </f:view>
 

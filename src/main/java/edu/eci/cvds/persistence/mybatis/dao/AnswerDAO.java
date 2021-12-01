@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface AnswerDAO {
 
-    public void addAnswer(String name, String comments, int idOffer, int idNeeds) throws PersistenceException;
+    public void addAnswer(String name, String comments, int idOffer, int idNeeds, int userId) throws PersistenceException;
 
-    public void addAnswerOffer(String name, String comments, int idOffer) throws PersistenceException;
+    public void addAnswerOffer(String name, String comments, int idOffer, int userId) throws PersistenceException;
 
-    public void addAnswerNeeds(String name, String comments,int idNeeds) throws PersistenceException;
+    public void addAnswerNeeds(String name, String comments,int idNeeds, int userId) throws PersistenceException;
 
     public List<Answer> getAnsOfferNeed() throws PersistenceException;
 

@@ -7,10 +7,13 @@ import edu.eci.cvds.services.NeedServices;
 import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.utils.DatabaseStatus;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.util.*;
 
@@ -29,8 +32,10 @@ public class AnswerBean extends BasePageBean{
     private int id;
     private int idOffer;
     private int idNeeds;
+    private int userId;
     private String name;
     private String comments;
+    private String userRole;
     private String nameOffer;
     private String nameNeed;
     private String nameOfferORNeed;
@@ -46,57 +51,90 @@ public class AnswerBean extends BasePageBean{
     public void init() {
         System.out.println("edu.eci.cvds.managedbeans.AnswerBean.init()");
 
-        statusList = new ArrayList<>();
+        this.generateServices();
+        this.generateLists();
+    }
 
-        answerServices = getInjector().getInstance(AnswerServices.class);
-        offerServices = getInjector().getInstance(OfferServices.class);
-        needServices = getInjector().getInstance(NeedServices.class);
+    private void getUserInformation(){
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.getUserInformation()");
 
-        listIdOffer = offerServices.getOffers();
-        listOffer = listIdOffer.values();
-        try {
-            listIdNeeds = needServices.getNeeds();
-        } catch (ServicesException e) {
-            e.printStackTrace();
-        }
-        try {
-            this.allAnswer = answerServices.getAnsOfferNeed();
-        } catch (ServicesException e) {
-            e.printStackTrace();
-        }
-        listNeeds = listIdNeeds.values();
-
-        try{
-            for(DatabaseStatus status : DatabaseStatus.values()){
-                System.out.println(status.toString());
-                statusList.add(status.toString());
-            }
-        }
-        catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        Subject subject = SecurityUtils.getSubject();
+        this.userId = (int) subject.getSession().getAttribute("userId");
+        this.userRole = (String) subject.getSession().getAttribute("role");
     }
 
     public void createAnswer() {
         System.out.println("edu.eci.cvds.managedbeans.AnswerBean.createAnswer()");
+        getUserInformation();
 
         try{
             if((nameOffer.equals("")) && !(nameNeed.equals(""))){
                 for(Integer date : listIdNeeds.keySet()) {
                     if (listIdNeeds.get(date).equals(nameNeed)) {
-                        answerServices.addAnswerNeeds(name, comments, date);
+                        answerServices.addAnswerNeeds(name, comments, date, userId);
+                        this.resetFields();
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
                     }
                 }
             } else if(!(nameOffer.equals("")) && (nameNeed.equals(""))){
                 for(Integer date : listIdOffer.keySet()) {
                     if (listIdOffer.get(date).equals(nameOffer)) {
-                        answerServices.addAnswerOffer(name, comments, date);
+                        answerServices.addAnswerOffer(name, comments, date, userId);
+                        this.resetFields();
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
                     }
                 }
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public void generateServices(){
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.generateServices()");
+
+        answerServices = getInjector().getInstance(AnswerServices.class);
+        offerServices = getInjector().getInstance(OfferServices.class);
+        needServices = getInjector().getInstance(NeedServices.class);
+    }
+
+    public void generateLists(){
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.generateLists()");
+
+        statusList = new ArrayList<>();
+        listIdOffer = offerServices.getOffers();
+        listOffer = listIdOffer.values();
+
+        try {
+            listIdNeeds = needServices.getNeeds();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            this.allAnswer = answerServices.getAnsOfferNeed();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
+
+        listNeeds = listIdNeeds.values();
+
+        try {
+            for(DatabaseStatus status : DatabaseStatus.values()){
+                statusList.add(status.toString());
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void resetFields() {
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.resetFields()");
+
+        this.name = "";
+        this.comments = "";
+        this.nameNeed = "";
+        this.nameOffer = "";
     }
 
 
