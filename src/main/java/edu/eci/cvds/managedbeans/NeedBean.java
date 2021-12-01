@@ -54,6 +54,8 @@ public class NeedBean extends BasePageBean{
 
         categories = new HashMap<String, Integer>();
 
+        this.resetFields();
+
         this.generateServices();
         this.getUserInformation();
         this.generateList();
@@ -62,11 +64,7 @@ public class NeedBean extends BasePageBean{
         categoryList = new ArrayList<>();
         urgencyList = new ArrayList<>();
 
-
-
         pieModel = createPieModel();
-
-
 
         try{
             // Status
@@ -146,18 +144,6 @@ public class NeedBean extends BasePageBean{
                     + "\nPor el usuario: " + this.userId
                     );
 
-            System.out.println("--- NEED SERVICES ---");
-            System.out.println(needServices);
-
-            System.out.println("--- CATEGORIES ---");
-            System.out.println(categories.keySet().toString());
-
-            System.out.println("--- CATEGORY NAME ---");
-            System.out.println(categoryName);
-
-            System.out.println("--- CATEGORY GET NAME ---");
-            System.out.println(categories.get(categoryName));
-
             needServices.registerNeed(categories.get(categoryName),
                     this.name,
                     this.description,
@@ -165,6 +151,8 @@ public class NeedBean extends BasePageBean{
                     this.status,
                     this.userId
                     );
+
+            this.resetFields();
 
             try{
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
@@ -183,6 +171,7 @@ public class NeedBean extends BasePageBean{
 
         try{
             needServices.updateStatus(id, status);
+            this.resetFields();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -257,6 +246,16 @@ public class NeedBean extends BasePageBean{
             }
 
         }
+    }
+
+    public void resetFields(){
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.verifyValidUpdate()");
+
+        this.name = "";
+        this.description = "";
+        this.urgency = "";
+        this.status = "";
+        this.categoryName = "";
     }
 
     public int getId() {

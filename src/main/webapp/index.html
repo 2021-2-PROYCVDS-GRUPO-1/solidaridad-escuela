@@ -7,6 +7,7 @@
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
         </link>
         <style>
@@ -54,6 +55,22 @@
                 -webkit-text-fill-color: transparent;
                 text-fill-color: transparent;
                 color: transparent;
+            }
+
+            p {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 800;
+                font-size: 3vw;
+                line-height: 1;
+                color: #ffeba7;
+                text-align: center;
+                -webkit-text-stroke: 2px #ffeba7;
+                text-stroke: 2px #ffeba7;
+                -webkit-text-fill-color: transparent;
+                text-fill-color: transparent;
+                color: transparent;
+
+                margin: 10px 0;
             }
 
             [type="checkbox"]:checked,
@@ -365,7 +382,23 @@
             }
 
             .developers-list {
-                margin-top: 3rem;
+                margin-top: 7rem;
+            }
+
+            .dev-name {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 800;
+                font-size: 3vw;
+                line-height: 1;
+                color: #ffeba7;
+                text-align: center;
+                -webkit-text-stroke: 2px #ffeba7;
+                text-stroke: 2px #ffeba7;
+                -webkit-text-fill-color: transparent;
+                text-fill-color: transparent;
+                color: transparent;
+
+                margin: 10px 0;
             }
         </style>
     </h:head>
@@ -387,9 +420,9 @@
                 <li>
                     <div class="developers-list hide">
                         <ul>
-                            <li>Laura Valentina García León</li>
-                            <li>Juan Sebastián Cadavid Peralta</li>
-                            <li>Juan David Murillo Giraldo</li>
+                            <li class="dev-name">Laura Valentina García León</li>
+                            <li class="dev-name">Juan Sebastián Cadavid Peralta</li>
+                            <li class="dev-name">Juan David Murillo Giraldo</li>
                         </ul>
                     </div>
                 </li>
@@ -397,11 +430,10 @@
         </nav>
 
         <div class="section-center">
-            <h1 class="mb-0">Solidaridad Escuela</h1>
+            <h1 class="mb-0">¡Bienvenido!</h1>
+            <p>CVDS</p>
+            <p>2021 - II</p>
         </div>
-
-
-
     </h:body>
 
     <script>
