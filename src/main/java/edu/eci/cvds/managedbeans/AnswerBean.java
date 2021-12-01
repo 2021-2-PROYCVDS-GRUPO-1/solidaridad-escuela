@@ -11,6 +11,7 @@ import edu.eci.cvds.utils.DatabaseStatus;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.util.*;
 
@@ -58,12 +59,16 @@ public class AnswerBean extends BasePageBean{
                 for(Integer date : listIdNeeds.keySet()) {
                     if (listIdNeeds.get(date).equals(nameNeed)) {
                         answerServices.addAnswerNeeds(name, comments, date);
+                        this.resetFields();
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
                     }
                 }
             } else if(!(nameOffer.equals("")) && (nameNeed.equals(""))){
                 for(Integer date : listIdOffer.keySet()) {
                     if (listIdOffer.get(date).equals(nameOffer)) {
                         answerServices.addAnswerOffer(name, comments, date);
+                        this.resetFields();
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
                     }
                 }
             }
@@ -108,6 +113,15 @@ public class AnswerBean extends BasePageBean{
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+
+    public void resetFields() {
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.resetFields()");
+
+        this.name = "";
+        this.comments = "";
+        this.nameNeed = "";
+        this.nameOffer = "";
     }
 
 
