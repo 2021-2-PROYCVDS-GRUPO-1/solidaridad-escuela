@@ -1,7 +1,6 @@
 package edu.eci.cvds.persistence.mybatis.dao;
 
 import edu.eci.cvds.entities.Need;
-import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,7 +15,7 @@ import java.util.List;
  */
 public interface NeedDAO {
     // CREATE
-    public void addNecessity(@Param("categoryId") int categoryId,
+    public void registerNeed(@Param("categoryId") int categoryId,
                              @Param("name") String name,
                              @Param("description") String description,
                              @Param("urgency") String urgency,
@@ -28,7 +27,6 @@ public interface NeedDAO {
     public List<Need> getAllNeeds() throws PersistenceException;
 
     public List<Need> getByStatus(String status) throws PersistenceException;
-
 
     // UPDATE
     public void updateStatus(int id,String status) throws PersistenceException;

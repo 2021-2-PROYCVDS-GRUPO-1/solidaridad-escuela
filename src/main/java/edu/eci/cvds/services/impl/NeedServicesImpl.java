@@ -2,7 +2,6 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Need;
-import edu.eci.cvds.entities.Offer;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatis.dao.NeedDAO;
 import edu.eci.cvds.services.NeedServices;
@@ -23,7 +22,7 @@ public class NeedServicesImpl implements NeedServices {
                              String status,
                              int createdByUser) throws ServicesException {
         try{
-            needDAO.addNecessity(categoryId,
+            needDAO.registerNeed(categoryId,
                     name,
                     description,
                     urgency,
@@ -44,7 +43,20 @@ public class NeedServicesImpl implements NeedServices {
         }
     }
 
-
+    @Override
+    public HashMap<Integer, String> getNeeds() {
+        HashMap<Integer, String> listNeed = new HashMap<Integer, String>();
+        try{
+            for(Need newlist: needDAO.getAllNeeds()) {
+                if((newlist.getStatus().equals("ACTIVE")) || (newlist.getStatus().equals( "IN PROCESS"))){
+                    listNeed.put(newlist.getId(), newlist.getName());
+                }
+            }
+        } catch(PersistenceException e) {
+            System.out.println(e.getMessage());
+        }
+        return listNeed;
+    }
 
     // UPDATE
     @Override

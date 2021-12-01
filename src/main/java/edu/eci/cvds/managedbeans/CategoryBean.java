@@ -8,6 +8,7 @@ import edu.eci.cvds.utils.DatabaseStatus;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.checkerframework.checker.units.qual.A;
+import org.primefaces.model.chart.PieChartModel;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
@@ -28,43 +29,43 @@ public class CategoryBean extends BasePageBean{
     private CategoryServices categoryServices;
     
     private int id;
+    private int userId;
+    private int allOfferneed = 0;
     private String name;
     private String description;
     private String state;
     private String dateCreate;
     private String dateModification;
+    private String userRole;
     private List<String> statusList;
-
     private List<Category> allCategories;
+    private List<Category> reportCategories;
     private Category categoryToEdit;
 
-    private String userRole;
-    private int userId;
+    private PieChartModel pieModel1;
+    private PieChartModel pieModel2;
 
     @PostConstruct
     public void init(){
         System.out.println("edu.eci.cvds.managedbeans.CategoryBean.init()");
-
-        statusList = new ArrayList<>();
-
-        getUserInformation();
-
         // TODO -> crear una funcion que genere los servicios, como en OfferBean
         categoryServices = getInjector().getInstance(CategoryServices.class);
+        statusList = new ArrayList<>();
 
-        System.out.println("   ");
-        System.out.println("   ");
-        System.out.println(" --- USER ROLE ---");
-        System.out.println(this.userRole);
-        System.out.println("   ");
-        System.out.println("   ");
+        this.resetFields();
 
-        System.out.println("  ");
-        System.out.println("  ");
-        System.out.println("---- CATEGORY SERVICES ----");
-        System.out.println(categoryServices);
-        System.out.println("  ");
-        System.out.println("  ");
+        try {
+            reportCategories = categoryServices.getReportCategory();
+        } catch (ServicesException e) {
+            e.printStackTrace();
+        }
+        createPieModel();
+
+        getUserInformation();
+        for(Category utl: reportCategories){
+            allOfferneed+= utl.getOffer() + utl.getNeed();
+        }
+
 
         try{
             for(DatabaseStatus status : DatabaseStatus.values()){
@@ -89,11 +90,8 @@ public class CategoryBean extends BasePageBean{
         System.out.println("edu.eci.cvds.managedbeans.CategoryBean.createCategory()");
 
         try{
-            System.out.println("Anadiendo categoría con nombre: " + this.name
-            + "\nDescripcion: " + this.description
-            + "\nEstado: " + this.state);
-
             categoryServices.addCategory(this.name, this.description, this.state);
+            this.resetFields();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/categoryList.xhtml");
         }catch(Exception e){
             e.printStackTrace();
@@ -105,6 +103,7 @@ public class CategoryBean extends BasePageBean{
 
         try{
             categoryServices.upCategoryId(id, name, description, state);
+            this.resetFields();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/categoryList.xhtml");
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -166,8 +165,8 @@ public class CategoryBean extends BasePageBean{
                 this.dateCreate = dateFormat.format(this.categoryToEdit.getDateCreate());
                 this.dateModification = dateFormat.format(this.categoryToEdit.getDateModification());
             }
-
             this.categoryToEdit = null;
+            //this.resetFields();
         } catch (Exception e){
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/categoryList.xhtml");
@@ -190,6 +189,48 @@ public class CategoryBean extends BasePageBean{
         } catch (Exception ex){
             ex.printStackTrace();
         }
+    }
+
+    private void createPieModel(){
+        System.out.println("edu.eci.cvds.managedbeans.CategoryBean.createPieModel()");
+
+        pieModel1 = new PieChartModel();
+        pieModel2 = new PieChartModel();
+        for(Category offer: reportCategories){
+            pieModel1.set(offer.getName(), offer.getOffer());
+        }
+        pieModel1.setTitle("");
+        for(Category need: reportCategories){
+            pieModel2.set(need.getName(), need.getNeed());
+        }
+        pieModel2.setTitle("");
+
+        pieModel1.setShowDataLabels(true);
+        pieModel1.setDataLabelFormatString("%dK");
+        pieModel1.setLegendPosition("e");
+        pieModel1.setShowDatatip(true);
+        pieModel1.setShowDataLabels(true);
+        pieModel1.setDataFormat("value");
+        pieModel1.setDataLabelFormatString("%d");
+        //pieModel1.setSeriesColors("00FF64, ff8c00, 87cefa, B477DE");
+
+        pieModel2.setShowDataLabels(true);
+        pieModel2.setDataLabelFormatString("%dK");
+        pieModel2.setLegendPosition("e");
+        pieModel2.setShowDatatip(true);
+        pieModel2.setShowDataLabels(true);
+        pieModel2.setDataFormat("value");
+        pieModel2.setDataLabelFormatString("%d");
+        //pieModel2.setSeriesColors("00FF64, ff8c00, 87cefa, B477DE");
+
+    }
+
+    public void resetFields(){
+        System.out.println("edu.eci.cvds.managedbeans.CategoryBean.resetFields()");
+
+        this.name = "";
+        this.description = "";
+        this.state = "";
     }
 
     public int getId() {
@@ -286,6 +327,38 @@ public class CategoryBean extends BasePageBean{
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public List<Category> getReportCategories() {
+        return reportCategories;
+    }
+
+    public void setReportCategories(List<Category> reportCategories) {
+        this.reportCategories = reportCategories;
+    }
+
+    public PieChartModel getPieModel1() {
+        return pieModel1;
+    }
+
+    public void setPieModel1(PieChartModel pieModel1) {
+        this.pieModel1 = pieModel1;
+    }
+
+    public PieChartModel getPieModel2() {
+        return pieModel2;
+    }
+
+    public void setPieModel2(PieChartModel pieModel2) {
+        this.pieModel2 = pieModel2;
+    }
+
+    public int getAllOfferneed() {
+        return allOfferneed;
+    }
+
+    public void setAllOfferneed(int allOfferneed) {
+        this.allOfferneed = allOfferneed;
     }
 }
 

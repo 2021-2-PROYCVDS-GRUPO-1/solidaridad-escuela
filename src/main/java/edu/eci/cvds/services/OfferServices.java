@@ -25,7 +25,7 @@ public interface OfferServices {
 
     public List<Offer> getByStatus(String status) throws  ServicesException;
 
-    public List<Offer> getByUserID(int userId) throws  ServicesException;
+    public List<Offer> getByUserID(int userId) ;
 
     public List<Offer> getAllOffers() throws ServicesException;
 

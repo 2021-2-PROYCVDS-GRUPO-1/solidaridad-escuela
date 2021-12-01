@@ -32,17 +32,17 @@ public interface CategoryDAO {
 
     public List<Category> getAllCategories() throws PersistenceException;
 
+    public List<Category> getCategories() throws PersistenceException;
+
+    public List<Category> getReportCategory() throws PersistenceException;
 
     public void addCategory(@Param("name") String name,
                             @Param("description") String description,
                             @Param("state") String state) throws PersistenceException;
 
-    public void  upCategoryId(int id, String name, String description, String state) throws PersistenceException;
+    public void upCategoryId(int id, String name, String description, String state) throws PersistenceException;
 
     public void upCategoryName(String name, String description, String state) throws PersistenceException;
-
-
-    public List<Category> getCategories() throws PersistenceException;
 
     public void deleteCategory(int categoryId) throws PersistenceException;
 }

@@ -4,9 +4,7 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:jsf="http://xmlns.jcp.org/jsf"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-
 <f:metadata>
-    <f:viewAction action="#{userBean.getUserList}" />
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
@@ -27,12 +25,9 @@
                 align-items: center;
                 flex-direction: column;
                 font-family: 'Montserrat', sans-serif;
-                /* height: 100vh; */
-                /* margin: -20px 0 50px; */
 
                 /* --- */
                 background-color: #1f2029;
-                /* overflow: hidden; */
                 background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
                 background-position: center;
                 background-repeat: repeat;
@@ -43,10 +38,11 @@
                 background-color: white;
                 height: 2rem;
                 padding: 25px 0;
+                margin-top: 10px;
 
                 display: flex;
                 justify-content: start;
-                /* align-items: center; */
+                border-bottom: 1px solid black;
             }
 
             .header form {
@@ -54,7 +50,8 @@
 
             }
 
-            .header a {
+            .header a,
+            .header button {
                 background: #2196F3;
                 border: 1px solid #2196F3;
                 border-radius: 4px;
@@ -67,76 +64,53 @@
             .header a:hover {
                 cursor: pointer;
             }
+
+            .graph {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+            }
+
+            .graph form {
+                flex: 1;
+                background-color: white;
+            }
         </style>
-
-
     </h:head>
-    <h:body id="userListBody">
+    <h:body>
         <div class="container header">
             <h:form>
                 <a onclick="history.back(-1)">Volver</a>
-                <a href="registerUser.xhtml">Crear Usuario</a>
+
+                <p:commandButton value="XLSX" styleClass="p-mr-2 p-mb-2">
+                    <p:dataExporter type="xls" target="dtAnswer" fileName="Reporte de respuestas" />
+                </p:commandButton>
+
+                <p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2">
+                    <p:dataExporter type="pdf" target="dtAnswer" fileName="Reporte de respuestas" />
+                </p:commandButton>
             </h:form>
         </div>
 
         <div class="container">
-            <p:dataTable var="user" value="#{userBean.allUsers}" rows="10" paginator="true"
+            <p:dataTable id='dtAnswer' var="answer" value="#{answerBean.allAnswer}" rows="10"
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
-                currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records" paginator="true"
                 rowsPerPageTemplate="1,5,10,15">
                 <f:facet name="header">
-                    Lista de Usuarios
+                    Listado de Respuestas
                 </f:facet>
-                <p:column headerText="User ID">
-                    #{user.userId}
+
+                <p:column headerText="Respuesta">
+                    <p:outputLabel value="#{answer.comments}"></p:outputLabel>
                 </p:column>
 
-                <p:column headerText="Status">
-                    #{user.status}
+                <p:column headerText="Nombre de oferta o necesidad">
+                    <p:outputLabel value="#{answer.nameOfferORNeed}"></p:outputLabel>
                 </p:column>
-
-                <p:column headerText="Rol">
-                    #{user.role}
-                </p:column>
-
-                <p:column headerText="Nombres">
-                    #{user.firstName}
-                </p:column>
-
-                <p:column headerText="Apellidos">
-                    #{user.lastname}
-                </p:column>
-
-                <p:column headerText="Email">
-                    #{user.email}
-                </p:column>
-
-                <p:column headerText="Nombre de Usuario">
-                    #{user.username}
-                </p:column>
-
-                <p:column headerText="Máximo de necesidades">
-                    #{user.maxNeeds}
-                </p:column>
-
-                <p:column>
-                    <h:form>
-                        <p:commandButton actionListener="#{userBean.goToUpdateUser(user)}" value="Editar usuario">
-                        </p:commandButton>
-                    </h:form>
-                </p:column>
-
-                <p:column>
-                    <h:form>
-                        <p:commandButton actionListener="#{userBean.deleteUser(user)}" value="Eliminar usuario">
-                        </p:commandButton>
-                    </h:form>
-                </p:column>
-
 
             </p:dataTable>
         </div>
-
     </h:body>
 
 </f:view>
