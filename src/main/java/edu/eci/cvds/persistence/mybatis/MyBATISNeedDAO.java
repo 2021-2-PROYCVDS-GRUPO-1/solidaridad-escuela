@@ -22,7 +22,7 @@ public class MyBATISNeedDAO implements NeedDAO {
 
     // CREATE
     @Override
-    public void addNecessity(int categoryId,
+    public void registerNeed(int categoryId,
                              String name,
                              String description,
                              String urgency,

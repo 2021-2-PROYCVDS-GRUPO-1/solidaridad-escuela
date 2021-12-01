@@ -15,67 +15,109 @@
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
         </link>
 
-        <!-- MATERIAL ICONS -->
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
-            integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
-
         <style>
+            * {
+                box-sizing: border-box;
+            }
+
             body {
-                height: 100vh;
+                background: #f6f5f7;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-family: 'Montserrat', sans-serif;
 
                 /* --- */
                 background-color: #1f2029;
-                overflow: hidden;
+                /* overflow: hidden; */
                 background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
                 background-position: center;
                 background-repeat: repeat;
                 background-size: 4%;
             }
+
+            .header {
+                background-color: white;
+                height: 2rem;
+                padding: 25px 0;
+                margin-top: 10px;
+
+                display: flex;
+                justify-content: start;
+                border-bottom: 1px solid black;
+            }
+
+            .header form {
+                align-self: center !important;
+
+            }
+
+            .header a {
+                background: #2196F3;
+                border: 1px solid #2196F3;
+                border-radius: 4px;
+                padding: 5px;
+                margin: 0 5px;
+
+                color: white;
+            }
+
+            .header a:hover {
+                cursor: pointer;
+            }
         </style>
     </h:head>
     <h:body id="CategoryListBody">
-        <h:form>
-            <a href="createCategory.xhtml">Crear Categoría</a>
-        </h:form>
+        <div class="container header">
+            <h:form>
+                <a onclick="history.back(-1)">Volver</a>
+                <a href="createCategory.xhtml">Crear Categoría</a>
+                <a href="categoryReport.xhtml">Reporte de Categorías</a>
+            </h:form>
+        </div>
 
-        <!-- LISTA DE CATEGORÍAS -->
-        <p:dataGrid var="category" value="#{categoryBean.allCategories}" columns="3" rows="6" paginator="true">
-            <p:column>
-                <p:panel header="#{category.name}">
-                    <h:panelGrid columns="1">
-                        <div class="user-data-row">
-                            <p:outputLabel value="Nombre: "></p:outputLabel>
-                            <p:outputLabel value="#{category.name}" />
-                        </div>
-                        <div class="user-data-row">
-                            <p:outputLabel value="Status: "></p:outputLabel>
-                            <p:outputLabel value="#{category.state}" />
-                        </div>
-                        <div class="user-data-row">
-                            <p:outputLabel value="Descripción: "></p:outputLabel>
-                            <p:outputLabel value="#{category.description}" />
-                        </div>
+        <div class="container">
+            <!-- LISTA DE CATEGORÍAS -->
+            <p:dataGrid var="category" value="#{categoryBean.allCategories}" columns="3" rows="6" paginator="true"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records">
+                <p:column>
+                    <p:panel header="#{category.name}">
+                        <h:panelGrid columns="1">
+                            <div class="user-data-row">
+                                <p:outputLabel value="Nombre: "></p:outputLabel>
+                                <p:outputLabel value="#{category.name}" />
+                            </div>
+                            <div class="user-data-row">
+                                <p:outputLabel value="Status: "></p:outputLabel>
+                                <p:outputLabel value="#{category.state}" />
+                            </div>
+                            <div class="user-data-row">
+                                <p:outputLabel value="Descripción: "></p:outputLabel>
+                                <p:outputLabel value="#{category.description}" />
+                            </div>
 
-                        <div class="user-data-row">
-                            <h:form>
-                                <p:commandButton actionListener="#{categoryBean.goToUpdateCategory(category)}"
-                                    value="Editar categoría">
-                                </p:commandButton>
-                            </h:form>
-                        </div>
+                            <div class="user-data-row">
+                                <h:form>
+                                    <p:commandButton actionListener="#{categoryBean.goToUpdateCategory(category)}"
+                                        value="Editar categoría">
+                                    </p:commandButton>
+                                </h:form>
+                            </div>
 
-                        <div class="user-data-row">
-                            <h:form>
-                                <p:commandButton actionListener="#{categoryBean.deleteCategory(category)}"
-                                    value="Eliminar categoría">
-                                </p:commandButton>
-                            </h:form>
-                        </div>
-                    </h:panelGrid>
-                </p:panel>
-            </p:column>
-        </p:dataGrid>
+                            <div class="user-data-row">
+                                <h:form>
+                                    <p:commandButton actionListener="#{categoryBean.deleteCategory(category)}"
+                                        value="Eliminar categoría">
+                                    </p:commandButton>
+                                </h:form>
+                            </div>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:column>
+            </p:dataGrid>
+        </div>
     </h:body>
 
 </f:view>
