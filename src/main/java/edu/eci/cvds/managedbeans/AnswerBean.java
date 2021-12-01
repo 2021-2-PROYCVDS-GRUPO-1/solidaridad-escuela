@@ -7,6 +7,8 @@ import edu.eci.cvds.services.NeedServices;
 import edu.eci.cvds.services.OfferServices;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.utils.DatabaseStatus;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
@@ -30,8 +32,10 @@ public class AnswerBean extends BasePageBean{
     private int id;
     private int idOffer;
     private int idNeeds;
+    private int userId;
     private String name;
     private String comments;
+    private String userRole;
     private String nameOffer;
     private String nameNeed;
     private String nameOfferORNeed;
@@ -51,14 +55,23 @@ public class AnswerBean extends BasePageBean{
         this.generateLists();
     }
 
+    private void getUserInformation(){
+        System.out.println("edu.eci.cvds.managedbeans.AnswerBean.getUserInformation()");
+
+        Subject subject = SecurityUtils.getSubject();
+        this.userId = (int) subject.getSession().getAttribute("userId");
+        this.userRole = (String) subject.getSession().getAttribute("role");
+    }
+
     public void createAnswer() {
         System.out.println("edu.eci.cvds.managedbeans.AnswerBean.createAnswer()");
+        getUserInformation();
 
         try{
             if((nameOffer.equals("")) && !(nameNeed.equals(""))){
                 for(Integer date : listIdNeeds.keySet()) {
                     if (listIdNeeds.get(date).equals(nameNeed)) {
-                        answerServices.addAnswerNeeds(name, comments, date);
+                        answerServices.addAnswerNeeds(name, comments, date, userId);
                         this.resetFields();
                         FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
                     }
@@ -66,7 +79,7 @@ public class AnswerBean extends BasePageBean{
             } else if(!(nameOffer.equals("")) && (nameNeed.equals(""))){
                 for(Integer date : listIdOffer.keySet()) {
                     if (listIdOffer.get(date).equals(nameOffer)) {
-                        answerServices.addAnswerOffer(name, comments, date);
+                        answerServices.addAnswerOffer(name, comments, date, userId);
                         this.resetFields();
                         FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
                     }
@@ -259,5 +272,21 @@ public class AnswerBean extends BasePageBean{
 
     public void setNameOfferORNeed(String nameOfferORNeed) {
         this.nameOfferORNeed = nameOfferORNeed;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 }

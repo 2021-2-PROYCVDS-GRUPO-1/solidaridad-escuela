@@ -13,21 +13,21 @@
         FROM DB_Answer
         LEFT JOIN DB_OFFERS ON DB_Answer.IdOffer = DB_OFFERS.offerId
         LEFT JOIN DB_Needs ON DB_Answer.IdNeeds = DB_Needs.id
-    </select>
+        </select>
 
     <!-- ADD ANSWER -->
     <insert parameterType="map" id="addAnswer">
-        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, #{idOffer}, #{idNeeds});
+        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds, createdByUser) VALUES (#{name}, #{comments}, #{idOffer}, #{idNeeds}, #{userId});
     </insert>
 
     <!-- ADD ANSWER idOffer -->
     <insert parameterType="map" id="addAnswerOffer">
-        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, #{idOffer}, NULL);
+        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds, createdByUser) VALUES (#{name}, #{comments}, #{idOffer}, NULL, #{userId});
     </insert>
 
     <!-- ADD ANSWER idNeeds -->
     <insert parameterType="map" id="addAnswerNeeds">
-        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds) VALUES (#{name}, #{comments}, NULL, #{idNeeds});
+        INSERT INTO DB_Answer (Name, Comments, IdOffer, IdNeeds, createdByUser) VALUES (#{name}, #{comments}, NULL, #{idNeeds}, #{userId});
     </insert>
 
     <resultMap id="answerResult" type="Answer" >

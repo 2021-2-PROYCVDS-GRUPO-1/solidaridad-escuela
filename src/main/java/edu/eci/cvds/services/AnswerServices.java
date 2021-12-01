@@ -16,11 +16,11 @@ public interface AnswerServices {
     /*
     INSERT
      */
-    public void addAnswer(String name, String comments, int idOffer, int idNeeds) throws ServicesException;
+    public void addAnswer(String name, String comments, int idOffer, int idNeeds, int userId) throws ServicesException;
 
-    public void addAnswerOffer(String name, String comments, int idOffer) throws ServicesException;
+    public void addAnswerOffer(String name, String comments, int idOffer, int userId) throws ServicesException;
 
-    public void addAnswerNeeds(String name, String comments,int idNeeds) throws ServicesException;
+    public void addAnswerNeeds(String name, String comments,int idNeeds, int userId) throws ServicesException;
 
     /*
     UPDATE
