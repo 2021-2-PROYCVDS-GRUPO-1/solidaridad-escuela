@@ -24,6 +24,7 @@ public interface NeedServices {
 
     public List<Need> getByStatus(String status) throws  ServicesException;
 
+
     // UPDATE
     public void updateStatus(int id, String state) throws ServicesException;
 
