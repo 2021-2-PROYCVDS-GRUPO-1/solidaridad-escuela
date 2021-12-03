@@ -151,7 +151,7 @@ _**Imagen lista de ofertas**_
 * Eliminar Oferta: Eliminará la oferta seleccionada.
 
 * Editar Oferta: Redireccionará al apartado de editar oferta. En este es posible cambiar únicamente el estado de la
-oferta
+oferta.
 
 _**Imagen editar oferta**_
 
@@ -166,32 +166,50 @@ _**Imagen lista de necesidades**_
 
 * Eliminar Necesidad: Eliminará la necesidad seleccionada.
 
-* Editar Oferta: Redireccionará al apartado de editar necesidad. En este es posible cambiar únicamente el estado de la
-necesidad
+* Editar Necesidad: Redireccionará al apartado de editar necesidad. En este es posible cambiar únicamente el estado de la
+necesidad.
 
 _**Imagen editar necesidad**_
+
+* _Reporte de Categorías._
+
+_¿Qué encontramos y podemos hacer aquí?_
+
+Encontraremos una lista de todas las categorías además de una gráfica que muestra información relevante sobre estas. Dicha lista
+se podrá exportar en **PDF** o en un archivo de excel.
+
+_**Imagen Reporte categoria**_
+
+_**Imagen Grafica categoria**_
 
 * _Reporte de Ofertas._
 
 _¿Qué encontramos y podemos hacer aquí?_
 
-Encontraremos una lista de todas las ofertas además de una gráfica que muestra información relevante sobre estas. 
+Encontraremos una lista de todas las ofertas además de una gráfica que muestra información relevante sobre estas. Dicha lista 
+se podrá exportar en **PDF** o en un archivo de excel.  
 
 _**Imagen Reporte Ofertas**_
+
+_**Imagen Grafica Oferta**_
 
 * _Reporte de Necesidades._
 
 _¿Qué encontramos y podemos hacer aquí?_
 
-Encontraremos una lista de todas las necesidades además de una gráfica que muestra información relevante sobre estas.
+Encontraremos una lista de todas las necesidades además de una gráfica que muestra información relevante sobre estas. Dicha lista
+se podrá exportar en **PDF** o en un archivo de excel.
 
 _**Imagen Reporte Necesidades**_
+
+_**Imagen Grafica Necesidades**_
 
 * _Reporte de Respuestas._
 
 _¿Qué encontramos y podemos hacer aquí?_
 
-Encontraremos una lista de todas las respuestas además de una gráfica que muestra información relevante sobre estas.
+Encontraremos una lista de todas las respuestas además de una gráfica que muestra información relevante sobre estas. Dicha lista
+se podrá exportar en **PDF** o en un archivo de excel.
 
 _**Imagen Reporte Respuestas**_
 
@@ -236,14 +254,22 @@ discutiendo sobre qué y cómo deberíamos hacer el proyecto.
 _¿Cómo ordenamos los sprints?:_
 
 Discutimos entre todo el grupo de trabajo qué tareas deberían hacerse primero, guiándonos tan
-solo por lo que decían como tal, haciéndonos preguntas al estilo _¿?_ lo que después nos llevaría a la siguiente organización:
+solo por lo que decían como tal, haciéndonos preguntas sobre la creación de los elementos necesarios
+como lo son las ofertas y las necesidades, lo que después nos llevaría a la siguiente organización:
 
 - Sprint 1:
-  - asda
+  - Configuración inicial del proyecto. 
+  - Creación de la base de datos. 
+  - Inicio de sesión. 
+  - Creación de Categorías, Ofertas y Necesidades. 
 - Sprint 2:
-  - asda
+  - Creación de Respuestas
+  - Actualización de Categorías, Ofertas y Necesidades. 
+  - Reportes de Necesidades, Ofertas y Respuestas. 
 - Sprint 3:
-  - jsdfoajf
+  - Reporte de Categorías
+  - Eliminar Categoría
+  - Mejoras generales. 
 
 ### __Taiga__
 
