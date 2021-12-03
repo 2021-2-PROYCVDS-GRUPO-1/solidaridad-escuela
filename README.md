@@ -10,9 +10,10 @@
 |Juan David Murillo |Scrum Master
 |Laura Valentina García|Developer   |
 |Juan Sebastian Cadavid |Developer   |
-|Laura Nathalia García|Developer   |
-
 ---
+
+### Otros colaboradores:
+- Laura Nathalia García
 
 ## Descripción del producto
 

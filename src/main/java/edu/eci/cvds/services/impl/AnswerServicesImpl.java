@@ -23,27 +23,27 @@ public class AnswerServicesImpl implements AnswerServices {
     }
 
     @Override
-    public void addAnswer(String name, String comments, int idOffer, int idNeeds) throws ServicesException {
+    public void addAnswer(String name, String comments, int idOffer, int idNeeds, int userId) throws ServicesException {
         try{
-            answerDAO.addAnswer(name, comments, idOffer, idNeeds);
+            answerDAO.addAnswer(name, comments, idOffer, idNeeds, userId);
         }catch (PersistenceException e) {
             throw  new ServicesException("Error al añadir la respuesta con el nombre: "+ name);
         }
     }
 
     @Override
-    public void addAnswerOffer(String name, String comments, int idOffer) throws ServicesException {
+    public void addAnswerOffer(String name, String comments, int idOffer, int userId) throws ServicesException {
         try{
-            answerDAO.addAnswerOffer(name, comments, idOffer);
+            answerDAO.addAnswerOffer(name, comments, idOffer, userId);
         }catch (PersistenceException e) {
             throw  new ServicesException("Error al añadir la respuesta con el nombre: "+ name);
         }
     }
 
     @Override
-    public void addAnswerNeeds(String name, String comments, int idNeeds) throws ServicesException {
+    public void addAnswerNeeds(String name, String comments, int idNeeds, int userId) throws ServicesException {
         try{
-            answerDAO.addAnswerNeeds(name, comments, idNeeds);
+            answerDAO.addAnswerNeeds(name, comments, idNeeds, userId);
         }catch (PersistenceException e) {
             throw  new ServicesException("Error al añadir la respuesta con el nombre: "+ name);
         }

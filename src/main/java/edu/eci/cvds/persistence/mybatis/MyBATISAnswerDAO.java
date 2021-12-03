@@ -14,27 +14,27 @@ public class MyBATISAnswerDAO implements AnswerDAO {
     private AnswerMapper answerMapper ;
 
     @Override
-    public void addAnswer(String name, String comments, int idOffer, int idNeeds) throws PersistenceException {
+    public void addAnswer(String name, String comments, int idOffer, int idNeeds, int userId) throws PersistenceException {
         try{
-            answerMapper.addAnswer(name, comments, idOffer, idNeeds);
+            answerMapper.addAnswer(name, comments, idOffer, idNeeds, userId);
         }catch (PersistenceException e) {
             throw  new PersistenceException("Error al añadir la respuesta con el nombre: "+ name);
         }
     }
 
     @Override
-    public void addAnswerOffer(String name, String comments, int idOffer) throws PersistenceException {
+    public void addAnswerOffer(String name, String comments, int idOffer, int userId) throws PersistenceException {
         try{
-            answerMapper.addAnswerOffer(name, comments, idOffer);
+            answerMapper.addAnswerOffer(name, comments, idOffer, userId);
         }catch (PersistenceException e) {
             throw  new PersistenceException("Error al añadir la respuesta con el nombre: "+ name);
         }
     }
 
     @Override
-    public void addAnswerNeeds(String name, String comments, int idNeeds) throws PersistenceException {
+    public void addAnswerNeeds(String name, String comments, int idNeeds, int userId) throws PersistenceException {
         try{
-            answerMapper.addAnswerNeeds(name, comments, idNeeds);
+            answerMapper.addAnswerNeeds(name, comments, idNeeds, userId);
         }catch (PersistenceException e) {
             throw  new PersistenceException("Error al añadir la respuesta con el nombre: "+ name);
         }
