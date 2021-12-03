@@ -1,6 +1,8 @@
 # Solidaridad Escuela
 ## CICLOS DE VIDA Y DESARROLLO DE SOFTWARE / 2021-2
 
+[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://solidaridad-escuela-grupo-1.herokuapp.com/)
+
 # Integrantes
 |     Nombre    |     Rol         |
 |--------------|------------- |
@@ -27,7 +29,7 @@ plataforma y del alcance que se está logrando.
 
 
 ### Manual De Usario
-
+  
 Páginas iniciales
 
 _**Imagenes de pagina inicial**_
@@ -168,11 +170,97 @@ necesidad
 
 _**Imagen editar necesidad**_
 
+* _Reporte de Ofertas._
+
+_¿Qué encontramos y podemos hacer aquí?_
+
+Encontraremos una lista de todas las ofertas además de una gráfica que muestra información relevante sobre estas. 
+
+_**Imagen Reporte Ofertas**_
+
+* _Reporte de Necesidades._
+
+_¿Qué encontramos y podemos hacer aquí?_
+
+Encontraremos una lista de todas las necesidades además de una gráfica que muestra información relevante sobre estas.
+
+_**Imagen Reporte Necesidades**_
+
+* _Reporte de Respuestas._
+
+_¿Qué encontramos y podemos hacer aquí?_
+
+Encontraremos una lista de todas las respuestas además de una gráfica que muestra información relevante sobre estas.
+
+_**Imagen Reporte Respuestas**_
+
+## __Arquitectura y Diseño__
+
+### __Modelo E-R__
+
+### __Diagrama de Clase__
+
+
+
+
+
 
 ### _Tecnologías utilizadas_
 
 #### _Integración continua_
 [![CircleCI Badge](https://circleci.com/gh/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/tree/master.svg?style=svg)](https://circleci.com/gh/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/tree/master)
+
+#### _Despliegue en Heroku_
+[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://solidaridad-escuela-grupo-1.herokuapp.com/)
+
+## __Descripción del proceso:__
+
+## __Integrantes:__
+
+|     Nombre    |     Git         |
+|--------------|------------- |
+|Juan David Murillo |[juancho20sp](https://github.com/juancho20sp)|
+|Laura Valentina García|[laura-gar](https://github.com/laura-gar) |
+|Juan Sebastian Cadavid |[jua1000n](https://github.com/jua1000n)  |
+|Laura Nathalia García|[lngar](https://github.com/lngar)   |
+
+
+### __Metodología Utilizada:__
+
+
+Planeamos todos los sprints en la primera reunión de equipo que tuvimos, 
+discutiendo sobre qué y cómo deberíamos hacer el proyecto.
+
+
+_¿Cómo ordenamos los sprints?:_
+
+Discutimos entre todo el grupo de trabajo qué tareas deberían hacerse primero, guiándonos tan
+solo por lo que decían como tal, haciéndonos preguntas al estilo _¿?_ lo que después nos llevaría a la siguiente organización:
+
+- Sprint 1:
+  - asda
+- Sprint 2:
+  - asda
+- Sprint 3:
+  - jsdfoajf
+
+### __Taiga__
+
+Enlace de [Taiga]() 
+para ver el seguimiento y manejo que dimos al proyecto.
+
+
+
+### __Release-Burndown Chart:__
+
+#### __Sprint1:__
+#### __Sprint2:__
+#### __Sprint3:__
+
+
+
+
+
 
 
 
