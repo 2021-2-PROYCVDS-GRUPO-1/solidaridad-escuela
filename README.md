@@ -33,9 +33,10 @@ plataforma y del alcance que se está logrando.
   
 Páginas iniciales
 
-_**Imagenes de pagina inicial**_
 
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/logImage.png)
 
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/mainMenu.png)
 
 
 > #### **CREAR.**
@@ -52,7 +53,8 @@ _¿Cómo crear una categoría?_
 
 4. Clicar el botón "Crear Categoría".
 
-_**Imagen crear categoría**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/crearCategoria.png)
+
 
 
 * _Crear Necesidad._
@@ -69,7 +71,7 @@ _¿Cómo crear una necesidad?_
 
 5. Clicar el botón "Crear Necesidad"
 
-_**Imagen crear Necesidad**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/crearNecesidad.png)
 
 
 * _Crear Oferta._
@@ -84,7 +86,7 @@ _¿Cómo crear una oferta?_
 
 4. Clicar el botón "Crear Oferta"
 
-_**Imagen crear Oferta**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/crearOferta.png)
 
 
 * _Crear Respuesta._
@@ -99,7 +101,7 @@ _¿Cómo crear una respuesta?_
 
 4. Clicar el botón "Crear Respuesta"
 
-_**Imagen crear Respuesta**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/crearRespuesta.png)
 
 > #### **CONSULTAS.**
 
@@ -110,33 +112,15 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las categorías registradas en la base de datos en el momento junto a 
 dos botones: 
 
-_**Imagen lista de categorías**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/listaCategorias.png)
+
 
 * Eliminar Categoría: Eliminará la categoría seleccionada.
 
 * Editar Categoría: Redireccionará al apartado de editar categoría. En este es posible cambiar el nombre, el estado 
 y la descripción de la categoría. 
 
-_**Imagen editar categoría**_
-
-
-
-* _Consultar Categorías._
-
-_¿Qué encontramos y podemos hacer aquí?_
-
-Encontraremos una lista de todas las categorías registradas en la base de datos en el momento junto a
-dos botones:
-
-_**Imagen lista de categorías**_
-
-* Eliminar Categoría: Eliminará la categoría seleccionada.
-
-* Editar Categoría: Redireccionará al apartado de editar categoría. En este es posible cambiar el nombre, el estado 
-y la descripción de la categoría. 
-
-_**Imagen editar categoría**_
-
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/editarCategoria.png)
 
 
 * _Consultar Ofertas._
@@ -146,14 +130,16 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las ofertas que pertenecen al usuario que se encuentra logeado en la aplicación junto a
 dos botones:
 
-_**Imagen lista de ofertas**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/listaOferta.png)
+
 
 * Eliminar Oferta: Eliminará la oferta seleccionada.
 
 * Editar Oferta: Redireccionará al apartado de editar oferta. En este es posible cambiar únicamente el estado de la
 oferta.
 
-_**Imagen editar oferta**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/editarOferta.png)
+
 
 * _Consultar Necesidades._
 
@@ -162,14 +148,15 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las necesidades que pertenecen al usuario que se encuentra logeado en la aplicación junto a
 dos botones:
 
-_**Imagen lista de necesidades**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/listaNecesidad.png)
 
 * Eliminar Necesidad: Eliminará la necesidad seleccionada.
 
 * Editar Necesidad: Redireccionará al apartado de editar necesidad. En este es posible cambiar únicamente el estado de la
 necesidad.
 
-_**Imagen editar necesidad**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/editarNecesidad.png)
+
 
 * _Reporte de Categorías._
 
@@ -178,9 +165,10 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las categorías además de una gráfica que muestra información relevante sobre estas. Dicha lista
 se podrá exportar en **PDF** o en un archivo de excel.
 
-_**Imagen Reporte categoria**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/reporteCategoria.png)
 
-_**Imagen Grafica categoria**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/graficaCategoria.png)
+
 
 * _Reporte de Ofertas._
 
@@ -189,9 +177,9 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las ofertas además de una gráfica que muestra información relevante sobre estas. Dicha lista 
 se podrá exportar en **PDF** o en un archivo de excel.  
 
-_**Imagen Reporte Ofertas**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/ReporteOferta.png)
 
-_**Imagen Grafica Oferta**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/graficoOferta.png)
 
 * _Reporte de Necesidades._
 
@@ -200,9 +188,10 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las necesidades además de una gráfica que muestra información relevante sobre estas. Dicha lista
 se podrá exportar en **PDF** o en un archivo de excel.
 
-_**Imagen Reporte Necesidades**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/reporteNecesidad.png)
 
-_**Imagen Grafica Necesidades**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/graficoNecesidad.png)
+
 
 * _Reporte de Respuestas._
 
@@ -211,7 +200,8 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las respuestas además de una gráfica que muestra información relevante sobre estas. Dicha lista
 se podrá exportar en **PDF** o en un archivo de excel.
 
-_**Imagen Reporte Respuestas**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/reporteRespuesta.png)
+
 
 ## __Arquitectura y Diseño__
 
