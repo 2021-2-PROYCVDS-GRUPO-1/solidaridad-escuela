@@ -150,7 +150,7 @@ dos botones:
 - Editar Necesidad: Redireccionará al apartado de editar necesidad. En este es posible cambiar únicamente el estado de la
   necesidad.
 
-![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/editarNecesidad.png)
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/last-fix/modelos/MANUAL%20DE%20USUARIO/editarNecesidad.png)
 
 - _Reporte de Categorías._
 
@@ -194,11 +194,9 @@ se podrá exportar en **PDF** o en un archivo de excel.
 
 ![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/reporteRespuesta.png)
 
-## **Arquitectura y Diseño**
-
 ### **Modelo E-R**
 
-### **Diagrama de Clase**
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/last-fix/modelos/Diagramas/ER.jpg)
 
 ### _Tecnologías utilizadas_
 
@@ -216,8 +214,6 @@ se podrá exportar en **PDF** o en un archivo de excel.
 #### _Despliegue en Heroku_
 
 [![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://solidaridad-escuela-grupo-1.herokuapp.com/)
-
-## **Descripción del proceso:**
 
 ## **Integrantes:**
 
@@ -265,5 +261,3 @@ para ver el seguimiento y manejo que dimos al proyecto.
 #### **Sprint2:**
 
 #### **Sprint3:**
-
-### _Reporte de análisis estático de código_
