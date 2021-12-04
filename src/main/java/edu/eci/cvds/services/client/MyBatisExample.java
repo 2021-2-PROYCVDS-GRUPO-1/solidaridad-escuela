@@ -13,8 +13,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MyBatisExample {
     // mvn exec:java -"Dexec.mainClass"=edu.eci.cvds.samples.services.client.MyBatisExample -"Dexec.cleanupDaemonThreads"=false
     public static void main(String args[]) throws SQLException {
-        System.out.println(" ");
-        System.out.println("¡Bienvenido!");
-        System.out.println(" ");
+
     }
 }

@@ -73,7 +73,7 @@ public class AnswerBean extends BasePageBean{
                     if (listIdNeeds.get(date).equals(nameNeed)) {
                         answerServices.addAnswerNeeds(name, comments, date, userId);
                         this.resetFields();
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("/needList.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/answerReport.xhtml");
                     }
                 }
             } else if(!(nameOffer.equals("")) && (nameNeed.equals(""))){
@@ -81,7 +81,7 @@ public class AnswerBean extends BasePageBean{
                     if (listIdOffer.get(date).equals(nameOffer)) {
                         answerServices.addAnswerOffer(name, comments, date, userId);
                         this.resetFields();
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("/offerList.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/answerReport.xhtml");
                     }
                 }
             }

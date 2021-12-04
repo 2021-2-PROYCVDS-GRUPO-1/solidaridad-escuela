@@ -31,9 +31,6 @@ import java.util.HashMap;
  * @version 17/10/2021
  */
 
-
-@SuppressWarnings("deprecation")
-// TODO -> change name to login bean
 @ManagedBean(name = "loginBean")
 @SessionScoped
 public class LoginBean extends BasePageBean {
@@ -43,14 +40,8 @@ public class LoginBean extends BasePageBean {
     @Inject
     private UserServices userServices;
 
-
     private String email;
     private String password;
-    private String message;
-    private boolean rememberMe;
-    private Subject currentUser;
-    private FacesMessage.Severity status;
-
 
     @PostConstruct
     public void init(){
@@ -60,8 +51,6 @@ public class LoginBean extends BasePageBean {
         login = getInjector().getInstance(Login.class);
     }
 
-
-    // TODO -> verify everything
     /**
      * Metodo que realiza el login del usuario
      * FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"log","Usuario desconocido."));
@@ -70,20 +59,13 @@ public class LoginBean extends BasePageBean {
         System.out.println("edu.eci.cvds.managedbeans.LoginBean.signIn()");
 
         try{
-            sinErrores();
-            currentUser = SecurityUtils.getSubject();
+            //currentUser = SecurityUtils.getSubject();
             if (this.login.isLoggedIn()) {
-//            if (false) {
-
-                    System.out.println("Ya esta loggeado----------------------------");
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/mainMenu.xhtml");
-                    //throw new HistorialEquiposException("Ya estas loggeado");//solo atrapar los errores.
                 }
                 else {
-                    System.out.println(email + "-" +password);
-                    System.out.println(email + "-" +new Sha256Hash(password).toHex());
                     this.login.signIn(email,password, false);
-                    //redireccionar();
+
                     User user = userServices.getUserByEmail(email);
                     Subject subject = SecurityUtils.getSubject();
                     subject.getSession().setAttribute("userId", user.getUserId());
@@ -95,41 +77,6 @@ public class LoginBean extends BasePageBean {
 
         catch( Exception exception){
             exception.printStackTrace();
-            message = exception.getMessage();
-            status = FacesMessage.SEVERITY_WARN;
-            restablecer();
-        }
-    }
-
-    /**
-     * metodo que establece los mensajes a mostrar en caso que no exista un error
-     */
-    public void sinErrores(){
-        message ="Login exitoso";
-        status = FacesMessage.SEVERITY_INFO;
-    }
-
-    /**
-     * Metodo que redirecciona al usuario a una pagina, dependiendo de su rol
-     */
-    public void redireccionar() {
-        System.out.println("edu.eci.cvds.managedbeans.LoginBean.redireccionar()");
-
-        try {
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            if (esAdmin()) {
-                HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-                session.setAttribute("email", email);
-                facesContext.getExternalContext().redirect("../admin/admin.xhtml");
-            }
-            else if (esUsuario()) {
-                HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-                session.setAttribute("email", email);
-                facesContext.getExternalContext().redirect("../usuario/usuario.xhtml");
-            }
-        }
-        catch (Exception exception) {
-            signOut();
         }
     }
 
@@ -141,9 +88,9 @@ public class LoginBean extends BasePageBean {
 
         try{
             this.login.signOut();
-            restablecer();
         }
         catch(Exception exception){
+            exception.printStackTrace();
         }
     }
 
@@ -153,18 +100,7 @@ public class LoginBean extends BasePageBean {
     public void verifyIfUserIsAuthenticated() {
         System.out.println("edu.eci.cvds.managedbeans.LoginBean.verifyIfUserIsAuthenticated()");
 
-        System.out.println("   ");
-        System.out.println("   ");
-        //System.out.println(SecurityUtils.getSubject().isAuthenticated());
-
         if ( SecurityUtils.getSubject().isAuthenticated()){
-            System.out.println("   ");
-            System.out.println("   ");
-            System.out.println(((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURI());
-            System.out.println("   ");
-            System.out.println("   ");
-
-
             return;
         }
 
@@ -175,69 +111,19 @@ public class LoginBean extends BasePageBean {
         }
     }
 
-
-    /**
-     * Funcion que retorna si el rol del usuario actual es Admin
-     * @return boolean, que dice si el rol del usuario actual es Admin
-     */
-    public boolean esAdmin() {
-        return currentUser.hasRole("administrador");
-    }
-
-    /**
-     * Funcion que retorna si el rol del usuario actual es Usuario
-     * @return  boolean, que dice si el rol del usuario actual es Usuario
-     */
-    public boolean esUsuario() {
-        return currentUser.hasRole("usuario");
-    }
-
-    /**
-     * Metodo que retorna el email que el usuario ingreso
-     * @return String, cadena que representa el email del usuario
-     */
-    public String getemail() {
+    public String getEmail() {
         return email;
     }
 
-    /**
-     * Metodo que establece el email del usuario
-     * @param email, String que representa el email a establecer
-     */
-    public void setemail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * Metodo que establece la password del usuario
-     * @param password, String que representa la password del usuario
-     */
-    public void setpassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * Metodo que retorna la password del usuario
-     * @return String, cadena que representa la password del usuario
-     */
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
 
-    /**
-     * metodo que restablece los valores de los input
-     */
-    public void restablecer(){
-        password = "";
-        email = "";
+    public void setPassword(String password) {
+        this.password = password;
     }
-
-    /**
-     * Metodo que muestra en un mensaje del status del log in
-     */
-    public void statusLogin() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(status, "LogIn", message));
-    }
-
-
 }
