@@ -57,12 +57,10 @@ public class UserBean extends BasePageBean{
 
         try{
             for(DatabaseStatus status : DatabaseStatus.values()){
-                System.out.println(status.toString());
                 statusList.add(status.toString());
             }
 
             for (Role role: Role.values()){
-                System.out.println(role.getName());
                 userRoleList.add(role.getName());
             }
         }
@@ -74,15 +72,6 @@ public class UserBean extends BasePageBean{
     public void createUser() {
         System.out.println("edu.eci.cvds.managedbeans.UserBean.createUser()");
 
-        System.out.println("User ID: "+ this.userId +
-                "\nStatus: " + this.status +
-                "\nFirst Name: " + this.firstName +
-                "\nLastname: " + this.lastname +
-                "\nEmail: " + this.email +
-                "\nUsername: " + this.username +
-                "\nPassword: " + this.password +
-                "\nRole: " + this.role +
-                "\nMax needs: " + this.maxNeeds);
         try{
             userServices.registerUser(this.userId,this.status
                     ,this.firstName,this.lastname,this.email,
@@ -94,22 +83,12 @@ public class UserBean extends BasePageBean{
 
         }catch(Exception e){
             e.printStackTrace();
-            //System.out.println(e.getMessage());
         }
     }
 
     public void updateUser() {
         System.out.println("edu.eci.cvds.managedbeans.UserBean.updateUser()");
 
-        System.out.println("User ID: "+ this.userId +
-                "\nStatus: " + this.status +
-                "\nFirst Name: " + this.firstName +
-                "\nLastname: " + this.lastname +
-                "\nEmail: " + this.lastname +
-                "\nUsername: " + this.username +
-                "\nPassword: " + this.password +
-                "\nRole: " + this.role +
-                "\nMax needs: " + this.maxNeeds);
         try{
             userServices.updateUser(this.userId,this.status
                     ,this.firstName,this.lastname,this.lastname,
@@ -155,10 +134,6 @@ public class UserBean extends BasePageBean{
 
         try {
             this.allUsers = userServices.getAllUsers();
-
-            for(User user : this.allUsers){
-                System.out.println(user.getEmail());
-            }
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -166,12 +141,6 @@ public class UserBean extends BasePageBean{
 
     public void goToUpdateUser(User user) {
         System.out.println("edu.eci.cvds.managedbeans.UserBean.goToUpdateUser()");
-
-        System.out.println("   ");
-        System.out.println("   ");
-        System.out.println("Editando el usuario: " + user.getUsername());
-        System.out.println("   ");
-        System.out.println("   ");
 
         this.userToEdit = user;
 

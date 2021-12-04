@@ -6,6 +6,7 @@
 
 <f:metadata>
     <f:viewAction action="#{loginBean.verifyIfUserIsAuthenticated}" />
+    <f:viewAction action="#{answerBean.init}" />
 </f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
     <h:head>
@@ -80,7 +81,7 @@
     <h:body>
         <div class="container header">
             <h:form>
-                <a onclick="history.back(-1)">Volver</a>
+                <a href="mainMenu.xhtml">Volver</a>
 
                 <a href="createAnswer.xhtml">Crear respuesta</a>
 

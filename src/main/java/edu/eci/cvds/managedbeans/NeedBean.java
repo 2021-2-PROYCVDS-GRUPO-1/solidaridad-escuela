@@ -109,8 +109,6 @@ public class NeedBean extends BasePageBean{
         catTest = categories.keySet();
 
         this.allNeeds = needServices.testGetAllOffers();
-        System.out.println(allNeeds);
-        //this.offerByUser = offerServices.OfferbyUserId(userId);
     }
 
     private PieChartModel createPieModel(){
@@ -138,14 +136,6 @@ public class NeedBean extends BasePageBean{
         System.out.println("edu.eci.cvds.managedbeans.NeedBean.registerNeed()");
 
         try{
-            System.out.println("Anadiendo necesidad con con nombre: " + this.name
-                    + "\nDescripcion: " + this.description
-                    + "\nEstado: " + this.status
-                    + "\nCategoría: " + this.category
-                    + "\nUrgencia: " + this.urgency
-                    + "\nPor el usuario: " + this.userId
-                    );
-
             needServices.registerNeed(categories.get(categoryName),
                     this.name,
                     this.description,
@@ -196,10 +186,6 @@ public class NeedBean extends BasePageBean{
 
         try {
             this.allNeeds = needServices.getAllNeeds();
-
-            for(Need need : this.allNeeds){
-                System.out.println(need.getName());
-            }
         } catch (Exception e){
             e.printStackTrace();
         }

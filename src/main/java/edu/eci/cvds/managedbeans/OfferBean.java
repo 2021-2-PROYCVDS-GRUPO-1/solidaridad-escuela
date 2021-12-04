@@ -80,19 +80,10 @@ public class OfferBean extends BasePageBean{
         getUserInformation();
         generateList();
 
-        System.out.println("   ");
-        System.out.println("   ");
-        System.out.println(" --- USER ROLE ---");
-        System.out.println(this.userRole);
-        System.out.println("   ");
-        System.out.println("   ");
-
         statusList = new ArrayList<>();
         categories = new HashMap<String, Integer>();
 
         pieModel = createPieModel();
-        System.out.println("-------PIE MODEL ------");
-        System.out.println(pieModel);
 
         try{
             for(OfferStatus status : OfferStatus.values()){
@@ -127,7 +118,6 @@ public class OfferBean extends BasePageBean{
         this.offerByUser = offerServices.getByUserID(userId);
 
         this.allOffers = offerServices.testGetAllOffers();
-        System.out.println(allOffers);
     }
 
     private void getUserInformation(){
@@ -163,7 +153,6 @@ public class OfferBean extends BasePageBean{
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.categoryName()");
 
         for(Map.Entry<String, Integer> entry : categories.entrySet()){
-            System.out.println(id + " - " +entry.getValue());
             if(id == entry.getValue()){
                 return entry.getKey();
             }
@@ -178,7 +167,6 @@ public class OfferBean extends BasePageBean{
         getUserInformation();
         generateList();
 
-        System.out.println(offerCategory + " " + name + " " + description + " " + userId );
         try{
             offerServices.createOffer(categories.get(categoryName), name, description, userId);
             this.resetFields();
@@ -217,10 +205,6 @@ public class OfferBean extends BasePageBean{
 
         try {
             this.allOffers = offerServices.getAllOffers();
-
-            for(Offer offer : this.allOffers){
-                System.out.println(offer.getName());
-            }
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -228,12 +212,6 @@ public class OfferBean extends BasePageBean{
 
     public void goToUpdateOffer(Offer offer) {
         System.out.println("edu.eci.cvds.managedbeans.OfferBean.goToUpdateOffer()");
-
-        System.out.println("   ");
-        System.out.println("   ");
-        System.out.println("Editando la oferta: " + offer.getName());
-        System.out.println("   ");
-        System.out.println("   ");
 
         this.offerToEdit = offer;
 
