@@ -256,14 +256,14 @@ para ver el seguimiento y manejo que dimos al proyecto.
 
 ### **Release-Burndown Chart:**
 
-#### **Sprint1:**
+#### **Sprint 1:**
 
 ![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/last-fix/modelos/Sprints/Sprint%20I/BurndownI.jpg)
 
-#### **Sprint2:**
+#### **Sprint 2:**
 
 ![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/last-fix/modelos/Sprints/Sprint%20I/BurndownII.jpg)
 
-#### **Sprint3:**
+#### **Sprint 3:**
 
 ![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/last-fix/modelos/Sprints/Sprint%20I/BurndownIII.jpg)
