@@ -1,6 +1,8 @@
 # Solidaridad Escuela
 ## CICLOS DE VIDA Y DESARROLLO DE SOFTWARE / 2021-2
 
+[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://solidaridad-escuela-grupo-1.herokuapp.com/)
+
 # Integrantes
 |     Nombre    |     Rol         |
 |--------------|------------- |
@@ -28,12 +30,13 @@ plataforma y del alcance que se está logrando.
 
 
 ### Manual De Usario
-
+  
 Páginas iniciales
 
-_**Imagenes de pagina inicial**_
 
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/logImage.png)
 
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/mainMenu.png)
 
 
 > #### **CREAR.**
@@ -50,7 +53,8 @@ _¿Cómo crear una categoría?_
 
 4. Clicar el botón "Crear Categoría".
 
-_**Imagen crear categoría**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/crearCategoria.png)
+
 
 
 * _Crear Necesidad._
@@ -67,7 +71,7 @@ _¿Cómo crear una necesidad?_
 
 5. Clicar el botón "Crear Necesidad"
 
-_**Imagen crear Necesidad**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/crearNecesidad.png)
 
 
 * _Crear Oferta._
@@ -82,7 +86,7 @@ _¿Cómo crear una oferta?_
 
 4. Clicar el botón "Crear Oferta"
 
-_**Imagen crear Oferta**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/crearOferta.png)
 
 
 * _Crear Respuesta._
@@ -97,7 +101,7 @@ _¿Cómo crear una respuesta?_
 
 4. Clicar el botón "Crear Respuesta"
 
-_**Imagen crear Respuesta**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/crearRespuesta.png)
 
 > #### **CONSULTAS.**
 
@@ -108,33 +112,15 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las categorías registradas en la base de datos en el momento junto a 
 dos botones: 
 
-_**Imagen lista de categorías**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/listaCategorias.png)
+
 
 * Eliminar Categoría: Eliminará la categoría seleccionada.
 
 * Editar Categoría: Redireccionará al apartado de editar categoría. En este es posible cambiar el nombre, el estado 
 y la descripción de la categoría. 
 
-_**Imagen editar categoría**_
-
-
-
-* _Consultar Categorías._
-
-_¿Qué encontramos y podemos hacer aquí?_
-
-Encontraremos una lista de todas las categorías registradas en la base de datos en el momento junto a
-dos botones:
-
-_**Imagen lista de categorías**_
-
-* Eliminar Categoría: Eliminará la categoría seleccionada.
-
-* Editar Categoría: Redireccionará al apartado de editar categoría. En este es posible cambiar el nombre, el estado 
-y la descripción de la categoría. 
-
-_**Imagen editar categoría**_
-
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/editarCategoria.png)
 
 
 * _Consultar Ofertas._
@@ -144,14 +130,16 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las ofertas que pertenecen al usuario que se encuentra logeado en la aplicación junto a
 dos botones:
 
-_**Imagen lista de ofertas**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/listaOferta.png)
+
 
 * Eliminar Oferta: Eliminará la oferta seleccionada.
 
 * Editar Oferta: Redireccionará al apartado de editar oferta. En este es posible cambiar únicamente el estado de la
-oferta
+oferta.
 
-_**Imagen editar oferta**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/editarOferta.png)
+
 
 * _Consultar Necesidades._
 
@@ -160,20 +148,136 @@ _¿Qué encontramos y podemos hacer aquí?_
 Encontraremos una lista de todas las necesidades que pertenecen al usuario que se encuentra logeado en la aplicación junto a
 dos botones:
 
-_**Imagen lista de necesidades**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/listaNecesidad.png)
 
 * Eliminar Necesidad: Eliminará la necesidad seleccionada.
 
-* Editar Oferta: Redireccionará al apartado de editar necesidad. En este es posible cambiar únicamente el estado de la
-necesidad
+* Editar Necesidad: Redireccionará al apartado de editar necesidad. En este es posible cambiar únicamente el estado de la
+necesidad.
 
-_**Imagen editar necesidad**_
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/editarNecesidad.png)
+
+
+* _Reporte de Categorías._
+
+_¿Qué encontramos y podemos hacer aquí?_
+
+Encontraremos una lista de todas las categorías además de una gráfica que muestra información relevante sobre estas. Dicha lista
+se podrá exportar en **PDF** o en un archivo de excel.
+
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/reporteCategoria.png)
+
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/graficaCategoria.png)
+
+
+* _Reporte de Ofertas._
+
+_¿Qué encontramos y podemos hacer aquí?_
+
+Encontraremos una lista de todas las ofertas además de una gráfica que muestra información relevante sobre estas. Dicha lista 
+se podrá exportar en **PDF** o en un archivo de excel.  
+
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/ReporteOferta.png)
+
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/graficoOferta.png)
+
+* _Reporte de Necesidades._
+
+_¿Qué encontramos y podemos hacer aquí?_
+
+Encontraremos una lista de todas las necesidades además de una gráfica que muestra información relevante sobre estas. Dicha lista
+se podrá exportar en **PDF** o en un archivo de excel.
+
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/reporteNecesidad.png)
+
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/graficoNecesidad.png)
+
+
+* _Reporte de Respuestas._
+
+_¿Qué encontramos y podemos hacer aquí?_
+
+Encontraremos una lista de todas las respuestas además de una gráfica que muestra información relevante sobre estas. Dicha lista
+se podrá exportar en **PDF** o en un archivo de excel.
+
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/CVDS-5-V2/modelos/MANUAL%20DE%20USUARIO/reporteRespuesta.png)
+
+
+## __Arquitectura y Diseño__
+
+### __Modelo E-R__
+
+### __Diagrama de Clase__
+
+
+
+
 
 
 ### _Tecnologías utilizadas_
 
 #### _Integración continua_
 [![CircleCI Badge](https://circleci.com/gh/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/tree/master.svg?style=svg)](https://circleci.com/gh/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/tree/master)
+
+#### _Despliegue en Heroku_
+[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://solidaridad-escuela-grupo-1.herokuapp.com/)
+
+## __Descripción del proceso:__
+
+## __Integrantes:__
+
+|     Nombre    |     Git         |
+|--------------|------------- |
+|Juan David Murillo |[juancho20sp](https://github.com/juancho20sp)|
+|Laura Valentina García|[laura-gar](https://github.com/laura-gar) |
+|Juan Sebastian Cadavid |[jua1000n](https://github.com/jua1000n)  |
+|Laura Nathalia García|[lngar](https://github.com/lngar)   |
+
+
+### __Metodología Utilizada:__
+
+
+Planeamos todos los sprints en la primera reunión de equipo que tuvimos, 
+discutiendo sobre qué y cómo deberíamos hacer el proyecto.
+
+
+_¿Cómo ordenamos los sprints?:_
+
+Discutimos entre todo el grupo de trabajo qué tareas deberían hacerse primero, guiándonos tan
+solo por lo que decían como tal, haciéndonos preguntas sobre la creación de los elementos necesarios
+como lo son las ofertas y las necesidades, lo que después nos llevaría a la siguiente organización:
+
+- Sprint 1:
+  - Configuración inicial del proyecto. 
+  - Creación de la base de datos. 
+  - Inicio de sesión. 
+  - Creación de Categorías, Ofertas y Necesidades. 
+- Sprint 2:
+  - Creación de Respuestas
+  - Actualización de Categorías, Ofertas y Necesidades. 
+  - Reportes de Necesidades, Ofertas y Respuestas. 
+- Sprint 3:
+  - Reporte de Categorías
+  - Eliminar Categoría
+  - Mejoras generales. 
+
+### __Taiga__
+
+Enlace de [Taiga]() 
+para ver el seguimiento y manejo que dimos al proyecto.
+
+
+
+### __Release-Burndown Chart:__
+
+#### __Sprint1:__
+#### __Sprint2:__
+#### __Sprint3:__
+
+
+
+
+
 
 
 
