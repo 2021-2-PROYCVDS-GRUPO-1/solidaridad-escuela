@@ -54,6 +54,8 @@ public class NeedBean extends BasePageBean{
 
         categories = new HashMap<String, Integer>();
 
+        this.verifyValidUpdate();
+
         this.resetFields();
 
         this.generateServices();
@@ -249,7 +251,7 @@ public class NeedBean extends BasePageBean{
     }
 
     public void resetFields(){
-        System.out.println("edu.eci.cvds.managedbeans.NeedBean.verifyValidUpdate()");
+        System.out.println("edu.eci.cvds.managedbeans.NeedBean.resetFields()");
 
         this.name = "";
         this.description = "";
