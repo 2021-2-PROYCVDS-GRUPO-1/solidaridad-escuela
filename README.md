@@ -258,6 +258,12 @@ para ver el seguimiento y manejo que dimos al proyecto.
 
 #### **Sprint1:**
 
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/last-fix/modelos/Sprints/Sprint%20I/BurndownI.jpg)
+
 #### **Sprint2:**
 
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/last-fix/modelos/Sprints/Sprint%20I/BurndownII.jpg)
+
 #### **Sprint3:**
+
+![](https://github.com/2021-2-PROYCVDS-GRUPO-1/solidaridad-escuela/blob/last-fix/modelos/Sprints/Sprint%20I/BurndownIII.jpg)
