@@ -6,6 +6,7 @@ public class Answer {
     private int id;
     private int idOffer;
     private int idNeeds;
+    private int userId;
     private String name;
     private String comments;
     private String nameOfferORNeed;
@@ -80,5 +81,13 @@ public class Answer {
 
     public void setIdNeeds(int idNeeds) {
         this.idNeeds = idNeeds;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

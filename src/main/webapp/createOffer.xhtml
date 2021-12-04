@@ -154,14 +154,14 @@
 
             #createOfferForm {
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr;
                 grid-template-rows: 1fr min-content min-content 1fr;
                 gap: 10px 5px;
                 grid-template-areas:
-                    "title title title"
-                    ". . ."
-                    "description description description"
-                    "button button button";
+                    "title title"
+                    ". ."
+                    "description description"
+                    "button button";
             }
 
             .create-offer-title {
@@ -204,10 +204,10 @@
                     <!-- ROW END -->
 
                     <!-- ROW START -->
-                    <p:selectOneMenu id="createOfferState" value="#{offerBean.status}">
+                    <!-- <p:selectOneMenu id="createOfferState" value="#{offerBean.status}">
                         <f:selectItem itemLabel="Seleccione un estado" itemValue="" />
                         <f:selectItems value="#{offerBean.statusList}" />
-                    </p:selectOneMenu>
+                    </p:selectOneMenu> -->
                     <!-- ROW END -->
 
                     <!-- ROW START -->

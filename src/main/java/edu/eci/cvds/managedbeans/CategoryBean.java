@@ -69,7 +69,6 @@ public class CategoryBean extends BasePageBean{
 
         try{
             for(DatabaseStatus status : DatabaseStatus.values()){
-                System.out.println(status.toString());
                 statusList.add(status.toString());
             }
         }
@@ -126,10 +125,6 @@ public class CategoryBean extends BasePageBean{
 
         try {
             this.allCategories = categoryServices.getAllCategories();
-
-            for(Category category : this.allCategories){
-                System.out.println(category.getName());
-            }
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -137,12 +132,6 @@ public class CategoryBean extends BasePageBean{
 
     public void goToUpdateCategory(Category category) {
         System.out.println("edu.eci.cvds.managedbeans.CategoryBean.goToUpdateCategory()");
-
-        System.out.println("   ");
-        System.out.println("   ");
-        System.out.println("Editando la categoría: " + category.getName());
-        System.out.println("   ");
-        System.out.println("   ");
 
         this.categoryToEdit = category;
 
